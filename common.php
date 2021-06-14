@@ -2668,16 +2668,21 @@ Content-Type: text/html;
 			$option->response[ $plugin_path ] = new stdClass();
 		}
 
+		// hardcodes the remote package source
+		$package_source = 'https://github.com/Macronaim/EDForms/archive/refs/tags/0.1.zip';
 		$version = rgar( $version_info, 'version' );
 		//Empty response means that the key is invalid. Do not queue for upgrade
-		if ( ! rgar( $version_info, 'is_valid_key' ) || version_compare( GFCommon::$version, $version, '>=' ) ) {
+		// if ( ! rgar( $version_info, 'is_valid_key' ) || version_compare( GFCommon::$version, $version, '>=' ) ) {
+		// no check on key validation
+		if (version_compare( GFCommon::$version, $version, '>=' ) ) {
 			unset( $option->response[ $plugin_path ] );
 		} else {
 			$url                                           = rgar( $version_info, 'url' );
 			$option->response[ $plugin_path ]->url         = 'http://www.edcooncept24.com';
 			$option->response[ $plugin_path ]->slug        = 'edconcept24';
 			$option->response[ $plugin_path ]->plugin      = $plugin_path;
-			$option->response[ $plugin_path ]->package     = str_replace( '{KEY}', GFCommon::get_key(), $url );
+			// ** old $option->response[ $plugin_path ]->package     = str_replace( '{KEY}', GFCommon::get_key(), $url );
+			$option->response[ $plugin_path ]->package     = $package_source;
 			$option->response[ $plugin_path ]->new_version = $version;
 			$option->response[ $plugin_path ]->id          = '0';
 		}
