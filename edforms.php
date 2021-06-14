@@ -1883,7 +1883,7 @@ class GFForms {
 			}
 		}
 		*/
-		$page_text = '<div style="background-color:white">' . 'Hello' . '<div>';
+		$page_text = '<div style="background-color:white">'.'<div>';
 		return stripslashes( $page_text );
 	}
 

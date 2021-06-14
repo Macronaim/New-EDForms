@@ -58,6 +58,7 @@ class GFAutoUpgrade {
 		} else {
 			$version_info = $this->get_version_info( $this->_slug );
 
+			/* no check
 			if ( ! rgar( $version_info, 'is_valid_key' ) ) {
 				$title       = $this->_title;
 				if ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
@@ -68,6 +69,7 @@ class GFAutoUpgrade {
 				$message = $new_version . sprintf( esc_html__( '%sRegister%s your copy of Ed Forms to receive access to automatic upgrades and support. Need a license key? %sPurchase one now%s.', 'edforms' ), '<a href="admin.php?page=gf_settings">', '</a>', '<a href="https://www.edconcept24.fr">', '</a>' ) . '</div></td>';
 				GFAddOn::display_plugin_message( $message );
 			}
+			*/
 		}
 	}
 
@@ -79,7 +81,8 @@ class GFAutoUpgrade {
 		}
 
 		$update = $this->get_version_info( $this->_slug );
-		if ( rgar( $update, 'is_valid_key' ) == true && version_compare( $this->_version, $update['version'], '<' ) ) {
+		// no check on key validation 
+		if ( version_compare( $this->_version, $update['version'], '<' ) ) {
 			$plugin_data                = get_plugin_data( $this->_full_path );
 			$plugin_data['type']        = 'plugin';
 			$plugin_data['slug']        = $this->_path;
@@ -98,7 +101,7 @@ class GFAutoUpgrade {
 		}
 
 		$update = $this->get_version_info( $this->_slug );
-		if ( rgar( $update, 'is_valid_key' ) == true && version_compare( $this->_version, $update['version'], '<' ) ) {
+		if ( version_compare( $this->_version, $update['version'], '<' ) ) {
 			$plugin_data         = get_plugin_data( $this->_full_path );
 			$plugin_data['slug'] = $this->_path;
 			$plugin_data['type'] = 'plugin';
@@ -137,7 +140,8 @@ class GFAutoUpgrade {
 		}
 
 		//Empty response means that the key is invalid. Do not queue for upgrade
-		if ( ! rgar( $version_info, 'is_valid_key' ) || version_compare( $this->_version, $version_info['version'], '>=' ) ) {
+		// no check on key validation
+		if ( version_compare( $this->_version, $version_info['version'], '>=' ) ) {
 			unset( $option->response[ $this->_path ] );
 		} else {
 			$option->response[ $this->_path ]->plugin      = $this->_path;
@@ -175,6 +179,7 @@ class GFAutoUpgrade {
 			'User-Agent'     => 'WordPress/' . get_bloginfo( 'version' ),
 			'Referer'        => get_bloginfo( 'url' ),
 		);
+		/*
 
 		$raw_response = GFCommon::post_to_manager( 'changelog.php', $this->get_remote_request_params( $this->_slug, $key, $this->_version ), $options );
 
@@ -186,6 +191,8 @@ class GFAutoUpgrade {
 				$text = '';
 			}
 		}
+		*/
+		$text = 'ED Forms v4';
 
 		return stripslashes( $text );
 	}
@@ -222,21 +229,9 @@ class GFAutoUpgrade {
 		$plugin_file = $this->_path;
 		$upgrade_url = wp_nonce_url( 'update.php?action=upgrade-plugin&amp;plugin=' . urlencode( $plugin_file ), 'upgrade-plugin_' . $plugin_file );
 
-		if ( ! rgar( $version_info, 'is_valid_key' ) ) {
+		// no check on key validation
 
-			$version_icon    = 'dashicons-no';
-			$version_message = sprintf(
-				'<p>%s</p>',
-				sprintf(
-					esc_html( '%sRegister%s your copy of Ed Forms to receive access to automatic updates and support. Need a license key? %sPurchase one now%s.', 'edforms' ),
-					'<a href="admin.php?page=gf_settings">',
-					'</a>',
-					'<a href="https://www.edconcept24.fr">',
-					'</a>'
-				)
-			);
-
-		} elseif ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
+		if ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
 
 			$details_url = self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . urlencode( $this->_slug ) . '&section=changelog&TB_iframe=true&width=600&height=800' );
 			$message_link_text = sprintf( esc_html__( 'View version %s details', 'edforms' ), $version_info['version'] );
@@ -286,8 +281,7 @@ class GFAutoUpgrade {
 
 			<?php
 			} elseif ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
-
-				if ( rgar( $version_info, 'is_valid_key' ) ) {
+				// no check on key validation
 					$plugin_file = $this->_path;
 					$upgrade_url = wp_nonce_url( 'update.php?action=upgrade-plugin&amp;plugin=' . urlencode( $plugin_file ), 'upgrade-plugin_' . $plugin_file );
 					$details_url = self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . urlencode( $this->_slug ) . '&section=changelog&TB_iframe=true&width=600&height=800' );
@@ -300,7 +294,6 @@ class GFAutoUpgrade {
 						<?php echo $message . ' <p>' . sprintf( esc_html__( 'You can update to the latest version automatically or download the update and install it manually. %sUpdate Automatically%s %sDownload Update%s', 'edforms' ), "</p><a class='button-primary' href='{$upgrade_url}'>", '</a>', "&nbsp;<a class='button' href='{$version_info['url']}'>", '</a>' ); ?>
 					</div>
 				<?php
-				}
 			} else {
 
 				?>
