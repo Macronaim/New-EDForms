@@ -2537,6 +2537,7 @@ Content-Type: text/html;
 
 			$nocache = $cache ? '' : 'nocache=1'; //disabling server side caching
 
+			/*
 			$raw_response = self::post_to_manager( 'version.php', $nocache, $options );
 
 			if ( is_wp_error( $raw_response ) || rgars( $raw_response, 'response/code' ) != 200 ) {
@@ -2548,7 +2549,9 @@ Content-Type: text/html;
 					$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
 				}
 			}
-
+			*/
+			// Hardcoded version
+			$version_info = array( 'is_valid_key' => '1', 'version' => '4.0.0.0', 'url' => '', 'is_error' => '1' );
 			$version_info['timestamp'] = time();
 
 			// Caching response.

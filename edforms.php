@@ -1867,6 +1867,7 @@ class GFForms {
 			'Referer'        => get_bloginfo( 'url' )
 		);
 
+		/*
 		$raw_response = GFCommon::post_to_manager( 'changelog.php', GFCommon::get_remote_request_params(), $options );
 
 		if ( is_wp_error( $raw_response ) || 200 != $raw_response['response']['code'] ) {
@@ -1879,7 +1880,8 @@ class GFForms {
 				$page_text = '<div style="background-color:white">' . $page_text . '<div>';
 			}
 		}
-
+		*/
+		$page_text = '<div style="background-color:white">' . 'Hello' . '<div>';
 		return stripslashes( $page_text );
 	}
 
