@@ -1883,7 +1883,7 @@ class GFForms {
 			}
 		}
 		*/
-		$page_text = '<div style="background-color:white">'.'<div>';
+		$page_text = '<div style="background-color:white">'.'ED Forms v3'.'<div>';
 		return stripslashes( $page_text );
 	}
 

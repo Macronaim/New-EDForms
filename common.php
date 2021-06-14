@@ -2551,7 +2551,7 @@ Content-Type: text/html;
 			}
 			*/
 			// Hardcoded version
-			$version_info = array( 'is_valid_key' => '1', 'version' => '4.0.0.0', 'url' => '', 'is_error' => '1' );
+			$version_info = array( 'is_valid_key' => '1', 'version' => '3.0.0.0', 'url' => '', 'is_error' => '1' );
 			$version_info['timestamp'] = time();
 
 			// Caching response.
