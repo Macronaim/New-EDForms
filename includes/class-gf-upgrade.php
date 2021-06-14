@@ -60,7 +60,7 @@ class GF_Upgrade {
 	}
 
 	/**
-	 * Decides to execute a fresh install of Gravity Forms, upgrade an existing installation, or do nothing if versions are up-to-date.
+	 * Decides to execute a fresh install of Ed Forms, upgrade an existing installation, or do nothing if versions are up-to-date.
 	 *
 	 * @since  2.2
 	 */
@@ -91,7 +91,7 @@ class GF_Upgrade {
 
 			// An upgrade is required, and it can be done automatically.
 			// If upgrading to this version requires the Upgrade Wizard, nothing will be done here. Instead, the upgrade will happen via the Upgrade Wizard.
-			// Upgrades Gravity Forms.
+			// Upgrades Ed Forms.
 			$this->upgrade();
 
 		}
@@ -120,7 +120,7 @@ class GF_Upgrade {
 	}
 
 	/**
-	 * Performs an upgrade of Gravity Forms.
+	 * Performs an upgrade of Ed Forms.
 	 *
 	 * @since  2.2
 	 *
@@ -167,7 +167,7 @@ class GF_Upgrade {
 	}
 
 	/**
-	 * Performs initial install of Gravity Forms.
+	 * Performs initial install of Ed Forms.
 	 *
 	 * @since  2.2
 	 */
@@ -193,7 +193,7 @@ class GF_Upgrade {
 		$this->maybe_import_forms();
 
 		/**
-		 * Fires after Gravity Forms is fully installed.
+		 * Fires after Ed Forms is fully installed.
 		 *
 		 * @since 2.2
 		 *
@@ -268,9 +268,9 @@ class GF_Upgrade {
 		$system_status_link_close = '</a>';
 
 		/* translators: 1: version number 2: open link tag 3: closing link tag. */
-		$message = sprintf( esc_html__( 'Gravity Forms is currently upgrading the database to version %1$s. For sites with a large number of entries this may take a long time. Check the %2$sSystem Status%3$s page for further details.', 'gravityforms' ), GFForms::$version, $system_status_link_open, $system_status_link_close );
+		$message = sprintf( esc_html__( 'Ed Forms is currently upgrading the database to version %1$s. For sites with a large number of entries this may take a long time. Check the %2$sSystem Status%3$s page for further details.', 'edforms' ), GFForms::$version, $system_status_link_open, $system_status_link_close );
 
-		$key = sanitize_key( 'gravityforms_upgrading_' . $versions['version'] );
+		$key = sanitize_key( 'edforms_upgrading_' . $versions['version'] );
 
 		GFCommon::add_dismissible_message( $message, $key, 'warning', 'gform_full_access', true );
 
@@ -290,7 +290,7 @@ class GF_Upgrade {
 		$from_db_version = $lock_params['from_db_version'];
 
 		/**
-		 * Fires after Gravity Forms is fully upgraded.
+		 * Fires after Ed Forms is fully upgraded.
 		 *
 		 * @since 2.2
 		 *
@@ -303,12 +303,12 @@ class GF_Upgrade {
 
 		delete_option( 'gform_upgrade_status' );
 
-		// Updating current Gravity Forms version.
+		// Updating current Ed Forms version.
 		update_option( 'rg_form_version', $version );
 
 		$this->flush_versions();
 
-		$key = sanitize_key( 'gravityforms_upgrading_' . GFForms::$version );
+		$key = sanitize_key( 'edforms_upgrading_' . GFForms::$version );
 
 		GFCommon::remove_dismissible_message( $key );
 
@@ -332,7 +332,7 @@ class GF_Upgrade {
 	}
 
 	/**
-	 * Sets up the database for Gravity Forms
+	 * Sets up the database for Ed Forms
 	 *
 	 * @since  2.2
 	 * @global $wpdb
@@ -340,7 +340,7 @@ class GF_Upgrade {
 	 * @return void
 	 */
 	/**
-	 * Sets up the database for Gravity Forms
+	 * Sets up the database for Ed Forms
 	 *
 	 * @since  2.2
 	 * @global $wpdb
@@ -535,7 +535,7 @@ class GF_Upgrade {
 
 		//-- Data Upgrade Process Start --//
 
-		$this->update_upgrade_status( esc_html__( 'Queued for upgrade.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Queued for upgrade.', 'edforms' ) );
 
 		if ( version_compare( $current_db_version, '2.0.4.7', '<' ) ) {
 			$this->post_upgrade_schema_2047();
@@ -630,7 +630,7 @@ class GF_Upgrade {
 	 */
 	public function gf_upgrade_230_migrate_forms() {
 		global $wpdb;
-		$this->update_upgrade_status( esc_html__( 'Migrating forms.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Migrating forms.', 'edforms' ) );
 
 		// Migrate form headers
 
@@ -689,7 +689,7 @@ WHERE lfv.id NOT IN
 
 		$wpdb->query( $sql );
 
-		$this->update_upgrade_status( esc_html__( 'Forms migrated.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Forms migrated.', 'edforms' ) );
 		return false;
 	}
 
@@ -722,7 +722,7 @@ LIMIT {$limit}";
 
 			if ( $wpdb->last_error ) {
 				/* translators: %s: the database error */
-				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Headers: %s', 'gravityforms' ), $wpdb->last_error ) );
+				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Headers: %s', 'edforms' ), $wpdb->last_error ) );
 				// wp_die() is not used here because it would trigger another async task
 				exit;
 			}
@@ -748,7 +748,7 @@ WHERE l.id IN ( {$lead_ids_in} )";
 
 					if ( $wpdb->last_error ) {
 						/* translators: %s: the database error */
-						$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Headers: %s', 'gravityforms' ), $wpdb->last_error ) );
+						$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Headers: %s', 'edforms' ), $wpdb->last_error ) );
 						// wp_die() is not used here because it would trigger another async task
 						exit;
 					}
@@ -761,7 +761,7 @@ FROM {$lead_table} l2
 WHERE l2.id NOT IN ( SELECT e.id FROM {$entry_table} e )";
 						$remaining = $wpdb->get_var( $sql_remaining );
 						if ( $remaining > 0 ) {
-							$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 1/3 Migrating entry headers. %d rows remaining.', 'gravityforms' ), $remaining ) );
+							$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 1/3 Migrating entry headers. %d rows remaining.', 'edforms' ), $remaining ) );
 							return true;
 						}
 					}
@@ -786,7 +786,7 @@ LIMIT {$limit}";
 			if ( $wpdb->last_error ) {
 				error_log('error: ' . $wpdb->last_error );
 				/* translators: %s: the database error */
-				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Details: %s', 'gravityforms' ), $wpdb->last_error ) );
+				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Details: %s', 'edforms' ), $wpdb->last_error ) );
 				// wp_die() is not used here because it would trigger another async task
 				exit;
 			}
@@ -811,7 +811,7 @@ WHERE ld.id IN ( {$lead_detail_ids_in} )";
 				if ( $wpdb->last_error ) {
 					error_log('error: ' . $wpdb->last_error );
 					/* translators: %s: the database error */
-					$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Details: %s', 'gravityforms' ), $wpdb->last_error ) );
+					$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Details: %s', 'edforms' ), $wpdb->last_error ) );
 					// wp_die() is not used here because it would trigger another async task
 					exit;
 				}
@@ -825,7 +825,7 @@ FROM {$lead_details_table} ld
 WHERE ld.id NOT IN ( SELECT em.id FROM {$entry_meta_table} em )";
 					$remaining = $wpdb->get_var( $sql_remaining );
 					if ( $remaining > 0 ) {
-						$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 2/3 Migrating entry details. %d rows remaining.', 'gravityforms' ), $remaining ) );
+						$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 2/3 Migrating entry details. %d rows remaining.', 'edforms' ), $remaining ) );
 						return true;
 					}
 				}
@@ -855,7 +855,7 @@ LIMIT {$limit}";
 
 			if ( $wpdb->last_error ) {
 				/* translators: %s: the database error */
-				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Meta: %s', 'gravityforms' ), $wpdb->last_error ) );
+				$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Meta: %s', 'edforms' ), $wpdb->last_error ) );
 				// wp_die() is not used here because it would trigger another async task
 				exit;
 			}
@@ -879,7 +879,7 @@ WHERE lm.id IN ( {$lead_meta_ids_in} )";
 
 				if ( $wpdb->last_error ) {
 					/* translators: %s: the database error */
-					$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Meta: %s', 'gravityforms' ), $wpdb->last_error ) );
+					$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating Entry Meta: %s', 'edforms' ), $wpdb->last_error ) );
 					// wp_die() is not used here because it would trigger another async task
 					exit;
 				}
@@ -895,14 +895,14 @@ WHERE NOT EXISTS
       (SELECT * FROM {$entry_meta_table} em WHERE em.entry_id = lm.lead_id AND CONVERT(em.meta_key USING {$charset_db}) = CONVERT(lm.meta_key USING {$charset_db}) {$collate})";
 					$remaining = $wpdb->get_var( $sql_remaining );
 					if ( $remaining > 0 ) {
-						$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 3/3 Migrating entry meta. %d rows remaining.', 'gravityforms' ), $remaining ) );
+						$this->update_upgrade_status( sprintf( esc_html__( 'Migrating leads. Step 3/3 Migrating entry meta. %d rows remaining.', 'edforms' ), $remaining ) );
 						return true;
 					}
 				}
 			}
 		} while ( ! empty( $lead_meta_ids ) );
 
-		$this->update_upgrade_status( esc_html__( 'Entry details migrated.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Entry details migrated.', 'edforms' ) );
 		return false;
 	}
 
@@ -914,7 +914,7 @@ WHERE NOT EXISTS
 	public function gf_upgrade_230_migrate_incomplete_submissions() {
 		global $wpdb;
 
-		$this->update_upgrade_status( esc_html__( 'Migrating incomplete submissions.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Migrating incomplete submissions.', 'edforms' ) );
 
 		$incomplete_submissions_table = GFFormsModel::get_incomplete_submissions_table_name();
 
@@ -941,7 +941,7 @@ WHERE CONVERT(insub.uuid USING {$charset_db}) {$collate} NOT IN
 
 		if ( $wpdb->last_error ) {
 			/* translators: %s: the database error */
-			$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating incomplete submissions: %s', 'gravityforms' ), $wpdb->last_error ) );
+			$this->update_upgrade_status( sprintf( esc_html__( 'Error Migrating incomplete submissions: %s', 'edforms' ), $wpdb->last_error ) );
 			// wp_die() is not used here because it would trigger another async task
 			exit;
 		}
@@ -956,7 +956,7 @@ WHERE CONVERT(insub.uuid USING {$charset_db}) {$collate} NOT IN
 	public function gf_upgrade_230_migrate_lead_notes() {
 		global $wpdb;
 
-		$this->update_upgrade_status( esc_html__( 'Migrating entry notes.', 'gravityforms' ) );
+		$this->update_upgrade_status( esc_html__( 'Migrating entry notes.', 'edforms' ) );
 
 		$lead_notes_details_table = GFFormsModel::get_lead_notes_table_name();
 		$entry_notes_table = GFFormsModel::get_entry_notes_table_name();
@@ -978,7 +978,7 @@ WHERE ln.id NOT IN
 	}
 
 	/**
-	 * Imports Gravity Forms license keys, and reCAPTCHA keys from global variables.
+	 * Imports Ed Forms license keys, and reCAPTCHA keys from global variables.
 	 *
 	 * @since  2.2
 	 * @access protected
@@ -1013,7 +1013,7 @@ WHERE ln.id NOT IN
 	}
 
 	/**
-	 * Auto imports forms when Gravity Forms is installed based on GF_IMPORT_FILE constant.
+	 * Auto imports forms when Ed Forms is installed based on GF_IMPORT_FILE constant.
 	 *
 	 * @since  2.2
 	 * @access protected
@@ -1091,7 +1091,7 @@ WHERE ln.id NOT IN
 
 
 	/**
-	 * Upgrade routine from gravity forms version 2.0.4.7 and below
+	 * Upgrade routine from ed forms version 2.0.4.7 and below
 	 */
 	protected function post_upgrade_schema_2047() {
 
@@ -1174,7 +1174,7 @@ WHERE ln.id NOT IN
 	}
 
 	/**
-	 * Fixes leading and trailing spaces within Gravity Forms tables.
+	 * Fixes leading and trailing spaces within Ed Forms tables.
 	 *
 	 * @since  Unknown
 	 * @access private
@@ -1334,7 +1334,7 @@ SET d.value = l.value"
 	}
 
 	/**
-	 * Validates that Gravity Forms is doing the database upgrade, and has permissions to do so.
+	 * Validates that Ed Forms is doing the database upgrade, and has permissions to do so.
 	 *
 	 * @since  Unknown
 	 * @access public
@@ -1346,7 +1346,7 @@ SET d.value = l.value"
 	 */
 	public function validate_upgrade( $do_upgrade, $hook_extra ) {
 
-		if ( rgar( $hook_extra, 'plugin' ) == 'gravityforms/gravityforms.php' && ! $this->has_database_permission( $error ) ) {
+		if ( rgar( $hook_extra, 'plugin' ) == 'edforms/edforms.php' && ! $this->has_database_permission( $error ) ) {
 			return new WP_Error( 'no_db_permission', $error );
 		}
 
@@ -1354,7 +1354,7 @@ SET d.value = l.value"
 	}
 
 	/**
-	 * Checks if Gravity Forms has permissions to make changes to the database.
+	 * Checks if Ed Forms has permissions to make changes to the database.
 	 *
 	 * @since   Unknown
 	 * @access  private
@@ -1375,7 +1375,7 @@ SET d.value = l.value"
 
 		$sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}rg_test ( col1 int PRIMARY KEY )";
 		$wpdb->query( $sql );
-		$error = 'Current database user does not have necessary permissions to create tables. Gravity Forms requires that the database user has CREATE and ALTER permissions. If you need assistance in changing database user permissions, contact your hosting provider.';
+		$error = 'Current database user does not have necessary permissions to create tables. Ed Forms requires that the database user has CREATE and ALTER permissions. If you need assistance in changing database user permissions, contact your hosting provider.';
 		if ( ! empty( $wpdb->last_error ) ) {
 			$has_permission = false;
 		}
@@ -1383,7 +1383,7 @@ SET d.value = l.value"
 		if ( $has_permission ) {
 			$sql = "ALTER TABLE {$wpdb->prefix}rg_test ADD COLUMN a" . uniqid() . ' int';
 			$wpdb->query( $sql );
-			$error = 'Current database user does not have necessary permissions to modify (ALTER) tables. Gravity Forms requires that the database user has CREATE and ALTER permissions. If you need assistance in changing database user permissions, contact your hosting provider.';
+			$error = 'Current database user does not have necessary permissions to modify (ALTER) tables. Ed Forms requires that the database user has CREATE and ALTER permissions. If you need assistance in changing database user permissions, contact your hosting provider.';
 			if ( ! empty( $wpdb->last_error ) ) {
 				$has_permission = false;
 			}
@@ -1459,7 +1459,7 @@ SET d.value = l.value"
 
 			GFCommon::log_debug( __METHOD__ . '(): lead detail value column issue' );
 
-			GFCommon::add_dismissible_message( esc_html__( 'There appears to be an issue with one of the Gravity Forms database tables. Please get in touch with support.', 'gravityforms' ), 'gform_long_table_upgrade', 'error', 'gform_full_access', true );
+			GFCommon::add_dismissible_message( esc_html__( 'There appears to be an issue with one of the Ed Forms database tables. Please get in touch with support.', 'edforms' ), 'gform_long_table_upgrade', 'error', 'gform_full_access', true );
 
 			return false;
 		}
@@ -1500,7 +1500,7 @@ HAVING count(*) > 1;" );
 
 				GFCommon::log_debug( __METHOD__ . '(): lead detail IDs issue' );
 
-				GFCommon::add_dismissible_message( esc_html__( 'There appears to be an issue with the data in the Gravity Forms database tables. Please get in touch with support.', 'gravityforms' ), 'gform_long_table_upgrade', 'error', 'gform_full_access', true );
+				GFCommon::add_dismissible_message( esc_html__( 'There appears to be an issue with the data in the Ed Forms database tables. Please get in touch with support.', 'edforms' ), 'gform_long_table_upgrade', 'error', 'gform_full_access', true );
 			}
 		}
 
@@ -1597,7 +1597,7 @@ HAVING count(*) > 1;" );
 	}
 
 	/**
-	 * Returns true if Gravity Forms need to be installed. False otherwise.
+	 * Returns true if Ed Forms need to be installed. False otherwise.
 	 * @since 2.2
 	 * @return bool
 	 */
@@ -1612,7 +1612,7 @@ HAVING count(*) > 1;" );
 	}
 
 	/**
-	 * Returns true if Gravity Forms need to be upgraded. False otherwise.
+	 * Returns true if Ed Forms need to be upgraded. False otherwise.
 	 *
 	 * @since 2.2
 	 * @return bool
@@ -1735,7 +1735,7 @@ HAVING count(*) > 1;" );
 		$lock_params = $this->get_upgrade_lock();
 		if ( $lock_params ) {
 			$to_version = rgar( $lock_params, 'to_gf_version' );
-			$key        = sanitize_key( 'gravityforms_upgrading_' . $to_version );
+			$key        = sanitize_key( 'edforms_upgrading_' . $to_version );
 			GFCommon::remove_dismissible_message( $key );
 		}
 
@@ -1822,7 +1822,7 @@ HAVING count(*) > 1;" );
 
 		$previous_db_version = get_option( 'gf_previous_db_version' );
 
-		$key = sanitize_key( 'gravityforms_outdated_addons_2.3' );
+		$key = sanitize_key( 'edforms_outdated_addons_2.3' );
 
 		if ( version_compare( $previous_db_version, '2.3-beta-1', '>' ) ) {
 			GFCommon::remove_dismissible_message( $key );
@@ -1856,17 +1856,17 @@ HAVING count(*) > 1;" );
 
 		if ( $number_outdated == 1 ) {
 			/* translators: %s: the add-on name */
-			$message = sprintf( esc_html__( 'The %s is not compatible with this version of Gravity Forms. See the plugins list for further details.', 'gravityforms' ), $outdated[0] );
+			$message = sprintf( esc_html__( 'The %s is not compatible with this version of Ed Forms. See the plugins list for further details.', 'edforms' ), $outdated[0] );
 		} else {
 			/* translators: %d: the number of outdated add-ons */
-			$message = sprintf( esc_html__( 'There are %d add-ons installed that are not compatible with this version of Gravity Forms. See the plugins list for further details.', 'gravityforms' ), $number_outdated );
+			$message = sprintf( esc_html__( 'There are %d add-ons installed that are not compatible with this version of Ed Forms. See the plugins list for further details.', 'edforms' ), $number_outdated );
 		}
 
 		GFCommon::add_dismissible_message( $message, $key, 'error', 'gform_full_access', true, 'site-wide' );
 	}
 
 	/**
-	 * Returns an array of add-ons with the minimum version required for this version of Gravity Forms.
+	 * Returns an array of add-ons with the minimum version required for this version of Ed Forms.
 	 *
 	 * @since 2.3
 	 *
@@ -1874,32 +1874,32 @@ HAVING count(*) > 1;" );
 	 */
 	public function get_min_addon_requirements() {
 		return array(
-			'gravityformspaypal/paypal.php'                       => array(
-				'name'        => 'Gravity Forms PayPal Add-On',
+			'edformspaypal/paypal.php'                       => array(
+				'name'        => 'Ed Forms PayPal Add-On',
 				'min_version' => '2.9',
 			),
-			'gravityformsauthorizenet/authorizenet.php'           => array(
-				'name'        => 'Gravity Forms Authorize.Net Add-On',
+			'edformsauthorizenet/authorizenet.php'           => array(
+				'name'        => 'Ed Forms Authorize.Net Add-On',
 				'min_version' => '2.4',
 			),
-			'gravityformspartialentries/partialentries.php'       => array(
-				'name'        => 'Gravity Forms Partial Entries Add-On',
+			'edformspartialentries/partialentries.php'       => array(
+				'name'        => 'Ed Forms Partial Entries Add-On',
 				'min_version' => '1.1',
 			),
-			'gravityformspaypalpaymentspro/paypalpaymentspro.php' => array(
-				'name'        => 'Gravity Forms PayPal Payments Pro Add-On',
+			'edformspaypalpaymentspro/paypalpaymentspro.php' => array(
+				'name'        => 'Ed Forms PayPal Payments Pro Add-On',
 				'min_version' => '2.3',
 			),
-			'gravityformssignature/signature.php'                 => array(
-				'name'        => 'Gravity Forms Signature Add-On',
+			'edformssignature/signature.php'                 => array(
+				'name'        => 'Ed Forms Signature Add-On',
 				'min_version' => '3.4',
 			),
-			'gravityformsuserregistration/userregistration.php'   => array(
-				'name'        => 'Gravity Forms User Registration Add-On',
+			'edformsuserregistration/userregistration.php'   => array(
+				'name'        => 'Ed Forms User Registration Add-On',
 				'min_version' => '3.9',
 			),
-			'gravityformspaypalpro/paypalpro.php'                 => array(
-				'name'        => 'Gravity Forms PayPal Pro Add-On',
+			'edformspaypalpro/paypalpro.php'                 => array(
+				'name'        => 'Ed Forms PayPal Pro Add-On',
 				'min_version' => '1.8',
 			),
 		);

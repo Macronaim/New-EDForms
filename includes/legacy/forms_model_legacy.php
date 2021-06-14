@@ -512,8 +512,8 @@ class GF_Forms_Model_Legacy {
 		$is_entry_detail = GFCommon::is_entry_detail();
 		$is_admin        = $is_form_editor || $is_entry_detail;
 
-		if ( $is_admin && ! GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
-			die( esc_html__( "You don't have adequate permission to edit entries.", 'gravityforms' ) );
+		if ( $is_admin && ! GFCommon::current_user_can_any( 'edforms_edit_entries' ) ) {
+			die( esc_html__( "You don't have adequate permission to edit entries.", 'edforms' ) );
 		}
 
 		$lead_detail_table = self::get_lead_details_table_name();
@@ -548,7 +548,7 @@ class GF_Forms_Model_Legacy {
 			if ( $lead_id == 0 ) {
 				GFCommon::log_error( __METHOD__ . '(): Unable to save entry. ' . $wpdb->last_error );
 
-				die( esc_html__( 'An error prevented the entry for this form submission being saved. Please contact support.', 'gravityforms' ) );
+				die( esc_html__( 'An error prevented the entry for this form submission being saved. Please contact support.', 'edforms' ) );
 			}
 
 			$lead = array( 'id' => $lead_id );
@@ -2030,13 +2030,13 @@ class GF_Forms_Model_Legacy {
 		}
 
 		if ( empty( $entry_id ) ) {
-			return new WP_Error( 'missing_entry_id', __( 'Missing entry id', 'gravityforms' ) );
+			return new WP_Error( 'missing_entry_id', __( 'Missing entry id', 'edforms' ) );
 		}
 
 		$current_entry = $original_entry = GFFormsModel::get_entry( $entry_id );
 
 		if ( ! $current_entry ) {
-			return new WP_Error( 'not_found', __( 'Entry not found', 'gravityforms' ), $entry_id );
+			return new WP_Error( 'not_found', __( 'Entry not found', 'edforms' ), $entry_id );
 		}
 
 		if ( is_wp_error( $current_entry ) ) {
@@ -2050,7 +2050,7 @@ class GF_Forms_Model_Legacy {
 		}
 
 		if ( false === self::form_id_exists( $form_id ) ) {
-			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'gravityforms' ) );
+			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'edforms' ) );
 		}
 
 		/**
@@ -2117,7 +2117,7 @@ class GF_Forms_Model_Legacy {
 		);
 		$result     = $wpdb->query( $sql );
 		if ( false === $result ) {
-			return new WP_Error( 'update_entry_properties_failed', __( 'There was a problem while updating the entry properties', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'update_entry_properties_failed', __( 'There was a problem while updating the entry properties', 'edforms' ), $wpdb->last_error );
 		}
 
 		// Only save field values for fields that currently exist in the form. The rest in $entry will be ignored. The rest in $current_entry will get deleted.
@@ -2144,7 +2144,7 @@ class GF_Forms_Model_Legacy {
 							$lead_detail_id = GFFormsModel::get_lead_detail_id( $current_fields, $input_id );
 							$result         = GFFormsModel::update_lead_field_value( $form, $entry, $field, $lead_detail_id, $input_id, $entry[ $input_id ] );
 							if ( false === $result ) {
-								return new WP_Error( 'update_input_value_failed', __( 'There was a problem while updating one of the input values for the entry', 'gravityforms' ), $wpdb->last_error );
+								return new WP_Error( 'update_input_value_failed', __( 'There was a problem while updating one of the input values for the entry', 'edforms' ), $wpdb->last_error );
 							}
 						}
 						unset( $current_entry[ $input_id ] );
@@ -2157,7 +2157,7 @@ class GF_Forms_Model_Legacy {
 					$lead_detail_id = GFFormsModel::get_lead_detail_id( $current_fields, $field_id );
 					$result         = GFFormsModel::update_lead_field_value( $form, $entry, $field, $lead_detail_id, $field_id, $field_value );
 					if ( false === $result ) {
-						return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'gravityforms' ), $wpdb->last_error );
+						return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'edforms' ), $wpdb->last_error );
 					}
 				}
 				unset( $current_entry[ $field_id ] );
@@ -2193,7 +2193,7 @@ class GF_Forms_Model_Legacy {
 			$field          = GFFormsModel::get_field( $form, $k );
 			$result         = GFFormsModel::update_lead_field_value( $form, $entry, $field, $lead_detail_id, $k, '' );
 			if ( false === $result ) {
-				return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'gravityforms' ), $wpdb->last_error );
+				return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'edforms' ), $wpdb->last_error );
 			}
 		}
 
@@ -2262,17 +2262,17 @@ class GF_Forms_Model_Legacy {
 		global $wpdb;
 
 		if ( ! is_array( $entry ) ) {
-			return new WP_Error( 'invalid_entry_object', __( 'The entry object must be an array', 'gravityforms' ) );
+			return new WP_Error( 'invalid_entry_object', __( 'The entry object must be an array', 'edforms' ) );
 		}
 
 		// Make sure the form id exists.
 		$form_id = rgar( $entry, 'form_id' );
 		if ( empty( $form_id ) ) {
-			return new WP_Error( 'empty_form_id', __( 'The form id must be specified', 'gravityforms' ) );
+			return new WP_Error( 'empty_form_id', __( 'The form id must be specified', 'edforms' ) );
 		}
 
 		if ( false === self::form_id_exists( $form_id ) ) {
-			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'gravityforms' ) );
+			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'edforms' ) );
 		}
 
 		// Use values in the entry object if present
@@ -2312,7 +2312,7 @@ class GF_Forms_Model_Legacy {
 			)
 		);
 		if ( false === $result ) {
-			return new WP_Error( 'insert_entry_properties_failed', __( 'There was a problem while inserting the entry properties', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'insert_entry_properties_failed', __( 'There was a problem while inserting the entry properties', 'edforms' ), $wpdb->last_error );
 		}
 		// Reading newly created lead id.
 		$entry_id    = $wpdb->insert_id;
@@ -2332,7 +2332,7 @@ class GF_Forms_Model_Legacy {
 					if ( isset( $entry[ $input_id ] ) ) {
 						$result = GFFormsModel::update_lead_field_value( $form, $entry, $field, 0, $input_id, $entry[ $input_id ] );
 						if ( false === $result ) {
-							return new WP_Error( 'insert_input_value_failed', __( 'There was a problem while inserting one of the input values for the entry', 'gravityforms' ), $wpdb->last_error );
+							return new WP_Error( 'insert_input_value_failed', __( 'There was a problem while inserting one of the input values for the entry', 'edforms' ), $wpdb->last_error );
 						}
 					}
 				}
@@ -2341,7 +2341,7 @@ class GF_Forms_Model_Legacy {
 				$field_value = isset( $entry[ (string) $field_id ] ) ? $entry[ (string) $field_id ] : '';
 				$result      = GFFormsModel::update_lead_field_value( $form, $entry, $field, 0, $field_id, $field_value );
 				if ( false === $result ) {
-					return new WP_Error( 'insert_field_values_failed', __( 'There was a problem while inserting the field values', 'gravityforms' ), $wpdb->last_error );
+					return new WP_Error( 'insert_field_values_failed', __( 'There was a problem while inserting the field values', 'edforms' ), $wpdb->last_error );
 				}
 			}
 		}

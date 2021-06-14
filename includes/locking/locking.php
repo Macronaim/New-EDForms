@@ -8,7 +8,7 @@ require_once( 'class-gf-locking.php' );
 
 class GFFormLocking extends GFLocking {
 	public function __construct() {
-		$capabilities = array( 'gravityforms_edit_forms' );
+		$capabilities = array( 'edforms_edit_forms' );
 		$redirect_url = admin_url( 'admin.php?page=gf_edit_forms' );
 		$form_id      = $this->get_object_id();
 		$edit_url     = admin_url( sprintf( 'admin.php?page=gf_edit_forms&id=%d', $form_id ) );
@@ -17,11 +17,11 @@ class GFFormLocking extends GFLocking {
 
 	public function get_strings() {
 		$strings = array(
-			'currently_locked'  => __( 'This form is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'gravityforms' ),
+			'currently_locked'  => __( 'This form is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'edforms' ),
 			'accept'            => 'Accept',
 			'currently_editing' => '%s is currently editing this form',
 			'taken_over'        => '%s has taken over and is currently editing this form.',
-			'lock_requested'    => __( '%s has requested permission to take over control of this form.', 'gravityforms' )
+			'lock_requested'    => __( '%s has requested permission to take over control of this form.', 'edforms' )
 		);
 
 		return array_merge( parent::get_strings(), $strings );
@@ -48,7 +48,7 @@ new GFFormLocking();
 
 class GFEntryLocking extends GFLocking {
 	public function __construct() {
-		$capabilities = array( 'gravityforms_edit_entries' );
+		$capabilities = array( 'edforms_edit_entries' );
 		$redirect_url = admin_url( 'admin.php?page=gf_entries' );
 		$entry_id     = $this->get_object_id();
 		$form_id      = rgget( 'id' );
@@ -58,10 +58,10 @@ class GFEntryLocking extends GFLocking {
 
 	public function get_strings() {
 		$strings = array(
-			'currently_locked'  => __( 'This entry is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'gravityforms' ),
+			'currently_locked'  => __( 'This entry is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'edforms' ),
 			'currently_editing' => '%s is currently editing this entry',
 			'taken_over'        => '%s has taken over and is currently editing this entry.',
-			'lock_requested'    => __( '%s has requested permission to take over control of this entry.', 'gravityforms' )
+			'lock_requested'    => __( '%s has requested permission to take over control of this entry.', 'edforms' )
 		);
 
 		return array_merge( parent::get_strings(), $strings );
@@ -91,7 +91,7 @@ new GFEntryLocking();
 
 class GFFormSettingsLocking extends GFLocking {
 	public function __construct() {
-		$capabilities = array( 'gravityforms_edit_forms' );
+		$capabilities = array( 'edforms_edit_forms' );
 		$redirect_url = admin_url( 'admin.php?page=gf_edit_forms' );
 		$form_id      = rgget( 'id' );
 		$subview      = rgget( 'subview' );
@@ -104,10 +104,10 @@ class GFFormSettingsLocking extends GFLocking {
 
 	public function get_strings() {
 		$strings = array(
-			'currently_locked'  => __( 'These form settings are currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'gravityforms' ),
+			'currently_locked'  => __( 'These form settings are currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'edforms' ),
 			'currently_editing' => '%s is currently editing these settings',
 			'taken_over'        => '%s has taken over and is currently editing these settings.',
-			'lock_requested'    => __( '%s has requested permission to take over control of these settings.', 'gravityforms' )
+			'lock_requested'    => __( '%s has requested permission to take over control of these settings.', 'edforms' )
 		);
 
 		return array_merge( parent::get_strings(), $strings );
@@ -138,7 +138,7 @@ new GFFormSettingsLocking();
 
 class GFPluginSettingsLocking extends GFLocking {
 	public function __construct() {
-		$capabilities = array( 'gravityforms_edit_settings' );
+		$capabilities = array( 'edforms_edit_settings' );
 		$redirect_url = admin_url( 'admin.php?page=gf_edit_forms' );
 		$edit_url     = admin_url( 'admin.php?page=gf_settings' );
 		parent::__construct( 'plugin_settings', $redirect_url, $edit_url, $capabilities );
@@ -146,10 +146,10 @@ class GFPluginSettingsLocking extends GFLocking {
 
 	public function get_strings() {
 		$strings = array(
-			'currently_locked'  => __( 'These settings are currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'gravityforms' ),
+			'currently_locked'  => __( 'These settings are currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'edforms' ),
 			'currently_editing' => '%s is currently editing these settings',
 			'taken_over'        => '%s has taken over and is currently editing these settings.',
-			'lock_requested'    => __( '%s has requested permission to take over control of these settings.', 'gravityforms' )
+			'lock_requested'    => __( '%s has requested permission to take over control of these settings.', 'edforms' )
 		);
 
 		return array_merge( parent::get_strings(), $strings );

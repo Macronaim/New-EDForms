@@ -16,7 +16,7 @@ class GFExport {
 			check_admin_referer( 'gf_export_forms', 'gf_export_forms_nonce' );
 			$selected_forms = rgpost( 'gf_form_id' );
 			if ( empty( $selected_forms ) ) {
-				GFCommon::add_error_message( __( 'Please select the forms to be exported', 'gravityforms' ) );
+				GFCommon::add_error_message( __( 'Please select the forms to be exported', 'edforms' ) );
 
 				return;
 			}
@@ -33,7 +33,7 @@ class GFExport {
 		$forms['version'] = GFForms::$version;
 		$forms_json       = json_encode( $forms );
 
-		$filename = 'gravityforms-export-' . date( 'Y-m-d' ) . '.json';
+		$filename = 'edforms-export-' . date( 'Y-m-d' ) . '.json';
 		header( 'Content-Description: File Transfer' );
 		header( "Content-Disposition: attachment; filename=$filename" );
 		header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
@@ -108,10 +108,10 @@ class GFExport {
 
 			return 0;
 		} else if ( ! rgar( $forms, 'version' ) || version_compare( $forms['version'], self::$min_import_version, '<' ) ) {
-			GFCommon::log_debug( __METHOD__ . '(): Import Failed. The JSON version is not compatible with the current Gravity Forms version.' );
+			GFCommon::log_debug( __METHOD__ . '(): Import Failed. The JSON version is not compatible with the current Ed Forms version.' );
 
 			return - 1;
-		} //Error. JSON version is not compatible with current Gravity Forms version
+		} //Error. JSON version is not compatible with current Ed Forms version
 
 		unset( $forms['version'] );
 
@@ -166,7 +166,7 @@ class GFExport {
 		} //Error. could not unserialize XML file
 		else if ( version_compare( $forms['version'], self::$min_import_version, '<' ) ) {
 			return - 1;
-		} //Error. XML version is not compatible with current Gravity Forms version
+		} //Error. XML version is not compatible with current Ed Forms version
 
 		//cleaning up generated object
 		self::cleanup( $forms );
@@ -265,7 +265,7 @@ class GFExport {
 
 	public static function import_form_page() {
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_edit_forms' ) ) {
 			wp_die( 'You do not have permission to access this page' );
 		}
 
@@ -284,25 +284,25 @@ class GFExport {
 				}
 
 				if ( $count == 0 ) {
-					GFCommon::add_error_message( __( 'Forms could not be imported. Please make sure your export file is in the correct format.', 'gravityforms' ) );
+					GFCommon::add_error_message( __( 'Forms could not be imported. Please make sure your export file is in the correct format.', 'edforms' ) );
 				} else if ( $count == '-1' ) {
-					GFCommon::add_error_message( __( 'Forms could not be imported. Your export file is not compatible with your current version of Gravity Forms.', 'gravityforms' ) );
+					GFCommon::add_error_message( __( 'Forms could not be imported. Your export file is not compatible with your current version of Ed Forms.', 'edforms' ) );
 				} else {
-					$form_text = $count > 1 ? __( 'forms', 'gravityforms' ) : __( 'form', 'gravityforms' );
-					$edit_link = $count == 1 ? "<a href='admin.php?page=gf_edit_forms&id={$forms[0]['id']}'>" . __( 'Edit Form', 'gravityforms' ) . '</a>' : '';
-					GFCommon::add_message( sprintf( __( "Gravity Forms imported %d %s successfully", 'gravityforms' ), $count, $form_text ) . ". $edit_link" );
+					$form_text = $count > 1 ? __( 'forms', 'edforms' ) : __( 'form', 'edforms' );
+					$edit_link = $count == 1 ? "<a href='admin.php?page=gf_edit_forms&id={$forms[0]['id']}'>" . __( 'Edit Form', 'edforms' ) . '</a>' : '';
+					GFCommon::add_message( sprintf( __( "Ed Forms imported %d %s successfully", 'edforms' ), $count, $form_text ) . ". $edit_link" );
 				}
 
 			}
 
 		}
 
-		self::page_header( __( 'Import Forms', 'gravityforms' ) );
+		self::page_header( __( 'Import Forms', 'edforms' ) );
 
 		?>
 
 		<p class="textleft">
-			<?php esc_html_e( 'Select the Gravity Forms export files you would like to import. When you click the import button below, Gravity Forms will import the forms.', 'gravityforms' ); ?>
+			<?php esc_html_e( 'Select the Ed Forms export files you would like to import. When you click the import button below, Ed Forms will import the forms.', 'edforms' ); ?>
 		</p>
 
 		<div class="hr-divider"></div>
@@ -313,13 +313,13 @@ class GFExport {
 				<tr valign="top">
 
 					<th scope="row">
-						<label for="gf_import_file"><?php esc_html_e( 'Select Files', 'gravityforms' ); ?></label> <?php gform_tooltip( 'import_select_file' ) ?>
+						<label for="gf_import_file"><?php esc_html_e( 'Select Files', 'edforms' ); ?></label> <?php gform_tooltip( 'import_select_file' ) ?>
 					</th>
 					<td><input type="file" name="gf_import_file[]" id="gf_import_file" multiple /></td>
 				</tr>
 			</table>
 			<br /><br />
-			<input type="submit" value="<?php esc_html_e( 'Import', 'gravityforms' ) ?>" name="import_forms" class="button button-large button-primary" />
+			<input type="submit" value="<?php esc_html_e( 'Import', 'edforms' ) ?>" name="import_forms" class="button button-large button-primary" />
 
 		</form>
 
@@ -331,11 +331,11 @@ class GFExport {
 
 	public static function export_form_page() {
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_edit_forms' ) ) {
 			wp_die( 'You do not have permission to access this page' );
 		}
 
-		self::page_header( __( 'Export Forms', 'gravityforms' ) );
+		self::page_header( __( 'Export Forms', 'edforms' ) );
 
 		?>
 		<script type="text/javascript">
@@ -360,20 +360,20 @@ class GFExport {
 
 		</script>
 
-		<p class="textleft"><?php esc_html_e( 'Select the forms you would like to export. When you click the download button below, Gravity Forms will create a JSON file for you to save to your computer. Once you\'ve saved the download file, you can use the Import tool to import the forms.', 'gravityforms' ); ?></p>
+		<p class="textleft"><?php esc_html_e( 'Select the forms you would like to export. When you click the download button below, Ed Forms will create a JSON file for you to save to your computer. Once you\'ve saved the download file, you can use the Import tool to import the forms.', 'edforms' ); ?></p>
 		<div class="hr-divider"></div>
 		<form id="gform_export" method="post" style="margin-top:10px;">
 			<?php wp_nonce_field( 'gf_export_forms', 'gf_export_forms_nonce' ); ?>
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row">
-						<label for="export_fields"><?php esc_html_e( 'Select Forms', 'gravityforms' ); ?></label> <?php gform_tooltip( 'export_select_forms' ) ?>
+						<label for="export_fields"><?php esc_html_e( 'Select Forms', 'edforms' ); ?></label> <?php gform_tooltip( 'export_select_forms' ) ?>
 					</th>
 					<td>
 						<ul id="export_form_list">
 							<li>
 								<input type="checkbox" id="gf_export_forms_all" />
-								<label for="gf_export_forms_all" data-deselect="<?php esc_attr_e( 'Deselect All', 'gravityforms' ); ?>" data-select="<?php esc_attr_e( 'Select All', 'gravityforms' ); ?>"><strong><?php esc_html_e( 'Select All', 'gravityforms' ); ?></strong></label>
+								<label for="gf_export_forms_all" data-deselect="<?php esc_attr_e( 'Deselect All', 'edforms' ); ?>" data-select="<?php esc_attr_e( 'Select All', 'edforms' ); ?>"><strong><?php esc_html_e( 'Select All', 'edforms' ); ?></strong></label>
 							</li>
 							<?php
 							$forms = RGFormsModel::get_forms( null, 'title' );
@@ -392,7 +392,7 @@ class GFExport {
 			</table>
 
 			<br /><br />
-			<input type="submit" value="<?php esc_attr_e( 'Download Export File', 'gravityforms' ) ?>" name="export_forms" class="button button-large button-primary" />
+			<input type="submit" value="<?php esc_attr_e( 'Download Export File', 'edforms' ) ?>" name="export_forms" class="button button-large button-primary" />
 		</form>
 
 		<?php
@@ -403,11 +403,11 @@ class GFExport {
 
 	public static function export_lead_page() {
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_export_entries' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_export_entries' ) ) {
 			wp_die( 'You do not have permission to access this page' );
 		}
 
-		self::page_header( __( 'Export Entries', 'gravityforms' ) );
+		self::page_header( __( 'Export Entries', 'edforms' ) );
 
 		?>
 
@@ -432,7 +432,7 @@ class GFExport {
 				mysack.setVar("rg_select_export_form", "<?php echo wp_create_nonce( 'rg_select_export_form' ); ?>");
 				mysack.setVar("form_id", formId);
 				mysack.onError = function () {
-					alert(<?php echo json_encode( __( 'Ajax error while selecting a form', 'gravityforms' ) ); ?>)
+					alert(<?php echo json_encode( __( 'Ajax error while selecting a form', 'edforms' ) ); ?>)
 				};
 				mysack.runAJAX();
 
@@ -448,7 +448,7 @@ class GFExport {
 					return;
 				}
 
-				var fieldList = "<li><input id='select_all' type='checkbox' onclick=\"jQuery('.gform_export_field').attr('checked', this.checked); jQuery('#gform_export_check_all').html(this.checked ? '<strong><?php echo esc_js( __( 'Deselect All', 'gravityforms' ) ); ?></strong>' : '<strong><?php echo esc_js( __( 'Select All', 'gravityforms' ) ); ?></strong>'); \" onkeypress=\"jQuery('.gform_export_field').attr('checked', this.checked); jQuery('#gform_export_check_all').html(this.checked ? '<strong><?php echo esc_js( __( 'Deselect All', 'gravityforms' ) ); ?></strong>' : '<strong><?php echo esc_js( __( 'Select All', 'gravityforms' ) ); ?></strong>'); \"> <label id='gform_export_check_all' for='select_all'><strong><?php esc_html_e( 'Select All', 'gravityforms' ) ?></strong></label></li>";
+				var fieldList = "<li><input id='select_all' type='checkbox' onclick=\"jQuery('.gform_export_field').attr('checked', this.checked); jQuery('#gform_export_check_all').html(this.checked ? '<strong><?php echo esc_js( __( 'Deselect All', 'edforms' ) ); ?></strong>' : '<strong><?php echo esc_js( __( 'Select All', 'edforms' ) ); ?></strong>'); \" onkeypress=\"jQuery('.gform_export_field').attr('checked', this.checked); jQuery('#gform_export_check_all').html(this.checked ? '<strong><?php echo esc_js( __( 'Deselect All', 'edforms' ) ); ?></strong>' : '<strong><?php echo esc_js( __( 'Select All', 'edforms' ) ); ?></strong>'); \"> <label id='gform_export_check_all' for='select_all'><strong><?php esc_html_e( 'Select All', 'edforms' ) ?></strong></label></li>";
 				for (var i = 0; i < aryFields.length; i++) {
 					fieldList += "<li><input type='checkbox' id='export_field_" + i + "' name='export_field[]' value='" + aryFields[i][0] + "' class='gform_export_field'> <label for='export_field_" + i + "'>" + aryFields[i][1] + "</label></li>";
 				}
@@ -457,7 +457,7 @@ class GFExport {
 
 				jQuery("#export_field_container, #export_filter_container, #export_date_container, #export_submit_container").hide().show();
 
-				gf_vars.filterAndAny = <?php echo json_encode( esc_html__( 'Export entries if {0} of the following match:', 'gravityforms' ) ); ?>;
+				gf_vars.filterAndAny = <?php echo json_encode( esc_html__( 'Export entries if {0} of the following match:', 'edforms' ) ); ?>;
 				jQuery("#export_filters").gfFilterUI(filterSettings);
 			}
 
@@ -466,7 +466,7 @@ class GFExport {
 				$(document).ready(function() {
 					$("#submit_button").click(function () {
 						if ($(".gform_export_field:checked").length == 0) {
-							alert(<?php echo json_encode( __( 'Please select the fields to be exported', 'gravityforms' ) );  ?>);
+							alert(<?php echo json_encode( __( 'Please select the fields to be exported', 'edforms' ) );  ?>);
 							return false;
 						}
 
@@ -519,7 +519,7 @@ class GFExport {
 
 		</script>
 
-		<p class="textleft"><?php esc_html_e( 'Select a form below to export entries. Once you have selected a form you may select the fields you would like to export and then define optional filters for field values and the date range. When you click the download button below, Gravity Forms will create a CSV file for you to save to your computer.', 'gravityforms' ); ?></p>
+		<p class="textleft"><?php esc_html_e( 'Select a form below to export entries. Once you have selected a form you may select the fields you would like to export and then define optional filters for field values and the date range. When you click the download button below, Ed Forms will create a CSV file for you to save to your computer.', 'edforms' ); ?></p>
 		<div class="hr-divider"></div>
 		<form id="gform_export" method="post" style="margin-top:10px;">
 			<?php echo wp_nonce_field( 'rg_start_export', 'rg_start_export_nonce' ); ?>
@@ -527,12 +527,12 @@ class GFExport {
 				<tr valign="top">
 
 					<th scope="row">
-						<label for="export_form"><?php esc_html_e( 'Select A Form', 'gravityforms' ); ?></label> <?php gform_tooltip( 'export_select_form' ) ?>
+						<label for="export_form"><?php esc_html_e( 'Select A Form', 'edforms' ); ?></label> <?php gform_tooltip( 'export_select_form' ) ?>
 					</th>
 					<td>
 
 						<select id="export_form" name="export_form" onchange="SelectExportForm(jQuery(this).val());">
-							<option value=""><?php esc_html_e( 'Select a form', 'gravityforms' ); ?></option>
+							<option value=""><?php esc_html_e( 'Select a form', 'edforms' ); ?></option>
 							<?php
 							$forms = RGFormsModel::get_forms( null, 'title' );
 							foreach ( $forms as $form ) {
@@ -547,7 +547,7 @@ class GFExport {
 				</tr>
 				<tr id="export_field_container" valign="top" style="display: none;">
 					<th scope="row">
-						<label for="export_fields"><?php esc_html_e( 'Select Fields', 'gravityforms' ); ?></label> <?php gform_tooltip( 'export_select_fields' ) ?>
+						<label for="export_fields"><?php esc_html_e( 'Select Fields', 'edforms' ); ?></label> <?php gform_tooltip( 'export_select_fields' ) ?>
 					</th>
 					<td>
 						<ul id="export_field_list">
@@ -556,7 +556,7 @@ class GFExport {
 				</tr>
 				<tr id="export_filter_container" valign="top" style="display: none;">
 					<th scope="row">
-						<label><?php esc_html_e( 'Conditional Logic', 'gravityforms' ); ?></label> <?php gform_tooltip( 'export_conditional_logic' ) ?>
+						<label><?php esc_html_e( 'Conditional Logic', 'edforms' ); ?></label> <?php gform_tooltip( 'export_conditional_logic' ) ?>
 					</th>
 					<td>
 						<div id="export_filters">
@@ -567,22 +567,22 @@ class GFExport {
 				</tr>
 				<tr id="export_date_container" valign="top" style="display: none;">
 					<th scope="row">
-						<label for="export_date"><?php esc_html_e( 'Select Date Range', 'gravityforms' ); ?></label> <?php gform_tooltip( 'export_date_range' ) ?>
+						<label for="export_date"><?php esc_html_e( 'Select Date Range', 'edforms' ); ?></label> <?php gform_tooltip( 'export_date_range' ) ?>
 					</th>
 					<td>
 						<div>
                             <span style="width:150px; float:left; ">
                                 <input type="text" id="export_date_start" name="export_date_start" style="width:90%" />
-                                <strong><label for="export_date_start" style="display:block;"><?php esc_html_e( 'Start', 'gravityforms' ); ?></label></strong>
+                                <strong><label for="export_date_start" style="display:block;"><?php esc_html_e( 'Start', 'edforms' ); ?></label></strong>
                             </span>
 
                             <span style="width:150px; float:left;">
                                 <input type="text" id="export_date_end" name="export_date_end" style="width:90%" />
-                                <strong><label for="export_date_end" style="display:block;"><?php esc_html_e( 'End', 'gravityforms' ); ?></label></strong>
+                                <strong><label for="export_date_end" style="display:block;"><?php esc_html_e( 'End', 'edforms' ); ?></label></strong>
                             </span>
 
 							<div style="clear: both;"></div>
-							<?php esc_html_e( 'Date Range is optional, if no date range is selected all entries will be exported.', 'gravityforms' ); ?>
+							<?php esc_html_e( 'Date Range is optional, if no date range is selected all entries will be exported.', 'edforms' ); ?>
 						</div>
 					</td>
 				</tr>
@@ -590,9 +590,9 @@ class GFExport {
 			<ul>
 				<li id="export_submit_container" style="display:none; clear:both;">
 					<br /><br />
-					<button id="submit_button" class="button button-large button-primary"><?php esc_attr_e( 'Download Export File', 'gravityforms' ); ?></button>
+					<button id="submit_button" class="button button-large button-primary"><?php esc_attr_e( 'Download Export File', 'edforms' ); ?></button>
                     <span id="please_wait_container" style="display:none; margin-left:15px;">
-                        <i class='gficon-gravityforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Exporting entries. Progress:', 'gravityforms' ); ?>
+                        <i class='gficon-edforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Exporting entries. Progress:', 'edforms' ); ?>
 	                    <span id="progress_container">0%</span>
                     </span>
 				</li>
@@ -916,18 +916,18 @@ class GFExport {
 	public static function add_default_export_fields( $form ) {
 
 		//adding default fields
-		array_push( $form['fields'], array( 'id' => 'created_by', 'label' => __( 'Created By (User Id)', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'id', 'label' => __( 'Entry Id', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'date_created', 'label' => __( 'Entry Date', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'source_url', 'label' => __( 'Source Url', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'transaction_id', 'label' => __( 'Transaction Id', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_amount', 'label' => __( 'Payment Amount', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_date', 'label' => __( 'Payment Date', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_status', 'label' => __( 'Payment Status', 'gravityforms' ) ) );
-		//array_push($form['fields'],array('id' => 'payment_method' , 'label' => __('Payment Method', 'gravityforms'))); //wait until all payment gateways have been released
-		array_push( $form['fields'], array( 'id' => 'post_id', 'label' => __( 'Post Id', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'user_agent', 'label' => __( 'User Agent', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'ip', 'label' => __( 'User IP', 'gravityforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'created_by', 'label' => __( 'Created By (User Id)', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'id', 'label' => __( 'Entry Id', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'date_created', 'label' => __( 'Entry Date', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'source_url', 'label' => __( 'Source Url', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'transaction_id', 'label' => __( 'Transaction Id', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_amount', 'label' => __( 'Payment Amount', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_date', 'label' => __( 'Payment Date', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_status', 'label' => __( 'Payment Status', 'edforms' ) ) );
+		//array_push($form['fields'],array('id' => 'payment_method' , 'label' => __('Payment Method', 'edforms'))); //wait until all payment gateways have been released
+		array_push( $form['fields'], array( 'id' => 'post_id', 'label' => __( 'Post Id', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'user_agent', 'label' => __( 'User Agent', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'ip', 'label' => __( 'User IP', 'edforms' ) ) );
 		$form = self::get_entry_meta( $form );
 
 		$form = apply_filters( 'gform_export_fields', $form );
@@ -1021,15 +1021,15 @@ class GFExport {
 	public static function get_tabs() {
 
 		$setting_tabs = array();
-		if ( GFCommon::current_user_can_any( 'gravityforms_export_entries' ) ) {
-			$setting_tabs['10'] = array( 'name' => 'export_entry', 'label' => __( 'Export Entries', 'gravityforms' ) );
+		if ( GFCommon::current_user_can_any( 'edforms_export_entries' ) ) {
+			$setting_tabs['10'] = array( 'name' => 'export_entry', 'label' => __( 'Export Entries', 'edforms' ) );
 		}
 
-		if ( GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ) {
-			$setting_tabs['20'] = array( 'name' => 'export_form', 'label' => __( 'Export Forms', 'gravityforms' ) );
+		if ( GFCommon::current_user_can_any( 'edforms_edit_forms' ) ) {
+			$setting_tabs['20'] = array( 'name' => 'export_form', 'label' => __( 'Export Forms', 'edforms' ) );
 
-			if ( GFCommon::current_user_can_any( 'gravityforms_create_form' ) ) {
-				$setting_tabs['30'] = array( 'name' => 'import_form', 'label' => __( 'Import Forms', 'gravityforms' ) );
+			if ( GFCommon::current_user_can_any( 'edforms_create_form' ) ) {
+				$setting_tabs['30'] = array( 'name' => 'import_form', 'label' => __( 'Import Forms', 'edforms' ) );
 			}
 		}
 
@@ -1049,7 +1049,7 @@ class GFExport {
 	public static function ajax_process_export() {
 		check_admin_referer( 'rg_start_export', 'rg_start_export_nonce' );
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_export_entries' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_export_entries' ) ) {
 			die();
 		}
 
@@ -1124,7 +1124,7 @@ deny from all';
 		if ( ! function_exists( 'insert_with_markers' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/misc.php' );
 		}
-		insert_with_markers( $htaccess_file, 'Gravity Forms', $rules );
+		insert_with_markers( $htaccess_file, 'Ed Forms', $rules );
 	}
 
 	/**
@@ -1153,10 +1153,10 @@ deny from all';
 
 		if ( ! function_exists( 'readfile' ) ) {
 			GFCommon::log_error( __METHOD__ . '(): Aborting. The PHP readfile function is not available.' );
-			die( esc_html__( 'The PHP readfile function is not available, please contact the web host.', 'gravityforms' ) );
+			die( esc_html__( 'The PHP readfile function is not available, please contact the web host.', 'edforms' ) );
 		}
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_export_entries' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_export_entries' ) ) {
 			die();
 		}
 
@@ -1245,7 +1245,7 @@ deny from all';
 			/**
 			 * Allows you to filter and modify the Export Form
 			 *
-			 * @param array $form Assign which Gravity Form to change the export form for
+			 * @param array $form Assign which Ed Form to change the export form for
 			 */
 			$form = gf_apply_filters( array( 'gform_export_form', $form['id'] ), $form );
 

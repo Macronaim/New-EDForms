@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Gravity Forms Query Series class.
+ * The Ed Forms Query Series class.
  *
  * A list of arguments. Would have named "List" but it's a reserved keyword.
  */

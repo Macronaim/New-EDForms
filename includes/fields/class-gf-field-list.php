@@ -1,6 +1,6 @@
 <?php
 
-// If Gravity Forms isn't loaded, bail.
+// If Ed Forms isn't loaded, bail.
 if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
@@ -37,7 +37,7 @@ class GF_Field_List extends GF_Field {
 	 * @return string The field title. Escaped and translatable.
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'List', 'gravityforms' );
+		return esc_attr__( 'List', 'edforms' );
 	}
 
 	/**
@@ -246,8 +246,8 @@ class GF_Field_List extends GF_Field {
 				// Can't replace these icons with the webfont versions since they appear on the front end.
 
 				$list .= "<td class='gfield_list_icons'>";
-				$list .= "   <img src='{$add_icon}' class='add_list_item {$disabled_icon_class}' {$disabled_text} title='" . esc_attr__( 'Add another row', 'gravityforms' ) . "' alt='" . esc_attr__( 'Add a new row', 'gravityforms' ) . "' {$add_events} style='cursor:pointer;' " . $this->get_tabindex() . "/>" .
-				         "   <img src='{$delete_icon}' class='delete_list_item' {$disabled_text} title='" . esc_attr__( 'Remove this row', 'gravityforms' ) . "' alt='" . esc_attr__( 'Remove this row', 'gravityforms' ) . "' {$delete_events} style='cursor:pointer; {$delete_display}' " . $this->get_tabindex() . "/>";
+				$list .= "   <img src='{$add_icon}' class='add_list_item {$disabled_icon_class}' {$disabled_text} title='" . esc_attr__( 'Add another row', 'edforms' ) . "' alt='" . esc_attr__( 'Add a new row', 'edforms' ) . "' {$add_events} style='cursor:pointer;' " . $this->get_tabindex() . "/>" .
+				         "   <img src='{$delete_icon}' class='delete_list_item' {$disabled_text} title='" . esc_attr__( 'Remove this row', 'edforms' ) . "' alt='" . esc_attr__( 'Remove this row', 'edforms' ) . "' {$delete_events} style='cursor:pointer; {$delete_display}' " . $this->get_tabindex() . "/>";
 				$list .= '</td>';
 
 			}

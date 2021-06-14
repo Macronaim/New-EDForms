@@ -30,7 +30,7 @@ class GF_Field_Price extends GF_Field {
 		$price = GFCommon::to_number( $value );
 		if ( ! rgblank( $value ) && ( $price === false || $price < 0 ) ) {
 			$this->failed_validation  = true;
-			$this->validation_message = empty( $this->errorMessage ) ? __( 'Please enter a valid amount.', 'gravityforms' ) : $this->errorMessage;
+			$this->validation_message = empty( $this->errorMessage ) ? __( 'Please enter a valid amount.', 'edforms' ) : $this->errorMessage;
 		}
 	}
 

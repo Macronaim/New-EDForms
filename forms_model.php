@@ -1069,7 +1069,7 @@ class GFFormsModel {
 
 			//assigning this notification to the form_submission action
 			$admin_notification['event'] = 'form_submission';
-			$admin_notification['name']  = esc_html__( 'Admin Notification', 'gravityforms' );
+			$admin_notification['name']  = esc_html__( 'Admin Notification', 'edforms' );
 			$admin_notification['type']  = 'admin';
 			$admin_notification['id']    = $notification_id;
 
@@ -1093,7 +1093,7 @@ class GFFormsModel {
 			$notification_id = uniqid();
 			//assigning this notification to the form_submission action
 			$user_notification['event'] = 'form_submission';
-			$user_notification['name']  = esc_html__( 'User Notification', 'gravityforms' );
+			$user_notification['name']  = esc_html__( 'User Notification', 'edforms' );
 			$user_notification['type']  = 'user';
 			$user_notification['id']    = $notification_id;
 
@@ -1261,7 +1261,7 @@ class GFFormsModel {
 		$form = GFFormsModel::get_form_meta( $form_id );
 
 		if ( ! isset( $form['notifications'][ $notification_id ] ) ) {
-			return new WP_Error( 'not_found', __( 'Notification not found', 'gravityforms' ) );
+			return new WP_Error( 'not_found', __( 'Notification not found', 'edforms' ) );
 		}
 
 		$form['notifications'][ $notification_id ]['isActive'] = (bool) $is_active;
@@ -1293,7 +1293,7 @@ class GFFormsModel {
 		$form = GFFormsModel::get_form_meta( $form_id );
 
 		if ( ! isset( $form['confirmations'][ $confirmation_id ] ) ) {
-			return new WP_Error( 'not_found', __( 'Notification not found', 'gravityforms' ) );
+			return new WP_Error( 'not_found', __( 'Notification not found', 'edforms' ) );
 		}
 
 		$form['confirmations'][ $confirmation_id ]['isActive'] = (bool) $is_active;
@@ -1510,7 +1510,7 @@ class GFFormsModel {
 	public static function delete_views( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		global $wpdb;
@@ -1532,7 +1532,7 @@ class GFFormsModel {
 	public static function delete_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		global $wpdb;
@@ -1572,7 +1572,7 @@ class GFFormsModel {
 	public static function trash_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		global $wpdb;
@@ -1602,7 +1602,7 @@ class GFFormsModel {
 	public static function restore_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		global $wpdb;
@@ -1640,7 +1640,7 @@ class GFFormsModel {
 	public static function duplicate_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		// Get form to be duplicated.
@@ -1911,7 +1911,7 @@ class GFFormsModel {
 		$file_path = self::get_physical_file_path( $url );
 
 		/**
-		 * Allow the file path to be overridden so files stored outside the /wp-content/uploads/gravity_forms/ directory can be deleted.
+		 * Allow the file path to be overridden so files stored outside the /wp-content/uploads/ed_forms/ directory can be deleted.
 		 *
 		 * @since 2.2.3.1
 		 *
@@ -1929,7 +1929,7 @@ class GFFormsModel {
 
 		// convert from url to physical path
 		if ( is_multisite() && get_site_option( 'ms_files_rewriting' ) ) {
-			$file_path = preg_replace( "|^(.*?)/files/gravity_forms/|", BLOGUPLOADDIR . 'gravity_forms/', $url );
+			$file_path = preg_replace( "|^(.*?)/files/ed_forms/|", BLOGUPLOADDIR . 'ed_forms/', $url );
 		} else {
 			$file_path = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $url );
 		}
@@ -2226,14 +2226,14 @@ class GFFormsModel {
 		$is_entry_detail = GFCommon::is_entry_detail();
 		$is_admin        = $is_form_editor || $is_entry_detail;
 
-		if ( $is_admin && ! GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
-			die( esc_html__( "You don't have adequate permission to edit entries.", 'gravityforms' ) );
+		if ( $is_admin && ! GFCommon::current_user_can_any( 'edforms_edit_entries' ) ) {
+			die( esc_html__( "You don't have adequate permission to edit entries.", 'edforms' ) );
 		}
 
 		$entry_meta_table = self::get_entry_meta_table_name();
 		$is_new_lead       = $entry == null;
 
-		$die_message = esc_html__( 'An error prevented the entry for this form submission being saved. Please contact support.', 'gravityforms' );
+		$die_message = esc_html__( 'An error prevented the entry for this form submission being saved. Please contact support.', 'edforms' );
 
 		$entry_table = GFFormsModel::get_entry_table_name();
 
@@ -4444,7 +4444,7 @@ class GFFormsModel {
 			return null;
 		}
 
-		return $dir['basedir'] . '/gravity_forms/';
+		return $dir['basedir'] . '/ed_forms/';
 	}
 
 	public static function get_upload_url_root() {
@@ -4454,7 +4454,7 @@ class GFFormsModel {
 			return null;
 		}
 
-		return $dir['baseurl'] . '/gravity_forms/';
+		return $dir['baseurl'] . '/ed_forms/';
 	}
 
 	public static function get_upload_path( $form_id ) {
@@ -4466,7 +4466,7 @@ class GFFormsModel {
 		$form_id = absint( $form_id );
 		$dir = wp_upload_dir();
 
-		return $dir['baseurl'] . "/gravity_forms/$form_id" . '-' . wp_hash( $form_id );
+		return $dir['baseurl'] . "/ed_forms/$form_id" . '-' . wp_hash( $form_id );
 	}
 
 	public static function get_file_upload_path( $form_id, $file_name ) {
@@ -4563,7 +4563,7 @@ class GFFormsModel {
 	}
 
 	/**
-	 * Target for the wpmu_drop_tables filter. Adds all tables for Gravity Forms and the Add-On Framework to list
+	 * Target for the wpmu_drop_tables filter. Adds all tables for Ed Forms and the Add-On Framework to list
 	 * of tables to drop when a site is deleted.
 	 *
 	 * @param $drop_tables
@@ -4918,11 +4918,11 @@ class GFFormsModel {
 
 
 	/***
-	 * Saves the Gravity Forms license key to the database and registers the site and license key with the Gravity Forms licensing server.
+	 * Saves the Ed Forms license key to the database and registers the site and license key with the Ed Forms licensing server.
 	 *
 	 * @since 1.0
 	 *
-	 * @param $new_key Gravity Forms license key to be saved.
+	 * @param $new_key Ed Forms license key to be saved.
 	 */
 	public static function save_key( $new_key ) {
 
@@ -4942,7 +4942,7 @@ class GFFormsModel {
 			// Saving new key
 			update_option( 'rg_gforms_key', $key_md5 );
 
-			// Updating site registration with Gravity Server
+			// Updating site registration with Ed Server
 			GFCommon::update_site_registration( $key_md5, true );
 
 		} else {
@@ -5181,31 +5181,31 @@ class GFFormsModel {
 
 			switch ( $field_id ) {
 				case 'id' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Entry Id', 'gravityforms' ), 'type' => 'id' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Entry Id', 'edforms' ), 'type' => 'id' );
 					break;
 				case 'ip' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'User IP', 'gravityforms' ), 'type' => 'ip' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'User IP', 'edforms' ), 'type' => 'ip' );
 					break;
 				case 'date_created' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Entry Date', 'gravityforms' ), 'type' => 'date_created' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Entry Date', 'edforms' ), 'type' => 'date_created' );
 					break;
 				case 'source_url' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Source Url', 'gravityforms' ), 'type' => 'source_url' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Source Url', 'edforms' ), 'type' => 'source_url' );
 					break;
 				case 'payment_status' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Status', 'gravityforms' ), 'type' => 'payment_status' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Status', 'edforms' ), 'type' => 'payment_status' );
 					break;
 				case 'transaction_id' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Transaction Id', 'gravityforms' ), 'type' => 'transaction_id' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Transaction Id', 'edforms' ), 'type' => 'transaction_id' );
 					break;
 				case 'payment_date' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Date', 'gravityforms' ), 'type' => 'payment_date' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Date', 'edforms' ), 'type' => 'payment_date' );
 					break;
 				case 'payment_amount' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Amount', 'gravityforms' ), 'type' => 'payment_amount' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'Payment Amount', 'edforms' ), 'type' => 'payment_amount' );
 					break;
 				case 'created_by' :
-					$columns[ $field_id ] = array( 'label' => esc_html__( 'User', 'gravityforms' ), 'type' => 'created_by' );
+					$columns[ $field_id ] = array( 'label' => esc_html__( 'User', 'edforms' ), 'type' => 'created_by' );
 					break;
 				case ( ( is_string( $field_id ) || is_int( $field_id ) ) && array_key_exists( $field_id, $entry_meta ) ) :
 					$columns[ $field_id ] = array( 'label' => $entry_meta[ $field_id ]['label'], 'type' => $field_id );
@@ -5411,7 +5411,7 @@ class GFFormsModel {
 		// convert confirmation to new confirmations format
 		$confirmation              = rgar( $form, 'confirmation' );
 		$confirmation['id']        = $id;
-		$confirmation['name']      = esc_html__( 'Default Confirmation', 'gravityforms' );
+		$confirmation['name']      = esc_html__( 'Default Confirmation', 'edforms' );
 		$confirmation['isDefault'] = true;
 
 		$form['confirmations'] = array( $id => $confirmation );

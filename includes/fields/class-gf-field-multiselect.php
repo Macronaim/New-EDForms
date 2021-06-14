@@ -27,7 +27,7 @@ class GF_Field_MultiSelect extends GF_Field {
 	 * @return string The field title. Escaped.
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Multi Select', 'gravityforms' );
+		return esc_attr__( 'Multi Select', 'edforms' );
 	}
 
 	/**
@@ -112,7 +112,7 @@ class GF_Field_MultiSelect extends GF_Field {
 			'gform_multiselect_placeholder',
 			$form_id,
 			$this->id
-		), __( 'Click to select...', 'gravityforms' ), $form_id, $this );
+		), __( 'Click to select...', 'edforms' ), $form_id, $this );
 		$placeholder = $this->enableEnhancedUI ? "data-placeholder='" . esc_attr( $placeholder ) . "'" : '';
 
 		$size = $this->multiSelectSize;

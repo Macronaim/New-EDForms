@@ -39,23 +39,23 @@ class GFEntryDetail {
 
 		$meta_boxes = array(
 			'submitdiv'     => array(
-				'title'    => esc_html__( 'Entry', 'gravityforms' ),
+				'title'    => esc_html__( 'Entry', 'edforms' ),
 				'callback' => array( 'GFEntryDetail', 'meta_box_entry_info' ),
 				'context'  => 'side',
 			),
 		);
 
-		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
+		if ( GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
 			$meta_boxes['notifications'] = array(
-				'title'    => esc_html__( 'Notifications', 'gravityforms' ),
+				'title'    => esc_html__( 'Notifications', 'edforms' ),
 				'callback' => array( 'GFEntryDetail', 'meta_box_notifications' ),
 				'context'  => 'side',
 			);
 		}
 
-		if ( GFCommon::current_user_can_any( 'gravityforms_view_entry_notes' ) ) {
+		if ( GFCommon::current_user_can_any( 'edforms_view_entry_notes' ) ) {
 			$meta_boxes['notes'] = array(
-				'title'    => esc_html__( 'Notes', 'gravityforms' ),
+				'title'    => esc_html__( 'Notes', 'edforms' ),
 				'callback' => array( 'GFEntryDetail', 'meta_box_notes' ),
 				'context'  => 'normal',
 			);
@@ -63,7 +63,7 @@ class GFEntryDetail {
 
 		if ( ! empty( $entry['payment_status'] ) ) {
 			$meta_boxes['payment'] = array(
-				'title'    => $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Details', 'gravityforms' ) : esc_html__( 'Payment Details', 'gravityforms' ),
+				'title'    => $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Details', 'edforms' ) : esc_html__( 'Payment Details', 'edforms' ),
 				'callback' => array( 'GFEntryDetail', 'meta_box_payment_details' ),
 				'context'  => 'side',
 			);
@@ -225,7 +225,7 @@ class GFEntryDetail {
 
 		$lead = self::get_current_entry();
 		if ( is_wp_error( $lead ) || ! $lead ) {
-			esc_html_e( "Oops! We couldn't find your entry. Please try again", 'gravityforms' );
+			esc_html_e( "Oops! We couldn't find your entry. Please try again", 'edforms' );
 
 			return;
 		}
@@ -333,8 +333,8 @@ class GFEntryDetail {
 			case 'bulk' :
 				check_admin_referer( 'gforms_update_note', 'gforms_update_note' );
 				if ( $_POST['bulk_action'] == 'delete' ) {
-					if ( ! GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
-						die( esc_html__( "You don't have adequate permission to delete notes.", 'gravityforms' ) );
+					if ( ! GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
+						die( esc_html__( "You don't have adequate permission to delete notes.", 'edforms' ) );
 					}
 					RGFormsModel::delete_notes( $_POST['note'] );
 				}
@@ -368,8 +368,8 @@ class GFEntryDetail {
 
 			case 'delete' :
 				check_admin_referer( 'gforms_save_entry', 'gforms_save_entry' );
-				if ( ! GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
-					die( esc_html__( "You don't have adequate permission to delete entries.", 'gravityforms' ) );
+				if ( ! GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
+					die( esc_html__( "You don't have adequate permission to delete entries.", 'edforms' ) );
 				}
 				GFFormsModel::delete_entry( $lead['id'] );
 				$admin_url = admin_url( 'admin.php?page=gf_entries&view=entries&id=' . absint( $form['id'] ) . '&deleted=' . absint( $lead['id'] ) );
@@ -401,7 +401,7 @@ class GFEntryDetail {
 			});
 
 			function DeleteFile(leadId, fieldId, deleteButton) {
-				if (confirm(<?php echo json_encode( __( "Would you like to delete this file? 'Cancel' to stop. 'OK' to delete", 'gravityforms' ) ); ?>)) {
+				if (confirm(<?php echo json_encode( __( "Would you like to delete this file? 'Cancel' to stop. 'OK' to delete", 'edforms' ) ); ?>)) {
 					var fileIndex = jQuery(deleteButton).parent().index();
 					var mysack = new sack("<?php echo admin_url( 'admin-ajax.php' )?>");
 					mysack.execute = 1;
@@ -412,7 +412,7 @@ class GFEntryDetail {
 					mysack.setVar("field_id", fieldId);
 					mysack.setVar("file_index", fileIndex);
 					mysack.onError = function () {
-						alert(<?php echo json_encode( __( 'Ajax error while deleting field.', 'gravityforms' ) ); ?>)
+						alert(<?php echo json_encode( __( 'Ajax error while deleting field.', 'edforms' ) ); ?>)
 					};
 					mysack.runAJAX();
 
@@ -467,7 +467,7 @@ class GFEntryDetail {
 				var sendTo = jQuery('#notification_override_email').val();
 
 				if (selectedNotifications.length <= 0) {
-					displayMessage(<?php echo json_encode( __( 'You must select at least one type of notification to resend.', 'gravityforms' ) ); ?>, 'error', '#notifications');
+					displayMessage(<?php echo json_encode( __( 'You must select at least one type of notification to resend.', 'edforms' ) ); ?>, 'error', '#notifications');
 					return;
 				}
 
@@ -485,7 +485,7 @@ class GFEntryDetail {
 						if (response) {
 							displayMessage(response, "error", "#notifications");
 						} else {
-							displayMessage(<?php echo json_encode( esc_html__( 'Notifications were resent successfully.', 'gravityforms' ) ); ?>, "updated", "#notifications" );
+							displayMessage(<?php echo json_encode( esc_html__( 'Notifications were resent successfully.', 'edforms' ) ); ?>, "updated", "#notifications" );
 
 							// reset UI
 							jQuery(".gform_notifications").attr( 'checked', false );
@@ -525,7 +525,7 @@ class GFEntryDetail {
 
 		</script>
 		<?php
-		$editable_class = GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ? ' gform_settings_page_title_editable' : '';
+		$editable_class = GFCommon::current_user_can_any( 'edforms_edit_forms' ) ? ' gform_settings_page_title_editable' : '';
 		?>
 		<form method="post" id="entry_form" enctype='multipart/form-data'>
 			<?php wp_nonce_field( 'gforms_save_entry', 'gforms_save_entry' ) ?>
@@ -624,10 +624,10 @@ class GFEntryDetail {
 
 							<!-- begin print button -->
 							<div class="detail-view-print">
-								<a href="javascript:;" onclick="var notes_qs = jQuery('#gform_print_notes').is(':checked') ? '&notes=1' : ''; var url='<?php echo trailingslashit( site_url() ) ?>?gf_page=print-entry&fid=<?php echo absint( $form['id'] ) ?>&lid=<?php echo absint( $lead['id'] ); ?>' + notes_qs; window.open (url,'printwindow');" class="button"><?php esc_html_e( 'Print', 'gravityforms' ) ?></a>
-								<?php if ( GFCommon::current_user_can_any( 'gravityforms_view_entry_notes' ) ) { ?>
+								<a href="javascript:;" onclick="var notes_qs = jQuery('#gform_print_notes').is(':checked') ? '&notes=1' : ''; var url='<?php echo trailingslashit( site_url() ) ?>?gf_page=print-entry&fid=<?php echo absint( $form['id'] ) ?>&lid=<?php echo absint( $lead['id'] ); ?>' + notes_qs; window.open (url,'printwindow');" class="button"><?php esc_html_e( 'Print', 'edforms' ) ?></a>
+								<?php if ( GFCommon::current_user_can_any( 'edforms_view_entry_notes' ) ) { ?>
 									<input type="checkbox" name="print_notes" value="print_notes" checked="checked" id="gform_print_notes" />
-									<label for="print_notes"><?php esc_html_e( 'include notes', 'gravityforms' ) ?></label>
+									<label for="print_notes"><?php esc_html_e( 'include notes', 'edforms' ) ?></label>
 								<?php } ?>
 							</div>
 							<!-- end print button -->
@@ -664,7 +664,7 @@ class GFEntryDetail {
 		if ( rgpost( 'action' ) == 'update' ) {
 			?>
 			<div class="updated fade">
-				<p><?php esc_html_e( 'Entry Updated.', 'gravityforms' ); ?></p>
+				<p><?php esc_html_e( 'Entry Updated.', 'edforms' ); ?></p>
 			</div>
 			<?php
 		}
@@ -679,7 +679,7 @@ class GFEntryDetail {
 		?>
 		<div class="postbox">
 			<h3>
-				<label for="name"><?php esc_html_e( 'Details', 'gravityforms' ); ?></label>
+				<label for="name"><?php esc_html_e( 'Details', 'edforms' ); ?></label>
 			</h3>
 
 			<div class="inside">
@@ -750,16 +750,16 @@ class GFEntryDetail {
 	}
 
 	public static function notes_grid( $notes, $is_editable, $emails = null, $subject = '' ) {
-		if ( sizeof( $notes ) > 0 && $is_editable && GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
+		if ( sizeof( $notes ) > 0 && $is_editable && GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
 			?>
 			<div class="alignleft actions" style="padding:3px 0;">
-				<label class="hidden" for="bulk_action"><?php esc_html_e( ' Bulk action', 'gravityforms' ) ?></label>
+				<label class="hidden" for="bulk_action"><?php esc_html_e( ' Bulk action', 'edforms' ) ?></label>
 				<select name="bulk_action" id="bulk_action">
-					<option value=''><?php esc_html_e( ' Bulk action ', 'gravityforms' ) ?></option>
-					<option value='delete'><?php esc_html_e( 'Delete', 'gravityforms' ) ?></option>
+					<option value=''><?php esc_html_e( ' Bulk action ', 'edforms' ) ?></option>
+					<option value='delete'><?php esc_html_e( 'Delete', 'edforms' ) ?></option>
 				</select>
 				<?php
-				$apply_button = '<input type="submit" class="button" value="' . esc_attr__( 'Apply', 'gravityforms' ) . '" onclick="jQuery(\'#action\').val(\'bulk\');" style="width: 50px;" />';
+				$apply_button = '<input type="submit" class="button" value="' . esc_attr__( 'Apply', 'edforms' ) . '" onclick="jQuery(\'#action\').val(\'bulk\');" style="width: 50px;" />';
 				/**
 				 * A filter to allow you to modify the note apply button
 				 *
@@ -793,7 +793,7 @@ class GFEntryDetail {
 				?>
 				<tr valign="top">
 					<?php
-					if ( $is_editable && GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
+					if ( $is_editable && GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
 					?>
 					<th class="check-column" scope="row" style="padding:9px 3px 0 0">
 						<input type="checkbox" value="<?php echo $note->id ?>" name="note[]" />
@@ -824,7 +824,7 @@ class GFEntryDetail {
 									<?php if( $note->user_email ): ?>
 										<a href="mailto:<?php echo esc_attr( $note->user_email ) ?>"><?php echo esc_html( $note->user_email ) ?></a> <br>
 									<?php endif; ?>
-									<?php esc_html_e( 'added on', 'gravityforms' ); ?> <?php echo esc_html( GFCommon::format_date( $note->date_created, false ) ) ?>
+									<?php esc_html_e( 'added on', 'edforms' ); ?> <?php echo esc_html( GFCommon::format_date( $note->date_created, false ) ) ?>
 								</p>
 							</div>
 						</div>
@@ -834,13 +834,13 @@ class GFEntryDetail {
 				</tr>
 				<?php
 			}
-			if ( $is_editable && GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
+			if ( $is_editable && GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
 				?>
 				<tr>
 					<td colspan="3" style="padding:10px;" class="lastrow">
 						<textarea name="new_note" style="width:100%; height:50px; margin-bottom:4px;"></textarea>
 						<?php
-						$note_button = '<input type="submit" name="add_note" value="' . esc_attr__( 'Add Note', 'gravityforms' ) . '" class="button" style="width:auto;padding-bottom:2px;" onclick="jQuery(\'#action\').val(\'add_note\');"/>';
+						$note_button = '<input type="submit" name="add_note" value="' . esc_attr__( 'Add Note', 'edforms' ) . '" class="button" style="width:auto;padding-bottom:2px;" onclick="jQuery(\'#action\').val(\'add_note\');"/>';
 
 						/**
 						 * Allows for modification of the "Add Note" button for Entry Notes
@@ -854,7 +854,7 @@ class GFEntryDetail {
 							&nbsp;&nbsp;
 							<span>
                                 <select name="gentry_email_notes_to" onchange="if(jQuery(this).val() != '') {jQuery('#gentry_email_subject_container').css('display', 'inline');} else{jQuery('#gentry_email_subject_container').css('display', 'none');}">
-	                                <option value=""><?php esc_html_e( 'Also email this note to', 'gravityforms' ) ?></option>
+	                                <option value=""><?php esc_html_e( 'Also email this note to', 'edforms' ) ?></option>
 	                                <?php foreach ( $emails as $email ) { ?>
 		                                <option value="<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></option>
 	                                <?php } ?>
@@ -862,7 +862,7 @@ class GFEntryDetail {
                                 &nbsp;&nbsp;
 
                                 <span id='gentry_email_subject_container' style="display:none;">
-                                    <label for="gentry_email_subject"><?php esc_html_e( 'Subject:', 'gravityforms' ) ?></label>
+                                    <label for="gentry_email_subject"><?php esc_html_e( 'Subject:', 'edforms' ) ?></label>
                                     <input type="text" name="gentry_email_subject" id="gentry_email_subject" value="" style="width:35%" />
                                 </span>
                             </span>
@@ -893,7 +893,7 @@ class GFEntryDetail {
 			<tr>
 				<th id="details">
 					<?php
-					$title = sprintf( '%s : %s %s', esc_html( $form['title'] ), esc_html__( 'Entry # ', 'gravityforms' ), absint( $lead['id'] ) );
+					$title = sprintf( '%s : %s %s', esc_html( $form['title'] ), esc_html__( 'Entry # ', 'edforms' ), absint( $lead['id'] ) );
 					/**
 					 * Filters the title displayed on the entry detail page.
 					 *
@@ -911,7 +911,7 @@ class GFEntryDetail {
 					if ( $allow_display_empty_fields ) {
 						?>
 						<input type="checkbox" id="gentry_display_empty_fields" <?php echo $display_empty_fields ? "checked='checked'" : '' ?> onclick="ToggleShowEmptyFields();" />&nbsp;&nbsp;
-						<label for="gentry_display_empty_fields"><?php esc_html_e( 'show empty fields', 'gravityforms' ) ?></label>
+						<label for="gentry_display_empty_fields"><?php esc_html_e( 'show empty fields', 'edforms' ) ?></label>
 						<?php
 					}
 					?>
@@ -1010,7 +1010,7 @@ class GFEntryDetail {
 				    ob_start();
 					?>
 					<tr>
-						<td colspan="2" class="entry-view-field-name"><?php echo esc_html( gf_apply_filters( array( 'gform_order_label', $form_id ), __( 'Order', 'gravityforms' ), $form_id ) ); ?></td>
+						<td colspan="2" class="entry-view-field-name"><?php echo esc_html( gf_apply_filters( array( 'gform_order_label', $form_id ), __( 'Order', 'edforms' ), $form_id ) ); ?></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="entry-view-field-value lastrow">
@@ -1022,10 +1022,10 @@ class GFEntryDetail {
 									<col class="entry-products-col4" />
 								</colgroup>
 								<thead>
-								<th scope="col"><?php echo gf_apply_filters( array( 'gform_product', $form_id ), __( 'Product', 'gravityforms' ), $form_id ); ?></th>
-								<th scope="col" class="textcenter"><?php echo esc_html( gf_apply_filters( array( 'gform_product_qty', $form_id ), __( 'Qty', 'gravityforms' ), $form_id ) ); ?></th>
-								<th scope="col"><?php echo esc_html( gf_apply_filters( array( 'gform_product_unitprice', $form_id ), __( 'Unit Price', 'gravityforms' ), $form_id ) ); ?></th>
-								<th scope="col"><?php echo esc_html( gf_apply_filters( array( 'gform_product_price', $form_id ), __( 'Price', 'gravityforms' ), $form_id ) ); ?></th>
+								<th scope="col"><?php echo gf_apply_filters( array( 'gform_product', $form_id ), __( 'Product', 'edforms' ), $form_id ); ?></th>
+								<th scope="col" class="textcenter"><?php echo esc_html( gf_apply_filters( array( 'gform_product_qty', $form_id ), __( 'Qty', 'edforms' ), $form_id ) ); ?></th>
+								<th scope="col"><?php echo esc_html( gf_apply_filters( array( 'gform_product_unitprice', $form_id ), __( 'Unit Price', 'edforms' ), $form_id ) ); ?></th>
+								<th scope="col"><?php echo esc_html( gf_apply_filters( array( 'gform_product_price', $form_id ), __( 'Price', 'edforms' ), $form_id ) ); ?></th>
 								</thead>
 								<tbody>
 								<?php
@@ -1085,7 +1085,7 @@ class GFEntryDetail {
 										<?php
 									}
 									?>
-									<td class="textright grandtotal"><?php esc_html_e( 'Total', 'gravityforms' ) ?></td>
+									<td class="textright grandtotal"><?php esc_html_e( 'Total', 'edforms' ) ?></td>
 									<td class="grandtotal_amount"><?php echo GFCommon::to_money( $total, $lead['currency'] ) ?></td>
 								</tr>
 								</tfoot>
@@ -1132,7 +1132,7 @@ class GFEntryDetail {
 		<div id="submitdiv" class="stuffbox">
 
 			<h3 class="hndle" style="cursor:default;">
-				<span><?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Details', 'gravityforms' ) : esc_html__( 'Payment Details', 'gravityforms' ); ?></span>
+				<span><?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Details', 'edforms' ) : esc_html__( 'Payment Details', 'edforms' ); ?></span>
 			</h3>
 
 			<div class="inside">
@@ -1158,7 +1158,7 @@ class GFEntryDetail {
 				if ( ! empty( $payment_status ) ) {
 					?>
 					<div id="gf_payment_status" class="gf_payment_detail">
-						<?php esc_html_e( 'Status', 'gravityforms' ) ?>:
+						<?php esc_html_e( 'Status', 'edforms' ) ?>:
 						<span id="gform_payment_status"><?php echo $payment_status; // May contain HTML ?></span>
 					</div>
 
@@ -1174,7 +1174,7 @@ class GFEntryDetail {
 					if ( ! empty( $payment_date ) ) {
 						?>
 						<div id="gf_payment_date" class="gf_payment_detail">
-							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Start Date', 'gravityforms' ) : esc_html__( 'Date', 'gravityforms' ) ?>:
+							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Start Date', 'edforms' ) : esc_html__( 'Date', 'edforms' ) ?>:
 							<span id='gform_payment_date'><?php echo $payment_date; // May contain HTML ?></span>
 						</div>
 						<?php
@@ -1191,7 +1191,7 @@ class GFEntryDetail {
 					if ( ! empty( $transaction_id ) ) {
 						?>
 						<div id="gf_payment_transaction_id" class="gf_payment_detail">
-							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Id', 'gravityforms' ) : esc_html__( 'Transaction Id', 'gravityforms' ); ?>:
+							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Subscription Id', 'edforms' ) : esc_html__( 'Transaction Id', 'edforms' ); ?>:
 							<span id='gform_payment_transaction_id'><?php echo $transaction_id; // May contain HTML ?></span>
 						</div>
 						<?php
@@ -1209,7 +1209,7 @@ class GFEntryDetail {
 					if ( ! rgblank( $payment_amount ) ) {
 						?>
 						<div id="gf_payment_amount" class="gf_payment_detail">
-							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Recurring Amount', 'gravityforms' ) : esc_html__( 'Amount', 'gravityforms' ); ?>:
+							<?php echo $entry['transaction_type'] == 2 ? esc_html__( 'Recurring Amount', 'edforms' ) : esc_html__( 'Amount', 'edforms' ); ?>:
 							<span id='gform_payment_amount'><?php echo $payment_amount; // May contain HTML ?></span>
 						</div>
 						<?php
@@ -1266,30 +1266,30 @@ class GFEntryDetail {
 		?>
 		<div id="submitcomment" class="submitbox">
 			<div id="minor-publishing" style="padding:10px;">
-				<?php esc_html_e( 'Entry Id', 'gravityforms' ); ?>: <?php echo absint( $entry['id'] ) ?><br /><br />
-				<?php esc_html_e( 'Submitted on', 'gravityforms' ); ?>: <?php echo esc_html( GFCommon::format_date( $entry['date_created'], false, 'Y/m/d' ) ) ?>
+				<?php esc_html_e( 'Entry Id', 'edforms' ); ?>: <?php echo absint( $entry['id'] ) ?><br /><br />
+				<?php esc_html_e( 'Submitted on', 'edforms' ); ?>: <?php echo esc_html( GFCommon::format_date( $entry['date_created'], false, 'Y/m/d' ) ) ?>
 				<br /><br />
-				<?php esc_html_e( 'User IP', 'gravityforms' ); ?>: <?php echo esc_html( $entry['ip'] ); ?>
+				<?php esc_html_e( 'User IP', 'edforms' ); ?>: <?php echo esc_html( $entry['ip'] ); ?>
 				<br /><br />
 				<?php
 				if ( ! empty( $entry['created_by'] ) && $usermeta = get_userdata( $entry['created_by'] ) ) {
 					?>
-					<?php esc_html_e( 'User', 'gravityforms' ); ?>:
-					<a href="user-edit.php?user_id=<?php echo absint( $entry['created_by'] ) ?>" alt="<?php esc_attr_e( 'View user profile', 'gravityforms' ); ?>" title="<?php esc_attr_e( 'View user profile', 'gravityforms' ); ?>"><?php echo esc_html( $usermeta->user_login ) ?></a>
+					<?php esc_html_e( 'User', 'edforms' ); ?>:
+					<a href="user-edit.php?user_id=<?php echo absint( $entry['created_by'] ) ?>" alt="<?php esc_attr_e( 'View user profile', 'edforms' ); ?>" title="<?php esc_attr_e( 'View user profile', 'edforms' ); ?>"><?php echo esc_html( $usermeta->user_login ) ?></a>
 					<br /><br />
 					<?php
 				}
 				?>
 
-				<?php esc_html_e( 'Embed Url', 'gravityforms' ); ?>:
+				<?php esc_html_e( 'Embed Url', 'edforms' ); ?>:
 				<a href="<?php echo esc_url( $entry['source_url'] ) ?>" target="_blank" alt="<?php echo esc_attr( $entry['source_url'] ) ?>" title="<?php echo esc_attr( $entry['source_url'] ) ?>">.../<?php echo esc_html( GFCommon::truncate_url( $entry['source_url'] ) ) ?></a>
 				<br /><br />
 				<?php
 				if ( ! empty( $entry['post_id'] ) ) {
 					$post = get_post( $entry['post_id'] );
 					?>
-					<?php esc_html_e( 'Edit Post', 'gravityforms' ); ?>:
-					<a href="post.php?action=edit&post=<?php echo absint( $post->ID ) ?>" alt="<?php esc_attr_e( 'Click to edit post', 'gravityforms' ); ?>" title="<?php esc_attr_e( 'Click to edit post', 'gravityforms' ); ?>"><?php echo esc_html( $post->post_title ) ?></a>
+					<?php esc_html_e( 'Edit Post', 'edforms' ); ?>:
+					<a href="post.php?action=edit&post=<?php echo absint( $post->ID ) ?>" alt="<?php esc_attr_e( 'Click to edit post', 'edforms' ); ?>" title="<?php esc_attr_e( 'Click to edit post', 'edforms' ); ?>"><?php echo esc_html( $post->post_title ) ?></a>
 					<br /><br />
 					<?php
 				}
@@ -1311,13 +1311,13 @@ class GFEntryDetail {
 						case 'spam' :
 							if ( GFCommon::spam_enabled( $form['id'] ) ) {
 								?>
-								<a onclick="jQuery('#action').val('unspam'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Not Spam', 'gravityforms' ) ?></a>
+								<a onclick="jQuery('#action').val('unspam'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Not Spam', 'edforms' ) ?></a>
 								<?php
-								echo GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ? '|' : '';
+								echo GFCommon::current_user_can_any( 'edforms_delete_entries' ) ? '|' : '';
 							}
-							if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+							if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 								?>
-								<a class="submitdelete deletion" onclick="if ( confirm('<?php echo esc_js( __( "You are about to delete this entry. 'Cancel' to stop, 'OK' to delete.", 'gravityforms' ) ); ?>') ) {jQuery('#action').val('delete'); jQuery('#entry_form').submit(); return true;} return false;" href="#"><?php esc_html_e( 'Delete Permanently', 'gravityforms' ) ?></a>
+								<a class="submitdelete deletion" onclick="if ( confirm('<?php echo esc_js( __( "You are about to delete this entry. 'Cancel' to stop, 'OK' to delete.", 'edforms' ) ); ?>') ) {jQuery('#action').val('delete'); jQuery('#entry_form').submit(); return true;} return false;" href="#"><?php esc_html_e( 'Delete Permanently', 'edforms' ) ?></a>
 								<?php
 							}
 
@@ -1325,27 +1325,27 @@ class GFEntryDetail {
 
 						case 'trash' :
 							?>
-							<a onclick="jQuery('#action').val('restore'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Restore', 'gravityforms' ) ?></a>
+							<a onclick="jQuery('#action').val('restore'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Restore', 'edforms' ) ?></a>
 							<?php
-							if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+							if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 								?>
 								|
-								<a class="submitdelete deletion" onclick="if ( confirm('<?php echo esc_js( __( "You are about to delete this entry. 'Cancel' to stop, 'OK' to delete.", 'gravityforms' ) ); ?>') ) {jQuery('#action').val('delete'); jQuery('#entry_form').submit(); return true;} return false;" href="#"><?php esc_html_e( 'Delete Permanently', 'gravityforms' ) ?></a>
+								<a class="submitdelete deletion" onclick="if ( confirm('<?php echo esc_js( __( "You are about to delete this entry. 'Cancel' to stop, 'OK' to delete.", 'edforms' ) ); ?>') ) {jQuery('#action').val('delete'); jQuery('#entry_form').submit(); return true;} return false;" href="#"><?php esc_html_e( 'Delete Permanently', 'edforms' ) ?></a>
 								<?php
 							}
 
 							break;
 
 						default :
-							if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+							if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 								?>
-								<a class="submitdelete deletion" onclick="jQuery('#action').val('trash'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Move to Trash', 'gravityforms' ) ?></a>
+								<a class="submitdelete deletion" onclick="jQuery('#action').val('trash'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Move to Trash', 'edforms' ) ?></a>
 								<?php
 								echo GFCommon::spam_enabled( $form['id'] ) ? '|' : '';
 							}
 							if ( GFCommon::spam_enabled( $form['id'] ) ) {
 								?>
-								<a class="submitdelete deletion" onclick="jQuery('#action').val('spam'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Mark as Spam', 'gravityforms' ) ?></a>
+								<a class="submitdelete deletion" onclick="jQuery('#action').val('spam'); jQuery('#entry_form').submit()" href="#"><?php esc_html_e( 'Mark as Spam', 'edforms' ) ?></a>
 								<?php
 							}
 					}
@@ -1354,8 +1354,8 @@ class GFEntryDetail {
 				</div>
 				<div id="publishing-action">
 					<?php
-					if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) && $entry['status'] != 'trash' ) {
-						$button_text      = $mode == 'view' ? __( 'Edit', 'gravityforms' ) : __( 'Update', 'gravityforms' );
+					if ( GFCommon::current_user_can_any( 'edforms_edit_entries' ) && $entry['status'] != 'trash' ) {
+						$button_text      = $mode == 'view' ? __( 'Edit', 'edforms' ) : __( 'Update', 'edforms' );
 						$disabled         = $mode == 'view' ? '' : ' disabled="disabled" ';
 						$update_button_id = $mode == 'view' ? 'gform_edit_button' : 'gform_update_button';
 						$button_click     = $mode == 'view' ? "jQuery('#screen_mode').val('edit');" : "jQuery('#action').val('update'); jQuery('#screen_mode').val('view');";
@@ -1368,7 +1368,7 @@ class GFEntryDetail {
 						 */
 						echo apply_filters( 'gform_entrydetail_update_button', $update_button );
 						if ( $mode == 'edit' ) {
-							echo '&nbsp;&nbsp;<input class="button button-large" type="submit" tabindex="5" value="' . esc_attr__( 'Cancel', 'gravityforms' ) . '" name="cancel" onclick="jQuery(\'#screen_mode\').val(\'view\');"/>';
+							echo '&nbsp;&nbsp;<input class="button button-large" type="submit" tabindex="5" value="' . esc_attr__( 'Cancel', 'edforms' ) . '" name="cancel" onclick="jQuery(\'#screen_mode\').val(\'view\');"/>';
 						}
 					}
 					?>
@@ -1383,7 +1383,7 @@ class GFEntryDetail {
 		$form    = $args['form'];
 		$form_id = $form['id'];
 
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_edit_entry_notes' ) ) {
+		if ( ! GFCommon::current_user_can_any( 'edforms_edit_entry_notes' ) ) {
 			return;
 		}
 		?>
@@ -1396,9 +1396,9 @@ class GFEntryDetail {
 
 			if ( ! is_array( $notifications ) || count( $form['notifications'] ) <= 0 ) {
 				?>
-				<p class="description"><?php esc_html_e( 'You cannot resend notifications for this entry because this form does not currently have any notifications configured.', 'gravityforms' ); ?></p>
+				<p class="description"><?php esc_html_e( 'You cannot resend notifications for this entry because this form does not currently have any notifications configured.', 'edforms' ); ?></p>
 
-				<a href="<?php echo admin_url( "admin.php?page=gf_edit_forms&view=settings&subview=notification&id={$form_id}" ) ?>" class="button"><?php esc_html_e( 'Configure Notifications', 'gravityforms' ) ?></a>
+				<a href="<?php echo admin_url( "admin.php?page=gf_edit_forms&view=settings&subview=notification&id={$form_id}" ) ?>" class="button"><?php esc_html_e( 'Configure Notifications', 'edforms' ) ?></a>
 				<?php
 			} else {
 				foreach ( $notifications as $notification ) {
@@ -1414,15 +1414,15 @@ class GFEntryDetail {
 
 					<p class="description" style="padding-top:0; margin-top:0; width:99%;">You may override the default notification settings
 						by entering a comma delimited list of emails to which the selected notifications should be sent.</p>
-					<label for="notification_override_email"><?php esc_html_e( 'Send To', 'gravityforms' ); ?> <?php gform_tooltip( 'notification_override_email' ) ?></label><br />
+					<label for="notification_override_email"><?php esc_html_e( 'Send To', 'edforms' ); ?> <?php gform_tooltip( 'notification_override_email' ) ?></label><br />
 					<input type="text" name="notification_override_email" id="notification_override_email" style="width:99%;" />
 					<br /><br />
 
 				</div>
 
-				<input type="button" name="notification_resend" value="<?php esc_attr_e( 'Resend Notifications', 'gravityforms' ) ?>" class="button" style="" onclick="ResendNotifications();" />
+				<input type="button" name="notification_resend" value="<?php esc_attr_e( 'Resend Notifications', 'edforms' ) ?>" class="button" style="" onclick="ResendNotifications();" />
 				<span id="please_wait_container" style="display:none; margin-left: 5px;">
-							<i class='gficon-gravityforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Resending...', 'gravityforms' ); ?>
+							<i class='gficon-edforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Resending...', 'edforms' ); ?>
                         </span>
 				<?php
 			}

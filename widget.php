@@ -16,7 +16,7 @@ if ( ! class_exists( 'GFWidget' ) ) {
 	/**
 	 * Class GFWidget
 	 *
-	 * Facilitates the creation of the Gravity Forms widget
+	 * Facilitates the creation of the Ed Forms widget
 	 *
 	 * @see WP_Widget
 	 */
@@ -31,11 +31,11 @@ if ( ! class_exists( 'GFWidget' ) ) {
 			//load text domains
 			GFCommon::load_gf_text_domain();
 
-			$description = esc_html__( 'Gravity Forms Widget', 'gravityforms' );
+			$description = esc_html__( 'Ed Forms Widget', 'edforms' );
 
 			WP_Widget::__construct( 
 				'gform_widget',
-				__( 'Form', 'gravityforms' ),
+				__( 'Form', 'edforms' ),
 				array( 'classname' => 'gform_widget', 'description' => $description ),
 				array( 'width' => 200, 'height' => 250, 'id_base' => 'gform_widget' )
 			);
@@ -113,14 +113,14 @@ if ( ! class_exists( 'GFWidget' ) ) {
 		 */
 		function form( $instance ) {
 
-			$instance = wp_parse_args( (array) $instance, array( 'title' => __( 'Contact Us', 'gravityforms' ), 'tabindex' => '1' ) );
+			$instance = wp_parse_args( (array) $instance, array( 'title' => __( 'Contact Us', 'edforms' ), 'tabindex' => '1' ) );
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'gravityforms' ); ?>:</label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'edforms' ); ?>:</label>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="width:90%;" />
 			</p>
 			<p>
-				<label for="<?php echo absint( $this->get_field_id( 'form_id' ) ); ?>"><?php esc_html_e( 'Select a Form', 'gravityforms' ); ?>:</label>
+				<label for="<?php echo absint( $this->get_field_id( 'form_id' ) ); ?>"><?php esc_html_e( 'Select a Form', 'edforms' ); ?>:</label>
 				<select id="<?php echo esc_attr( $this->get_field_id( 'form_id' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'form_id' ) ); ?>" style="width:90%;">
 					<?php
 					$forms = RGFormsModel::get_forms( 1, 'title' );
@@ -136,21 +136,21 @@ if ( ! class_exists( 'GFWidget' ) ) {
 			</p>
 			<p>
 				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'showtitle' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'showtitle' ) ); ?>" <?php checked( rgar( $instance, 'showtitle' ) ); ?> value="1" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'showtitle' ) ); ?>"><?php esc_html_e( 'Display form title', 'gravityforms' ); ?></label><br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'showtitle' ) ); ?>"><?php esc_html_e( 'Display form title', 'edforms' ); ?></label><br />
 				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'showdescription' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'showdescription' ) ); ?>" <?php checked( rgar( $instance, 'showdescription' ) ); ?> value="1" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'showdescription' ) ); ?>"><?php esc_html_e( 'Display form description', 'gravityforms' ); ?></label><br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'showdescription' ) ); ?>"><?php esc_html_e( 'Display form description', 'edforms' ); ?></label><br />
 			</p>
 			<p>
-				<a href="javascript: var obj = jQuery('#<?php echo esc_attr( $this->get_field_id( 'advanced' ) ); ?>'); if(!obj.is(':visible')) {var a = obj.show('slow');} else {var a = obj.hide('slow');}"><?php esc_html_e( 'Advanced Options', 'gravityforms' ); ?></a>
+				<a href="javascript: var obj = jQuery('#<?php echo esc_attr( $this->get_field_id( 'advanced' ) ); ?>'); if(!obj.is(':visible')) {var a = obj.show('slow');} else {var a = obj.hide('slow');}"><?php esc_html_e( 'Advanced Options', 'edforms' ); ?></a>
 			</p>
 			<p id="<?php echo esc_attr( $this->get_field_id( 'advanced' ) ); ?>" class="gf_widget_advanced" style="display:none;">
 				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'ajax' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'ajax' ) ); ?>" <?php checked( rgar( $instance, 'ajax' ) ); ?> value="1" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'ajax' ) ); ?>"><?php esc_html_e( 'Enable Ajax', 'gravityforms' ); ?></label><br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'ajax' ) ); ?>"><?php esc_html_e( 'Enable Ajax', 'edforms' ); ?></label><br />
 				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'disable_scripts' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'disable_scripts' ) ); ?>" <?php checked( rgar( $instance, 'disable_scripts' ) ); ?> value="1" />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'disable_scripts' ) ); ?>"><?php esc_html_e( 'Disable script output', 'gravityforms' ); ?></label><br />
-				<label for="<?php echo esc_attr( $this->get_field_id( 'tabindex' ) ); ?>"><?php esc_html_e( 'Tab Index Start', 'gravityforms' ); ?>: </label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'disable_scripts' ) ); ?>"><?php esc_html_e( 'Disable script output', 'edforms' ); ?></label><br />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'tabindex' ) ); ?>"><?php esc_html_e( 'Tab Index Start', 'edforms' ); ?>: </label>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'tabindex' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'tabindex' ) ); ?>" value="<?php echo esc_attr( rgar( $instance, 'tabindex' ) ); ?>" style="width:15%;" /><br />
-				<small><?php esc_html_e( 'If you have other forms on the page (i.e. Comments Form), specify a higher tabindex start value so that your Gravity Form does not end up with the same tabindices as your other forms. To disable the tabindex, enter 0 (zero).', 'gravityforms' ); ?></small>
+				<small><?php esc_html_e( 'If you have other forms on the page (i.e. Comments Form), specify a higher tabindex start value so that your Ed Form does not end up with the same tabindices as your other forms. To disable the tabindex, enter 0 (zero).', 'edforms' ); ?></small>
 			</p>
 
 		<?php

@@ -1,6 +1,6 @@
 <?php
 
-// If Gravity Forms isn't loaded, bail.
+// If Ed Forms isn't loaded, bail.
 if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
@@ -40,7 +40,7 @@ class GF_Field_Time extends GF_Field {
 	 * @return string The field title.
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Time', 'gravityforms' );
+		return esc_attr__( 'Time', 'edforms' );
 	}
 
 	/**
@@ -115,7 +115,7 @@ class GF_Field_Time extends GF_Field {
 
 		if ( ! $is_valid_format || $hour < $min_hour || $hour > $max_hour || $minute < 0 || $minute > $max_minute ) {
 			$this->failed_validation  = true;
-			$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'Please enter a valid time.', 'gravityforms' ) : $this->errorMessage;
+			$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'Please enter a valid time.', 'edforms' ) : $this->errorMessage;
 		}
 	}
 
@@ -192,8 +192,8 @@ class GF_Field_Time extends GF_Field {
 
 		$ampm_field_style = $is_form_editor && $this->timeFormat == '24' ? "style='display:none;'" : '';
 		if ( $is_form_editor || $this->timeFormat != '24' ) {
-			$am_text = esc_html__( 'AM', 'gravityforms' );
-			$pm_text = esc_html__( 'PM', 'gravityforms' );
+			$am_text = esc_html__( 'AM', 'edforms' );
+			$pm_text = esc_html__( 'PM', 'edforms' );
 			$ampm_field = $is_sub_label_above ? "<div class='gfield_time_ampm ginput_container ginput_container_time' {$ampm_field_style}>
                                                             <label for='{$field_id}_3'>&nbsp;</label>
                                                             <select name='input_{$id}[]' id='{$field_id}_3' $ampm_tabindex {$disabled_text}>
@@ -211,8 +211,8 @@ class GF_Field_Time extends GF_Field {
 			$ampm_field = '';
 		}
 
-		$hour_label = rgar( $hour_input, 'customLabel' ) != '' ? $hour_input['customLabel'] : esc_html__( 'HH', 'gravityforms' );
-		$minute_label = rgar( $minute_input, 'customLabel' ) != '' ? $minute_input['customLabel'] : esc_html( _x( 'MM', 'Abbreviation: Minutes', 'gravityforms' ) );
+		$hour_label = rgar( $hour_input, 'customLabel' ) != '' ? $hour_input['customLabel'] : esc_html__( 'HH', 'edforms' );
+		$minute_label = rgar( $minute_input, 'customLabel' ) != '' ? $minute_input['customLabel'] : esc_html( _x( 'MM', 'Abbreviation: Minutes', 'edforms' ) );
 
 		if ( $is_sub_label_above ) {
 			return "<div class='clear-multi'>

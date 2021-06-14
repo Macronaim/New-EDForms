@@ -8,7 +8,7 @@
 class GF_Download {
 
 	/**
-	 * If the request is for a Gravity Forms file download then validate and deliver.
+	 * If the request is for a Ed Forms file download then validate and deliver.
 	 *
 	 * @since 2.0
 	 */

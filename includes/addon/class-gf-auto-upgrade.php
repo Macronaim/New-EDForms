@@ -6,24 +6,24 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 class GFAutoUpgrade {
 	protected $_version;
-	protected $_min_gravityforms_version;
+	protected $_min_edforms_version;
 	protected $_slug;
 	protected $_title;
 	protected $_full_path;
 	protected $_path;
 	protected $_url;
-	protected $_is_gravityforms_supported;
+	protected $_is_edforms_supported;
 
 
-	public function __construct( $slug, $version, $min_gravityforms_version, $title, $full_path, $path, $url, $is_gravityforms_supported ) {
+	public function __construct( $slug, $version, $min_edforms_version, $title, $full_path, $path, $url, $is_edforms_supported ) {
 		$this->_slug                      = $slug;
 		$this->_version                   = $version;
-		$this->_min_gravityforms_version  = $min_gravityforms_version;
+		$this->_min_edforms_version  = $min_edforms_version;
 		$this->_title                     = $title;
 		$this->_full_path                 = $full_path;
 		$this->_path                      = $path;
 		$this->_url                       = $url;
-		$this->_is_gravityforms_supported = $is_gravityforms_supported;
+		$this->_is_edforms_supported = $is_edforms_supported;
 		add_action( 'init', array( $this, 'init' ) );
 	}
 
@@ -52,8 +52,8 @@ class GFAutoUpgrade {
 
 	public function rg_plugin_row() {
 
-		if ( ! $this->_is_gravityforms_supported ) {
-			$message = sprintf( esc_html__( 'Gravity Forms %s is required. Activate it now or %spurchase it today!%s', 'gravityforms' ), $this->_min_gravityforms_version, "<a href='https://www.edconcept24.fr'>", '</a>' );
+		if ( ! $this->_is_edforms_supported ) {
+			$message = sprintf( esc_html__( 'Ed Forms %s is required. Activate it now or %spurchase it today!%s', 'edforms' ), $this->_min_edforms_version, "<a href='https://www.edconcept24.fr'>", '</a>' );
 			GFAddOn::display_plugin_message( $message, true );
 		} else {
 			$version_info = $this->get_version_info( $this->_slug );
@@ -61,11 +61,11 @@ class GFAutoUpgrade {
 			if ( ! rgar( $version_info, 'is_valid_key' ) ) {
 				$title       = $this->_title;
 				if ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
-					$new_version = sprintf( esc_html__( 'There is a new version of %s available.', 'gravityforms' ), $title ) . sprintf( ' <a class="thickbox" title="%s" href="plugin-install.php?tab=plugin-information&plugin=%s&TB_iframe=true&width=640&height=808">', $title, $this->_slug ) . sprintf( esc_html__( 'View version %s Details', 'gravityforms' ), $version_info['version'] ) . '</a>. ';
+					$new_version = sprintf( esc_html__( 'There is a new version of %s available.', 'edforms' ), $title ) . sprintf( ' <a class="thickbox" title="%s" href="plugin-install.php?tab=plugin-information&plugin=%s&TB_iframe=true&width=640&height=808">', $title, $this->_slug ) . sprintf( esc_html__( 'View version %s Details', 'edforms' ), $version_info['version'] ) . '</a>. ';
 				} else {
 					$new_version = '';
 				}
-				$message = $new_version . sprintf( esc_html__( '%sRegister%s your copy of Gravity Forms to receive access to automatic upgrades and support. Need a license key? %sPurchase one now%s.', 'gravityforms' ), '<a href="admin.php?page=gf_settings">', '</a>', '<a href="https://www.edconcept24.fr">', '</a>' ) . '</div></td>';
+				$message = $new_version . sprintf( esc_html__( '%sRegister%s your copy of Ed Forms to receive access to automatic upgrades and support. Need a license key? %sPurchase one now%s.', 'edforms' ), '<a href="admin.php?page=gf_settings">', '</a>', '<a href="https://www.edconcept24.fr">', '</a>' ) . '</div></td>';
 				GFAddOn::display_plugin_message( $message );
 			}
 		}
@@ -179,7 +179,7 @@ class GFAutoUpgrade {
 		$raw_response = GFCommon::post_to_manager( 'changelog.php', $this->get_remote_request_params( $this->_slug, $key, $this->_version ), $options );
 
 		if ( is_wp_error( $raw_response ) || 200 != $raw_response['response']['code'] ) {
-			$text = sprintf( esc_html__( 'Oops!! Something went wrong.%sPlease try again or %scontact us%s.', 'gravityforms' ), '<br/>', "<a href='https://www.edconcept24.fr/support/'>", '</a>' );
+			$text = sprintf( esc_html__( 'Oops!! Something went wrong.%sPlease try again or %scontact us%s.', 'edforms' ), '<br/>', "<a href='https://www.edconcept24.fr/support/'>", '</a>' );
 		} else {
 			$text = $raw_response['body'];
 			if ( substr( $text, 0, 10 ) != '<!--GFM-->' ) {
@@ -207,7 +207,7 @@ class GFAutoUpgrade {
 	}
 
 	private function get_key() {
-		if ( $this->_is_gravityforms_supported ) {
+		if ( $this->_is_edforms_supported ) {
 			return GFCommon::get_key();
 		} else {
 			return '';
@@ -228,7 +228,7 @@ class GFAutoUpgrade {
 			$version_message = sprintf(
 				'<p>%s</p>',
 				sprintf(
-					esc_html( '%sRegister%s your copy of Gravity Forms to receive access to automatic updates and support. Need a license key? %sPurchase one now%s.', 'gravityforms' ),
+					esc_html( '%sRegister%s your copy of Ed Forms to receive access to automatic updates and support. Need a license key? %sPurchase one now%s.', 'edforms' ),
 					'<a href="admin.php?page=gf_settings">',
 					'</a>',
 					'<a href="https://www.edconcept24.fr">',
@@ -239,9 +239,9 @@ class GFAutoUpgrade {
 		} elseif ( version_compare( $this->_version, $version_info['version'], '<' ) ) {
 
 			$details_url = self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . urlencode( $this->_slug ) . '&section=changelog&TB_iframe=true&width=600&height=800' );
-			$message_link_text = sprintf( esc_html__( 'View version %s details', 'gravityforms' ), $version_info['version'] );
+			$message_link_text = sprintf( esc_html__( 'View version %s details', 'edforms' ), $version_info['version'] );
 			$message_link      = sprintf( '<a href="%s" class="thickbox" title="%s">%s</a>', esc_url( $details_url ), esc_attr( $this->_title ), $message_link_text );
-			$message           = sprintf( esc_html__( 'There is a new version of %1$s available. %s.', 'gravityforms' ), $this->_title, $message_link );
+			$message           = sprintf( esc_html__( 'There is a new version of %1$s available. %s.', 'edforms' ), $this->_title, $message_link );
 
 			$version_icon    = 'dashicons-no';
 			$version_message = $message;
@@ -249,7 +249,7 @@ class GFAutoUpgrade {
 		} else {
 
 			$version_icon    = 'dashicons-yes';
-			$version_message = sprintf( esc_html__( 'Your version of %s is up to date.', 'gravityforms' ), $this->_title );
+			$version_message = sprintf( esc_html__( 'Your version of %s is up to date.', 'edforms' ), $this->_title );
 		}
 
 		$updates[] = array(
@@ -281,7 +281,7 @@ class GFAutoUpgrade {
 			if ( ! rgar( $version_info, 'is_valid_key' ) ) {
 				?>
 				<div class="gf_update_expired alert_red">
-					<?php printf( esc_html__( '%sRegister%s your copy of Gravity Forms to receive access to automatic updates and support. Need a license key? %sPurchase one now%s.', 'gravityforms' ), '<a href="admin.php?page=gf_settings">','</a>','<a href="https://www.edconcept24.fr">', '</a>' ); ?>
+					<?php printf( esc_html__( '%sRegister%s your copy of Ed Forms to receive access to automatic updates and support. Need a license key? %sPurchase one now%s.', 'edforms' ), '<a href="admin.php?page=gf_settings">','</a>','<a href="https://www.edconcept24.fr">', '</a>' ); ?>
 				</div>
 
 			<?php
@@ -291,13 +291,13 @@ class GFAutoUpgrade {
 					$plugin_file = $this->_path;
 					$upgrade_url = wp_nonce_url( 'update.php?action=upgrade-plugin&amp;plugin=' . urlencode( $plugin_file ), 'upgrade-plugin_' . $plugin_file );
 					$details_url = self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . urlencode( $this->_slug ) . '&section=changelog&TB_iframe=true&width=600&height=800' );
-					$message_link_text = sprintf( esc_html__( 'View version %s details', 'gravityforms' ), $version_info['version'] );
+					$message_link_text = sprintf( esc_html__( 'View version %s details', 'edforms' ), $version_info['version'] );
 					$message_link      = sprintf( '<a href="%s" class="thickbox" title="%s">%s</a>', esc_url( $details_url ), esc_attr( $this->_title ), $message_link_text );
-					$message           = sprintf( esc_html__( 'There is a new version of %1$s available. %s.', 'gravityforms' ), $this->_title, $message_link );
+					$message           = sprintf( esc_html__( 'There is a new version of %1$s available. %s.', 'edforms' ), $this->_title, $message_link );
 
 					?>
 					<div class="gf_update_outdated alert_yellow">
-						<?php echo $message . ' <p>' . sprintf( esc_html__( 'You can update to the latest version automatically or download the update and install it manually. %sUpdate Automatically%s %sDownload Update%s', 'gravityforms' ), "</p><a class='button-primary' href='{$upgrade_url}'>", '</a>', "&nbsp;<a class='button' href='{$version_info['url']}'>", '</a>' ); ?>
+						<?php echo $message . ' <p>' . sprintf( esc_html__( 'You can update to the latest version automatically or download the update and install it manually. %sUpdate Automatically%s %sDownload Update%s', 'edforms' ), "</p><a class='button-primary' href='{$upgrade_url}'>", '</a>', "&nbsp;<a class='button' href='{$version_info['url']}'>", '</a>' ); ?>
 					</div>
 				<?php
 				}
@@ -305,7 +305,7 @@ class GFAutoUpgrade {
 
 				?>
 				<div class="gf_update_current alert_green">
-					<?php printf( esc_html__( 'Your version of %s is up to date.', 'gravityforms' ), $this->_title ); ?>
+					<?php printf( esc_html__( 'Your version of %s is up to date.', 'edforms' ), $this->_title ); ?>
 				</div>
 			<?php
 			}

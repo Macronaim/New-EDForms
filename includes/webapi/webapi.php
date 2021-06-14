@@ -10,7 +10,7 @@ if ( ! defined( 'GFWEBAPI_REQUIRE_SIGNATURE' ) ) {
 }
 
 if ( ! defined( 'GFWEBAPI_SLUG' ) ) {
-	define( 'GFWEBAPI_SLUG', 'gravityformsapi' );
+	define( 'GFWEBAPI_SLUG', 'edformsapi' );
 }
 
 if ( ! defined( 'GFWEBAPI_ROUTE_VAR' ) ) {
@@ -26,12 +26,12 @@ if ( class_exists( 'GFForms' ) ) {
 
 	class GFWebAPI extends GFAddOn {
 		protected $_version = '1.0';
-		protected $_min_gravityforms_version = '1.7.9999';
-		protected $_slug = 'gravityformswebapi';
-		protected $_path = 'gravityformswebapi/webapi.php';
+		protected $_min_edforms_version = '1.7.9999';
+		protected $_slug = 'edformswebapi';
+		protected $_path = 'edformswebapi/webapi.php';
 		protected $_full_path = __FILE__;
 		protected $_url = 'http://www.edconcept24.fr';
-		protected $_title = 'Gravity Forms Web API';
+		protected $_title = 'Ed Forms Web API';
 		protected $_short_title = 'Web API';
 
 		private $_enabled;
@@ -39,15 +39,15 @@ if ( class_exists( 'GFForms' ) ) {
 		private $_public_key;
 
 		// Members plugin integration
-		protected $_capabilities = array( 'gravityforms_api', 'gravityforms_api_settings' );
+		protected $_capabilities = array( 'edforms_api', 'edforms_api_settings' );
 
 		// Permissions
-		protected $_capabilities_settings_page = 'gravityforms_api_settings';
-		protected $_capabilities_uninstall = 'gravityforms_webapi_uninstall';
+		protected $_capabilities_settings_page = 'edforms_api_settings';
+		protected $_capabilities_uninstall = 'edforms_webapi_uninstall';
 
 		public function __construct() {
 			if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-				add_action( 'gravityforms_results_cron_' . $this->_slug, array( $this, 'results_cron' ), 10, 3 );
+				add_action( 'edforms_results_cron_' . $this->_slug, array( $this, 'results_cron' ), 10, 3 );
 
 				return;
 			}
@@ -154,7 +154,7 @@ if ( class_exists( 'GFForms' ) ) {
 		// ------- Plugin settings -------
 
 		public function plugin_settings_title() {
-			return esc_html__( 'Gravity Forms API Settings', 'gravityforms' );
+			return esc_html__( 'Ed Forms API Settings', 'edforms' );
 		}
 
 		public function plugin_settings_fields() {
@@ -171,17 +171,17 @@ if ( class_exists( 'GFForms' ) ) {
 			if ( ! $permalink_structure ) {
 				return array(
 					array(
-						'description' => esc_html__( 'The Gravity Forms API allows developers to interact with this install via a JSON REST API.', 'gravityforms' ),
+						'description' => esc_html__( 'The Ed Forms API allows developers to interact with this install via a JSON REST API.', 'edforms' ),
 						'fields'      => array(
 							array(
 								'name'  => 'requirements_check',
-								'label' => esc_html__( 'Requirements check', 'gravityforms' ),
+								'label' => esc_html__( 'Requirements check', 'edforms' ),
 								'type'  => 'requirements_check',
 							),
 							array(
 								'id'    => 'save_button',
 								'type'  => 'save',
-								'value' => esc_attr__( 'Update', 'gravityforms' ),
+								'value' => esc_attr__( 'Update', 'edforms' ),
 								'style' => 'display:none;',
 							),
 						)
@@ -192,29 +192,29 @@ if ( class_exists( 'GFForms' ) ) {
 
 			return array(
 				array(
-					'description' => esc_html__( 'The Gravity Forms API allows developers to interact with this install via a JSON REST API.', 'gravityforms' ),
+					'description' => esc_html__( 'The Ed Forms API allows developers to interact with this install via a JSON REST API.', 'edforms' ),
 					'fields'      => array(
 						array(
 							'type'       => 'checkbox',
-							'label'      => esc_html__( 'Enable access to the API', 'gravityforms' ),
+							'label'      => esc_html__( 'Enable access to the API', 'edforms' ),
 							'name'       => 'activate',
 							'onclick'    => 'jQuery(this).parents("form").submit();',
 							'onkeypress' => 'jQuery(this).parents("form").submit();',
 							'choices'    => array(
-								array( 'label' => esc_html__( 'Enabled', 'gravityforms' ), 'name' => 'enabled' ),
+								array( 'label' => esc_html__( 'Enabled', 'edforms' ), 'name' => 'enabled' ),
 							)
 						),
 					)
 				),
 				array(
-					'title'       => esc_html__( 'Authentication', 'gravityforms' ),
+					'title'       => esc_html__( 'Authentication', 'edforms' ),
 					'id'          => 'gform_section_authentication',
-					'description' => esc_html__( 'The settings below are only required to authenticate external applications. WordPress cookie authentication is supported for logged in users.', 'gravityforms' ),
+					'description' => esc_html__( 'The settings below are only required to authenticate external applications. WordPress cookie authentication is supported for logged in users.', 'edforms' ),
 					'dependency'  => array( 'field' => 'enabled', 'values' => array( 1 ) ),
 					'fields'      => array(
 						array(
 							'name'              => 'public_key',
-							'label'             => esc_html__( 'Public API Key', 'gravityforms' ),
+							'label'             => esc_html__( 'Public API Key', 'edforms' ),
 							'type'              => 'text',
 							'default_value'     => substr( wp_hash( site_url() ), 0, 10 ),
 							'class'             => 'medium',
@@ -222,7 +222,7 @@ if ( class_exists( 'GFForms' ) ) {
 						),
 						array(
 							'name'              => 'private_key',
-							'label'             => esc_html__( 'Private API Key', 'gravityforms' ),
+							'label'             => esc_html__( 'Private API Key', 'edforms' ),
 							'type'              => 'text',
 							'default_value'     => substr( wp_hash( get_bloginfo( 'admin_email' ) ), 0, 15 ),
 							'class'             => 'medium',
@@ -230,19 +230,19 @@ if ( class_exists( 'GFForms' ) ) {
 						),
 						array(
 							'name'       => 'qrcode',
-							'label'      => esc_html__( 'QR Code', 'gravityforms' ),
+							'label'      => esc_html__( 'QR Code', 'edforms' ),
 							'type'       => 'qrcode',
 							'dependency' => array( 'field' => 'private_key', 'values' => array( '_notempty_' ) )
 						),
 						array(
 							'name'    => 'impersonate_account',
-							'label'   => esc_html__( 'Impersonate account', 'gravityforms' ),
+							'label'   => esc_html__( 'Impersonate account', 'edforms' ),
 							'type'    => 'select',
 							'choices' => $account_choices,
 						),
 						array(
 							'name'       => 'developer_tools',
-							'label'      => esc_html__( 'Developer tools', 'gravityforms' ),
+							'label'      => esc_html__( 'Developer tools', 'edforms' ),
 							'type'       => 'developer_tools',
 							'dependency' => array( 'field' => 'private_key', 'values' => array( '_notempty_' ) )
 						),
@@ -253,7 +253,7 @@ if ( class_exists( 'GFForms' ) ) {
 						array(
 							'id'    => 'save_button',
 							'type'  => 'save',
-							'value' => esc_attr__( 'Update', 'gravityforms' ),
+							'value' => esc_attr__( 'Update', 'edforms' ),
 						),
 					)
 				),
@@ -265,12 +265,12 @@ if ( class_exists( 'GFForms' ) ) {
 			?>
 			<i class="fa fa-exclamation-triangle gf_invalid"></i>
 			<span class="gf_invalid">
-					<?php esc_html_e( 'Permalinks are not in the correct format.', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Permalinks are not in the correct format.', 'edforms' ); ?>
 				</span>
 			<br/>
 			<span class='gf_settings_description'>
 				<?php
-				printf( esc_html__( 'Change the %sWordPress Permalink Settings%s from default to any of the other options to get started.', 'gravityforms' ), '<a href="' . esc_url( $permalinks_url ) . '">', '</a>' );
+				printf( esc_html__( 'Change the %sWordPress Permalink Settings%s from default to any of the other options to get started.', 'edforms' ), '<a href="' . esc_url( $permalinks_url ) . '">', '</a>' );
 				?>
 			</span>
 			<?php
@@ -279,7 +279,7 @@ if ( class_exists( 'GFForms' ) ) {
 		public function settings_qrcode() {
 			?>
 			<button class="button-secondary"
-			        id="gfwebapi-qrbutton"><?php esc_html_e( 'Show/hide QR Code', 'gravityforms' ); ?></button>
+			        id="gfwebapi-qrbutton"><?php esc_html_e( 'Show/hide QR Code', 'edforms' ); ?></button>
 			<div id="gfwebapi-qrcode-container" style="display:none;">
 				<img id="gfwebapi-qrcode" src="<?php echo GFCommon::get_base_url() ?>/images/spinner.gif"/>
 			</div>
@@ -294,8 +294,8 @@ if ( class_exists( 'GFForms' ) ) {
 				var gfapiBaseUrl = <?php echo json_encode( GFWEBAPI_API_BASE_URL ) ?>;
 			</script>
 
-			<a title="Gravity Forms API: Developer Tools" class="thickbox"
-			   href="#TB_inline?width=300&height=550&inlineId=gfwebapi-dev-tools"><?php esc_html_e( 'Open developer tools', 'gravityforms' ) ?></a>
+			<a title="Ed Forms API: Developer Tools" class="thickbox"
+			   href="#TB_inline?width=300&height=550&inlineId=gfwebapi-dev-tools"><?php esc_html_e( 'Open developer tools', 'edforms' ) ?></a>
 
 			<div id="gfwebapi-dev-tools" style="display:none;">
 				<div>
@@ -303,7 +303,7 @@ if ( class_exists( 'GFForms' ) ) {
 
 					<div>
 						Please read through the <a target="_blank"
-						                           href="https://docs.edconcept24.fr/gravity-forms-api/">Gravity
+						                           href="https://docs.edconcept24.fr/ed-forms-api/">Ed
 							Forms API Documentation</a> before attempting to use the API.
 					</div>
 					<h4>URL Generator</h4>
@@ -383,7 +383,7 @@ if ( class_exists( 'GFForms' ) ) {
 
 			send_origin_headers();
 
-			$settings = get_option( 'gravityformsaddon_gravityformswebapi_settings' );
+			$settings = get_option( 'edformsaddon_edformswebapi_settings' );
 			if ( empty( $settings ) || ! $settings['enabled'] ) {
 				$this->log_debug( __METHOD__ . '(): API not enabled, permission denied.' );
 				$this->die_permission_denied();
@@ -666,7 +666,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_get_feeds', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_get_feeds', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			$addon_slug = rgget( 'addon' );
@@ -690,7 +690,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_delete_feeds', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_delete_feeds', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			$count = 0;
@@ -723,7 +723,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = sprintf( __( 'Feeds deleted successfully: %d', 'gravityforms' ), $count );
+				$response = sprintf( __( 'Feeds deleted successfully: %d', 'edforms' ), $count );
 			}
 
 			$this->end( $status, $response );
@@ -737,7 +737,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_put_feeds', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_put_feeds', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			$count  = 0;
@@ -762,7 +762,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = sprintf( __( 'Feeds updated: %d', 'gravityforms' ), $count );
+				$response = sprintf( __( 'Feeds updated: %d', 'edforms' ), $count );
 			}
 
 			$this->end( $status, $response );
@@ -776,7 +776,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_post_feeds', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_post_feeds', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			$feed_ids = array();
@@ -785,7 +785,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$addon_slug = isset( $feed['addon_slug'] ) ? $feed['addon_slug'] : rgget( 'addon' );
 				$f_id       = empty( $form_id ) ? $feed['form_id'] : $form_id;
 				if ( empty( $f_id ) ) {
-					$result = new WP_Error( 'missing_form_id', __( 'Missing form id', 'gravityforms' ) );
+					$result = new WP_Error( 'missing_form_id', __( 'Missing form id', 'edforms' ) );
 					break;
 				}
 				$result = GFAPI::add_feed( $f_id, $feed['meta'], $addon_slug );
@@ -848,7 +848,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_delete_forms', 'gravityforms_delete_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_delete_forms', 'edforms_delete_forms' );
 			$this->authorize( $capability );
 
 			$count = 0;
@@ -870,7 +870,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = sprintf( __( 'Forms deleted successfully: %d', 'gravityforms' ), $count );
+				$response = sprintf( __( 'Forms deleted successfully: %d', 'edforms' ), $count );
 
 			}
 
@@ -885,7 +885,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_post_entries', 'gravityforms_edit_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_post_entries', 'edforms_edit_entries' );
 			$this->authorize( $capability );
 
 			$entries = array();
@@ -914,7 +914,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_put_entries', 'gravityforms_edit_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_put_entries', 'edforms_edit_entries' );
 			$this->authorize( $capability );
 			$entries = array();
 			if ( empty( $entry_id ) ) {
@@ -932,7 +932,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = empty( $entry_id ) ? __( 'Entries updated successfully', 'gravityforms' ) : __( 'Entry updated successfully', 'gravityforms' );
+				$response = empty( $entry_id ) ? __( 'Entries updated successfully', 'edforms' ) : __( 'Entry updated successfully', 'edforms' );
 			}
 
 			$this->end( $status, $response );
@@ -946,7 +946,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_put_forms_properties', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_put_forms_properties', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			foreach ( $property_values as $key => $property_value ) {
@@ -961,7 +961,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = __( 'Success', 'gravityforms' );
+				$response = __( 'Success', 'edforms' );
 			}
 
 			$this->end( $status, $response );
@@ -976,7 +976,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_put_entries_properties', 'gravityforms_edit_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_put_entries_properties', 'edforms_edit_entries' );
 			$this->authorize( $capability );
 
 			if ( is_array( $property_values ) ) {
@@ -992,14 +992,14 @@ if ( class_exists( 'GFForms' ) ) {
 					$status   = $this->get_error_status( $result );
 				} else {
 					$status   = 200;
-					$response = __( 'Success', 'gravityforms' );
+					$response = __( 'Success', 'edforms' );
 				}
 			} else {
 				$status = 400;
 				if ( empty( $property_values ) ) {
-					$response = __( 'No property values were found in the request body', 'gravityforms' );
+					$response = __( 'No property values were found in the request body', 'edforms' );
 				} else {
-					$response = __( 'Property values should be sent as an array', 'gravityforms' );
+					$response = __( 'Property values should be sent as an array', 'edforms' );
 				}
 			}
 
@@ -1015,7 +1015,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_post_forms', 'gravityforms_create_form' );
+			$capability = apply_filters( 'gform_web_api_capability_post_forms', 'edforms_create_form' );
 			$this->authorize( $capability );
 
 			$form_ids = GFAPI::add_forms( $data );
@@ -1039,7 +1039,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_put_forms', 'gravityforms_create_form' );
+			$capability = apply_filters( 'gform_web_api_capability_put_forms', 'edforms_create_form' );
 			$this->authorize( $capability );
 
 			if ( empty( $form_id ) ) {
@@ -1053,7 +1053,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = empty( $form_id ) ? __( 'Forms updated successfully', 'gravityforms' ) : __( 'Form updated successfully', 'gravityforms' );
+				$response = empty( $form_id ) ? __( 'Forms updated successfully', 'edforms' ) : __( 'Form updated successfully', 'edforms' );
 			}
 
 			$this->end( $status, $response );
@@ -1067,7 +1067,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_delete_entries', 'gravityforms_delete_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_delete_entries', 'edforms_delete_entries' );
 			$this->authorize( $capability );
 
 			$count = 0;
@@ -1090,7 +1090,7 @@ if ( class_exists( 'GFForms' ) ) {
 				$status   = $this->get_error_status( $result );
 			} else {
 				$status   = 200;
-				$response = sprintf( __( 'Entries deleted successfully: %d', 'gravityforms' ), $count );
+				$response = sprintf( __( 'Entries deleted successfully: %d', 'edforms' ), $count );
 			}
 
 			$this->end( $status, $response );
@@ -1104,7 +1104,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_get_entries', 'gravityforms_view_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_get_entries', 'edforms_view_entries' );
 			$this->authorize( $capability );
 
 			$status   = 200;
@@ -1219,7 +1219,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_get_forms', 'gravityforms_edit_forms' );
+			$capability = apply_filters( 'gform_web_api_capability_get_forms', 'edforms_edit_forms' );
 			$this->authorize( $capability );
 
 			$status   = 200;
@@ -1515,7 +1515,7 @@ if ( class_exists( 'GFForms' ) ) {
 			 *
 			 * @since 1.9.2
 			 */
-			$capability = apply_filters( 'gform_web_api_capability_get_results', 'gravityforms_view_entries' );
+			$capability = apply_filters( 'gform_web_api_capability_get_results', 'edforms_view_entries' );
 			$this->authorize( $capability );
 
 			$s = rgget( 's' ); // search criteria
@@ -1635,7 +1635,7 @@ if ( class_exists( 'GFForms' ) ) {
 		}
 
 		public function get_results_cron_hook() {
-			return 'gravityforms_results_cron_' . $this->_slug;
+			return 'edforms_results_cron_' . $this->_slug;
 		}
 
 		public function results_data_add_labels( $form, $fields ) {
@@ -1704,7 +1704,7 @@ if ( class_exists( 'GFForms' ) ) {
 			}
 
 			if ( $authenticated ) {
-				$settings = get_option( 'gravityformsaddon_gravityformswebapi_settings' );
+				$settings = get_option( 'edformsaddon_edformswebapi_settings' );
 				if ( empty( $settings ) || ! $settings['enabled'] ) {
 					$authenticated = false;
 				} else {
@@ -1776,37 +1776,37 @@ if ( class_exists( 'GFForms' ) ) {
 
 		public function die_not_authorized() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 401, __( 'Not authorized', 'gravityforms' ) );
+			$this->end( 401, __( 'Not authorized', 'edforms' ) );
 		}
 
 		public function die_permission_denied() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 401, __( 'Permission denied', 'gravityforms' ) );
+			$this->end( 401, __( 'Permission denied', 'edforms' ) );
 		}
 
 		public function die_forbidden() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 403, __( 'Forbidden', 'gravityforms' ) );
+			$this->end( 403, __( 'Forbidden', 'edforms' ) );
 		}
 
 		public function die_bad_request() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 400, __( 'Bad request', 'gravityforms' ) );
+			$this->end( 400, __( 'Bad request', 'edforms' ) );
 		}
 
 		public function die_not_found() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 404, __( 'Not found', 'gravityforms' ) );
+			$this->end( 404, __( 'Not found', 'edforms' ) );
 		}
 
 		public function die_not_implemented() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 501, __( 'Not implemented', 'gravityforms' ) );
+			$this->end( 501, __( 'Not implemented', 'edforms' ) );
 		}
 
 		public function die_error() {
 			$this->log_debug( __METHOD__ . '(): Running.' );
-			$this->end( 500, __( 'Internal Error', 'gravityforms' ) );
+			$this->end( 500, __( 'Internal Error', 'edforms' ) );
 		}
 
 		public function get_error_response( $wp_error ) {
@@ -1844,12 +1844,12 @@ if ( class_exists( 'GFForms' ) ) {
 
 		public static function ajax_qrcode() {
 			require_once GFCommon::get_base_path() . '/includes/phpqrcode/phpqrcode.php';
-			$settings = get_option( 'gravityformsaddon_gravityformswebapi_settings' );
+			$settings = get_option( 'edformsaddon_edformswebapi_settings' );
 			if ( empty( $settings ) ) {
 				die();
 			}
 
-			if ( ! GFAPI::current_user_can_any( 'gravityforms_api_settings' ) ) {
+			if ( ! GFAPI::current_user_can_any( 'edforms_api_settings' ) ) {
 				die();
 			}
 

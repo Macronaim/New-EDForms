@@ -11,7 +11,7 @@ class GF_Field_Post_Content extends GF_Field_Textarea {
 	public $type = 'post_content';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Body', 'gravityforms' );
+		return esc_attr__( 'Body', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {

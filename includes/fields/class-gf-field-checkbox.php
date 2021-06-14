@@ -27,7 +27,7 @@ class GF_Field_Checkbox extends GF_Field {
 	 */
 	public function get_form_editor_field_title() {
 
-		return esc_attr__( 'Checkboxes', 'gravityforms' );
+		return esc_attr__( 'Checkboxes', 'edforms' );
 
 	}
 
@@ -533,7 +533,7 @@ class GF_Field_Checkbox extends GF_Field {
 				 * @param string $select_label The "Select All" label.
 				 * @param object $field        The field currently being processed.
 				 */
-				$select_label = gf_apply_filters( array( 'gform_checkbox_select_all_label', $this->formId, $this->id ), esc_html__( 'Select All', 'gravityforms' ), $this );
+				$select_label = gf_apply_filters( array( 'gform_checkbox_select_all_label', $this->formId, $this->id ), esc_html__( 'Select All', 'edforms' ), $this );
 				$select_label = esc_html( $select_label );
 				
 				/**
@@ -544,7 +544,7 @@ class GF_Field_Checkbox extends GF_Field {
 				 * @param string $deselect_label The "Deselect All" label.
 				 * @param object $field          The field currently being processed.
 				 */
-				$deselect_label = gf_apply_filters( array( 'gform_checkbox_deselect_all_label', $this->formId, $this->id ), esc_html__( 'Deselect All', 'gravityforms' ), $this );
+				$deselect_label = gf_apply_filters( array( 'gform_checkbox_deselect_all_label', $this->formId, $this->id ), esc_html__( 'Deselect All', 'edforms' ), $this );
 				$deselect_label = esc_html( $deselect_label );
 
 				// Get tabindex.
@@ -641,7 +641,7 @@ class GF_Field_Checkbox extends GF_Field {
 			$total = sizeof( $this->choices );
 
 			if ( $count < $total ) {
-				$choices .= "<li class='gchoice_total'>" . sprintf( esc_html__( '%d of %d items shown. Edit field to view all', 'gravityforms' ), $count, $total ) . '</li>';
+				$choices .= "<li class='gchoice_total'>" . sprintf( esc_html__( '%d of %d items shown. Edit field to view all', 'edforms' ), $count, $total ) . '</li>';
 			}
 
 		}

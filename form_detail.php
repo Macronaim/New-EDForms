@@ -146,7 +146,7 @@ class GFFormDetail {
 
 
 		<?php if ( empty( $form_id ) ) : ?>
-			<h1><?php esc_html_e( 'New Form', 'gravityforms' ) ?></h1>
+			<h1><?php esc_html_e( 'New Form', 'edforms' ) ?></h1>
 		<?php else : ?>
 
 			<?php GFCommon::form_page_title( $form ); ?>
@@ -162,8 +162,8 @@ class GFFormDetail {
 			case 'invalid_json' :
 				?>
 				<div class="error_base gform_editor_status" id="after_update_error_dialog">
-					<?php esc_html_e( 'There was an error while saving your form.', 'gravityforms' ) ?>
-					<?php printf( __( 'Please %scontact our support team%s.', 'gravityforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
+					<?php esc_html_e( 'There was an error while saving your form.', 'edforms' ) ?>
+					<?php printf( __( 'Please %scontact our support team%s.', 'edforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
 				</div>
 				<?php
 				break;
@@ -171,7 +171,7 @@ class GFFormDetail {
 			case 'duplicate_title' :
 				?>
 				<div class="error_base gform_editor_status" id="after_update_error_dialog">
-					<?php esc_html_e( 'The form title you have entered is already taken. Please enter a unique form title.', 'gravityforms' ) ?>
+					<?php esc_html_e( 'The form title you have entered is already taken. Please enter a unique form title.', 'edforms' ) ?>
 				</div>
 				<?php
 				break;
@@ -179,7 +179,7 @@ class GFFormDetail {
 				if ( ! empty( $update_result ) ) {
 					?>
 					<div class="updated_base gform_editor_status" id="after_update_dialog">
-						<strong><?php esc_html_e( 'Form updated successfully.', 'gravityforms' ); ?></strong>
+						<strong><?php esc_html_e( 'Form updated successfully.', 'edforms' ); ?></strong>
 					</div>
 				<?php
 				}
@@ -205,47 +205,47 @@ class GFFormDetail {
 		?>
 		<div id="gform_pagination" class="selectable gform_settings_container" style="display:<?php echo $has_pages ? 'block' : 'none' ?>;">
 			<div class="settings_control_container">
-				<div class="gfield_admin_header_title"><?php esc_html_e( 'Paging: Options', 'gravityforms' ) ?></div>
-				<a href="javascript:void(0);" class="form_edit_icon edit_icon_collapsed" title="<?php esc_attr_e( 'click to edit page options', 'gravityforms' ); ?>"><i class='fa fa-caret-down fa-lg'></i></a>
+				<div class="gfield_admin_header_title"><?php esc_html_e( 'Paging: Options', 'edforms' ) ?></div>
+				<a href="javascript:void(0);" class="form_edit_icon edit_icon_collapsed" title="<?php esc_attr_e( 'click to edit page options', 'edforms' ); ?>"><i class='fa fa-caret-down fa-lg'></i></a>
 			</div>
 
 
 			<div class="gf-pagebreak-first gf-pagebreak-container">
-				<div class="gf-pagebreak-text-before"><?php esc_html_e( 'begin form', 'gravityforms' ) ?></div>
-				<div class="gf-pagebreak-text-main"><span><?php esc_html_e( 'START PAGING', 'gravityforms' ) ?></span></div>
-				<div class="gf-pagebreak-text-after"><?php esc_html_e( 'top of the first page', 'gravityforms' ) ?></div>
+				<div class="gf-pagebreak-text-before"><?php esc_html_e( 'begin form', 'edforms' ) ?></div>
+				<div class="gf-pagebreak-text-main"><span><?php esc_html_e( 'START PAGING', 'edforms' ) ?></span></div>
+				<div class="gf-pagebreak-text-after"><?php esc_html_e( 'top of the first page', 'edforms' ) ?></div>
 			</div>
 
 			<div id="pagination_settings" style="display: none;">
 				<ul>
 					<li style="width:100px; padding:0px;">
-						<a href="#gform_pagination_settings_tab_1"><?php esc_html_e( 'General', 'gravityforms' ); ?></a></li>
+						<a href="#gform_pagination_settings_tab_1"><?php esc_html_e( 'General', 'edforms' ); ?></a></li>
 					<li style="width:100px; padding:0px;">
-						<a href="#gform_pagination_settings_tab_2"><?php esc_html_e( 'Appearance', 'gravityforms' ); ?></a></li>
+						<a href="#gform_pagination_settings_tab_2"><?php esc_html_e( 'Appearance', 'edforms' ); ?></a></li>
 				</ul>
 
 				<div id="gform_pagination_settings_tab_1">
 					<ul class="gforms_form_settings">
 						<li>
 							<label for="pagination_type_container" class="section_label">
-								<?php esc_html_e( 'Progress Indicator', 'gravityforms' ); ?>
+								<?php esc_html_e( 'Progress Indicator', 'edforms' ); ?>
 								<?php gform_tooltip( 'form_progress_indicator' ) ?>
 							</label>
 
 							<div id="pagination_type_container" class="pagination_container">
 								<input type="radio" id="pagination_type_percentage" name="pagination_type" value="percentage" onclick='InitPaginationOptions();' onkeypress='InitPaginationOptions();' />
 								<label for="pagination_type_percentage"  class="inline">
-									<?php esc_html_e( 'Progress Bar', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Progress Bar', 'edforms' ); ?>
 								</label>
 								&nbsp;&nbsp;
 								<input type="radio" id="pagination_type_steps" name="pagination_type" value="steps" onclick='InitPaginationOptions();' onkeypress='InitPaginationOptions();' />
 								<label for="pagination_type_steps" class="inline">
-									<?php esc_html_e( 'Steps', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Steps', 'edforms' ); ?>
 								</label>
 								&nbsp;&nbsp;
 								<input type="radio" id="pagination_type_none" name="pagination_type" value="none" onclick='InitPaginationOptions();' onkeypress='InitPaginationOptions();' />
 								<label for="pagination_type_none" class="inline">
-									<?php esc_html_e( 'None', 'gravityforms' ); ?>
+									<?php esc_html_e( 'None', 'edforms' ); ?>
 								</label>
 							</div>
 						</li>
@@ -254,36 +254,36 @@ class GFFormDetail {
 
 							<div class="percentage_style_setting" style="float:left; z-index: 99;">
 								<label for="percentage_style" style="display:block;" class="section_label">
-									<?php esc_html_e( 'Progress Bar Style', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Progress Bar Style', 'edforms' ); ?>
 									<?php gform_tooltip( 'form_percentage_style' ) ?>
 								</label>
 								<select id="percentage_style" onchange="TogglePercentageStyle();">
-									<option value="blue">  <?php esc_html_e( 'Blue', 'gravityforms' ); ?>  </option>
-									<option value="gray">  <?php esc_html_e( 'Gray', 'gravityforms' ); ?>  </option>
-									<option value="green">  <?php esc_html_e( 'Green', 'gravityforms' ); ?>  </option>
-									<option value="orange">  <?php esc_html_e( 'Orange', 'gravityforms' ); ?>  </option>
-									<option value="red">  <?php esc_html_e( 'Red', 'gravityforms' ); ?>  </option>
-									<option value="custom">  <?php esc_html_e( 'Custom', 'gravityforms' ); ?>  </option>
+									<option value="blue">  <?php esc_html_e( 'Blue', 'edforms' ); ?>  </option>
+									<option value="gray">  <?php esc_html_e( 'Gray', 'edforms' ); ?>  </option>
+									<option value="green">  <?php esc_html_e( 'Green', 'edforms' ); ?>  </option>
+									<option value="orange">  <?php esc_html_e( 'Orange', 'edforms' ); ?>  </option>
+									<option value="red">  <?php esc_html_e( 'Red', 'edforms' ); ?>  </option>
+									<option value="custom">  <?php esc_html_e( 'Custom', 'edforms' ); ?>  </option>
 								</select>
 							</div>
 
 							<div class="percentage_custom_container" style="float:left; padding-left:20px;">
 								<label for="percentage_background_color" style="display:block;">
-									<?php esc_html_e( 'Text Color', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Text Color', 'edforms' ); ?>
 								</label>
 								<?php self::color_picker( 'percentage_style_custom_color', '' ) ?>
 							</div>
 
 							<div class="percentage_custom_container" style="float:left; padding-left:20px;">
 								<label for="percentage_background_bgcolor" style="display:block;">
-									<?php esc_html_e( 'Background Color', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Background Color', 'edforms' ); ?>
 								</label>
 								<?php self::color_picker( 'percentage_style_custom_bgcolor', '' ) ?>
 							</div>
 						</li>
 						<li id="page_names_setting">
 							<label for="page_names_container" class="section_label">
-								<?php esc_html_e( 'Page Names', 'gravityforms' ); ?>
+								<?php esc_html_e( 'Page Names', 'edforms' ); ?>
 								<?php gform_tooltip( 'form_page_names' ) ?>
 							</label>
 
@@ -295,7 +295,7 @@ class GFFormDetail {
 							<div class="percentage_confirmation_display_setting">
 								<input type="checkbox" id="percentage_confirmation_display" onclick="TogglePercentageConfirmationText()" onkeypress="TogglePercentageConfirmationText()">
 								<label for="percentage_confirmation_display" class="inline">
-									<?php esc_html_e( 'Display completed progress bar on confirmation', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Display completed progress bar on confirmation', 'edforms' ); ?>
 									<?php gform_tooltip( 'form_percentage_confirmation_display' ); ?>
 								</label>
 							</div>
@@ -303,7 +303,7 @@ class GFFormDetail {
 						<li id="percentage_confirmation_page_name_setting">
 							<div class="percentage_confirmation_page_name_setting">
 								<label for="percentage_confirmation_page_name" style="display:block;" class="section_label">
-									<?php esc_html_e( 'Completion Text', 'gravityforms' ); ?> <?php gform_tooltip( 'percentage_confirmation_page_name' ); ?>
+									<?php esc_html_e( 'Completion Text', 'edforms' ); ?> <?php gform_tooltip( 'percentage_confirmation_page_name' ); ?>
 								</label>
 								<input type="text" id="percentage_confirmation_page_name" class="fieldwidth-3" />
 							</div>
@@ -315,7 +315,7 @@ class GFFormDetail {
 					<ul class="gforms_form_settings">
 						<li>
 							<label for="first_page_css_class" style="display:block;" class="section_label">
-								<?php esc_html_e( 'CSS Class Name', 'gravityforms' ); ?>
+								<?php esc_html_e( 'CSS Class Name', 'edforms' ); ?>
 								<?php gform_tooltip( 'form_field_css_class' ) ?>
 							</label>
 							<input type="text" id="first_page_css_class" size="30" />
@@ -339,62 +339,62 @@ class GFFormDetail {
 				</style>
 				<li id="no-fields"<?php echo $no_fields_style; ?>>
 
-					<div class="newform_notice"><?php esc_html_e( "This form doesn't have any fields yet. Follow the steps below to get started.", 'gravityforms' ); ?>
+					<div class="newform_notice"><?php esc_html_e( "This form doesn't have any fields yet. Follow the steps below to get started.", 'edforms' ); ?>
 						<span></span></div>
 
 					<?php // first step ?>
 
-					<h4 class="gf_nofield_header gf_nofield_1">1. <?php esc_html_e( 'Select A Field Type', 'gravityforms' ); ?></h4>
+					<h4 class="gf_nofield_header gf_nofield_1">1. <?php esc_html_e( 'Select A Field Type', 'edforms' ); ?></h4>
 
-					<p><?php esc_html_e( 'Start by selecting a field type from the nifty floating panels on the right.', 'gravityforms' ); ?></p>
+					<p><?php esc_html_e( 'Start by selecting a field type from the nifty floating panels on the right.', 'edforms' ); ?></p>
 
 					<div id="gf_nofield_1_instructions">
-						<span class="gf_nofield_1_instructions_heading gf_tips"><?php esc_html_e( 'Start Over There', 'gravityforms' ); ?></span>
-						<span class="gf_nofield_1_instructions_copy gf_tips"><?php esc_html_e( 'Pick a field.. any field. Don\'t be shy.', 'gravityforms' ); ?></span>
+						<span class="gf_nofield_1_instructions_heading gf_tips"><?php esc_html_e( 'Start Over There', 'edforms' ); ?></span>
+						<span class="gf_nofield_1_instructions_copy gf_tips"><?php esc_html_e( 'Pick a field.. any field. Don\'t be shy.', 'edforms' ); ?></span>
 					</div>
 
 					<?php // second step ?>
 
-					<h4 class="gf_nofield_header gf_nofield_2">2. <?php esc_html_e( 'Click to Add A Field', 'gravityforms' ); ?></h4>
+					<h4 class="gf_nofield_header gf_nofield_2">2. <?php esc_html_e( 'Click to Add A Field', 'edforms' ); ?></h4>
 
-					<p><?php esc_html_e( "Once you've found the field type you want, click to add it to the form editor here on the left side of your screen.", 'gravityforms' ); ?></p>
+					<p><?php esc_html_e( "Once you've found the field type you want, click to add it to the form editor here on the left side of your screen.", 'edforms' ); ?></p>
 
 					<div id="gf_nofield_2_instructions">
-						<span class="gf_nofield_2_instructions_copy gf_tips"><?php esc_html_e( 'Now your new field magically appears over here.', 'gravityforms' ); ?></span>
+						<span class="gf_nofield_2_instructions_copy gf_tips"><?php esc_html_e( 'Now your new field magically appears over here.', 'edforms' ); ?></span>
 					</div>
 
 					<?php // third step ?>
 
-					<h4 class="gf_nofield_header gf_nofield_3">3. <?php esc_html_e( 'Edit Field Options', 'gravityforms' ); ?></h4>
+					<h4 class="gf_nofield_header gf_nofield_3">3. <?php esc_html_e( 'Edit Field Options', 'edforms' ); ?></h4>
 
-					<p><?php esc_html_e( 'Click on the edit link to configure the various field options', 'gravityforms' ); ?></p>
+					<p><?php esc_html_e( 'Click on the edit link to configure the various field options', 'edforms' ); ?></p>
 
 					<div id="gf_nofield_3_instructions">
-						<span class="gf_nofield_3_instructions_copy_top gf_tips"><?php esc_html_e( 'Preview your changes up here.', 'gravityforms' ); ?></span>
-						<span class="gf_nofield_3_instructions_copy_mid gf_tips"><?php esc_html_e( 'Edit the field options. Go ahead.. go crazy.', 'gravityforms' ); ?></span>
-						<span class="gf_nofield_3_instructions_copy_bottom gf_tips"><?php esc_html_e( 'If you get stuck, mouseover the tool tips for a little help.', 'gravityforms' ); ?></span>
+						<span class="gf_nofield_3_instructions_copy_top gf_tips"><?php esc_html_e( 'Preview your changes up here.', 'edforms' ); ?></span>
+						<span class="gf_nofield_3_instructions_copy_mid gf_tips"><?php esc_html_e( 'Edit the field options. Go ahead.. go crazy.', 'edforms' ); ?></span>
+						<span class="gf_nofield_3_instructions_copy_bottom gf_tips"><?php esc_html_e( 'If you get stuck, mouseover the tool tips for a little help.', 'edforms' ); ?></span>
 					</div>
 
 					<?php // fourth step ?>
 
-					<h4 class="gf_nofield_header gf_nofield_4">4. <?php esc_html_e( 'Drag to Arrange Fields', 'gravityforms' ); ?></h4>
+					<h4 class="gf_nofield_header gf_nofield_4">4. <?php esc_html_e( 'Drag to Arrange Fields', 'edforms' ); ?></h4>
 
-					<p><?php esc_html_e( 'Drag the fields to arrange them the way you prefer', 'gravityforms' ); ?></p>
+					<p><?php esc_html_e( 'Drag the fields to arrange them the way you prefer', 'edforms' ); ?></p>
 
 					<div id="gf_nofield_4_instructions">
-						<span class="gf_nofield_4_instructions_copy_top gf_tips"><?php esc_html_e( 'Grab here with your cursor.', 'gravityforms' ); ?></span>
-						<span class="gf_nofield_4_instructions_copy_bottom gf_tips"><?php esc_html_e( 'Drag up or down to arrange your fields.', 'gravityforms' ); ?></span>
+						<span class="gf_nofield_4_instructions_copy_top gf_tips"><?php esc_html_e( 'Grab here with your cursor.', 'edforms' ); ?></span>
+						<span class="gf_nofield_4_instructions_copy_bottom gf_tips"><?php esc_html_e( 'Drag up or down to arrange your fields.', 'edforms' ); ?></span>
 					</div>
 
 					<?php // fifth step ?>
 
-					<h4 class="gf_nofield_header gf_nofield_5">5. <?php esc_html_e( 'Save Your Form', 'gravityforms' ); ?></h4>
+					<h4 class="gf_nofield_header gf_nofield_5">5. <?php esc_html_e( 'Save Your Form', 'edforms' ); ?></h4>
 
-					<p><?php esc_html_e( "Once you're happy with your form, remember to click on the 'update form' button to save all your hard work.", 'gravityforms' ); ?></p>
+					<p><?php esc_html_e( "Once you're happy with your form, remember to click on the 'update form' button to save all your hard work.", 'edforms' ); ?></p>
 
 					<div id="gf_nofield_5_instructions">
-						<span class="gf_nofield_5_instructions_heading gf_tips"><?php esc_html_e( 'Save Your New Form', 'gravityforms' ); ?></span>
-						<span class="gf_nofield_5_instructions_copy gf_tips"><?php esc_html_e( "You're done. That's it.", 'gravityforms' ); ?></span>
+						<span class="gf_nofield_5_instructions_heading gf_tips"><?php esc_html_e( 'Save Your New Form', 'edforms' ); ?></span>
+						<span class="gf_nofield_5_instructions_copy gf_tips"><?php esc_html_e( "You're done. That's it.", 'edforms' ); ?></span>
 					</div>
 
 				</li>
@@ -411,53 +411,53 @@ class GFFormDetail {
 
 		<div id="gform_last_page_settings" class="selectable gform_settings_container" style="display:<?php echo $has_pages ? 'block' : 'none' ?>;">
 			<div class="settings_control_container">
-				<div class="gfield_admin_header_title"><?php esc_html_e( 'End Page: Options', 'gravityforms' ) ?></div>
-				<a href="javascript:void(0);" class="form_edit_icon edit_icon_collapsed" title="<?php esc_attr_e( 'Edit Last Page', 'gravityforms' ); ?>"><i class='fa fa-caret-down fa-lg'></i></a>
+				<div class="gfield_admin_header_title"><?php esc_html_e( 'End Page: Options', 'edforms' ) ?></div>
+				<a href="javascript:void(0);" class="form_edit_icon edit_icon_collapsed" title="<?php esc_attr_e( 'Edit Last Page', 'edforms' ); ?>"><i class='fa fa-caret-down fa-lg'></i></a>
 			</div>
 
 			<div class="gf-pagebreak-end gf-pagebreak-container">
-				<div class="gf-pagebreak-text-before"><?php esc_html_e( 'end of last page', 'gravityforms' ) ?></div>
-				<div class="gf-pagebreak-text-main"><span><?php esc_html_e( 'END PAGING', 'gravityforms' ) ?></span></div>
-				<div class="gf-pagebreak-text-after"><?php esc_html_e( 'end of form', 'gravityforms' ) ?></div>
+				<div class="gf-pagebreak-text-before"><?php esc_html_e( 'end of last page', 'edforms' ) ?></div>
+				<div class="gf-pagebreak-text-main"><span><?php esc_html_e( 'END PAGING', 'edforms' ) ?></span></div>
+				<div class="gf-pagebreak-text-after"><?php esc_html_e( 'end of form', 'edforms' ) ?></div>
 			</div>
 
 
 			<div id="last_page_settings" style="display:none;">
 				<ul>
 					<li style="width:100px; padding:0px;">
-						<a href="#gform_last_page_settings_tab_1"><?php esc_html_e( 'General', 'gravityforms' ); ?></a></li>
+						<a href="#gform_last_page_settings_tab_1"><?php esc_html_e( 'General', 'edforms' ); ?></a></li>
 				</ul>
 				<div id="gform_last_page_settings_tab_1">
 					<ul class="gforms_form_settings">
 						<li>
 							<label for="last_page_button_container" class="section_label">
-								<?php esc_html_e( 'Previous Button', 'gravityforms' ); ?>
+								<?php esc_html_e( 'Previous Button', 'edforms' ); ?>
 								<?php gform_tooltip( 'form_field_last_page_button' ) ?>
 							</label>
 
 							<div class="last_page_button_options" id="last_page_button_container">
 								<input type="radio" id="last_page_button_text" name="last_page_button" value="text" onclick="TogglePageButton('last_page');" onkeypress="TogglePageButton('last_page');" />
 								<label for="last_page_button_text" class="inline">
-									<?php esc_html_e( 'Default', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Default', 'edforms' ); ?>
 									<?php gform_tooltip( 'previous_button_text' ) ?>
 								</label>
 								&nbsp;&nbsp;
 								<input type="radio" id="last_page_button_image" name="last_page_button" value="image" onclick="TogglePageButton('last_page');" onkeypress="TogglePageButton('last_page');" />
 								<label for="last_page_button_image" class="inline">
-									<?php esc_html_e( 'Image', 'gravityforms' ); ?>
+									<?php esc_html_e( 'Image', 'edforms' ); ?>
 									<?php gform_tooltip( 'previous_button_image' ) ?>
 								</label>
 
 								<div id="last_page_button_text_container">
 									<label for="last_page_button_text_input"  class="section_label">
-										<?php esc_html_e( 'Button Text:', 'gravityforms' ); ?>
+										<?php esc_html_e( 'Button Text:', 'edforms' ); ?>
 									</label>
 									<input type="text" id="last_page_button_text_input" class="input_size_b" size="40" />
 								</div>
 
 								<div id="last_page_button_image_container">
 									<label for="last_page_button_image_url"  class="section_label">
-										<?php esc_html_e( 'Image Path:', 'gravityforms' ); ?>
+										<?php esc_html_e( 'Image Path:', 'edforms' ); ?>
 									</label>
 									<input type="text" id="last_page_button_image_url" size="45" />
 								</div>
@@ -471,26 +471,26 @@ class GFFormDetail {
 		<div>
 
 			<div id="after_insert_dialog" style="display:none;">
-				<h3><?php esc_html_e( 'You have successfully saved your form!', 'gravityforms' ); ?></h3>
+				<h3><?php esc_html_e( 'You have successfully saved your form!', 'edforms' ); ?></h3>
 
-				<p><?php esc_html_e( 'What would you like to do next?', 'gravityforms' ); ?></p>
+				<p><?php esc_html_e( 'What would you like to do next?', 'edforms' ); ?></p>
 
 				<div class="new-form-option">
-					<a title="<?php esc_attr_e( 'Preview this form', 'gravityforms' ); ?>" id="preview_form_link" href="<?php echo esc_url_raw( trailingslashit( site_url() ) ); ?>?gf_page=preview&id={formid}" target="_blank"><?php esc_html_e( 'Preview this Form', 'gravityforms' ); ?></a>
+					<a title="<?php esc_attr_e( 'Preview this form', 'edforms' ); ?>" id="preview_form_link" href="<?php echo esc_url_raw( trailingslashit( site_url() ) ); ?>?gf_page=preview&id={formid}" target="_blank"><?php esc_html_e( 'Preview this Form', 'edforms' ); ?></a>
 				</div>
 
-				<?php if ( GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ) { ?>
+				<?php if ( GFCommon::current_user_can_any( 'edforms_edit_forms' ) ) { ?>
 					<div class="new-form-option">
-						<a title="<?php esc_attr_e( 'Setup email notifications for this form', 'gravityforms' ); ?>" id="notification_form_link" href="#"><?php esc_html_e( 'Setup Email Notifications for this Form', 'gravityforms' ); ?></a>
+						<a title="<?php esc_attr_e( 'Setup email notifications for this form', 'edforms' ); ?>" id="notification_form_link" href="#"><?php esc_html_e( 'Setup Email Notifications for this Form', 'edforms' ); ?></a>
 					</div>
 				<?php } ?>
 
 				<div class="new-form-option">
-					<a title="<?php esc_attr_e( 'Continue editing this form', 'gravityforms' ); ?>" id="edit_form_link" href="#"><?php esc_html_e( 'Continue Editing this Form', 'gravityforms' ); ?></a>
+					<a title="<?php esc_attr_e( 'Continue editing this form', 'edforms' ); ?>" id="edit_form_link" href="#"><?php esc_html_e( 'Continue Editing this Form', 'edforms' ); ?></a>
 				</div>
 
 				<div class="new-form-option">
-					<a title="<?php esc_attr_e( 'I am done. Take me back to form list', 'gravityforms' ); ?>" href="?page=gf_edit_forms"><?php esc_html_e( 'Return to Form List', 'gravityforms' ); ?></a>
+					<a title="<?php esc_attr_e( 'I am done. Take me back to form list', 'edforms' ); ?>" href="?page=gf_edit_forms"><?php esc_html_e( 'Return to Form List', 'edforms' ); ?></a>
 				</div>
 
 			</div>
@@ -500,13 +500,13 @@ class GFFormDetail {
 		<div id="field_settings" style="display: none;">
 		<ul>
 			<li style="width:100px; padding:0px;">
-				<a href="#gform_tab_1"><?php esc_html_e( 'General', 'gravityforms' ); ?></a>
+				<a href="#gform_tab_1"><?php esc_html_e( 'General', 'edforms' ); ?></a>
             </li>
             <li style="width:100px; padding:0px; ">
-                <a href="#gform_tab_3"><?php esc_html_e( 'Appearance', 'gravityforms' ); ?></a>
+                <a href="#gform_tab_3"><?php esc_html_e( 'Appearance', 'edforms' ); ?></a>
             </li>
 			<li style="width:100px; padding:0px; ">
-                <a href="#gform_tab_2"><?php esc_html_e( 'Advanced', 'gravityforms' ); ?></a>
+                <a href="#gform_tab_2"><?php esc_html_e( 'Advanced', 'edforms' ); ?></a>
 			</li>
 		</ul>
 		<div id="gform_tab_1">
@@ -524,7 +524,7 @@ class GFFormDetail {
 		?>
 		<li class="label_setting field_setting">
 			<label for="field_label" class="section_label">
-				<?php esc_html_e( 'Field Label', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Label', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_label' ) ?>
 				<?php gform_tooltip( 'form_field_label_html' ) ?>
 			</label>
@@ -535,7 +535,7 @@ class GFFormDetail {
 		?>
 		<li class="description_setting field_setting">
 			<label for="field_description" class="section_label">
-				<?php esc_html_e( 'Description', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Description', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_description' ) ?>
 			</label>
 			<textarea id="field_description" class="fieldwidth-3 fieldheight-2"></textarea>
@@ -545,7 +545,7 @@ class GFFormDetail {
 		?>
         <li class="product_field_setting field_setting">
 			<label for="product_field" class="section_label">
-				<?php esc_html_e( 'Product Field Mapping', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Product Field Mapping', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_product' ) ?>
 			</label>
 			<select id="product_field" onchange="SetFieldProperty('productField', jQuery(this).val());">
@@ -557,16 +557,16 @@ class GFFormDetail {
 		?>
 		<li class="product_field_type_setting field_setting">
 			<label for="product_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="product_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeProductType(jQuery('#product_field_type').val());});">
-				<option value="singleproduct"><?php esc_html_e( 'Single Product', 'gravityforms' ); ?></option>
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
-				<option value="price"><?php esc_html_e( 'User Defined Price', 'gravityforms' ); ?></option>
-				<option value="hiddenproduct"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
-				<option value="calculation"><?php esc_html_e( 'Calculation', 'gravityforms' ); ?></option>
+				<option value="singleproduct"><?php esc_html_e( 'Single Product', 'edforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
+				<option value="price"><?php esc_html_e( 'User Defined Price', 'edforms' ); ?></option>
+				<option value="hiddenproduct"><?php esc_html_e( 'Hidden', 'edforms' ); ?></option>
+				<option value="calculation"><?php esc_html_e( 'Calculation', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -574,13 +574,13 @@ class GFFormDetail {
 		?>
 		<li class="shipping_field_type_setting field_setting">
 			<label for="shipping_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="shipping_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeShippingType(jQuery('#shipping_field_type').val());});">
-				<option value="singleshipping"><?php esc_html_e( 'Single Method', 'gravityforms' ); ?></option>
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
+				<option value="singleshipping"><?php esc_html_e( 'Single Method', 'edforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -588,7 +588,7 @@ class GFFormDetail {
 		?>
 		<li class="base_price_setting field_setting">
 			<label for="field_base_price" class="section_label">
-				<?php esc_html_e( 'Price', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Price', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_base_price' ) ?>
 			</label>
 			<input type="text" id="field_base_price" onchange="SetBasePrice(this.value)" />
@@ -599,7 +599,7 @@ class GFFormDetail {
 		<li class="disable_quantity_setting field_setting">
 			<input type="checkbox" name="field_disable_quantity" id="field_disable_quantity" onclick="SetDisableQuantity(jQuery(this).is(':checked'));" onkeypress="SetDisableQuantity(jQuery(this).is(':checked'));" />
 			<label for="field_disable_quantity" class="inline">
-				<?php esc_html_e( 'Disable quantity field', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Disable quantity field', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_disable_quantity' ) ?>
 			</label>
 
@@ -609,13 +609,13 @@ class GFFormDetail {
 		?>
 		<li class="option_field_type_setting field_setting">
 			<label for="option_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="option_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeInputType(jQuery('#option_field_type').val());});">
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -623,13 +623,13 @@ class GFFormDetail {
 		?>
 		<li class="donation_field_type_setting field_setting">
 			<label for="donation_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="donation_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeDonationType(jQuery('#donation_field_type').val());});">
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="donation"><?php esc_html_e( 'User Defined Price', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="donation"><?php esc_html_e( 'User Defined Price', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -637,13 +637,13 @@ class GFFormDetail {
 		?>
 		<li class="quantity_field_type_setting field_setting">
 			<label for="quantity_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="quantity_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeInputType(jQuery('#quantity_field_type').val());});">
-				<option value="number"><?php esc_html_e( 'Number', 'gravityforms' ); ?></option>
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="hidden"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
+				<option value="number"><?php esc_html_e( 'Number', 'edforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="hidden"><?php esc_html_e( 'Hidden', 'edforms' ); ?></option>
 			</select>
 		</li>
 
@@ -652,7 +652,7 @@ class GFFormDetail {
 		?>
 		<li class="content_setting field_setting">
 			<label for="field_content" class="section_label">
-				<?php esc_html_e( 'Content', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Content', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_content' ) ?>
 			</label>
 			<textarea id="field_content" class="fieldwidth-3 fieldheight-1 merge-tag-support mt-position-right mt-prepopulate"></textarea>
@@ -664,32 +664,32 @@ class GFFormDetail {
 		?>
 		<li class="next_button_setting field_setting">
 			<label for="next_button_container">
-				<?php esc_html_e( 'Next Button', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Next Button', 'edforms' ); ?>
 			</label>
 
 			<div class="next_button_options" id="next_button_container">
 				<input type="radio" id="next_button_text" name="next_button" value="text" onclick="TogglePageButton('next'); SetPageButton('next');" onkeypress="TogglePageButton('next'); SetPageButton('next');" />
 				<label for="next_button_text" class="inline">
-					<?php esc_html_e( 'Default', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Default', 'edforms' ); ?>
 					<?php gform_tooltip( 'next_button_text' ) ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="next_button_image" name="next_button" value="image" onclick="TogglePageButton('next'); SetPageButton('next');" onkeypress="TogglePageButton('next'); SetPageButton('next');" />
 				<label for="next_button_image" class="inline">
-					<?php esc_html_e( 'Image', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Image', 'edforms' ); ?>
 					<?php gform_tooltip( 'next_button_image' ) ?>
 				</label>
 
 				<div id="next_button_text_container" style="margin-top:5px;">
 					<label for="next_button_text_input" class="inline">
-						<?php esc_html_e( 'Text:', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Text:', 'edforms' ); ?>
 					</label>
 					<input type="text" id="next_button_text_input" class="input_size_b" size="40" />
 				</div>
 
 				<div id="next_button_image_container" style="margin-top:5px;">
 					<label for="next_button_image_url" class="inline">
-						<?php esc_html_e( 'Image Path:', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Image Path:', 'edforms' ); ?>
 					</label>
 					<input type="text" id="next_button_image_url" size="45" />
 				</div>
@@ -701,33 +701,33 @@ class GFFormDetail {
 		?>
 		<li class="previous_button_setting field_setting">
 			<label for="previous_button_container">
-				<?php esc_html_e( 'Previous Button', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Previous Button', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_previous_button' ) ?>
 			</label>
 
 			<div class="previous_button_options" id="previous_button_container">
 				<input type="radio" id="previous_button_text" name="previous_button" value="text" onclick="TogglePageButton('previous'); SetPageButton('previous');" onkeypress="TogglePageButton('previous'); SetPageButton('previous');" />
 				<label for="previous_button_text" class="inline">
-					<?php esc_html_e( 'Default', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Default', 'edforms' ); ?>
 					<?php gform_tooltip( 'previous_button_text' ) ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="previous_button_image" name="previous_button" value="image" onclick="TogglePageButton('previous'); SetPageButton('previous');" onkeypress="TogglePageButton('previous'); SetPageButton('previous');" />
 				<label for="previous_button_image" class="inline">
-					<?php esc_html_e( 'Image', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Image', 'edforms' ); ?>
 					<?php gform_tooltip( 'previous_button_image' ) ?>
 				</label>
 
 				<div id="previous_button_text_container" style="margin-top:5px;">
 					<label for="previous_button_text_input" class="inline">
-						<?php esc_html_e( 'Text:', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Text:', 'edforms' ); ?>
 					</label>
 					<input type="text" id="previous_button_text_input" class="input_size_b" size="40" />
 				</div>
 
 				<div id="previous_button_image_container" style="margin-top:5px;">
 					<label for="previous_button_image_url" class="inline">
-						<?php esc_html_e( 'Image Path:', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Image Path:', 'edforms' ); ?>
 					</label>
 					<input type="text" id="previous_button_image_url" size="45" />
 				</div>
@@ -740,7 +740,7 @@ class GFFormDetail {
 		<li class="disable_margins_setting field_setting">
 			<input type="checkbox" id="field_margins" onclick="SetFieldProperty('disableMargins', this.checked);" onkeypress="SetFieldProperty('disableMargins', this.checked);" />
 			<label for="field_disable_margins" class="inline">
-				<?php esc_html_e( 'Disable default margins', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Disable default margins', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_disable_margins' ) ?>
 			</label><br />
 		</li>
@@ -749,28 +749,28 @@ class GFFormDetail {
 		?>
 		<li class="post_custom_field_type_setting field_setting">
 			<label for="post_custom_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="post_custom_field_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeInputType(jQuery('#post_custom_field_type').val());});">
-				<optgroup class="option_header" label="<?php esc_attr_e( 'Standard Fields', 'gravityforms' ); ?>">
-					<option value="text"><?php esc_html_e( 'Single line text', 'gravityforms' ); ?></option>
-					<option value="textarea"><?php esc_html_e( 'Paragraph Text', 'gravityforms' ); ?></option>
-					<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-					<option value="multiselect"><?php esc_html_e( 'Multi Select', 'gravityforms' ); ?></option>
-					<option value="number"><?php esc_html_e( 'Number', 'gravityforms' ); ?></option>
-					<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'gravityforms' ); ?></option>
-					<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
-					<option value="hidden"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
+				<optgroup class="option_header" label="<?php esc_attr_e( 'Standard Fields', 'edforms' ); ?>">
+					<option value="text"><?php esc_html_e( 'Single line text', 'edforms' ); ?></option>
+					<option value="textarea"><?php esc_html_e( 'Paragraph Text', 'edforms' ); ?></option>
+					<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+					<option value="multiselect"><?php esc_html_e( 'Multi Select', 'edforms' ); ?></option>
+					<option value="number"><?php esc_html_e( 'Number', 'edforms' ); ?></option>
+					<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'edforms' ); ?></option>
+					<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
+					<option value="hidden"><?php esc_html_e( 'Hidden', 'edforms' ); ?></option>
 				</optgroup>
-				<optgroup class="option_header" label="<?php esc_html_e( 'Advanced Fields', 'gravityforms' ); ?>">
-					<option value="date"><?php esc_html_e( 'Date', 'gravityforms' ); ?></option>
-					<option value="time"><?php esc_html_e( 'Time', 'gravityforms' ); ?></option>
-					<option value="phone"><?php esc_html_e( 'Phone', 'gravityforms' ); ?></option>
-					<option value="website"><?php esc_html_e( 'Website', 'gravityforms' ); ?></option>
-					<option value="email"><?php esc_html_e( 'Email', 'gravityforms' ); ?></option>
-					<option value="fileupload"><?php esc_html_e( 'File Upload', 'gravityforms' ); ?></option>
-					<option value="list"><?php esc_html_e( 'List', 'gravityforms' ); ?></option>
+				<optgroup class="option_header" label="<?php esc_html_e( 'Advanced Fields', 'edforms' ); ?>">
+					<option value="date"><?php esc_html_e( 'Date', 'edforms' ); ?></option>
+					<option value="time"><?php esc_html_e( 'Time', 'edforms' ); ?></option>
+					<option value="phone"><?php esc_html_e( 'Phone', 'edforms' ); ?></option>
+					<option value="website"><?php esc_html_e( 'Website', 'edforms' ); ?></option>
+					<option value="email"><?php esc_html_e( 'Email', 'edforms' ); ?></option>
+					<option value="fileupload"><?php esc_html_e( 'File Upload', 'edforms' ); ?></option>
+					<option value="list"><?php esc_html_e( 'List', 'edforms' ); ?></option>
 				</optgroup>
 			</select>
 		</li>
@@ -779,15 +779,15 @@ class GFFormDetail {
 		?>
 		<li class="post_tag_type_setting field_setting">
 			<label for="post_tag_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="post_tag_type" onchange="if(jQuery(this).val() == '') return; jQuery('#field_settings').slideUp(function(){StartChangeInputType(jQuery('#post_tag_type').val());});">
-				<option value="text"><?php esc_html_e( 'Single line text', 'gravityforms' ); ?></option>
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="multiselect"><?php esc_html_e( 'Multi Select', 'gravityforms' ); ?></option>
-				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
+				<option value="text"><?php esc_html_e( 'Single line text', 'edforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="multiselect"><?php esc_html_e( 'Multi Select', 'edforms' ); ?></option>
+				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -799,12 +799,12 @@ class GFFormDetail {
 			?>
 			<li class="captcha_type_setting field_setting">
 				<label for="field_captcha_type">
-					<?php esc_html_e( 'Type', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Type', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_captcha_type' ) ?>
 				</label>
 				<select id="field_captcha_type" onchange="StartChangeCaptchaType(jQuery(this).val())">
-					<option value="simple_captcha"><?php esc_html_e( 'Really Simple CAPTCHA', 'gravityforms' ); ?></option>
-					<option value="math"><?php esc_html_e( 'Math Challenge', 'gravityforms' ); ?></option>
+					<option value="simple_captcha"><?php esc_html_e( 'Really Simple CAPTCHA', 'edforms' ); ?></option>
+					<option value="math"><?php esc_html_e( 'Math Challenge', 'edforms' ); ?></option>
 				</select>
 			</li>
 			<?php
@@ -812,12 +812,12 @@ class GFFormDetail {
 			?>
 			<li class="captcha_size_setting field_setting">
 				<label for="field_captcha_size">
-					<?php esc_html_e( 'Size', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Size', 'edforms' ); ?>
 				</label>
 				<select id="field_captcha_size" onchange="SetCaptchaSize(jQuery(this).val());">
-					<option value="small"><?php esc_html_e( 'Small', 'gravityforms' ); ?></option>
-					<option value="medium"><?php esc_html_e( 'Medium', 'gravityforms' ); ?></option>
-					<option value="large"><?php esc_html_e( 'Large', 'gravityforms' ); ?></option>
+					<option value="small"><?php esc_html_e( 'Small', 'edforms' ); ?></option>
+					<option value="medium"><?php esc_html_e( 'Medium', 'edforms' ); ?></option>
+					<option value="large"><?php esc_html_e( 'Large', 'edforms' ); ?></option>
 				</select>
 			</li>
 			<?php
@@ -825,7 +825,7 @@ class GFFormDetail {
 			?>
 			<li class="captcha_fg_setting field_setting">
 				<label for="field_captcha_fg">
-					<?php esc_html_e( 'Font Color', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Font Color', 'edforms' ); ?>
 				</label>
 				<?php self::color_picker( 'field_captcha_fg', 'SetCaptchaFontColor' ) ?>
 			</li>
@@ -834,7 +834,7 @@ class GFFormDetail {
 			?>
 			<li class="captcha_bg_setting field_setting">
 				<label for="field_captcha_bg">
-					<?php esc_html_e( 'Background Color', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Background Color', 'edforms' ); ?>
 				</label>
 				<?php self::color_picker( 'field_captcha_bg', 'SetCaptchaBackgroundColor' ) ?>
 			</li>
@@ -845,12 +845,12 @@ class GFFormDetail {
 		?>
 		<li class="captcha_theme_setting field_setting">
 			<label for="field_captcha_theme" class="section_label">
-				<?php esc_html_e( 'Theme', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Theme', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_recaptcha_theme' ) ?>
 			</label>
 			<select id="field_captcha_theme" onchange="SetCaptchaTheme(this.value, '<?php echo GFCommon::get_base_url() ?>/images/captcha_' + this.value + '.jpg')">
-				<option value="light"><?php esc_html_e( 'Light', 'gravityforms' ); ?></option>
-				<option value="dark"><?php esc_html_e( 'Dark', 'gravityforms' ); ?></option>
+				<option value="light"><?php esc_html_e( 'Light', 'edforms' ); ?></option>
+				<option value="dark"><?php esc_html_e( 'Dark', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -858,26 +858,26 @@ class GFFormDetail {
 		?>
 		<li class="post_custom_field_setting field_setting">
 			<label for="field_custom_field_name" class="section_label">
-				<?php esc_html_e( 'Custom Field Name', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Custom Field Name', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_custom_field_name' ) ?>
 			</label>
 
 			<div style="width:100px; float:left;">
 				<input type="radio" name="field_custom" id="field_custom_existing" size="10" onclick="ToggleCustomField();" onkeypress="ToggleCustomField();" />
 				<label for="field_custom_existing" class="inline">
-					<?php esc_html_e( 'Existing', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Existing', 'edforms' ); ?>
 				</label>
 			</div>
 			<div style="width:100px; float:left;">
 				<input type="radio" name="field_custom" id="field_custom_new" size="10" onclick="ToggleCustomField();" onkeypress="ToggleCustomField();" />
 				<label for="field_custom_new" class="inline">
-					<?php esc_html_e( 'New', 'gravityforms' ); ?>
+					<?php esc_html_e( 'New', 'edforms' ); ?>
 				</label>
 			</div>
 			<div class="clear">
 				<input type="text" id="field_custom_field_name_text" size="35" />
 				<select id="field_custom_field_name_select" onchange="SetFieldProperty('postCustomFieldName', jQuery(this).val());" style="max-width:100%;">
-					<option value=""><?php esc_html_e( 'Select an existing custom field', 'gravityforms' ); ?></option>
+					<option value=""><?php esc_html_e( 'Select an existing custom field', 'edforms' ); ?></option>
 					<?php
 					$custom_field_names = RGFormsModel::get_custom_field_names();
 					foreach ( $custom_field_names as $name ) {
@@ -894,14 +894,14 @@ class GFFormDetail {
 		?>
 		<li class="post_status_setting field_setting">
 			<label for="field_post_status" class="section_label">
-				<?php esc_html_e( 'Post Status', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Post Status', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_status' ) ?>
 			</label>
 			<select id="field_post_status" name="field_post_status">
 				<?php $post_stati = apply_filters( 'gform_post_status_options', array(
-						'draft'   => esc_html__( 'Draft', 'gravityforms' ),
-						'pending' => esc_html__( 'Pending Review', 'gravityforms' ),
-						'publish' => esc_html__( 'Published', 'gravityforms' ),
+						'draft'   => esc_html__( 'Draft', 'edforms' ),
+						'pending' => esc_html__( 'Pending Review', 'edforms' ),
+						'publish' => esc_html__( 'Published', 'edforms' ),
 					)
 				);
 				foreach ( $post_stati as $value => $label ) {
@@ -915,7 +915,7 @@ class GFFormDetail {
 		?>
 		<li class="post_author_setting field_setting">
 			<label for="field_post_author" class="section_label">
-				<?php esc_html_e( 'Default Post Author', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Default Post Author', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_author' ) ?>
 			</label>
 			<?php
@@ -925,7 +925,7 @@ class GFFormDetail {
 			?>
 			<div>
 				<input type="checkbox" id="gfield_current_user_as_author" />
-				<label for="gfield_current_user_as_author" class="inline"><?php esc_html_e( 'Use logged in user as author', 'gravityforms' ); ?> <?php gform_tooltip( 'form_field_current_user_as_author' ) ?></label>
+				<label for="gfield_current_user_as_author" class="inline"><?php esc_html_e( 'Use logged in user as author', 'edforms' ); ?> <?php gform_tooltip( 'form_field_current_user_as_author' ) ?></label>
 			</div>
 		</li>
 
@@ -937,7 +937,7 @@ class GFFormDetail {
 
 			<li class="post_format_setting field_setting">
 				<label for="field_post_format" class="section_label">
-					<?php esc_html_e( 'Post Format', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Post Format', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_post_format' ) ?>
 				</label>
 
@@ -965,7 +965,7 @@ class GFFormDetail {
 
 		<li class="post_category_setting field_setting">
 			<label for="field_post_category" class="section_label">
-				<?php esc_html_e( 'Post Category', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Post Category', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_category' ) ?>
 			</label>
 			<?php wp_dropdown_categories( array( 'selected' => get_option( 'default_category' ), 'hide_empty' => 0, 'id' => 'field_post_category', 'name' => 'field_post_category', 'orderby' => 'name', 'selected' => 'field_post_category', 'hierarchical' => true ) ); ?>
@@ -977,14 +977,14 @@ class GFFormDetail {
 
 		<li class="post_category_field_type_setting field_setting">
 			<label for="post_category_field_type" class="section_label">
-				<?php esc_html_e( 'Field Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Field Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_type' ) ?>
 			</label>
 			<select id="post_category_field_type" onchange="jQuery('#field_settings').slideUp(function(){StartChangeInputType( jQuery('#post_category_field_type').val() );});">
-				<option value="select"><?php esc_html_e( 'Drop Down', 'gravityforms' ); ?></option>
-				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'gravityforms' ); ?></option>
-				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'gravityforms' ); ?></option>
-				<option value="multiselect"><?php esc_html_e( 'Multi Select', 'gravityforms' ); ?></option>
+				<option value="select"><?php esc_html_e( 'Drop Down', 'edforms' ); ?></option>
+				<option value="checkbox"><?php esc_html_e( 'Checkboxes', 'edforms' ); ?></option>
+				<option value="radio"><?php esc_html_e( 'Radio Buttons', 'edforms' ); ?></option>
+				<option value="multiselect"><?php esc_html_e( 'Multi Select', 'edforms' ); ?></option>
 			</select>
 		</li>
 
@@ -993,19 +993,19 @@ class GFFormDetail {
 		?>
 		<li class="post_category_checkbox_setting field_setting">
 			<label for="field_post_category">
-				<?php esc_html_e( 'Category', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Category', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_category_selection' ) ?>
 			</label>
 
 			<input type="radio" id="gfield_category_all" name="gfield_category" value="all" onclick="ToggleCategory();" onkeypress="ToggleCategory();" />
 			<label for="gfield_category_all" class="inline">
-				<?php esc_html_e( 'All Categories', 'gravityforms' ); ?>
+				<?php esc_html_e( 'All Categories', 'edforms' ); ?>
 
 			</label>
 			&nbsp;&nbsp;
 			<input type="radio" id="gfield_category_select" name="gfield_category" value="select" onclick="ToggleCategory();" onkeypress="ToggleCategory();" />
 			<label for="form_button_image" class="inline">
-				<?php esc_html_e( 'Select Categories', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Select Categories', 'edforms' ); ?>
 			</label>
 
 			<div id="gfield_settings_category_container">
@@ -1028,13 +1028,13 @@ class GFFormDetail {
 		<li class="post_category_initial_item_setting field_setting">
 			<input type="checkbox" id="gfield_post_category_initial_item_enabled" onclick="TogglePostCategoryInitialItem(); SetCategoryInitialItem();" onkeypress="TogglePostCategoryInitialItem(); SetCategoryInitialItem();" />
 			<label for="gfield_post_category_initial_item_enabled" class="inline">
-				<?php esc_html_e( 'Display placeholder', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Display placeholder', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_category_initial_item' ) ?>
 			</label>
 		</li>
 		<li id="gfield_post_category_initial_item_container">
 			<label for="field_post_category_initial_item">
-				<?php esc_html_e( 'Placeholder Label', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Placeholder Label', 'edforms' ); ?>
 			</label>
 			<input type="text" id="field_post_category_initial_item" onchange="SetCategoryInitialItem();" class="fieldwidth-3" size="35" />
 		</li>
@@ -1042,10 +1042,10 @@ class GFFormDetail {
 		do_action( 'gform_field_standard_settings', 900, $form_id );
 		?>
 		<li class="post_content_template_setting field_setting">
-			<label class="section_label"><?php esc_html_e( 'Content Template', 'gravityforms' ) ?></label>
+			<label class="section_label"><?php esc_html_e( 'Content Template', 'edforms' ) ?></label>
 			<input type="checkbox" id="gfield_post_content_enabled" onclick="TogglePostContentTemplate();" onkeypress="TogglePostContentTemplate();" />
 			<label for="gfield_post_content_enabled" class="inline">
-				<?php esc_html_e( 'Create content template', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Create content template', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_content_template_enable' ) ?>
 			</label>
 
@@ -1060,10 +1060,10 @@ class GFFormDetail {
 		do_action( 'gform_field_standard_settings', 950, $form_id );
 		?>
 		<li class="post_title_template_setting field_setting">
-			<label class="section_label"><?php esc_html_e( 'Content Template', 'gravityforms' ) ?></label>
+			<label class="section_label"><?php esc_html_e( 'Content Template', 'edforms' ) ?></label>
 			<input type="checkbox" id="gfield_post_title_enabled" onclick="TogglePostTitleTemplate();" onkeypress="TogglePostTitleTemplate();" />
 			<label for="gfield_post_title_enabled" class="inline">
-				<?php esc_html_e( 'Create content template', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Create content template', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_post_title_template_enable' ) ?>
 			</label>
 
@@ -1077,7 +1077,7 @@ class GFFormDetail {
 		<li class="customfield_content_template_setting field_setting">
 			<input type="checkbox" id="gfield_customfield_content_enabled" onclick="ToggleCustomFieldTemplate(); SetCustomFieldTemplate();" onkeypress="ToggleCustomFieldTemplate(); SetCustomFieldTemplate();" />
 			<label for="gfield_customfield_content_enabled" class="inline">
-				<?php esc_html_e( 'Create content template', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Create content template', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_customfield_content_template_enable' ) ?>
 			</label>
 
@@ -1092,20 +1092,20 @@ class GFFormDetail {
 		do_action( 'gform_field_standard_settings', 1000, $form_id );
 		?>
 		<li class="post_image_setting field_setting">
-			<label class="section_label"><?php esc_html_e( 'Image Metadata', 'gravityforms' ) ?> <?php gform_tooltip( 'form_field_image_meta' ) ?></label>
+			<label class="section_label"><?php esc_html_e( 'Image Metadata', 'edforms' ) ?> <?php gform_tooltip( 'form_field_image_meta' ) ?></label>
 			<input type="checkbox" id="gfield_display_title" onclick="SetPostImageMeta();" onkeypress="SetPostImageMeta();" />
 			<label for="gfield_display_title" class="inline">
-				<?php esc_html_e( 'Title', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Title', 'edforms' ); ?>
 			</label>
 			<br />
 			<input type="checkbox" id="gfield_display_caption" onclick="SetPostImageMeta();" onkeypress="SetPostImageMeta();" />
 			<label for="gfield_display_caption" class="inline">
-				<?php esc_html_e( 'Caption', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Caption', 'edforms' ); ?>
 			</label>
 			<br />
 			<input type="checkbox" id="gfield_display_description" onclick="SetPostImageMeta();" onkeypress="SetPostImageMeta();" />
 			<label for="gfield_display_description" class="inline">
-				<?php esc_html_e( 'Description', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Description', 'edforms' ); ?>
 			</label>
 		</li>
 
@@ -1114,9 +1114,9 @@ class GFFormDetail {
 		?>
 
 		<li class="post_image_featured_image field_setting">
-			<label class="section_label"><?php esc_html_e( 'Featured Image', 'gravityforms' ) ?></label>
+			<label class="section_label"><?php esc_html_e( 'Featured Image', 'edforms' ) ?></label>
 			<input type="checkbox" id="gfield_featured_image" onclick="SetFeaturedImage();" onkeypress="SetFeaturedImage();" />
-			<label for="gfield_featured_image" class="inline"><?php esc_html_e( 'Set as Featured Image', 'gravityforms' ); ?> <?php gform_tooltip( 'form_field_featured_image' ) ?></label>
+			<label for="gfield_featured_image" class="inline"><?php esc_html_e( 'Set as Featured Image', 'edforms' ); ?> <?php gform_tooltip( 'form_field_featured_image' ) ?></label>
 		</li>
 
 		<?php
@@ -1128,7 +1128,7 @@ class GFFormDetail {
 			$addressTypes = $gf_address_field->get_address_types( rgar( $form, 'id' ) );
 			?>
 			<label for="field_address_type" class="section_label">
-				<?php esc_html_e( 'Address Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Address Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_address_type' ) ?>
 			</label>
 			<select id="field_address_type" onchange="ChangeAddressType();">
@@ -1143,7 +1143,7 @@ class GFFormDetail {
 
 			<div class="custom_inputs_sub_setting gfield_sub_setting">
 				<label for="field_address_fields"  class="section_label inline">
-					<?php esc_html_e( 'Address Fields', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Address Fields', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_address_fields' ) ?>
 				</label>
 
@@ -1154,11 +1154,11 @@ class GFFormDetail {
 
 			<?php
 			foreach ( $addressTypes as $key => $addressType ) {
-				$state_label = isset( $addressType['state_label'] ) ? esc_attr( $addressType['state_label'] ) : __( 'State', 'gravityforms' );
+				$state_label = isset( $addressType['state_label'] ) ? esc_attr( $addressType['state_label'] ) : __( 'State', 'edforms' );
 				?>
 				<div id="address_type_container_<?php echo esc_attr( $key ); ?>" class="gfield_sub_setting gfield_address_type_container">
 					<input type="hidden" id="field_address_country_<?php echo esc_attr( $key ) ?>" value="<?php echo isset( $addressType['country'] ) ? esc_attr( $addressType['country'] ) : '' ?>" />
-					<input type="hidden" id="field_address_zip_label_<?php echo esc_attr( $key ) ?>" value="<?php echo isset( $addressType['zip_label'] ) ? esc_attr( $addressType['zip_label'] ) : __( 'Postal Code', 'gravityforms' ) ?>" />
+					<input type="hidden" id="field_address_zip_label_<?php echo esc_attr( $key ) ?>" value="<?php echo isset( $addressType['zip_label'] ) ? esc_attr( $addressType['zip_label'] ) : __( 'Postal Code', 'edforms' ) ?>" />
 					<input type="hidden" id="field_address_state_label_<?php echo esc_attr( $key ) ?>" value="<?php echo $state_label ?>" />
 					<input type="hidden" id="field_address_has_states_<?php echo esc_attr( $key ) ?>" value="<?php echo is_array( rgget( 'states', $addressType ) ) ? '1' : '' ?>" />
 
@@ -1166,7 +1166,7 @@ class GFFormDetail {
 					if ( isset( $addressType['states'] ) && is_array( $addressType['states'] ) ) {
 						?>
 						<label for="field_address_default_state_<?php echo esc_attr( $key ); ?>">
-							<?php echo sprintf( __( 'Default %s', 'gravityforms' ), $state_label ); ?>
+							<?php echo sprintf( __( 'Default %s', 'edforms' ), $state_label ); ?>
 							<?php gform_tooltip( "form_field_address_default_state_{$key}" ) ?>
 						</label>
 
@@ -1181,7 +1181,7 @@ class GFFormDetail {
 					if ( ! isset( $addressType['country'] ) ) {
 						?>
 						<label for="field_address_default_country_<?php echo $key; ?>" class="section_label">
-							<?php esc_html_e( 'Default Country', 'gravityforms' ); ?>
+							<?php esc_html_e( 'Default Country', 'edforms' ); ?>
 							<?php gform_tooltip( 'form_field_address_default_country' ) ?>
 						</label>
 						<select id="field_address_default_country_<?php echo $key; ?>" class="field_address_default_country" onchange="SetAddressProperties();">
@@ -1202,12 +1202,12 @@ class GFFormDetail {
 		?>
 		<li class="name_format_setting field_setting">
 			<label for="field_name_format">
-				<?php esc_html_e( 'Name Format', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Name Format', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_name_format' ) ?>
 			</label>
 			<select id="field_name_format" onchange="StartChangeNameFormat(jQuery(this).val());">
-				<option value="extended"><?php esc_html_e( 'Extended', 'gravityforms' ); ?></option>
-				<option value="advanced"><?php esc_html_e( 'Advanced', 'gravityforms' ); ?></option>
+				<option value="extended"><?php esc_html_e( 'Extended', 'edforms' ); ?></option>
+				<option value="advanced"><?php esc_html_e( 'Advanced', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -1216,7 +1216,7 @@ class GFFormDetail {
 		<li class="name_setting field_setting">
 			<div class="custom_inputs_setting gfield_sub_setting">
 				<label for="field_name_fields"  class="section_label inline">
-					<?php esc_html_e( 'Name Fields', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Name Fields', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_name_fields' ) ?>
 				</label>
 
@@ -1231,39 +1231,39 @@ class GFFormDetail {
 		?>
 		<li class="date_input_type_setting field_setting">
 			<label for="field_date_input_type" class="section_label">
-				<?php esc_html_e( 'Date Input Type', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Date Input Type', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_date_input_type' ) ?>
 			</label>
 			<select id="field_date_input_type" onchange="SetDateInputType(jQuery(this).val());">
-				<option value="datefield"><?php esc_html_e( 'Date Field', 'gravityforms' ) ?></option>
-				<option value="datepicker"><?php esc_html_e( 'Date Picker', 'gravityforms' ) ?></option>
-				<option value="datedropdown"><?php esc_html_e( 'Date Drop Down', 'gravityforms' ) ?></option>
+				<option value="datefield"><?php esc_html_e( 'Date Field', 'edforms' ) ?></option>
+				<option value="datepicker"><?php esc_html_e( 'Date Picker', 'edforms' ) ?></option>
+				<option value="datedropdown"><?php esc_html_e( 'Date Drop Down', 'edforms' ) ?></option>
 			</select>
 
 			<div id="date_picker_container">
 
 				<input type="radio" id="gsetting_icon_none" name="gsetting_icon" value="none" onclick="SetCalendarIconType(this.value);" onkeypress="SetCalendarIconType(this.value);" />
 				<label for="gsetting_icon_none" class="inline">
-					<?php esc_html_e( 'No Icon', 'gravityforms' ); ?>
+					<?php esc_html_e( 'No Icon', 'edforms' ); ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="gsetting_icon_calendar" name="gsetting_icon" value="calendar" onclick="SetCalendarIconType(this.value);" onkeypress="SetCalendarIconType(this.value);" />
 				<label for="gsetting_icon_calendar" class="inline">
-					<?php esc_html_e( 'Calendar Icon', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Calendar Icon', 'edforms' ); ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="gsetting_icon_custom" name="gsetting_icon" value="custom" onclick="SetCalendarIconType(this.value);" onkeypress="SetCalendarIconType(this.value);" />
 				<label for="gsetting_icon_custom" class="inline">
-					<?php esc_html_e( 'Custom Icon', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Custom Icon', 'edforms' ); ?>
 				</label>
 
 				<div id="gfield_icon_url_container">
 					<label for="gfield_calendar_icon_url" class="inline">
-						<?php esc_html_e( 'Image Path: ', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Image Path: ', 'edforms' ); ?>
 					</label>
 					<input type="text" id="gfield_calendar_icon_url" size="45" />
 
-					<div class="instruction"><?php esc_html_e( 'Preview this form to see your custom icon.', 'gravityforms' ) ?></div>
+					<div class="instruction"><?php esc_html_e( 'Preview this form to see your custom icon.', 'edforms' ) ?></div>
 				</div>
 			</div>
 		</li>
@@ -1272,7 +1272,7 @@ class GFFormDetail {
 		?>
 		<li class="date_format_setting field_setting">
 			<label for="field_date_format" class="section_label">
-				<?php esc_html_e( 'Date Format', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Date Format', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_date_format' ) ?>
 			</label>
 			<select id="field_date_format" onchange="SetDateFormat(jQuery(this).val());">
@@ -1290,7 +1290,7 @@ class GFFormDetail {
 		?>
 		<li class="customize_inputs_setting field_setting">
 			<label for="field_enable_customize_inputs" class="inline">
-				<?php esc_html_e( 'Customize Fields', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Customize Fields', 'edforms' ); ?>
 			</label>
 			<?php gform_tooltip( 'form_field_customize_inputs' ) ?>
 			<div id="field_customize_inputs_container" style="padding-top:10px;">
@@ -1302,24 +1302,24 @@ class GFFormDetail {
 		?>
 		<li class="file_extensions_setting field_setting">
 			<label for="field_file_extension" class="section_label">
-				<?php esc_html_e( 'Allowed file extensions', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Allowed file extensions', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_fileupload_allowed_extensions' ) ?>
 			</label>
 			<input type="text" id="field_file_extension" size="40" />
 
 			<div>
-				<small><?php esc_html_e( 'Separated with commas (i.e. jpg, gif, png, pdf)', 'gravityforms' ); ?></small>
+				<small><?php esc_html_e( 'Separated with commas (i.e. jpg, gif, png, pdf)', 'edforms' ); ?></small>
 			</div>
 		</li>
 		<?php
 		do_action( 'gform_field_standard_settings', 1260, $form_id );
 		?>
 		<li class="multiple_files_setting field_setting">
-			<label class="section_label"><?php esc_html_e( 'Multiple Files', 'gravityforms' ); ?></label>
+			<label class="section_label"><?php esc_html_e( 'Multiple Files', 'edforms' ); ?></label>
 
 			<input type="checkbox" id="field_multiple_files" onclick="ToggleMultiFile();" onkeypress="ToggleMultiFile();" />
 			<label for="field_multiple_files" class="inline">
-				<?php esc_html_e( 'Enable Multi-File Upload', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Enable Multi-File Upload', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_multiple_files' ) ?>
 			</label>
 
@@ -1328,7 +1328,7 @@ class GFFormDetail {
 
 				<div>
 					<label for="field_max_files" class="section_label">
-						<?php esc_html_e( 'Maximum Number of Files', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Maximum Number of Files', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_max_files' ) ?>
 					</label>
 					<input type="text" id="field_max_files" size="10" />
@@ -1342,14 +1342,14 @@ class GFFormDetail {
 		?>
 		<li class="file_size_setting field_setting">
 			<label for="field_max_file_size" class="section_label">
-				<?php esc_html_e( 'Maximum File Size', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Maximum File Size', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_max_file_size' ) ?>
 			</label>
 			<input type="text" id="field_max_file_size" size="10" placeholder="<?php $max_upload_size = wp_max_upload_size() / 1048576;
 			echo $max_upload_size; ?>MB" />
 
 			<div id="gform_server_max_file_size_notice">
-				<small><?php printf( esc_html__( 'Maximum allowed on this server: %sMB', 'gravityforms' ),  $max_upload_size ); ?></small>
+				<small><?php printf( esc_html__( 'Maximum allowed on this server: %sMB', 'edforms' ),  $max_upload_size ); ?></small>
 			</div>
 		</li>
 
@@ -1358,10 +1358,10 @@ class GFFormDetail {
 		?>
 		<li class="columns_setting field_setting">
 
-			<label class="section_label"><?php esc_html_e( 'Columns', 'gravityforms' ); ?></label>
+			<label class="section_label"><?php esc_html_e( 'Columns', 'edforms' ); ?></label>
 
 			<input type="checkbox" id="field_columns_enabled" onclick="SetFieldProperty('enableColumns', this.checked); ToggleColumns();" onkeypress="SetFieldProperty('enableColumns', this.checked); ToggleColumns();" />
-			<label for="field_columns_enabled" class="inline"><?php esc_html_e( 'Enable multiple columns', 'gravityforms' ) ?><?php gform_tooltip( 'form_field_columns' ) ?></label>
+			<label for="field_columns_enabled" class="inline"><?php esc_html_e( 'Enable multiple columns', 'edforms' ) ?><?php gform_tooltip( 'form_field_columns' ) ?></label>
 			<br />
 
 			<div id="gfield_settings_columns_container">
@@ -1374,7 +1374,7 @@ class GFFormDetail {
 		?>
 		<li class="maxrows_setting field_setting">
 			<label for="field_maxrows" class="section_label">
-				<?php esc_html_e( 'Maximum Rows', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Maximum Rows', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_maxrows' ) ?>
 			</label>
 			<input type="text" id="field_maxrows" />
@@ -1386,12 +1386,12 @@ class GFFormDetail {
 
 		<li class="time_format_setting field_setting">
 			<label for="field_time_format" class="section_label">
-				<?php esc_html_e( 'Time Format', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Time Format', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_time_format' ) ?>
 			</label>
 			<select id="field_time_format" onchange="SetTimeFormat(this.value);">
-				<option value="12"><?php esc_html_e( '12 hour', 'gravityforms' ) ?></option>
-				<option value="24"><?php esc_html_e( '24 hour', 'gravityforms' ) ?></option>
+				<option value="12"><?php esc_html_e( '12 hour', 'edforms' ) ?></option>
+				<option value="24"><?php esc_html_e( '24 hour', 'edforms' ) ?></option>
 			</select>
 
 		</li>
@@ -1401,7 +1401,7 @@ class GFFormDetail {
 
 		<li class="phone_format_setting field_setting">
 			<label for="field_phone_format" class="section_label">
-				<?php esc_html_e( 'Phone Format', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Phone Format', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_phone_format' ) ?>
 			</label>
 			<select id="field_phone_format" onchange="SetFieldPhoneFormat(jQuery(this).val());">
@@ -1423,18 +1423,18 @@ class GFFormDetail {
 
 			<div style="float:right;">
 				<input type="checkbox" id="field_choice_values_enabled" onclick="SetFieldProperty('enableChoiceValue', this.checked); ToggleChoiceValue(); SetFieldChoices();" onkeypress="SetFieldProperty('enableChoiceValue', this.checked); ToggleChoiceValue(); SetFieldChoices();" />
-				<label for="field_choice_values_enabled" class="inline gfield_value_label"><?php esc_html_e( 'show values', 'gravityforms' ) ?></label>
+				<label for="field_choice_values_enabled" class="inline gfield_value_label"><?php esc_html_e( 'show values', 'edforms' ) ?></label>
 			</div>
 
-			<label for="choices" class="section_label"><?php echo apply_filters( 'gform_choices_setting_title', __( 'Choices', 'gravityforms' ) ); ?>
+			<label for="choices" class="section_label"><?php echo apply_filters( 'gform_choices_setting_title', __( 'Choices', 'edforms' ) ); ?>
 			<?php gform_tooltip( 'form_field_choices' ) ?></label>
 
 			<div id="gfield_settings_choices_container">
-				<label class="gfield_choice_header_label"><?php esc_html_e( 'Label', 'gravityforms' ) ?></label><label class="gfield_choice_header_value"><?php esc_html_e( 'Value', 'gravityforms' ) ?></label><label class="gfield_choice_header_price"><?php esc_html_e( 'Price', 'gravityforms' ) ?></label>
+				<label class="gfield_choice_header_label"><?php esc_html_e( 'Label', 'edforms' ) ?></label><label class="gfield_choice_header_value"><?php esc_html_e( 'Value', 'edforms' ) ?></label><label class="gfield_choice_header_price"><?php esc_html_e( 'Price', 'edforms' ) ?></label>
 				<ul id="field_choices"></ul>
 			</div>
 
-			<?php $window_title = __( 'Bulk Add / Predefined Choices', 'gravityforms' ); ?>
+			<?php $window_title = __( 'Bulk Add / Predefined Choices', 'edforms' ); ?>
 			<input type='button' value='<?php echo esc_attr( $window_title ) ?>' onclick="tb_show('<?php echo esc_js( $window_title ) ?>', '#TB_inline?height=400&amp;width=600&amp;inlineId=gfield_bulk_add', '');" onkeypress="tb_show('<?php echo esc_js( $window_title ) ?>', '#TB_inline?height=400&amp;width=600&amp;inlineId=gfield_bulk_add', '');" class="button" />
 
 			<div id="gfield_bulk_add" style="display:none;">
@@ -1442,27 +1442,27 @@ class GFFormDetail {
 					<?php
 
 					$predefined_choices = array(
-						__( 'Countries', 'gravityforms' )                   => $gf_address_field->get_countries(),
-						__( 'U.S. States', 'gravityforms' )                 => $gf_address_field->get_us_states(),
-						__( 'Canadian Province/Territory', 'gravityforms' ) => $gf_address_field->get_canadian_provinces(),
-						__( 'Continents', 'gravityforms' )                  => array( __( 'Africa', 'gravityforms' ), __( 'Antarctica', 'gravityforms' ), __( 'Asia', 'gravityforms' ), __( 'Australia', 'gravityforms' ), __( 'Europe', 'gravityforms' ), __( 'North America', 'gravityforms' ), __( 'South America', 'gravityforms' ) ),
-						__( 'Gender', 'gravityforms' )                      => array( __( 'Male', 'gravityforms' ), __( 'Female', 'gravityforms' ), __( 'Prefer Not to Answer', 'gravityforms' ) ),
-						__( 'Age', 'gravityforms' )                         => array( __( 'Under 18', 'gravityforms' ), __( '18-24', 'gravityforms' ), __( '25-34', 'gravityforms' ), __( '35-44', 'gravityforms' ), __( '45-54', 'gravityforms' ), __( '55-64', 'gravityforms' ), __( '65 or Above', 'gravityforms' ), __( 'Prefer Not to Answer', 'gravityforms' ) ),
-						__( 'Marital Status', 'gravityforms' )              => array( __( 'Single', 'gravityforms' ), __( 'Married', 'gravityforms' ), __( 'Divorced', 'gravityforms' ), __( 'Widowed', 'gravityforms' ) ),
-						__( 'Employment', 'gravityforms' )                  => array( __( 'Employed Full-Time', 'gravityforms' ), __( 'Employed Part-Time', 'gravityforms' ), __( 'Self-employed', 'gravityforms' ), __( 'Not employed but looking for work', 'gravityforms' ), __( 'Not employed and not looking for work', 'gravityforms' ), __( 'Homemaker', 'gravityforms' ), __( 'Retired', 'gravityforms' ), __( 'Student', 'gravityforms' ), __( 'Prefer Not to Answer', 'gravityforms' ) ),
-						__( 'Job Type', 'gravityforms' )                    => array( __( 'Full-Time', 'gravityforms' ), __( 'Part-Time', 'gravityforms' ), __( 'Per Diem', 'gravityforms' ), __( 'Employee', 'gravityforms' ), __( 'Temporary', 'gravityforms' ), __( 'Contract', 'gravityforms' ), __( 'Intern', 'gravityforms' ), __( 'Seasonal', 'gravityforms' ) ),
-						__( 'Industry', 'gravityforms' )                    => array( __( 'Accounting/Finance', 'gravityforms' ), __( 'Advertising/Public Relations', 'gravityforms' ), __( 'Aerospace/Aviation', 'gravityforms' ), __( 'Arts/Entertainment/Publishing', 'gravityforms' ), __( 'Automotive', 'gravityforms' ), __( 'Banking/Mortgage', 'gravityforms' ), __( 'Business Development', 'gravityforms' ), __( 'Business Opportunity', 'gravityforms' ), __( 'Clerical/Administrative', 'gravityforms' ), __( 'Construction/Facilities', 'gravityforms' ), __( 'Consumer Goods', 'gravityforms' ), __( 'Customer Service', 'gravityforms' ), __( 'Education/Training', 'gravityforms' ), __( 'Energy/Utilities', 'gravityforms' ), __( 'Engineering', 'gravityforms' ), __( 'Government/Military', 'gravityforms' ), __( 'Green', 'gravityforms' ), __( 'Healthcare', 'gravityforms' ), __( 'Hospitality/Travel', 'gravityforms' ), __( 'Human Resources', 'gravityforms' ), __( 'Installation/Maintenance', 'gravityforms' ), __( 'Insurance', 'gravityforms' ), __( 'Internet', 'gravityforms' ), __( 'Job Search Aids', 'gravityforms' ), __( 'Law Enforcement/Security', 'gravityforms' ), __( 'Legal', 'gravityforms' ), __( 'Management/Executive', 'gravityforms' ), __( 'Manufacturing/Operations', 'gravityforms' ), __( 'Marketing', 'gravityforms' ), __( 'Non-Profit/Volunteer', 'gravityforms' ), __( 'Pharmaceutical/Biotech', 'gravityforms' ), __( 'Professional Services', 'gravityforms' ), __( 'QA/Quality Control', 'gravityforms' ), __( 'Real Estate', 'gravityforms' ), __( 'Restaurant/Food Service', 'gravityforms' ), __( 'Retail', 'gravityforms' ), __( 'Sales', 'gravityforms' ), __( 'Science/Research', 'gravityforms' ), __( 'Skilled Labor', 'gravityforms' ), __( 'Technology', 'gravityforms' ), __( 'Telecommunications', 'gravityforms' ), __( 'Transportation/Logistics', 'gravityforms' ), __( 'Other', 'gravityforms' ) ),
-						__( 'Education', 'gravityforms' )                   => array( __( 'High School', 'gravityforms' ), __( 'Associate Degree', 'gravityforms' ), __( "Bachelor's Degree", 'gravityforms' ), __( 'Graduate or Professional Degree', 'gravityforms' ), __( 'Some College', 'gravityforms' ), __( 'Other', 'gravityforms' ), __( 'Prefer Not to Answer', 'gravityforms' ) ),
-						__( 'Days of the Week', 'gravityforms' )            => array( __( 'Sunday', 'gravityforms' ), __( 'Monday', 'gravityforms' ), __( 'Tuesday', 'gravityforms' ), __( 'Wednesday', 'gravityforms' ), __( 'Thursday', 'gravityforms' ), __( 'Friday', 'gravityforms' ), __( 'Saturday', 'gravityforms' ) ),
-						__( 'Months of the Year', 'gravityforms' )          => array( __( 'January', 'gravityforms' ), __( 'February', 'gravityforms' ), __( 'March', 'gravityforms' ), __( 'April', 'gravityforms' ), __( 'May', 'gravityforms' ), __( 'June', 'gravityforms' ), __( 'July', 'gravityforms' ), __( 'August', 'gravityforms' ), __( 'September', 'gravityforms' ), __( 'October', 'gravityforms' ), __( 'November', 'gravityforms' ), __( 'December', 'gravityforms' ) ),
-						__( 'How Often', 'gravityforms' )                   => array( __( 'Every day', 'gravityforms' ), __( 'Once a week', 'gravityforms' ), __( '2 to 3 times a week', 'gravityforms' ), __( 'Once a month', 'gravityforms' ), __( '2 to 3 times a month', 'gravityforms' ), __( 'Less than once a month', 'gravityforms' ) ),
-						__( 'How Long', 'gravityforms' )                    => array( __( 'Less than a month', 'gravityforms' ), __( '1-6 months', 'gravityforms' ), __( '1-3 years', 'gravityforms' ), __( 'Over 3 years', 'gravityforms' ), __( 'Never used', 'gravityforms' ) ),
-						__( 'Satisfaction', 'gravityforms' )                => array( __( 'Very Satisfied', 'gravityforms' ), __( 'Satisfied', 'gravityforms' ), __( 'Neutral', 'gravityforms' ), __( 'Unsatisfied', 'gravityforms' ), __( 'Very Unsatisfied', 'gravityforms' ) ),
-						__( 'Importance', 'gravityforms' )                  => array( __( 'Very Important', 'gravityforms' ), __( 'Important', 'gravityforms' ), __( 'Somewhat Important', 'gravityforms' ), __( 'Not Important', 'gravityforms' ) ),
-						__( 'Agreement', 'gravityforms' )                   => array( __( 'Strongly Agree', 'gravityforms' ), __( 'Agree', 'gravityforms' ), __( 'Disagree', 'gravityforms' ), __( 'Strongly Disagree', 'gravityforms' ) ),
-						__( 'Comparison', 'gravityforms' )                  => array( __( 'Much Better', 'gravityforms' ), __( 'Somewhat Better', 'gravityforms' ), __( 'About the Same', 'gravityforms' ), __( 'Somewhat Worse', 'gravityforms' ), __( 'Much Worse', 'gravityforms' ) ),
-						__( 'Would You', 'gravityforms' )                   => array( __( 'Definitely', 'gravityforms' ), __( 'Probably', 'gravityforms' ), __( 'Not Sure', 'gravityforms' ), __( 'Probably Not', 'gravityforms' ), __( 'Definitely Not', 'gravityforms' ) ),
-						__( 'Size', 'gravityforms' )                        => array( __( 'Extra Small', 'gravityforms' ), __( 'Small', 'gravityforms' ), __( 'Medium', 'gravityforms' ), __( 'Large', 'gravityforms' ), __( 'Extra Large', 'gravityforms' ) ),
+						__( 'Countries', 'edforms' )                   => $gf_address_field->get_countries(),
+						__( 'U.S. States', 'edforms' )                 => $gf_address_field->get_us_states(),
+						__( 'Canadian Province/Territory', 'edforms' ) => $gf_address_field->get_canadian_provinces(),
+						__( 'Continents', 'edforms' )                  => array( __( 'Africa', 'edforms' ), __( 'Antarctica', 'edforms' ), __( 'Asia', 'edforms' ), __( 'Australia', 'edforms' ), __( 'Europe', 'edforms' ), __( 'North America', 'edforms' ), __( 'South America', 'edforms' ) ),
+						__( 'Gender', 'edforms' )                      => array( __( 'Male', 'edforms' ), __( 'Female', 'edforms' ), __( 'Prefer Not to Answer', 'edforms' ) ),
+						__( 'Age', 'edforms' )                         => array( __( 'Under 18', 'edforms' ), __( '18-24', 'edforms' ), __( '25-34', 'edforms' ), __( '35-44', 'edforms' ), __( '45-54', 'edforms' ), __( '55-64', 'edforms' ), __( '65 or Above', 'edforms' ), __( 'Prefer Not to Answer', 'edforms' ) ),
+						__( 'Marital Status', 'edforms' )              => array( __( 'Single', 'edforms' ), __( 'Married', 'edforms' ), __( 'Divorced', 'edforms' ), __( 'Widowed', 'edforms' ) ),
+						__( 'Employment', 'edforms' )                  => array( __( 'Employed Full-Time', 'edforms' ), __( 'Employed Part-Time', 'edforms' ), __( 'Self-employed', 'edforms' ), __( 'Not employed but looking for work', 'edforms' ), __( 'Not employed and not looking for work', 'edforms' ), __( 'Homemaker', 'edforms' ), __( 'Retired', 'edforms' ), __( 'Student', 'edforms' ), __( 'Prefer Not to Answer', 'edforms' ) ),
+						__( 'Job Type', 'edforms' )                    => array( __( 'Full-Time', 'edforms' ), __( 'Part-Time', 'edforms' ), __( 'Per Diem', 'edforms' ), __( 'Employee', 'edforms' ), __( 'Temporary', 'edforms' ), __( 'Contract', 'edforms' ), __( 'Intern', 'edforms' ), __( 'Seasonal', 'edforms' ) ),
+						__( 'Industry', 'edforms' )                    => array( __( 'Accounting/Finance', 'edforms' ), __( 'Advertising/Public Relations', 'edforms' ), __( 'Aerospace/Aviation', 'edforms' ), __( 'Arts/Entertainment/Publishing', 'edforms' ), __( 'Automotive', 'edforms' ), __( 'Banking/Mortgage', 'edforms' ), __( 'Business Development', 'edforms' ), __( 'Business Opportunity', 'edforms' ), __( 'Clerical/Administrative', 'edforms' ), __( 'Construction/Facilities', 'edforms' ), __( 'Consumer Goods', 'edforms' ), __( 'Customer Service', 'edforms' ), __( 'Education/Training', 'edforms' ), __( 'Energy/Utilities', 'edforms' ), __( 'Engineering', 'edforms' ), __( 'Government/Military', 'edforms' ), __( 'Green', 'edforms' ), __( 'Healthcare', 'edforms' ), __( 'Hospitality/Travel', 'edforms' ), __( 'Human Resources', 'edforms' ), __( 'Installation/Maintenance', 'edforms' ), __( 'Insurance', 'edforms' ), __( 'Internet', 'edforms' ), __( 'Job Search Aids', 'edforms' ), __( 'Law Enforcement/Security', 'edforms' ), __( 'Legal', 'edforms' ), __( 'Management/Executive', 'edforms' ), __( 'Manufacturing/Operations', 'edforms' ), __( 'Marketing', 'edforms' ), __( 'Non-Profit/Volunteer', 'edforms' ), __( 'Pharmaceutical/Biotech', 'edforms' ), __( 'Professional Services', 'edforms' ), __( 'QA/Quality Control', 'edforms' ), __( 'Real Estate', 'edforms' ), __( 'Restaurant/Food Service', 'edforms' ), __( 'Retail', 'edforms' ), __( 'Sales', 'edforms' ), __( 'Science/Research', 'edforms' ), __( 'Skilled Labor', 'edforms' ), __( 'Technology', 'edforms' ), __( 'Telecommunications', 'edforms' ), __( 'Transportation/Logistics', 'edforms' ), __( 'Other', 'edforms' ) ),
+						__( 'Education', 'edforms' )                   => array( __( 'High School', 'edforms' ), __( 'Associate Degree', 'edforms' ), __( "Bachelor's Degree", 'edforms' ), __( 'Graduate or Professional Degree', 'edforms' ), __( 'Some College', 'edforms' ), __( 'Other', 'edforms' ), __( 'Prefer Not to Answer', 'edforms' ) ),
+						__( 'Days of the Week', 'edforms' )            => array( __( 'Sunday', 'edforms' ), __( 'Monday', 'edforms' ), __( 'Tuesday', 'edforms' ), __( 'Wednesday', 'edforms' ), __( 'Thursday', 'edforms' ), __( 'Friday', 'edforms' ), __( 'Saturday', 'edforms' ) ),
+						__( 'Months of the Year', 'edforms' )          => array( __( 'January', 'edforms' ), __( 'February', 'edforms' ), __( 'March', 'edforms' ), __( 'April', 'edforms' ), __( 'May', 'edforms' ), __( 'June', 'edforms' ), __( 'July', 'edforms' ), __( 'August', 'edforms' ), __( 'September', 'edforms' ), __( 'October', 'edforms' ), __( 'November', 'edforms' ), __( 'December', 'edforms' ) ),
+						__( 'How Often', 'edforms' )                   => array( __( 'Every day', 'edforms' ), __( 'Once a week', 'edforms' ), __( '2 to 3 times a week', 'edforms' ), __( 'Once a month', 'edforms' ), __( '2 to 3 times a month', 'edforms' ), __( 'Less than once a month', 'edforms' ) ),
+						__( 'How Long', 'edforms' )                    => array( __( 'Less than a month', 'edforms' ), __( '1-6 months', 'edforms' ), __( '1-3 years', 'edforms' ), __( 'Over 3 years', 'edforms' ), __( 'Never used', 'edforms' ) ),
+						__( 'Satisfaction', 'edforms' )                => array( __( 'Very Satisfied', 'edforms' ), __( 'Satisfied', 'edforms' ), __( 'Neutral', 'edforms' ), __( 'Unsatisfied', 'edforms' ), __( 'Very Unsatisfied', 'edforms' ) ),
+						__( 'Importance', 'edforms' )                  => array( __( 'Very Important', 'edforms' ), __( 'Important', 'edforms' ), __( 'Somewhat Important', 'edforms' ), __( 'Not Important', 'edforms' ) ),
+						__( 'Agreement', 'edforms' )                   => array( __( 'Strongly Agree', 'edforms' ), __( 'Agree', 'edforms' ), __( 'Disagree', 'edforms' ), __( 'Strongly Disagree', 'edforms' ) ),
+						__( 'Comparison', 'edforms' )                  => array( __( 'Much Better', 'edforms' ), __( 'Somewhat Better', 'edforms' ), __( 'About the Same', 'edforms' ), __( 'Somewhat Worse', 'edforms' ), __( 'Much Worse', 'edforms' ) ),
+						__( 'Would You', 'edforms' )                   => array( __( 'Definitely', 'edforms' ), __( 'Probably', 'edforms' ), __( 'Not Sure', 'edforms' ), __( 'Probably Not', 'edforms' ), __( 'Definitely Not', 'edforms' ) ),
+						__( 'Size', 'edforms' )                        => array( __( 'Extra Small', 'edforms' ), __( 'Small', 'edforms' ), __( 'Medium', 'edforms' ), __( 'Large', 'edforms' ), __( 'Extra Large', 'edforms' ) ),
 
 					);
 					$predefined_choices = gf_apply_filters( array( 'gform_predefined_choices', rgar( $form, 'id' ) ), $predefined_choices );
@@ -1471,7 +1471,7 @@ class GFFormDetail {
 
 					?>
 
-					<div class="panel-instructions"><?php esc_html_e( 'Select a category and customize the predefined choices or paste your own list to bulk add choices.', 'gravityforms' ) ?></div>
+					<div class="panel-instructions"><?php esc_html_e( 'Select a category and customize the predefined choices or paste your own list to bulk add choices.', 'edforms' ) ?></div>
 
 					<div class="bulk-left-panel">
 						<ul id="bulk_items">
@@ -1492,19 +1492,19 @@ class GFFormDetail {
 					<br style="clear:both;" />
 
 					<div class="panel-buttons" style="">
-						<input type="button" onclick="InsertBulkChoices(jQuery('#gfield_bulk_add_input').val().split('\n')); tb_remove();" onkeypress="InsertBulkChoices(jQuery('#gfield_bulk_add_input').val().split('\n')); tb_remove();" class="button-primary" value="<?php esc_attr_e( 'Insert Choices', 'gravityforms' ) ?>" />&nbsp;
-						<input type="button" onclick="tb_remove();" onkeypress="tb_remove();" class="button" value="<?php esc_attr_e( 'Cancel', 'gravityforms' ) ?>" />
+						<input type="button" onclick="InsertBulkChoices(jQuery('#gfield_bulk_add_input').val().split('\n')); tb_remove();" onkeypress="InsertBulkChoices(jQuery('#gfield_bulk_add_input').val().split('\n')); tb_remove();" class="button-primary" value="<?php esc_attr_e( 'Insert Choices', 'edforms' ) ?>" />&nbsp;
+						<input type="button" onclick="tb_remove();" onkeypress="tb_remove();" class="button" value="<?php esc_attr_e( 'Cancel', 'edforms' ) ?>" />
 					</div>
 
 					<div class="panel-custom" style="">
-						<a href="javascript:void(0);" onclick="LoadCustomChoicesPanel(true, 'slow');" onkeypress="LoadCustomChoicesPanel(true, 'slow');" id="bulk_save_as"><?php esc_html_e( 'Save as new custom choice', 'gravityforms' ) ?></a>
+						<a href="javascript:void(0);" onclick="LoadCustomChoicesPanel(true, 'slow');" onkeypress="LoadCustomChoicesPanel(true, 'slow');" id="bulk_save_as"><?php esc_html_e( 'Save as new custom choice', 'edforms' ) ?></a>
 
 						<div id="bulk_custom_edit" style="display:none;">
-							<?php esc_html_e( 'Save as', 'gravityforms' ); ?>
-							<input type="text" id="custom_choice_name" value="<?php esc_attr_e( 'Enter name', 'gravityforms' ); ?>" onfocus="if(this.value == '<?php echo esc_js( __( 'enter name', 'gravityforms' ) ); ?>') this.value='';">&nbsp;&nbsp;
-							<a href="javascript:void(0);" onclick="SaveCustomChoices();" onkeypress="SaveCustomChoices();" class="button" id="bulk_save_button"><?php esc_html_e( 'Save', 'gravityforms' ) ?></a>&nbsp;
-							<a href="javascript:void(0);" onclick="CloseCustomChoicesPanel('slow');" onkeypress="CloseCustomChoicesPanel('slow');" id="bulk_cancel_link"><?php esc_html_e( 'Cancel', 'gravityforms' ) ?></a>
-							<a href="javascript:void(0);" onclick="DeleteCustomChoice();" onkeypress="DeleteCustomChoice();" id="bulk_delete_link"><?php esc_html_e( 'Delete', 'gravityforms' ) ?></a>
+							<?php esc_html_e( 'Save as', 'edforms' ); ?>
+							<input type="text" id="custom_choice_name" value="<?php esc_attr_e( 'Enter name', 'edforms' ); ?>" onfocus="if(this.value == '<?php echo esc_js( __( 'enter name', 'edforms' ) ); ?>') this.value='';">&nbsp;&nbsp;
+							<a href="javascript:void(0);" onclick="SaveCustomChoices();" onkeypress="SaveCustomChoices();" class="button" id="bulk_save_button"><?php esc_html_e( 'Save', 'edforms' ) ?></a>&nbsp;
+							<a href="javascript:void(0);" onclick="CloseCustomChoicesPanel('slow');" onkeypress="CloseCustomChoicesPanel('slow');" id="bulk_cancel_link"><?php esc_html_e( 'Cancel', 'edforms' ) ?></a>
+							<a href="javascript:void(0);" onclick="DeleteCustomChoice();" onkeypress="DeleteCustomChoice();" id="bulk_delete_link"><?php esc_html_e( 'Delete', 'edforms' ) ?></a>
 						</div>
 						<div id="bulk_custom_message" class="alert_yellow" style="display:none; margin-top:8px; padding: 8px;">
 							<!--Message will be added via javascript-->
@@ -1528,7 +1528,7 @@ class GFFormDetail {
 
 			<input type="checkbox" id="field_select_all_choices" onclick="var value = jQuery(this).is(':checked'); SetFieldProperty('enableSelectAll', value); RefreshSelectedFieldPreview();" onkeypress="var value = jQuery(this).is(':checked'); SetFieldProperty('enableSelectAll', value); RefreshSelectedFieldPreview();" />
 			<label for="field_select_all_choices" class="inline">
-				<?php esc_html_e( 'Enable "Select All" choice', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Enable "Select All" choice', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_select_all_choices' ) ?>
 			</label>
 
@@ -1541,7 +1541,7 @@ class GFFormDetail {
 
 			<input type="checkbox" id="field_other_choice" onclick="var value = jQuery(this).is(':checked'); SetFieldProperty('enableOtherChoice', value); UpdateFieldChoices(GetInputType(field));" onkeypress="var value = jQuery(this).is(':checked'); SetFieldProperty('enableOtherChoice', value); UpdateFieldChoices(GetInputType(field));" />
 			<label for="field_other_choice" class="inline">
-				<?php esc_html_e( 'Enable "other" choice', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Enable "other" choice', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_other_choice' ) ?>
 			</label>
 
@@ -1554,7 +1554,7 @@ class GFFormDetail {
 		<li class="email_confirm_setting field_setting">
 			<input type="checkbox" id="gfield_email_confirm_enabled" onclick="SetEmailConfirmation(this.checked);" onkeypress="SetEmailConfirmation(this.checked);" />
 			<label for="gfield_email_confirm_enabled" class="inline">
-				<?php esc_html_e( 'Enable Email Confirmation', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Enable Email Confirmation', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_email_confirm_enable' ) ?>
 			</label>
 		</li>
@@ -1564,7 +1564,7 @@ class GFFormDetail {
 		<li class="password_strength_setting field_setting">
 			<input type="checkbox" id="gfield_password_strength_enabled" onclick="TogglePasswordStrength(); SetPasswordStrength(this.checked);" onkeypress="TogglePasswordStrength(); SetPasswordStrength(this.checked);" />
 			<label for="gfield_password_strength_enabled" class="inline">
-				<?php esc_html_e( 'Enable Password Strength', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Enable Password Strength', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_password_strength_enable' ) ?>
 			</label>
 		</li>
@@ -1575,15 +1575,15 @@ class GFFormDetail {
 
 		<li id="gfield_min_strength_container">
 			<label for="gfield_min_strength">
-				<?php esc_html_e( 'Minimum Strength', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Minimum Strength', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_password_strength_enable' ) ?>
 			</label>
 			<select id="gfield_min_strength" onchange="SetFieldProperty('minPasswordStrength', jQuery(this).val());">
-				<option value=""><?php esc_html_e( 'None', 'gravityforms' ) ?></option>
-				<option value="short"><?php esc_html_e( 'Short', 'gravityforms' ) ?></option>
-				<option value="bad"><?php esc_html_e( 'Bad', 'gravityforms' ) ?></option>
-				<option value="good"><?php esc_html_e( 'Good', 'gravityforms' ) ?></option>
-				<option value="strong"><?php esc_html_e( 'Strong', 'gravityforms' ) ?></option>
+				<option value=""><?php esc_html_e( 'None', 'edforms' ) ?></option>
+				<option value="short"><?php esc_html_e( 'Short', 'edforms' ) ?></option>
+				<option value="bad"><?php esc_html_e( 'Bad', 'edforms' ) ?></option>
+				<option value="good"><?php esc_html_e( 'Good', 'edforms' ) ?></option>
+				<option value="strong"><?php esc_html_e( 'Strong', 'edforms' ) ?></option>
 			</select>
 		</li>
 
@@ -1593,13 +1593,13 @@ class GFFormDetail {
 
 		<li class="number_format_setting field_setting">
 			<label for="field_number_format" class="section_label">
-				<?php esc_html_e( 'Number Format', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Number Format', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_number_format' ) ?>
 			</label>
 			<select id="field_number_format" onchange="SetFieldProperty('numberFormat', this.value);jQuery('.field_calculation_rounding').toggle(this.value != 'currency');">
 				<option value="decimal_dot">9,999.99</option>
 				<option value="decimal_comma">9.999,99</option>
-				<option value="currency"><?php esc_html_e( 'Currency', 'gravityforms' ) ?></option>
+				<option value="currency"><?php esc_html_e( 'Currency', 'edforms' ) ?></option>
 			</select>
 
 		</li>
@@ -1608,7 +1608,7 @@ class GFFormDetail {
 
 		<li class="sub_labels_setting field_setting">
 			<label for="field_sub_labels" class="section_label">
-				<?php esc_html_e( 'Sub-Labels', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Sub-Labels', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_sub_labels' ) ?>
 			</label>
 
@@ -1624,7 +1624,7 @@ class GFFormDetail {
 		<?php do_action( 'gform_field_standard_settings', 1430, $form_id ); ?>
 		<li class="credit_card_setting field_setting">
 			<label class="section_label">
-				<?php esc_html_e( 'Supported Credit Cards', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Supported Credit Cards', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_credit_cards' ) ?>
 			</label>
 			<ul>
@@ -1645,12 +1645,12 @@ class GFFormDetail {
 		?>
 		<li class="credit_card_style_setting field_setting">
 			<label for="credit_card_style" class="section_label">
-				<?php esc_html_e( 'Card Icon Style', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Card Icon Style', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_card_style' ) ?>
 			</label>
 			<select id="credit_card_style" onchange="SetFieldProperty('creditCardStyle', this.value);">
-				<option value="style1"><?php esc_html_e( 'Standard', 'gravityforms' ) ?></option>
-				<option value="style2"><?php esc_html_e( '3D', 'gravityforms' ) ?></option>
+				<option value="style1"><?php esc_html_e( 'Standard', 'edforms' ) ?></option>
+				<option value="style2"><?php esc_html_e( '3D', 'edforms' ) ?></option>
 			</select>
 		</li>
 
@@ -1660,7 +1660,7 @@ class GFFormDetail {
 
 			<input type="checkbox" id="field_input_mask" onclick="ToggleInputMask();" onkeypress="ToggleInputMask();" />
 			<label for="field_input_mask" class="inline">
-				<?php esc_html_e( 'Input Mask', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Input Mask', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_mask' ) ?>
 			</label><br />
 
@@ -1671,13 +1671,13 @@ class GFFormDetail {
 				<div style="width:100px; float:left;">
 					<input type="radio" name="field_mask_option" id="field_mask_standard" size="10" onclick="ToggleInputMaskOptions();" onkeypress="ToggleInputMaskOptions();" />
 					<label for="field_mask_standard" class="inline">
-						<?php esc_html_e( 'Standard', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Standard', 'edforms' ); ?>
 					</label>
 				</div>
 				<div style="width:100px; float:left;">
 					<input type="radio" name="field_mask_option" id="field_mask_custom" size="10" onclick="ToggleInputMaskOptions();" onkeypress="ToggleInputMaskOptions();" />
 					<label for="field_mask_custom" class="inline">
-						<?php esc_html_e( 'Custom', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Custom', 'edforms' ); ?>
 					</label>
 				</div>
 
@@ -1686,56 +1686,56 @@ class GFFormDetail {
 				<input type="text" id="field_mask_text" size="35" />
 
 				<p class="mask_text_description" style="margin:5px 0 0;">
-					<?php esc_html_e( 'Enter a custom mask', 'gravityforms' ) ?>.
-					<a href="javascript:void(0);" onclick="tb_show('<?php echo esc_js( __( 'Custom Mask Instructions', 'gravityforms' ) ); ?>', '#TB_inline?width=350&amp;inlineId=custom_mask_instructions', '');" onkeypress="tb_show('<?php echo esc_js( __( 'Custom Mask Instructions', 'gravityforms' ) ); ?>', '#TB_inline?width=350&amp;inlineId=custom_mask_instructions', '');"><?php esc_html_e( 'Help', 'gravityforms' ) ?></a>
+					<?php esc_html_e( 'Enter a custom mask', 'edforms' ) ?>.
+					<a href="javascript:void(0);" onclick="tb_show('<?php echo esc_js( __( 'Custom Mask Instructions', 'edforms' ) ); ?>', '#TB_inline?width=350&amp;inlineId=custom_mask_instructions', '');" onkeypress="tb_show('<?php echo esc_js( __( 'Custom Mask Instructions', 'edforms' ) ); ?>', '#TB_inline?width=350&amp;inlineId=custom_mask_instructions', '');"><?php esc_html_e( 'Help', 'edforms' ) ?></a>
 				</p>
 
 				<div id="custom_mask_instructions" style="display:none;">
 					<div class="custom_mask_instructions">
 
-						<h4><?php esc_html_e( 'Usage', 'gravityforms' ) ?></h4>
+						<h4><?php esc_html_e( 'Usage', 'edforms' ) ?></h4>
 						<ul class="description-list">
-							<li><?php esc_html_e( "Use a '9' to indicate a numerical character.", 'gravityforms' ) ?></li>
-							<li><?php esc_html_e( "Use a lower case 'a' to indicate an alphabetical character.", 'gravityforms' ) ?></li>
-							<li><?php esc_html_e( "Use an asterisk '*' to indicate any alphanumeric character.", 'gravityforms' ) ?></li>
-							<li><?php esc_html_e( "Use a question mark '?' to indicate optional characters. Note: All characters after the question mark will be optional.", 'gravityforms' ) ?></li>
-							<li><?php esc_html_e( 'All other characters are literal values and will be displayed automatically.', 'gravityforms' ) ?></li>
+							<li><?php esc_html_e( "Use a '9' to indicate a numerical character.", 'edforms' ) ?></li>
+							<li><?php esc_html_e( "Use a lower case 'a' to indicate an alphabetical character.", 'edforms' ) ?></li>
+							<li><?php esc_html_e( "Use an asterisk '*' to indicate any alphanumeric character.", 'edforms' ) ?></li>
+							<li><?php esc_html_e( "Use a question mark '?' to indicate optional characters. Note: All characters after the question mark will be optional.", 'edforms' ) ?></li>
+							<li><?php esc_html_e( 'All other characters are literal values and will be displayed automatically.', 'edforms' ) ?></li>
 						</ul>
 
-						<h4><?php esc_html_e( 'Examples', 'gravityforms' ) ?></h4>
+						<h4><?php esc_html_e( 'Examples', 'edforms' ) ?></h4>
 						<ul class="examples-list">
 							<li>
-								<h5><?php esc_html_e( 'Date', 'gravityforms' ) ?></h5>
-								<span class="label"><?php esc_html_e( 'Mask', 'gravityforms' ) ?></span> <code>99/99/9999</code><br />
-								<span class="label"><?php esc_html_e( 'Valid Input', 'gravityforms' ) ?></span>
+								<h5><?php esc_html_e( 'Date', 'edforms' ) ?></h5>
+								<span class="label"><?php esc_html_e( 'Mask', 'edforms' ) ?></span> <code>99/99/9999</code><br />
+								<span class="label"><?php esc_html_e( 'Valid Input', 'edforms' ) ?></span>
 								<code>10/21/2011</code>
 							</li>
 							<li>
-								<h5><?php esc_html_e( 'Social Security Number', 'gravityforms' ) ?></h5>
-								<span class="label"><?php esc_html_e( 'Mask', 'gravityforms' ) ?></span>
+								<h5><?php esc_html_e( 'Social Security Number', 'edforms' ) ?></h5>
+								<span class="label"><?php esc_html_e( 'Mask', 'edforms' ) ?></span>
 								<code>999-99-9999</code><br />
-								<span class="label"><?php esc_html_e( 'Valid Input', 'gravityforms' ) ?></span>
+								<span class="label"><?php esc_html_e( 'Valid Input', 'edforms' ) ?></span>
 								<code>987-65-4329</code>
 							</li>
 							<li>
-								<h5><?php esc_html_e( 'Course Code', 'gravityforms' ) ?></h5>
-								<span class="label"><?php esc_html_e( 'Mask', 'gravityforms' ) ?></span>
+								<h5><?php esc_html_e( 'Course Code', 'edforms' ) ?></h5>
+								<span class="label"><?php esc_html_e( 'Mask', 'edforms' ) ?></span>
 								<code>aaa 999</code><br />
-								<span class="label"><?php esc_html_e( 'Valid Input', 'gravityforms' ) ?></span>
+								<span class="label"><?php esc_html_e( 'Valid Input', 'edforms' ) ?></span>
 								<code>BIO 101</code>
 							</li>
 							<li>
-								<h5><?php esc_html_e( 'License Key', 'gravityforms' ) ?></h5>
-								<span class="label"><?php esc_html_e( 'Mask', 'gravityforms' ) ?></span>
+								<h5><?php esc_html_e( 'License Key', 'edforms' ) ?></h5>
+								<span class="label"><?php esc_html_e( 'Mask', 'edforms' ) ?></span>
 								<code>***-***-***</code><br />
-								<span class="label"><?php esc_html_e( 'Valid Input', 'gravityforms' ) ?></span>
+								<span class="label"><?php esc_html_e( 'Valid Input', 'edforms' ) ?></span>
 								<code>a9a-f0c-28Q</code>
 							</li>
 							<li>
-								<h5><?php esc_html_e( 'Zip Code w/ Optional Plus Four', 'gravityforms' ) ?></h5>
-								<span class="label"><?php esc_html_e( 'Mask', 'gravityforms' ) ?></span>
+								<h5><?php esc_html_e( 'Zip Code w/ Optional Plus Four', 'edforms' ) ?></h5>
+								<span class="label"><?php esc_html_e( 'Mask', 'edforms' ) ?></span>
 								<code>99999?-9999</code><br />
-								<span class="label"><?php esc_html_e( 'Valid Input', 'gravityforms' ) ?></span>
+								<span class="label"><?php esc_html_e( 'Valid Input', 'edforms' ) ?></span>
 								<code>23462</code> or <code>23462-4062</code>
 							</li>
 						</ul>
@@ -1744,7 +1744,7 @@ class GFFormDetail {
 				</div>
 
 				<select id="field_mask_select" onchange="SetFieldProperty('inputMaskValue', jQuery(this).val());">
-					<option value=""><?php esc_html_e( 'Select a Mask', 'gravityforms' ); ?></option>
+					<option value=""><?php esc_html_e( 'Select a Mask', 'edforms' ); ?></option>
 					<?php
 					$masks = RGFormsModel::get_input_masks();
 					foreach ( $masks as $mask_name => $mask_value ) {
@@ -1763,7 +1763,7 @@ class GFFormDetail {
 
 		<li class="maxlen_setting field_setting">
 			<label for="field_maxlen" class="section_label">
-				<?php esc_html_e( 'Maximum Characters', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Maximum Characters', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_maxlength' ) ?>
 			</label>
 			<input type="text" id="field_maxlen" /></input>
@@ -1775,19 +1775,19 @@ class GFFormDetail {
 		<li class="range_setting field_setting">
 			<div style="clear:both;">
 
-				<label  class="section_label"><?php esc_html_e( 'Range', 'gravityforms' ); ?>
+				<label  class="section_label"><?php esc_html_e( 'Range', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_number_range' ) ?></label>
 			</div>
 			<div class="range_min">
 				<input type="text" id="field_range_min" />
 				<label for="field_range_min">
-					<?php esc_html_e( 'Min', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Min', 'edforms' ); ?>
 				</label>
 			</div>
 			<div class="range_max">
 				<input type="text" id="field_range_max" />
 				<label for="field_range_max">
-					<?php esc_html_e( 'Max', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Max', 'edforms' ); ?>
 				</label>
 
 			</div>
@@ -1803,7 +1803,7 @@ class GFFormDetail {
 			<div class="field_enable_calculation">
 				<input type="checkbox" id="field_enable_calculation" onclick="ToggleCalculationOptions(this.checked, field);" onkeypress="ToggleCalculationOptions(this.checked, field);" />
 				<label for="field_enable_calculation" class="inline">
-					<?php esc_html_e( 'Enable Calculation', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Enable Calculation', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_enable_calculation' ) ?>
 				</label>
 			</div>
@@ -1811,7 +1811,7 @@ class GFFormDetail {
 			<div id="calculation_options" style="display:none;margin-top:10px;">
 
 				<label for="field_calculation_formula">
-					<?php esc_html_e( 'Formula', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Formula', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_calculation_formula' ) ?>
 				</label>
 
@@ -1825,11 +1825,11 @@ class GFFormDetail {
 				</div>
 				<textarea id="field_calculation_formula" class="fieldwidth-3 fieldheight-2"></textarea>
 				<br />
-				<a href="javascript:void(0)" onclick="var field = GetSelectedField(); alert(IsValidFormula(field.calculationFormula) ? '<?php echo esc_js( __( 'The formula appears to be valid.', 'gravityforms' ) ); ?>' : '<?php echo esc_js( __( 'There appears to be a problem with the formula.', 'gravityforms' ) ); ?>');" onkeypress="var field = GetSelectedField(); alert(IsValidFormula(field.calculationFormula) ? '<?php echo esc_js( __( 'The formula appears to be valid.', 'gravityforms' ) ); ?>' : '<?php echo esc_js( __( 'There appears to be a problem with the formula.', 'gravityforms' ) ); ?>');"><?php esc_html_e( 'Validate Formula', 'gravityforms' ); ?></a>
+				<a href="javascript:void(0)" onclick="var field = GetSelectedField(); alert(IsValidFormula(field.calculationFormula) ? '<?php echo esc_js( __( 'The formula appears to be valid.', 'edforms' ) ); ?>' : '<?php echo esc_js( __( 'There appears to be a problem with the formula.', 'edforms' ) ); ?>');" onkeypress="var field = GetSelectedField(); alert(IsValidFormula(field.calculationFormula) ? '<?php echo esc_js( __( 'The formula appears to be valid.', 'edforms' ) ); ?>' : '<?php echo esc_js( __( 'There appears to be a problem with the formula.', 'edforms' ) ); ?>');"><?php esc_html_e( 'Validate Formula', 'edforms' ); ?></a>
 
 				<div class="field_calculation_rounding">
 					<label for="field_calculation_rounding" style="margin-top:10px;">
-						<?php esc_html_e( 'Rounding', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Rounding', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_calculation_rounding' ) ?>
 					</label>
 					<select id="field_calculation_rounding" onchange="SetFieldProperty('calculationRounding', this.value);">
@@ -1838,7 +1838,7 @@ class GFFormDetail {
 						<option value="2">2</option>
 						<option value="3">3</option>
 						<option value="4">4</option>
-						<option value="norounding"><?php esc_html_e( 'Do not round', 'gravityforms' ); ?></option>
+						<option value="norounding"><?php esc_html_e( 'Do not round', 'edforms' ); ?></option>
 					</select>
 				</div>
 
@@ -1853,13 +1853,13 @@ class GFFormDetail {
 		?>
 
 		<li class="rules_setting field_setting">
-			<label for="rules" class="section_label"><?php esc_html_e( 'Rules', 'gravityforms' ); ?></label>
+			<label for="rules" class="section_label"><?php esc_html_e( 'Rules', 'edforms' ); ?></label>
 
 			<ul class="rules_container">
 				<li>
 					<input type="checkbox" id="field_required" onclick="SetFieldRequired(this.checked);" onkeypress="SetFieldRequired(this.checked);" />
 					<label for="field_required" class="inline">
-					<?php esc_html_e( 'Required', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Required', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_required' ) ?>
 					</label>
 
@@ -1868,7 +1868,7 @@ class GFFormDetail {
 					<div class="duplicate_setting field_setting">
 						<input type="checkbox" id="field_no_duplicates" onclick="SetFieldProperty('noDuplicates', this.checked);" onkeypress="SetFieldProperty('noDuplicates', this.checked);" />
 						<label for="field_no_duplicates" class="inline">
-							<?php esc_html_e( 'No Duplicates', 'gravityforms' ); ?>
+							<?php esc_html_e( 'No Duplicates', 'edforms' ); ?>
 							<?php gform_tooltip( 'form_field_no_duplicate' ) ?>
 						</label>
 					</div>
@@ -1898,22 +1898,22 @@ class GFFormDetail {
 				?>
                 <li class="placeholder_setting field_setting">
                     <label for="field_placeholder" class="section_label">
-                        <?php esc_html_e( 'Placeholder', 'gravityforms' ); ?>
+                        <?php esc_html_e( 'Placeholder', 'edforms' ); ?>
                         <?php gform_tooltip( 'form_field_placeholder' ) ?>
                     </label>
                     <input type="text" id="field_placeholder" class="field_placeholder fieldwidth-2 merge-tag-support mt-position-right mt-prepopulate" />
-					<span id="placeholder_warning" style="display:none"><?php _e( 'Placeholder text is not supported when using the Rich Text Editor.', 'gravityforms' ); ?></span>
+					<span id="placeholder_warning" style="display:none"><?php _e( 'Placeholder text is not supported when using the Rich Text Editor.', 'edforms' ); ?></span>
                 </li>
 				<?php
 				do_action( 'gform_field_appearance_settings', 20, $form_id );
 				?>
 				<li class="placeholder_textarea_setting field_setting">
 					<label for="field_placeholder_textarea" class="section_label">
-						<?php esc_html_e( 'Placeholder', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Placeholder', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_placeholder' ) ?>
 					</label>
 					<textarea id="field_placeholder_textarea" class="field_placeholder fieldwidth-3 merge-tag-support mt-position-right mt-prepopulate"></textarea>
-					<span id="placeholder_warning" style="display:none"><?php _e( 'Placeholder text is not supported when using the Rich Text Editor.', 'gravityforms' ); ?></span>
+					<span id="placeholder_warning" style="display:none"><?php _e( 'Placeholder text is not supported when using the Rich Text Editor.', 'edforms' ); ?></span>
 				</li>
 				<?php
 				do_action( 'gform_field_appearance_settings', 50, $form_id );
@@ -1921,7 +1921,7 @@ class GFFormDetail {
 
                 <li class="input_placeholders_setting field_setting">
                     <label for="placeholders" class="section_label">
-                        <?php esc_html_e( 'Placeholders', 'gravityforms' ); ?>
+                        <?php esc_html_e( 'Placeholders', 'edforms' ); ?>
                         <?php gform_tooltip( 'form_field_input_placeholders' ) ?>
                     </label>
 
@@ -1936,43 +1936,43 @@ class GFFormDetail {
 				$label_placement_form_setting = rgar( $form, 'labelPlacement' );
 				switch ( $label_placement_form_setting ) {
 					case 'left_label' :
-						$label_placement_form_setting_label = __( 'Left aligned', 'gravityforms' );
+						$label_placement_form_setting_label = __( 'Left aligned', 'edforms' );
 						break;
 					case 'right_label' :
-						$label_placement_form_setting_label = __( 'Right aligned', 'gravityforms' );
+						$label_placement_form_setting_label = __( 'Right aligned', 'edforms' );
 						break;
 					case 'top_label' :
 					default :
-						$label_placement_form_setting_label = __( 'Top aligned', 'gravityforms' );
+						$label_placement_form_setting_label = __( 'Top aligned', 'edforms' );
 				}
 
 				$enable_label_visiblity_settings = apply_filters( 'gform_enable_field_label_visibility_settings', false );
 
 				$description_placement_form_setting       = rgar( $form, 'descriptionPlacement' );
-				$description_placement_form_setting_label = $description_placement_form_setting == 'above' ? $description_placement_form_setting_label = __( 'Above inputs', 'gravityforms' ) : $description_placement_form_setting_label = __( 'Below inputs', 'gravityforms' );
+				$description_placement_form_setting_label = $description_placement_form_setting == 'above' ? $description_placement_form_setting_label = __( 'Above inputs', 'edforms' ) : $description_placement_form_setting_label = __( 'Below inputs', 'edforms' );
 				?>
 				<li class="label_placement_setting field_setting">
 					<?php if ( $enable_label_visiblity_settings ) : ?>
 					<label for="field_label_placement" class="section_label">
-						<?php esc_html_e( 'Field Label Visibility', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Field Label Visibility', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_label_placement' ) ?>
 					</label>
 					<select id="field_label_placement" onchange="SetFieldLabelPlacement(jQuery(this).val());">
-						<option value=""><?php printf( __( 'Visible (%s)', 'gravityforms' ), esc_html( $label_placement_form_setting_label ) ); ?></option>
-						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
+						<option value=""><?php printf( __( 'Visible (%s)', 'edforms' ), esc_html( $label_placement_form_setting_label ) ); ?></option>
+						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'edforms' ); ?></option>
 					</select>
 					<?php endif ?>
 					<div id="field_description_placement_container" style="display:none; padding-top:10px;">
 						<label for="field_description_placement" class="section_label">
-							<?php esc_html_e( 'Description Placement', 'gravityforms' ); ?>
+							<?php esc_html_e( 'Description Placement', 'edforms' ); ?>
 							<?php gform_tooltip( 'form_field_description_placement' ) ?>
 						</label>
 						<select id="field_description_placement"
 						        onchange="SetFieldDescriptionPlacement(jQuery(this).val());">
 							<option
-								value=""><?php printf( __( 'Use Form Setting (%s)', 'gravityforms' ), esc_html( $description_placement_form_setting_label ) ); ?></option>
-							<option value="below"><?php esc_html_e( 'Below inputs', 'gravityforms' ); ?></option>
-							<option value="above"><?php esc_html_e( 'Above inputs', 'gravityforms' ); ?></option>
+								value=""><?php printf( __( 'Use Form Setting (%s)', 'edforms' ), esc_html( $description_placement_form_setting_label ) ); ?></option>
+							<option value="below"><?php esc_html_e( 'Below inputs', 'edforms' ); ?></option>
+							<option value="above"><?php esc_html_e( 'Above inputs', 'edforms' ); ?></option>
 						</select>
 					</div>
 				</li>
@@ -1981,21 +1981,21 @@ class GFFormDetail {
 				do_action( 'gform_field_appearance_settings', 150, $form_id );
 
 				$sub_label_placement_form_setting       = rgar( $form, 'subLabelPlacement' );
-				$sub_label_placement_form_setting_label = $sub_label_placement_form_setting == 'above' ? $sub_label_placement_form_setting_label = __( 'Above inputs', 'gravityforms' ) : $sub_label_placement_form_setting_label = __( 'Below inputs', 'gravityforms' );
+				$sub_label_placement_form_setting_label = $sub_label_placement_form_setting == 'above' ? $sub_label_placement_form_setting_label = __( 'Above inputs', 'edforms' ) : $sub_label_placement_form_setting_label = __( 'Below inputs', 'edforms' );
 				?>
 				<li class="sub_label_placement_setting field_setting">
 					<label for="field_sub_label_placement" class="section_label">
-						<?php esc_html_e( 'Sub-Label Placement', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Sub-Label Placement', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_sub_label_placement' ) ?>
 					</label>
 					<select id="field_sub_label_placement"
 					        onchange="SetFieldSubLabelPlacement(jQuery(this).val());">
 						<option
-							value=""><?php printf( __( 'Use Form Setting (%s)', 'gravityforms' ), esc_html( $sub_label_placement_form_setting_label ) ); ?></option>
-						<option value="below"><?php esc_html_e( 'Below inputs', 'gravityforms' ); ?></option>
-						<option value="above"><?php esc_html_e( 'Above inputs', 'gravityforms' ); ?></option>
+							value=""><?php printf( __( 'Use Form Setting (%s)', 'edforms' ), esc_html( $sub_label_placement_form_setting_label ) ); ?></option>
+						<option value="below"><?php esc_html_e( 'Below inputs', 'edforms' ); ?></option>
+						<option value="above"><?php esc_html_e( 'Above inputs', 'edforms' ); ?></option>
 						<?php if ( $enable_label_visiblity_settings ) : ?>
-						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'gravityforms' ); ?></option>
+						<option value="hidden_label"><?php esc_html_e( 'Hidden', 'edforms' ); ?></option>
 						<?php endif; ?>
 
 					</select>
@@ -2005,7 +2005,7 @@ class GFFormDetail {
 
 				<li class="error_message_setting field_setting">
                     <label for="field_error_message" class="section_label">
-                        <?php esc_html_e( 'Custom Validation Message', 'gravityforms' ); ?>
+                        <?php esc_html_e( 'Custom Validation Message', 'edforms' ); ?>
                         <?php gform_tooltip( 'form_field_validation_message' ) ?>
                     </label>
                     <input type="text" id="field_error_message" class="fieldwidth-2" />
@@ -2017,7 +2017,7 @@ class GFFormDetail {
 
                 <li class="css_class_setting field_setting">
                     <label for="field_css_class" class="section_label">
-                        <?php esc_html_e( 'Custom CSS Class', 'gravityforms' ); ?>
+                        <?php esc_html_e( 'Custom CSS Class', 'edforms' ); ?>
                         <?php gform_tooltip( 'form_field_css_class' ) ?>
                     </label>
                     <input type="text" id="field_css_class" size="30" />
@@ -2030,7 +2030,7 @@ class GFFormDetail {
 				<li class="enable_enhanced_ui_setting field_setting">
                     <input type="checkbox" id="gfield_enable_enhanced_ui" onclick="SetFieldProperty('enableEnhancedUI', jQuery(this).is(':checked') ? 1 : 0);" onkeypress="SetFieldProperty('enableEnhancedUI', jQuery(this).is(':checked') ? 1 : 0);" />
                     <label for="gfield_enable_enhanced_ui" class="inline">
-                        <?php esc_html_e( 'Enable enhanced user interface', 'gravityforms' ); ?>
+                        <?php esc_html_e( 'Enable enhanced user interface', 'edforms' ); ?>
                         <?php gform_tooltip( 'form_field_enable_enhanced_ui' ) ?>
                     </label>
                 </li>
@@ -2041,13 +2041,13 @@ class GFFormDetail {
 
 				<li class="size_setting field_setting">
 					<label for="field_size" class="section_label">
-						<?php esc_html_e( 'Field Size', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Field Size', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_size' ) ?>
 					</label>
 					<select id="field_size" onchange="SetFieldSize(jQuery(this).val());">
-						<option value="small"><?php esc_html_e( 'Small', 'gravityforms' ); ?></option>
-						<option value="medium"><?php esc_html_e( 'Medium', 'gravityforms' ); ?></option>
-						<option value="large"><?php esc_html_e( 'Large', 'gravityforms' ); ?></option>
+						<option value="small"><?php esc_html_e( 'Small', 'edforms' ); ?></option>
+						<option value="medium"><?php esc_html_e( 'Medium', 'edforms' ); ?></option>
+						<option value="large"><?php esc_html_e( 'Large', 'edforms' ); ?></option>
 					</select>
 				</li>
 
@@ -2073,7 +2073,7 @@ class GFFormDetail {
 		?>
 		<li class="admin_label_setting field_setting">
 			<label for="field_admin_label" class="section_label">
-				<?php esc_html_e( 'Admin Field Label', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Admin Field Label', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_admin_label' ) ?>
 			</label>
 			<input type="text" id="field_admin_label" size="35" />
@@ -2087,7 +2087,7 @@ class GFFormDetail {
 		?>
 		<li class="default_value_setting field_setting">
 			<label for="field_default_value" class="section_label">
-				<?php esc_html_e( 'Default Value', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Default Value', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_default_value' ) ?>
 			</label>
 			<input type="text" id="field_default_value" class="field_default_value fieldwidth-2 merge-tag-support mt-position-right mt-prepopulate" />
@@ -2097,7 +2097,7 @@ class GFFormDetail {
 		?>
 		<li class="default_value_textarea_setting field_setting">
 			<label for="field_default_value_textarea" class="section_label">
-				<?php esc_html_e( 'Default Value', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Default Value', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_default_value' ) ?>
 			</label>
 			<textarea id="field_default_value_textarea" class="field_default_value fieldwidth-3 merge-tag-support mt-position-right mt-prepopulate"></textarea>
@@ -2106,12 +2106,12 @@ class GFFormDetail {
 		do_action( 'gform_field_advanced_settings', 155, $form_id );
 		?>
 		<li class="name_prefix_choices_setting field_setting" style="display:none;">
-			<?php esc_html_e( 'Prefix Choices', 'gravityforms' ); ?>
+			<?php esc_html_e( 'Prefix Choices', 'edforms' ); ?>
 		<?php gform_tooltip( 'form_field_name_prefix_choices' ) ?>
 		<br />
 
 		<div id="gfield_settings_prefix_input_choices_container" class="gfield_settings_input_choices_container">
-			<label class="gfield_choice_header_label"><?php esc_html_e( 'Label', 'gravityforms' ) ?></label><label class="gfield_choice_header_value"><?php esc_html_e( 'Value', 'gravityforms' ) ?></label>
+			<label class="gfield_choice_header_label"><?php esc_html_e( 'Label', 'edforms' ) ?></label><label class="gfield_choice_header_value"><?php esc_html_e( 'Value', 'edforms' ) ?></label>
 			<ul id="field_prefix_choices" class="field_input_choices">
 				<!-- content dynamically created from js.php -->
 			</ul>
@@ -2122,7 +2122,7 @@ class GFFormDetail {
 		?>
 		<li class="default_input_values_setting field_setting">
 			<label for="default values" class="section_label">
-				<?php esc_html_e( 'Default Values', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Default Values', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_default_input_values' ) ?>
 			</label>
 
@@ -2137,24 +2137,24 @@ class GFFormDetail {
 		<li class="copy_values_option field_setting">
 			<input type="checkbox" id="field_enable_copy_values_option" />
 			<label for="field_enable_copy_values_option" class="inline">
-				<?php esc_html_e( 'Display option to use the values submitted in different field', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Display option to use the values submitted in different field', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_enable_copy_values_option' ) ?>
 			</label>
 
 			<div id="field_copy_values_disabled" style="display:none;padding-top: 10px;">
 	            <span class="instruction" style="margin-left:0">
-	                <?php esc_html_e( 'To activate this option, please add a field to be used as the source.', 'gravityforms' ); ?>
+	                <?php esc_html_e( 'To activate this option, please add a field to be used as the source.', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_enable_copy_values_disabled' ) ?>
 	            </span>
 			</div>
 			<div id="field_copy_values_container" style="display:none;" class="gfield_sub_setting">
 				<label for="field_copy_values_option_label">
-					<?php esc_html_e( 'Option Label', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Option Label', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_copy_values_option_label' ) ?>
 				</label>
 				<input id="field_copy_values_option_label" type="text" class="fieldwidth-2" />
 				<label for="field_copy_values_option_field" style="padding-top: 10px;">
-					<?php esc_html_e( 'Source Field', 'gravityforms' ); ?>
+					<?php esc_html_e( 'Source Field', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_field_copy_values_option_field' ) ?>
 				</label>
 				<select id="field_copy_values_option_field">
@@ -2164,7 +2164,7 @@ class GFFormDetail {
 				<div style="padding-top: 10px;">
 					<input type="checkbox" id="field_copy_values_option_default" />
 					<label for="field_copy_values_option_default" class="inline">
-						<?php esc_html_e( 'Activated by default', 'gravityforms' ); ?>
+						<?php esc_html_e( 'Activated by default', 'edforms' ); ?>
 						<?php gform_tooltip( 'form_field_copy_values_option_default' ) ?>
 					</label>
 				</div>
@@ -2178,81 +2178,81 @@ class GFFormDetail {
 		?>
 		<li class="captcha_language_setting field_setting">
 			<label for="field_captcha_language" class="section_label">
-				<?php esc_html_e( 'Language', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Language', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_recaptcha_language' ) ?>
 			</label>
 
 			<select id="field_captcha_language" onchange="SetFieldProperty('captchaLanguage', this.value);">
-				<option value="ar"><?php esc_html_e( 'Arabic', 'gravityforms' ); ?></option>
-				<option value="af"><?php esc_html_e( 'Afrikaans', 'gravityforms' ); ?></option>
-				<option value="am"><?php esc_html_e( 'Amharic', 'gravityforms' ); ?></option>
-				<option value="hy"><?php esc_html_e( 'Armenian', 'gravityforms' ); ?></option>
-				<option value="az"><?php esc_html_e( 'Azerbaijani', 'gravityforms' ); ?></option>
-				<option value="eu"><?php esc_html_e( 'Basque', 'gravityforms' ); ?></option>
-				<option value="bn"><?php esc_html_e( 'Bengali', 'gravityforms' ); ?></option>
-				<option value="bg"><?php esc_html_e( 'Bulgarian', 'gravityforms' ); ?></option>
-				<option value="ca"><?php esc_html_e( 'Catalan', 'gravityforms' ); ?></option>
-				<option value="zh-HK"><?php esc_html_e( 'Chinese (Hong Kong)', 'gravityforms' ); ?></option>
-				<option value="zh-CN"><?php esc_html_e( 'Chinese (Simplified)', 'gravityforms' ); ?></option>
-				<option value="zh-TW"><?php esc_html_e( 'Chinese (Traditional)', 'gravityforms' ); ?></option>
-				<option value="hr"><?php esc_html_e( 'Croatian', 'gravityforms' ); ?></option>
-				<option value="cs"><?php esc_html_e( 'Czech', 'gravityforms' ); ?></option>
-				<option value="da"><?php esc_html_e( 'Danish', 'gravityforms' ); ?></option>
-				<option value="nl"><?php esc_html_e( 'Dutch', 'gravityforms' ); ?></option>
-				<option value="en-GB"><?php esc_html_e( 'English (UK)', 'gravityforms' ); ?></option>
-				<option value="en"><?php esc_html_e( 'English (US)', 'gravityforms' ); ?></option>
-				<option value="et"><?php esc_html_e( 'Estonian', 'gravityforms' ); ?></option>
-				<option value="fil"><?php esc_html_e( 'Filipino', 'gravityforms' ); ?></option>
-				<option value="fi"><?php esc_html_e( 'Finnish', 'gravityforms' ); ?></option>
-				<option value="fr"><?php esc_html_e( 'French', 'gravityforms' ); ?></option>
-				<option value="fr-CA"><?php esc_html_e( 'French (Canadian)', 'gravityforms' ); ?></option>
-				<option value="gl"><?php esc_html_e( 'Galician', 'gravityforms' ); ?></option>
-				<option value="ka"><?php esc_html_e( 'Georgian', 'gravityforms' ); ?></option>
-				<option value="de"><?php esc_html_e( 'German', 'gravityforms' ); ?></option>
-				<option value="de-AT"><?php esc_html_e( 'German (Austria)', 'gravityforms' ); ?></option>
-				<option value="de-CH"><?php esc_html_e( 'German (Switzerland)', 'gravityforms' ); ?></option>
-				<option value="el"><?php esc_html_e( 'Greek', 'gravityforms' ); ?></option>
-				<option value="gu"><?php esc_html_e( 'Gujarati', 'gravityforms' ); ?></option>
-				<option value="iw"><?php esc_html_e( 'Hebrew', 'gravityforms' ); ?></option>
-				<option value="hi"><?php esc_html_e( 'Hindi', 'gravityforms' ); ?></option>
-				<option value="hu"><?php esc_html_e( 'Hungarian', 'gravityforms' ); ?></option>
-				<option value="is"><?php esc_html_e( 'Icelandic', 'gravityforms' ); ?></option>
-				<option value="id"><?php esc_html_e( 'Indonesian', 'gravityforms' ); ?></option>
-				<option value="it"><?php esc_html_e( 'Italian', 'gravityforms' ); ?></option>
-				<option value="ja"><?php esc_html_e( 'Japanese', 'gravityforms' ); ?></option>
-				<option value="kn"><?php esc_html_e( 'Kannada', 'gravityforms' ); ?></option>
-				<option value="ko"><?php esc_html_e( 'Korean', 'gravityforms' ); ?></option>
-				<option value="lo"><?php esc_html_e( 'Laothian', 'gravityforms' ); ?></option>
-				<option value="lv"><?php esc_html_e( 'Latvian', 'gravityforms' ); ?></option>
-				<option value="lt"><?php esc_html_e( 'Lithuanian', 'gravityforms' ); ?></option>
-				<option value="ms"><?php esc_html_e( 'Malay', 'gravityforms' ); ?></option>
-				<option value="ml"><?php esc_html_e( 'Malayalam', 'gravityforms' ); ?></option>
-				<option value="mr"><?php esc_html_e( 'Marathi', 'gravityforms' ); ?></option>
-				<option value="mn"><?php esc_html_e( 'Mongolian', 'gravityforms' ); ?></option>
-				<option value="no"><?php esc_html_e( 'Norwegian', 'gravityforms' ); ?></option>
-				<option value="fa"><?php esc_html_e( 'Persian', 'gravityforms' ); ?></option>
-				<option value="pl"><?php esc_html_e( 'Polish', 'gravityforms' ); ?></option>
-				<option value="pt"><?php esc_html_e( 'Portuguese', 'gravityforms' ); ?></option>
-				<option value="pt-BR"><?php esc_html_e( 'Portuguese (Brazil)', 'gravityforms' ); ?></option>
-				<option value="pt-PT"><?php esc_html_e( 'Portuguese (Portugal)', 'gravityforms' ); ?></option>
-				<option value="ro"><?php esc_html_e( 'Romanian', 'gravityforms' ); ?></option>
-				<option value="ru"><?php esc_html_e( 'Russian', 'gravityforms' ); ?></option>
-				<option value="sr"><?php esc_html_e( 'Serbian', 'gravityforms' ); ?></option>
-				<option value="si"><?php esc_html_e( 'Sinhalese', 'gravityforms' ); ?></option>
-				<option value="sk"><?php esc_html_e( 'Slovak', 'gravityforms' ); ?></option>
-				<option value="sl"><?php esc_html_e( 'Slovenian', 'gravityforms' ); ?></option>
-				<option value="es"><?php esc_html_e( 'Spanish', 'gravityforms' ); ?></option>
-				<option value="es-419"><?php esc_html_e( 'Spanish (Latin America)', 'gravityforms' ); ?></option>
-				<option value="sw"><?php esc_html_e( 'Swahili', 'gravityforms' ); ?></option>
-				<option value="sv"><?php esc_html_e( 'Swedish', 'gravityforms' ); ?></option>
-				<option value="ta"><?php esc_html_e( 'Tamil', 'gravityforms' ); ?></option>
-				<option value="te"><?php esc_html_e( 'Telugu', 'gravityforms' ); ?></option>
-				<option value="th"><?php esc_html_e( 'Thai', 'gravityforms' ); ?></option>
-				<option value="tr"><?php esc_html_e( 'Turkish', 'gravityforms' ); ?></option>
-				<option value="uk"><?php esc_html_e( 'Ukrainian', 'gravityforms' ); ?></option>
-				<option value="ur"><?php esc_html_e( 'Urdu', 'gravityforms' ); ?></option>
-				<option value="vi"><?php esc_html_e( 'Vietnamese', 'gravityforms' ); ?></option>
-				<option value="zu"><?php esc_html_e( 'Zulu', 'gravityforms' ); ?></option>
+				<option value="ar"><?php esc_html_e( 'Arabic', 'edforms' ); ?></option>
+				<option value="af"><?php esc_html_e( 'Afrikaans', 'edforms' ); ?></option>
+				<option value="am"><?php esc_html_e( 'Amharic', 'edforms' ); ?></option>
+				<option value="hy"><?php esc_html_e( 'Armenian', 'edforms' ); ?></option>
+				<option value="az"><?php esc_html_e( 'Azerbaijani', 'edforms' ); ?></option>
+				<option value="eu"><?php esc_html_e( 'Basque', 'edforms' ); ?></option>
+				<option value="bn"><?php esc_html_e( 'Bengali', 'edforms' ); ?></option>
+				<option value="bg"><?php esc_html_e( 'Bulgarian', 'edforms' ); ?></option>
+				<option value="ca"><?php esc_html_e( 'Catalan', 'edforms' ); ?></option>
+				<option value="zh-HK"><?php esc_html_e( 'Chinese (Hong Kong)', 'edforms' ); ?></option>
+				<option value="zh-CN"><?php esc_html_e( 'Chinese (Simplified)', 'edforms' ); ?></option>
+				<option value="zh-TW"><?php esc_html_e( 'Chinese (Traditional)', 'edforms' ); ?></option>
+				<option value="hr"><?php esc_html_e( 'Croatian', 'edforms' ); ?></option>
+				<option value="cs"><?php esc_html_e( 'Czech', 'edforms' ); ?></option>
+				<option value="da"><?php esc_html_e( 'Danish', 'edforms' ); ?></option>
+				<option value="nl"><?php esc_html_e( 'Dutch', 'edforms' ); ?></option>
+				<option value="en-GB"><?php esc_html_e( 'English (UK)', 'edforms' ); ?></option>
+				<option value="en"><?php esc_html_e( 'English (US)', 'edforms' ); ?></option>
+				<option value="et"><?php esc_html_e( 'Estonian', 'edforms' ); ?></option>
+				<option value="fil"><?php esc_html_e( 'Filipino', 'edforms' ); ?></option>
+				<option value="fi"><?php esc_html_e( 'Finnish', 'edforms' ); ?></option>
+				<option value="fr"><?php esc_html_e( 'French', 'edforms' ); ?></option>
+				<option value="fr-CA"><?php esc_html_e( 'French (Canadian)', 'edforms' ); ?></option>
+				<option value="gl"><?php esc_html_e( 'Galician', 'edforms' ); ?></option>
+				<option value="ka"><?php esc_html_e( 'Georgian', 'edforms' ); ?></option>
+				<option value="de"><?php esc_html_e( 'German', 'edforms' ); ?></option>
+				<option value="de-AT"><?php esc_html_e( 'German (Austria)', 'edforms' ); ?></option>
+				<option value="de-CH"><?php esc_html_e( 'German (Switzerland)', 'edforms' ); ?></option>
+				<option value="el"><?php esc_html_e( 'Greek', 'edforms' ); ?></option>
+				<option value="gu"><?php esc_html_e( 'Gujarati', 'edforms' ); ?></option>
+				<option value="iw"><?php esc_html_e( 'Hebrew', 'edforms' ); ?></option>
+				<option value="hi"><?php esc_html_e( 'Hindi', 'edforms' ); ?></option>
+				<option value="hu"><?php esc_html_e( 'Hungarian', 'edforms' ); ?></option>
+				<option value="is"><?php esc_html_e( 'Icelandic', 'edforms' ); ?></option>
+				<option value="id"><?php esc_html_e( 'Indonesian', 'edforms' ); ?></option>
+				<option value="it"><?php esc_html_e( 'Italian', 'edforms' ); ?></option>
+				<option value="ja"><?php esc_html_e( 'Japanese', 'edforms' ); ?></option>
+				<option value="kn"><?php esc_html_e( 'Kannada', 'edforms' ); ?></option>
+				<option value="ko"><?php esc_html_e( 'Korean', 'edforms' ); ?></option>
+				<option value="lo"><?php esc_html_e( 'Laothian', 'edforms' ); ?></option>
+				<option value="lv"><?php esc_html_e( 'Latvian', 'edforms' ); ?></option>
+				<option value="lt"><?php esc_html_e( 'Lithuanian', 'edforms' ); ?></option>
+				<option value="ms"><?php esc_html_e( 'Malay', 'edforms' ); ?></option>
+				<option value="ml"><?php esc_html_e( 'Malayalam', 'edforms' ); ?></option>
+				<option value="mr"><?php esc_html_e( 'Marathi', 'edforms' ); ?></option>
+				<option value="mn"><?php esc_html_e( 'Mongolian', 'edforms' ); ?></option>
+				<option value="no"><?php esc_html_e( 'Norwegian', 'edforms' ); ?></option>
+				<option value="fa"><?php esc_html_e( 'Persian', 'edforms' ); ?></option>
+				<option value="pl"><?php esc_html_e( 'Polish', 'edforms' ); ?></option>
+				<option value="pt"><?php esc_html_e( 'Portuguese', 'edforms' ); ?></option>
+				<option value="pt-BR"><?php esc_html_e( 'Portuguese (Brazil)', 'edforms' ); ?></option>
+				<option value="pt-PT"><?php esc_html_e( 'Portuguese (Portugal)', 'edforms' ); ?></option>
+				<option value="ro"><?php esc_html_e( 'Romanian', 'edforms' ); ?></option>
+				<option value="ru"><?php esc_html_e( 'Russian', 'edforms' ); ?></option>
+				<option value="sr"><?php esc_html_e( 'Serbian', 'edforms' ); ?></option>
+				<option value="si"><?php esc_html_e( 'Sinhalese', 'edforms' ); ?></option>
+				<option value="sk"><?php esc_html_e( 'Slovak', 'edforms' ); ?></option>
+				<option value="sl"><?php esc_html_e( 'Slovenian', 'edforms' ); ?></option>
+				<option value="es"><?php esc_html_e( 'Spanish', 'edforms' ); ?></option>
+				<option value="es-419"><?php esc_html_e( 'Spanish (Latin America)', 'edforms' ); ?></option>
+				<option value="sw"><?php esc_html_e( 'Swahili', 'edforms' ); ?></option>
+				<option value="sv"><?php esc_html_e( 'Swedish', 'edforms' ); ?></option>
+				<option value="ta"><?php esc_html_e( 'Tamil', 'edforms' ); ?></option>
+				<option value="te"><?php esc_html_e( 'Telugu', 'edforms' ); ?></option>
+				<option value="th"><?php esc_html_e( 'Thai', 'edforms' ); ?></option>
+				<option value="tr"><?php esc_html_e( 'Turkish', 'edforms' ); ?></option>
+				<option value="uk"><?php esc_html_e( 'Ukrainian', 'edforms' ); ?></option>
+				<option value="ur"><?php esc_html_e( 'Urdu', 'edforms' ); ?></option>
+				<option value="vi"><?php esc_html_e( 'Vietnamese', 'edforms' ); ?></option>
+				<option value="zu"><?php esc_html_e( 'Zulu', 'edforms' ); ?></option>
 			</select>
 		</li>
 		<?php
@@ -2261,7 +2261,7 @@ class GFFormDetail {
 		?>
 		<li class="add_icon_url_setting field_setting">
 			<label for="field_add_icon_url" class="section_label">
-				<?php esc_html_e( 'Add Icon URL', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Add Icon URL', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_add_icon_url' ) ?>
 			</label>
 			<input type="text" id="field_add_icon_url" class="fieldwidth-2" />
@@ -2271,7 +2271,7 @@ class GFFormDetail {
 		?>
 		<li class="delete_icon_url_setting field_setting">
 			<label for="field_delete_icon_url" class="section_label">
-				<?php esc_html_e( 'Delete Icon URL', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Delete Icon URL', 'edforms' ); ?>
 				<?php gform_tooltip( 'form_field_delete_icon_url' ) ?>
 			</label>
 			<input type="text" id="field_delete_icon_url" class="fieldwidth-2" />
@@ -2281,7 +2281,7 @@ class GFFormDetail {
 		?>
 		<li class="password_field_setting field_setting">
 			<input type="checkbox" id="field_password" onclick="SetPasswordProperty(this.checked);" onkeypress="SetPasswordProperty(this.checked);" />
-			<label for="field_password" class="inline"><?php esc_html_e( 'Enable Password Input', 'gravityforms' ) ?><?php gform_tooltip( 'form_field_password' ) ?></label>
+			<label for="field_password" class="inline"><?php esc_html_e( 'Enable Password Input', 'edforms' ) ?><?php gform_tooltip( 'form_field_password' ) ?></label>
 		</li>
 
 		<?php
@@ -2289,14 +2289,14 @@ class GFFormDetail {
 		?>
 		<li class="force_ssl_field_setting field_setting">
 			<input type="checkbox" id="field_force_ssl" onclick="SetFieldProperty('forceSSL', this.checked);" onkeypress="SetFieldProperty('forceSSL', this.checked);" />
-			<label for="field_force_ssl" class="inline"><?php esc_html_e( 'Force SSL', 'gravityforms' ) ?><?php gform_tooltip( 'form_field_force_ssl' ) ?></label>
+			<label for="field_force_ssl" class="inline"><?php esc_html_e( 'Force SSL', 'edforms' ) ?><?php gform_tooltip( 'form_field_force_ssl' ) ?></label>
 		</li>
 
 		<?php
 		do_action( 'gform_field_advanced_settings', 400, $form_id );
 		?>
 		<li class="visibility_setting field_setting">
-			<label for="visibility" class="section_label"><?php esc_html_e( 'Visibility', 'gravityforms' ); ?> <?php gform_tooltip( 'form_field_visibility' ) ?></label>
+			<label for="visibility" class="section_label"><?php esc_html_e( 'Visibility', 'edforms' ); ?> <?php gform_tooltip( 'form_field_visibility' ) ?></label>
 			<div>
 				<?php foreach( GFCommon::get_visibility_options() as $visibility_option ):
 					$slug = sanitize_title_with_dashes( $visibility_option['value'] );
@@ -2319,7 +2319,7 @@ class GFFormDetail {
 		?>
 		<li class="rich_text_editor_setting field_setting">
 			<input type="checkbox" id="field_rich_text_editor" onclick="ToggleRichTextEditor( this.checked );"/>
-			<label for="field_rich_text_editor" class="inline"><?php _e( 'Use the Rich Text Editor', 'gravityforms' ) ?> <?php gform_tooltip( 'form_field_rich_text_editor' ) ?></label>
+			<label for="field_rich_text_editor" class="inline"><?php _e( 'Use the Rich Text Editor', 'edforms' ) ?> <?php gform_tooltip( 'form_field_rich_text_editor' ) ?></label>
 		</li>
 
 		<?php
@@ -2327,7 +2327,7 @@ class GFFormDetail {
 		?>
 		<li class="prepopulate_field_setting field_setting">
 			<input type="checkbox" id="field_prepopulate" onclick="SetFieldProperty('allowsPrepopulate', this.checked); ToggleInputName()" onkeypress="SetFieldProperty('allowsPrepopulate', this.checked); ToggleInputName()" />
-			<label for="field_prepopulate" class="inline"><?php esc_html_e( 'Allow field to be populated dynamically', 'gravityforms' ) ?> <?php gform_tooltip( 'form_field_prepopulate' ) ?></label>
+			<label for="field_prepopulate" class="inline"><?php esc_html_e( 'Allow field to be populated dynamically', 'edforms' ) ?> <?php gform_tooltip( 'form_field_prepopulate' ) ?></label>
 			<br />
 
 			<div id="field_input_name_container" style="display:none; padding-top:10px;">
@@ -2339,7 +2339,7 @@ class GFFormDetail {
 		?>
 		<li class="conditional_logic_field_setting field_setting">
 			<input type="checkbox" id="field_conditional_logic" onclick="SetFieldProperty('conditionalLogic', this.checked ? new ConditionalLogic() : null); ToggleConditionalLogic(false, 'field');" onkeypress="SetFieldProperty('conditionalLogic', this.checked ? new ConditionalLogic() : null); ToggleConditionalLogic(false, 'field');" />
-			<label for="field_conditional_logic" class="inline"><?php esc_html_e( 'Enable Conditional Logic', 'gravityforms' ) ?> <?php gform_tooltip( 'form_field_conditional_logic' ) ?></label>
+			<label for="field_conditional_logic" class="inline"><?php esc_html_e( 'Enable Conditional Logic', 'edforms' ) ?> <?php gform_tooltip( 'form_field_conditional_logic' ) ?></label>
 			<br />
 
 			<div id="field_conditional_logic_container" style="display:none; padding-top:10px;">
@@ -2352,7 +2352,7 @@ class GFFormDetail {
 		?>
 		<li class="conditional_logic_page_setting field_setting">
 			<input type="checkbox" id="page_conditional_logic" onclick="SetFieldProperty('conditionalLogic', this.checked ? new ConditionalLogic() : null); ToggleConditionalLogic(false, 'page');" onkeypress="SetFieldProperty('conditionalLogic', this.checked ? new ConditionalLogic() : null); ToggleConditionalLogic(false, 'page');" />
-			<label for="page_conditional_logic" class="inline"><?php esc_html_e( 'Enable Page Conditional Logic', 'gravityforms' ) ?> <?php gform_tooltip( 'form_page_conditional_logic' ) ?></label>
+			<label for="page_conditional_logic" class="inline"><?php esc_html_e( 'Enable Page Conditional Logic', 'edforms' ) ?> <?php gform_tooltip( 'form_page_conditional_logic' ) ?></label>
 			<br />
 
 			<div id="page_conditional_logic_container" style="display:none; padding-top:10px;">
@@ -2365,7 +2365,7 @@ class GFFormDetail {
 		?>
 		<li class="conditional_logic_nextbutton_setting field_setting">
 			<input type="checkbox" id="next_button_conditional_logic" onclick="SetNextButtonConditionalLogic(this.checked); ToggleConditionalLogic(false, 'next_button');" onkeypress="SetNextButtonConditionalLogic(this.checked); ToggleConditionalLogic(false, 'next_button');" />
-			<label for="next_button_conditional_logic" class="inline"><?php esc_html_e( 'Enable Next Button Conditional Logic', 'gravityforms' ) ?> <?php gform_tooltip( 'form_nextbutton_conditional_logic' ) ?></label>
+			<label for="next_button_conditional_logic" class="inline"><?php esc_html_e( 'Enable Next Button Conditional Logic', 'edforms' ) ?> <?php gform_tooltip( 'form_nextbutton_conditional_logic' ) ?></label>
 			<br />
 
 			<div id="next_button_conditional_logic_container" style="display:none; padding-top:10px;">
@@ -2415,7 +2415,7 @@ class GFFormDetail {
 					<!--end add button boxes -->
 
 					<?php
-					$save_button_text = __( 'Update', 'gravityforms' );
+					$save_button_text = __( 'Update', 'edforms' );
 
 					$save_button      = '<input type="button" class="button button-large button-primary update-form" value="' . $save_button_text . '" onclick="SaveForm();" onkeypress="SaveForm();" />';
 
@@ -2427,7 +2427,7 @@ class GFFormDetail {
 					$save_button = apply_filters( 'gform_save_form_button', $save_button );
 					echo $save_button;
 
-					$cancel_button = '<a href="' . admin_url( 'admin.php?page=gf_edit_forms' ) . '" class="button button-large cancel-update-form">' . esc_html__( 'Cancel', 'gravityforms' ) . '</a>';
+					$cancel_button = '<a href="' . admin_url( 'admin.php?page=gf_edit_forms' ) . '" class="button button-large cancel-update-form">' . esc_html__( 'Cancel', 'edforms' ) . '</a>';
 
 					/**
 					 * A filter to allow you to modify the Form Cancel button
@@ -2437,8 +2437,8 @@ class GFFormDetail {
 					$cancel_button = apply_filters( 'gform_cancel_form_button', $cancel_button );
 					echo $cancel_button;
 
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_forms' ) ) {
-						$trash_link = '<a class="submitdelete" title="' . __( 'Move this form to the trash', 'gravityforms' ) . '" onclick="gf_vars.isFormTrash = true; jQuery(\'#form_trash\')[0].submit();" onkeypress="gf_vars.isFormTrash = true; jQuery(\'#form_trash\')[0].submit();">' . __( 'Move to Trash', 'gravityforms' ) . '</a>';
+					if ( GFCommon::current_user_can_any( 'edforms_delete_forms' ) ) {
+						$trash_link = '<a class="submitdelete" title="' . __( 'Move this form to the trash', 'edforms' ) . '" onclick="gf_vars.isFormTrash = true; jQuery(\'#form_trash\')[0].submit();" onkeypress="gf_vars.isFormTrash = true; jQuery(\'#form_trash\')[0].submit();">' . __( 'Move to Trash', 'edforms' ) . '</a>';
 
 						/**
 						 * @deprecated
@@ -2458,15 +2458,15 @@ class GFFormDetail {
 					}
 					?>
 
-					<span id="please_wait_container" style="display:none;"><i class='gficon-gravityforms-spinner-icon gficon-spin'></i></span>
+					<span id="please_wait_container" style="display:none;"><i class='gficon-edforms-spinner-icon gficon-spin'></i></span>
 
 					<div class="updated_base" id="after_update_dialog" style="display:none;">
-						<strong><?php esc_html_e( 'Form updated successfully.', 'gravityforms' ); ?>
-							&nbsp;<a title="<?php esc_html_e( 'Preview this form', 'gravityforms' ); ?>" href="<?php echo esc_url( trailingslashit( site_url() ) ) ?>?gf_page=preview&id=<?php echo absint( rgar( $form, 'id' ) ) ?>" target="_blank"><?php esc_html_e( 'Preview', 'gravityforms' ); ?></a></strong>
+						<strong><?php esc_html_e( 'Form updated successfully.', 'edforms' ); ?>
+							&nbsp;<a title="<?php esc_html_e( 'Preview this form', 'edforms' ); ?>" href="<?php echo esc_url( trailingslashit( site_url() ) ) ?>?gf_page=preview&id=<?php echo absint( rgar( $form, 'id' ) ) ?>" target="_blank"><?php esc_html_e( 'Preview', 'edforms' ); ?></a></strong>
 					</div>
 					<div class="error_base" id="after_update_error_dialog" style="padding:10px 10px 16px 10px; display:none;">
-						<?php esc_html_e( 'There was an error while saving your form.', 'gravityforms' ) ?>
-						<?php printf( __( 'Please %scontact our support team%s.', 'gravityforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
+						<?php esc_html_e( 'There was an error while saving your form.', 'edforms' ) ?>
+						<?php printf( __( 'Please %scontact our support team%s.', 'edforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
 					</div>
 
 					<!-- this field allows us to force onblur events for field setting inputs that are otherwise not triggered
@@ -2528,7 +2528,7 @@ class GFFormDetail {
 		$field_groups = array(
 			'standard_fields' => array(
 				'name'          => 'standard_fields',
-				'label'         => __( 'Standard Fields', 'gravityforms' ),
+				'label'         => __( 'Standard Fields', 'edforms' ),
 				'tooltip_class' => 'tooltip_bottomleft',
 				'fields'        => array(
 					array( 'class' => 'button', 'data-type' => 'text',        'value' => GFCommon::get_field_type_title( 'text' ) ),
@@ -2546,7 +2546,7 @@ class GFFormDetail {
 			),
 			'advanced_fields' => array(
 				'name'   => 'advanced_fields',
-				'label'  => __( 'Advanced Fields', 'gravityforms' ),
+				'label'  => __( 'Advanced Fields', 'edforms' ),
 				'fields' => array(
 					array( 'class' => 'button', 'data-type' => 'name',       'value' => GFCommon::get_field_type_title( 'name' ) ),
 					array( 'class' => 'button', 'data-type' => 'date',       'value' => GFCommon::get_field_type_title( 'date' ) ),
@@ -2562,7 +2562,7 @@ class GFFormDetail {
 			),
 			'post_fields'     => array(
 				'name'   => 'post_fields',
-				'label'  => __( 'Post Fields', 'gravityforms' ),
+				'label'  => __( 'Post Fields', 'edforms' ),
 				'fields' => array(
 					array( 'class' => 'button', 'data-type' => 'post_title',        'value' => GFCommon::get_field_type_title( 'post_title' ) ),
 					array( 'class' => 'button', 'data-type' => 'post_content',      'value' => GFCommon::get_field_type_title( 'post_content' ) ),
@@ -2575,7 +2575,7 @@ class GFFormDetail {
 			),
 			'pricing_fields'   => array(
 				'name'   => 'pricing_fields',
-				'label'  => __( 'Pricing Fields', 'gravityforms' ),
+				'label'  => __( 'Pricing Fields', 'edforms' ),
 				'fields' => array(
 					array( 'class' => 'button', 'data-type' => 'product',  'value' => GFCommon::get_field_type_title( 'product' ) ),
 					array( 'class' => 'button', 'data-type' => 'quantity', 'value' => GFCommon::get_field_type_title( 'quantity' ) ),
@@ -2762,18 +2762,18 @@ class GFFormDetail {
 	private static function insert_variable_prepopulate( $element_id, $callback = '' ) {
 		?>
 	<select id="<?php echo esc_attr( $element_id ); ?>_variable_select" onchange="InsertVariable('<?php echo esc_js( $element_id ) ?>', '<?php echo esc_js( $callback ); ?>'); ">
-		<option value=''><?php esc_html_e( 'Insert Merge Tag', 'gravityforms' ); ?></option>
-		<option value='{ip}'><?php esc_html_e( 'User IP Address', 'gravityforms' ); ?></option>
-		<option value='{date_mdy}'><?php esc_html_e( 'Date', 'gravityforms' ); ?> (mm/dd/yyyy)</option>
-		<option value='{date_dmy}'><?php esc_html_e( 'Date', 'gravityforms' ); ?> (dd/mm/yyyy)</option>
-		<option value='{embed_post:ID}'><?php esc_html_e( 'Embed Post/Page Id', 'gravityforms' ); ?></option>
-		<option value='{embed_post:post_title}'><?php esc_html_e( 'Embed Post/Page Title', 'gravityforms' ); ?></option>
-		<option value='{embed_url}'><?php esc_html_e( 'Embed URL', 'gravityforms' ); ?></option>
-		<option value='{user_agent}'><?php esc_html_e( 'HTTP User Agent', 'gravityforms' ); ?></option>
-		<option value='{referer}'><?php esc_html_e( 'HTTP Referer URL', 'gravityforms' ); ?></option>
-		<option value='{user:display_name}'><?php esc_html_e( 'User Display Name', 'gravityforms' ); ?></option>
-		<option value='{user:user_email}'><?php esc_html_e( 'User Email', 'gravityforms' ); ?></option>
-		<option value='{user:user_login}'><?php esc_html_e( 'User Login', 'gravityforms' ); ?></option>
+		<option value=''><?php esc_html_e( 'Insert Merge Tag', 'edforms' ); ?></option>
+		<option value='{ip}'><?php esc_html_e( 'User IP Address', 'edforms' ); ?></option>
+		<option value='{date_mdy}'><?php esc_html_e( 'Date', 'edforms' ); ?> (mm/dd/yyyy)</option>
+		<option value='{date_dmy}'><?php esc_html_e( 'Date', 'edforms' ); ?> (dd/mm/yyyy)</option>
+		<option value='{embed_post:ID}'><?php esc_html_e( 'Embed Post/Page Id', 'edforms' ); ?></option>
+		<option value='{embed_post:post_title}'><?php esc_html_e( 'Embed Post/Page Title', 'edforms' ); ?></option>
+		<option value='{embed_url}'><?php esc_html_e( 'Embed URL', 'edforms' ); ?></option>
+		<option value='{user_agent}'><?php esc_html_e( 'HTTP User Agent', 'edforms' ); ?></option>
+		<option value='{referer}'><?php esc_html_e( 'HTTP Referer URL', 'edforms' ); ?></option>
+		<option value='{user:display_name}'><?php esc_html_e( 'User Display Name', 'edforms' ); ?></option>
+		<option value='{user:user_email}'><?php esc_html_e( 'User Email', 'edforms' ); ?></option>
+		<option value='{user:user_login}'><?php esc_html_e( 'User Login', 'edforms' ); ?></option>
 	<?php
 	}
 
@@ -2895,7 +2895,7 @@ class GFFormDetail {
 		$form_meta = json_decode( $form_json, true );
 		$form_meta = GFFormsModel::convert_field_objects( $form_meta );
 
-		// Set version of Gravity Forms form was created with.
+		// Set version of Ed Forms form was created with.
 		if ( $id === 0 ) {
 			$form_meta['version'] = GFForms::$version;
 		}
@@ -2984,10 +2984,10 @@ class GFFormDetail {
 				$default_notification = array(
 					'id'      => uniqid(),
 					'to'      => '{admin_email}',
-					'name'    => __( 'Admin Notification', 'gravityforms' ),
+					'name'    => __( 'Admin Notification', 'edforms' ),
 					'event'   => 'form_submission',
 					'toType'  => 'email',
-					'subject' => __( 'New submission from', 'gravityforms' ) . ' {form_title}',
+					'subject' => __( 'New submission from', 'edforms' ) . ' {form_title}',
 					'message' => '{all_fields}',
 				);
 
@@ -3002,10 +3002,10 @@ class GFFormDetail {
 			$confirmations                   = array();
 			$confirmations[ $confirmation_id ] = array(
 				'id'          => $confirmation_id,
-				'name'        => __( 'Default Confirmation', 'gravityforms' ),
+				'name'        => __( 'Default Confirmation', 'edforms' ),
 				'isDefault'   => true,
 				'type'        => 'message',
-				'message'     => __( 'Thanks for contacting us! We will get in touch with you shortly.', 'gravityforms' ),
+				'message'     => __( 'Thanks for contacting us! We will get in touch with you shortly.', 'edforms' ),
 				'url'         => '',
 				'pageId'      => '',
 				'queryString' => '',

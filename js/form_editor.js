@@ -75,7 +75,7 @@ jQuery(document).ready(function() {
                 return;
             }
 
-            var li = "<li id='gform_adding_field_spinner'><i class='gficon-gravityforms-spinner-icon gficon-spin'></i></li>";
+            var li = "<li id='gform_adding_field_spinner'><i class='gficon-edforms-spinner-icon gficon-spin'></i></li>";
             var index = ui.item.index();
             ui.item.replaceWith( li );
             StartAddField(type, index);
@@ -140,7 +140,7 @@ jQuery(document).ready(function() {
 			var deprecatedEvents = new Array('gform_load_form_settings');
 			for (var e in data.events) {
 				if (jQuery.inArray(e, deprecatedEvents) !== -1) {
-					console.log('Gravity Forms API warning: The jQuery event "' + e + '" is deprecated on this page since version 1.7');
+					console.log('Ed Forms API warning: The jQuery event "' + e + '" is deprecated on this page since version 1.7');
 				}
 			}
 		}

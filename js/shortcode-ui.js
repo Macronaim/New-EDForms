@@ -307,7 +307,7 @@ var GformShortcodeUI;
 
             this.model.set('value', val);
             var m = this.parent.model;
-            var newShortcodeModel = sui.shortcodes.findWhere({shortcode_tag: 'gravityform', action_tag: val});
+            var newShortcodeModel = sui.shortcodes.findWhere({shortcode_tag: 'edform', action_tag: val});
 
             // copy over values to new shortcode model
             var currentAttrs = m.get('attrs');
@@ -697,7 +697,7 @@ var GformShortcodeUI;
                 shortcodeString = decodeURIComponent( jQuery(shortcodeString).attr('data-wpview-text') );
             }
 
-            currentShortcode = wp.shortcode.next('gravityform', shortcodeString);
+            currentShortcode = wp.shortcode.next('edform', shortcodeString);
 
             if ( currentShortcode ) {
 
@@ -732,7 +732,7 @@ var GformShortcodeUI;
 
                 $('#gform-insert-shortcode').hide();
                 $('#gform-update-shortcode').show();
-                tb_show("Edit Gravity Form", "#TB_inline?inlineId=select_gravity_form&width=753&height=686", "");
+                tb_show("Edit Ed Form", "#TB_inline?inlineId=select_ed_form&width=753&height=686", "");
 
             }
         },
@@ -745,15 +745,15 @@ var GformShortcodeUI;
         sui.shortcodes = new sui.collections.Shortcodes( gfShortcodeUIData.shortcodes );
 
         if( ! gfShortcodeUIData.previewDisabled && typeof wp.mce != 'undefined'){
-            wp.mce.views.register( 'gravityform', $.extend(true, {}, sui.utils.shortcodeViewConstructor) );
+            wp.mce.views.register( 'edform', $.extend(true, {}, sui.utils.shortcodeViewConstructor) );
         }
 
         $(document).on('click', '.gform_media_link', function () {
             sui.shortcodes = new sui.collections.Shortcodes(gfShortcodeUIData.shortcodes);
-            var shortcode = sui.shortcodes.findWhere({shortcode_tag: 'gravityform', action_tag: ''});
+            var shortcode = sui.shortcodes.findWhere({shortcode_tag: 'edform', action_tag: ''});
             GformShortcodeUI = new sui.views.editShortcodeForm({model: shortcode, viewMode: 'insert'});
             GformShortcodeUI.render();
-            tb_show("Insert Gravity Form", "#TB_inline?inlineId=select_gravity_form&width=753&height=686", "");
+            tb_show("Insert Ed Form", "#TB_inline?inlineId=select_ed_form&width=753&height=686", "");
         });
 
     });

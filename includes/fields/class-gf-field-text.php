@@ -10,7 +10,7 @@ class GF_Field_Text extends GF_Field {
 	public $type = 'text';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Single Line Text', 'gravityforms' );
+		return esc_attr__( 'Single Line Text', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {

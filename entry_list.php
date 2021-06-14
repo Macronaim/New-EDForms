@@ -34,8 +34,8 @@ class GFEntryList {
 			// Add message.
 			GFCommon::add_dismissible_message(
 				sprintf(
-					esc_html__( '%s restored from the Trash.', 'gravityforms' ),
-					esc_html__( '1 entry', 'gravityforms' )
+					esc_html__( '%s restored from the Trash.', 'edforms' ),
+					esc_html__( '1 entry', 'edforms' )
 				),
 				'success'
 			);
@@ -48,8 +48,8 @@ class GFEntryList {
 			// Add message.
 			GFCommon::add_dismissible_message(
 				sprintf(
-					esc_html__( '%s permanently deleted.', 'gravityforms' ),
-					esc_html__( '1 entry', 'gravityforms' )
+					esc_html__( '%s permanently deleted.', 'edforms' ),
+					esc_html__( '1 entry', 'edforms' )
 				),
 				'success'
 			);
@@ -66,7 +66,7 @@ class GFEntryList {
 
 			GFCommon::add_dismissible_message(
 				sprintf(
-					esc_html__( '1 entry moved to the Trash. %sUndo%s', 'gravityforms' ),
+					esc_html__( '1 entry moved to the Trash. %sUndo%s', 'edforms' ),
 					'<a href="' . esc_url( $restore_url ) . '">',
 					'</a>'
 				),
@@ -78,7 +78,7 @@ class GFEntryList {
 		if ( sizeof( $forms ) == 0 ) {
 			?>
 			<div style="margin:50px 0 0 10px;">
-				<?php echo sprintf( esc_html__( "You don't have any active forms. Let's go %screate one%s", 'gravityforms' ), '<a href="?page=gf_new_form">', '</a>' ); ?>
+				<?php echo sprintf( esc_html__( "You don't have any active forms. Let's go %screate one%s", 'edforms' ), '<a href="?page=gf_new_form">', '</a>' ); ?>
 			</div>
 			<?php
 		} else {
@@ -201,11 +201,11 @@ class GFEntryList {
 
 		$radios_str = join( "\n", $radios_arr );
 
-		$filter_title  = esc_html__( 'Default Filter', 'gravityforms' );
-		$pagination_title = esc_html__( 'Pagination', 'gravityforms' );
-		$entries_label = esc_html__( 'Number of entries per page:', 'gravityforms' );
+		$filter_title  = esc_html__( 'Default Filter', 'edforms' );
+		$pagination_title = esc_html__( 'Pagination', 'edforms' );
+		$entries_label = esc_html__( 'Number of entries per page:', 'edforms' );
 
-		$button = get_submit_button( esc_html__( 'Apply', 'gravityforms' ), 'button button-primary', 'screen-options-apply', false );
+		$button = get_submit_button( esc_html__( 'Apply', 'edforms' ), 'button button-primary', 'screen-options-apply', false );
 		$return .= "
 			<fieldset class='screen-options'>
             <legend>{$filter_title}</legend>
@@ -286,7 +286,7 @@ class GFEntryList {
 				<div id="entry_search_container">
 					<div id="entry_filters" style=""></div>
 					<a style="" class="button" id="entry_search_button"
-					   href="javascript:Search('<?php echo esc_js( $table->get_orderby() ); ?>', '<?php echo esc_js( $table->get_order() ) ?>', <?php echo absint( $form_id ); ?>, jQuery('.gform-filter-value').val(), '<?php echo esc_js( $table->get_filter() ) ?>', jQuery('.gform-filter-field').val(), jQuery('.gform-filter-operator').val());"><?php esc_html_e( 'Search', 'gravityforms' ) ?></a>
+					   href="javascript:Search('<?php echo esc_js( $table->get_orderby() ); ?>', '<?php echo esc_js( $table->get_order() ) ?>', <?php echo absint( $form_id ); ?>, jQuery('.gform-filter-value').val(), '<?php echo esc_js( $table->get_filter() ) ?>', jQuery('.gform-filter-field').val(), jQuery('.gform-filter-operator').val());"><?php esc_html_e( 'Search', 'edforms' ) ?></a>
 
 				</div>
 
@@ -422,7 +422,7 @@ class GFEntryList {
 				'id' => 'all',
 				'field_filters' => array(),
 				'count' => $active_entry_count,
-				'label'   => esc_html_x( 'All', 'Entry List', 'gravityforms' ),
+				'label'   => esc_html_x( 'All', 'Entry List', 'edforms' ),
 			),
 			array(
 				'id' => 'unread',
@@ -430,7 +430,7 @@ class GFEntryList {
 					array( 'key' => 'is_read', 'value' => false ),
 				),
 				'count' => $unread_count,
-				'label'   => esc_html_x( 'Unread', 'Entry List', 'gravityforms' ),
+				'label'   => esc_html_x( 'Unread', 'Entry List', 'edforms' ),
 			),
 			array(
 				'id' => 'star',
@@ -438,7 +438,7 @@ class GFEntryList {
 					array( 'key' => 'is_starred', 'value' => true ),
 				),
 				'count' => $starred_count,
-				'label'   => esc_html_x( 'Starred', 'Entry List', 'gravityforms' ),
+				'label'   => esc_html_x( 'Starred', 'Entry List', 'edforms' ),
 			),
 		);
 		if ( GFCommon::spam_enabled( $form_id ) ) {
@@ -446,14 +446,14 @@ class GFEntryList {
 				'id' => 'spam',
 				'field_filters' => array(),
 				'count' => $spam_count,
-				'label'   => esc_html__( 'Spam', 'gravityforms' ),
+				'label'   => esc_html__( 'Spam', 'edforms' ),
 			);
 		}
 		$filter_links[] = array(
 			'id' => 'trash',
 			'field_filters' => array(),
 			'count' => $trash_count,
-			'label'   => esc_html__( 'Trash', 'gravityforms' ),
+			'label'   => esc_html__( 'Trash', 'edforms' ),
 		);
 
 		/**
@@ -825,10 +825,10 @@ final class GF_Entry_List_Table extends WP_List_Table {
 		}
 
 		if ( empty( $columns ) ) {
-			$table_columns['field_id-id'] = esc_html__( 'Entry Id', 'gravityforms' );
+			$table_columns['field_id-id'] = esc_html__( 'Entry Id', 'edforms' );
 		}
 
-		$table_columns['column_selector'] = '<a title="' . esc_attr__( 'click to select columns to display', 'gravityforms' ) . '" href="' . trailingslashit( site_url( null, 'admin' ) ) . '?gf_page=select_columns&id=' . absint( $form_id ) . '&TB_iframe=true&height=365&width=600" class="thickbox entries_edit_icon"><i class="fa fa-cog"></i></a>';
+		$table_columns['column_selector'] = '<a title="' . esc_attr__( 'click to select columns to display', 'edforms' ) . '" href="' . trailingslashit( site_url( null, 'admin' ) ) . '?gf_page=select_columns&id=' . absint( $form_id ) . '&TB_iframe=true&height=365&width=600" class="thickbox entries_edit_icon"><i class="fa fa-cog"></i></a>';
 
 		/**
 		 * Allow the columns to be displayed in the entry list table to be overridden.
@@ -960,7 +960,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 		if ( $column_id == $primary ) {
 			$edit_url = $this->get_detail_url( $entry );
-			echo '<a title="' . esc_attr__( 'View this entry', 'gravityforms' ) . '" href="' . $edit_url .'">' . $value . '</a>';
+			echo '<a title="' . esc_attr__( 'View this entry', 'edforms' ) . '" href="' . $edit_url .'">' . $value . '</a>';
 		} else {
 
 			/**
@@ -1063,23 +1063,23 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 		switch ( $this->filter ) {
 			case 'unread' :
-				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any unread entries matching the search criteria.', 'gravityforms' ) : esc_html__( 'This form does not have any unread entries.', 'gravityforms' );
+				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any unread entries matching the search criteria.', 'edforms' ) : esc_html__( 'This form does not have any unread entries.', 'edforms' );
 				break;
 
 			case 'star' :
-				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any starred entries matching the search criteria.', 'gravityforms' ) : esc_html__( 'This form does not have any starred entries.', 'gravityforms' );
+				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any starred entries matching the search criteria.', 'edforms' ) : esc_html__( 'This form does not have any starred entries.', 'edforms' );
 				break;
 
 			case 'spam' :
-				$message = esc_html__( 'This form does not have any spam.', 'gravityforms' );
+				$message = esc_html__( 'This form does not have any spam.', 'edforms' );
 				break;
 
 			case 'trash' :
-				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any entries in the trash matching the search criteria.', 'gravityforms' ) : esc_html__( 'This form does not have any entries in the trash.', 'gravityforms' );
+				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any entries in the trash matching the search criteria.', 'edforms' ) : esc_html__( 'This form does not have any entries in the trash.', 'edforms' );
 				break;
 
 			default :
-				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any entries matching the search criteria.', 'gravityforms' ) : esc_html__( 'This form does not have any entries yet.', 'gravityforms' );
+				$message = isset( $_GET['field_id'] ) ? esc_html__( 'This form does not have any entries matching the search criteria.', 'edforms' ) : esc_html__( 'This form does not have any entries yet.', 'edforms' );
 
 		}
 		echo $message;
@@ -1115,21 +1115,21 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				case 'trash' :
 					?>
 					<span class="edit">
-                        <a title="<?php esc_attr_e( 'View this entry', 'gravityforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'gravityforms' ); ?></a>
+                        <a title="<?php esc_attr_e( 'View this entry', 'edforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'edforms' ); ?></a>
                         |
                     </span>
 
 					<span class="edit">
-                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] );?>::status=active&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Restore this entry', 'gravityforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Restore', 'gravityforms' ); ?></a>
-						<?php echo GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ? '|' : '' ?>
+                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] );?>::status=active&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Restore this entry', 'edforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Restore', 'edforms' ); ?></a>
+						<?php echo GFCommon::current_user_can_any( 'edforms_delete_entries' ) ? '|' : '' ?>
                     </span>
 
 					<?php
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						?>
 						<span class="delete">
                             <?php
-                            $delete_link = '<a data-wp-lists="delete:the-list:entry_row_' . esc_attr( $entry['id'] ) . '::status=delete&entry=' . esc_attr( $entry['id'] ) . '" title="' . esc_attr__( 'Delete this entry permanently', 'gravityforms' ) . '"  href="' . wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) . '">' . esc_html__( 'Delete Permanently', 'gravityforms' ) . '</a>';
+                            $delete_link = '<a data-wp-lists="delete:the-list:entry_row_' . esc_attr( $entry['id'] ) . '::status=delete&entry=' . esc_attr( $entry['id'] ) . '" title="' . esc_attr__( 'Delete this entry permanently', 'edforms' ) . '"  href="' . wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) . '">' . esc_html__( 'Delete Permanently', 'edforms' ) . '</a>';
 
                             /**
                              * Allows for modification of a Form entry "delete" link
@@ -1146,21 +1146,21 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				case 'spam' :
 					?>
 					<span class="edit">
-                        <a title="<?php esc_attr_e( 'View this entry', 'gravityforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'gravityforms' ); ?></a>
+                        <a title="<?php esc_attr_e( 'View this entry', 'edforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'edforms' ); ?></a>
                         |
                     </span>
 
 					<span class="unspam">
-                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ); ?>::status=unspam&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Mark this entry as not spam', 'gravityforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Not Spam', 'gravityforms' ); ?></a>
-						<?php echo GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ? '|' : '' ?>
+                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ); ?>::status=unspam&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Mark this entry as not spam', 'edforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Not Spam', 'edforms' ); ?></a>
+						<?php echo GFCommon::current_user_can_any( 'edforms_delete_entries' ) ? '|' : '' ?>
                     </span>
 
 					<?php
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						?>
 						<span class="delete">
                             <?php
-							$delete_link = '<a data-wp-lists="delete:the-list:entry_row_' . esc_attr( $entry['id'] ) . '::status=delete&entry=' . esc_attr( $entry['id'] ) . '" title="' . esc_attr__( 'Delete this entry permanently', 'gravityforms' ) . '"  href="' . wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) . '">' . esc_html__( 'Delete Permanently', 'gravityforms' ) . '</a>';
+							$delete_link = '<a data-wp-lists="delete:the-list:entry_row_' . esc_attr( $entry['id'] ) . '::status=delete&entry=' . esc_attr( $entry['id'] ) . '" title="' . esc_attr__( 'Delete this entry permanently', 'edforms' ) . '"  href="' . wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) . '">' . esc_html__( 'Delete Permanently', 'edforms' ) . '</a>';
 
 							/**
 							 * Allows for modification of a Form entry "delete" link
@@ -1178,27 +1178,27 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				default:
 					?>
 					<span class="edit">
-                        <a title="<?php esc_attr_e( 'View this entry', 'gravityforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'gravityforms' ); ?></a>
+                        <a title="<?php esc_attr_e( 'View this entry', 'edforms' ); ?>" href="<?php echo esc_url( $detail_url ) ?>"><?php esc_html_e( 'View', 'edforms' ); ?></a>
                         |
                     </span>
 					<span class="edit">
-                        <a id="mark_read_<?php echo esc_attr( $entry['id'] ); ?>" title="Mark this entry as read" href="javascript:ToggleRead('<?php echo esc_js( $entry['id'] ); ?>', '<?php echo esc_js( $this->filter ); ?>');" style="display:<?php echo $entry['is_read'] ? 'none' : 'inline' ?>;"><?php esc_html_e( 'Mark read', 'gravityforms' ); ?></a><a id="mark_unread_<?php echo absint( $entry['id'] ); ?>" title="<?php esc_attr_e( 'Mark this entry as unread', 'gravityforms' ); ?>" href="javascript:ToggleRead('<?php echo esc_js( $entry['id'] ); ?>', '<?php echo esc_js( $this->filter ); ?>');" style="display:<?php echo $entry['is_read'] ? 'inline' : 'none' ?>;"><?php esc_html_e( 'Mark unread', 'gravityforms' ); ?></a>
-						<?php echo GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) || GFCommon::akismet_enabled( $form_id ) ? '|' : '' ?>
+                        <a id="mark_read_<?php echo esc_attr( $entry['id'] ); ?>" title="Mark this entry as read" href="javascript:ToggleRead('<?php echo esc_js( $entry['id'] ); ?>', '<?php echo esc_js( $this->filter ); ?>');" style="display:<?php echo $entry['is_read'] ? 'none' : 'inline' ?>;"><?php esc_html_e( 'Mark read', 'edforms' ); ?></a><a id="mark_unread_<?php echo absint( $entry['id'] ); ?>" title="<?php esc_attr_e( 'Mark this entry as unread', 'edforms' ); ?>" href="javascript:ToggleRead('<?php echo esc_js( $entry['id'] ); ?>', '<?php echo esc_js( $this->filter ); ?>');" style="display:<?php echo $entry['is_read'] ? 'inline' : 'none' ?>;"><?php esc_html_e( 'Mark unread', 'edforms' ); ?></a>
+						<?php echo GFCommon::current_user_can_any( 'edforms_delete_entries' ) || GFCommon::akismet_enabled( $form_id ) ? '|' : '' ?>
                     </span>
 					<?php
 					if ( GFCommon::spam_enabled( $form_id ) ) {
 						?>
 						<span class="spam">
-                            <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ) ?>::status=spam&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Mark this entry as spam', 'gravityforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Spam', 'gravityforms' ); ?></a>
-							<?php echo GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ? '|' : '' ?>
+                            <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ) ?>::status=spam&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Mark this entry as spam', 'edforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Spam', 'edforms' ); ?></a>
+							<?php echo GFCommon::current_user_can_any( 'edforms_delete_entries' ) ? '|' : '' ?>
                         </span>
 
 						<?php
 					}
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						?>
 						<span class="trash">
-	                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ); ?>::status=trash&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Move this entry to the trash', 'gravityforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Trash', 'gravityforms' ); ?></a>
+	                        <a data-wp-lists='delete:the-list:entry_row_<?php echo esc_attr( $entry['id'] ); ?>::status=trash&entry=<?php echo esc_attr( $entry['id'] ); ?>' title="<?php esc_attr_e( 'Move this entry to the trash', 'edforms' ) ?>" href="<?php echo wp_nonce_url( '?page=gf_entries', 'gf_delete_entry' ) ?>"><?php esc_html_e( 'Trash', 'edforms' ); ?></a>
 	                    </span>
 						<?php
 					}
@@ -1256,27 +1256,27 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 		switch ( $this->filter ) {
 			case 'trash' :
-				$actions['restore'] = esc_html__( 'Restore', 'gravityforms' );
-				$actions['delete']  = esc_html__( 'Delete Permanently', 'gravityforms' );
+				$actions['restore'] = esc_html__( 'Restore', 'edforms' );
+				$actions['delete']  = esc_html__( 'Delete Permanently', 'edforms' );
 				break;
 			case 'spam' :
-				$actions['unspam'] = esc_html__( 'Not Spam', 'gravityforms' );
-				$actions['delete'] = esc_html__( 'Delete Permanently', 'gravityforms' );
+				$actions['unspam'] = esc_html__( 'Not Spam', 'edforms' );
+				$actions['delete'] = esc_html__( 'Delete Permanently', 'edforms' );
 				break;
 
 			default:
-				$actions['mark_read']            = esc_html__( 'Mark as Read', 'gravityforms' );
-				$actions['mark_unread']          = esc_html__( 'Mark as Unread', 'gravityforms' );
-				$actions['add_star']             = esc_html__( 'Add Star', 'gravityforms' );
-				$actions['remove_star']          = esc_html__( 'Remove Star', 'gravityforms' );
-				$actions['resend_notifications'] = esc_html__( 'Resend Notifications', 'gravityforms' );
-				$actions['print']                = esc_html__( 'Print', 'gravityforms' );
+				$actions['mark_read']            = esc_html__( 'Mark as Read', 'edforms' );
+				$actions['mark_unread']          = esc_html__( 'Mark as Unread', 'edforms' );
+				$actions['add_star']             = esc_html__( 'Add Star', 'edforms' );
+				$actions['remove_star']          = esc_html__( 'Remove Star', 'edforms' );
+				$actions['resend_notifications'] = esc_html__( 'Resend Notifications', 'edforms' );
+				$actions['print']                = esc_html__( 'Print', 'edforms' );
 
 				if ( GFCommon::spam_enabled( $this->get_form_id() ) ) {
-					$actions['spam'] = esc_html__( 'Spam', 'gravityforms' );
+					$actions['spam'] = esc_html__( 'Spam', 'edforms' );
 				}
-				if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
-					$actions['trash'] = esc_html__( 'Trash', 'gravityforms' );
+				if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
+					$actions['trash'] = esc_html__( 'Trash', 'edforms' );
 				}
 		}
 
@@ -1306,8 +1306,8 @@ final class GF_Entry_List_Table extends WP_List_Table {
 		$filter = $this->filter;
 
 		if ( in_array( $filter, array( 'trash', 'spam' ) ) ) {
-			$message      = $filter == 'trash' ? esc_html__( "WARNING! This operation cannot be undone. Empty trash? 'Ok' to empty trash. 'Cancel' to abort.", 'gravityforms' ) : esc_html__( "WARNING! This operation cannot be undone. Permanently delete all spam? 'Ok' to delete. 'Cancel' to abort.", 'gravityforms' );
-			$button_label = $filter == 'trash' ? __( 'Empty Trash', 'gravityforms' ) : __( 'Delete All Spam', 'gravityforms' );
+			$message      = $filter == 'trash' ? esc_html__( "WARNING! This operation cannot be undone. Empty trash? 'Ok' to empty trash. 'Cancel' to abort.", 'edforms' ) : esc_html__( "WARNING! This operation cannot be undone. Permanently delete all spam? 'Ok' to delete. 'Cancel' to abort.", 'edforms' );
+			$button_label = $filter == 'trash' ? __( 'Empty Trash', 'edforms' ) : __( 'Delete All Spam', 'edforms' );
 			?>
 			<input type="submit" class="button" name="button_delete_permanently"
 			       value="<?php echo esc_attr( $button_label ); ?>"
@@ -1336,7 +1336,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 		$form_id = $this->get_form_id();
 
 		if ( $delete_permanently ) {
-			if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+			if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 				RGFormsModel::delete_leads_by_form( $form_id, $this->filter );
 			}
 			return;
@@ -1346,11 +1346,11 @@ final class GF_Entry_List_Table extends WP_List_Table {
 			$entry_id = rgpost( 'single_action_argument' );
 			switch ( $single_action ) {
 				case 'delete' :
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						RGFormsModel::delete_entry( $entry_id );
-						$message = esc_html__( 'Entry deleted.', 'gravityforms' );
+						$message = esc_html__( 'Entry deleted.', 'edforms' );
 					} else {
-						$message = esc_html__( "You don't have adequate permission to delete entries.", 'gravityforms' );
+						$message = esc_html__( "You don't have adequate permission to delete entries.", 'edforms' );
 					}
 
 					break;
@@ -1379,56 +1379,56 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 			$entries = empty( $select_all ) ? $_POST['entry'] : GFAPI::get_entry_ids( $form_id, $search_criteria );
 
-			$entry_count = count( $entries ) > 1 ? sprintf( esc_html__( '%d entries', 'gravityforms' ), count( $entries ) ) : esc_html__( '1 entry', 'gravityforms' );
+			$entry_count = count( $entries ) > 1 ? sprintf( esc_html__( '%d entries', 'edforms' ), count( $entries ) ) : esc_html__( '1 entry', 'edforms' );
 
 			switch ( $bulk_action ) {
 				case 'delete':
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						RGFormsModel::delete_leads( $entries );
-						$message = sprintf( esc_html__( '%s deleted.', 'gravityforms' ), $entry_count );
+						$message = sprintf( esc_html__( '%s deleted.', 'edforms' ), $entry_count );
 					} else {
-						$message = esc_html__( "You don't have adequate permission to delete entries.", 'gravityforms' );
+						$message = esc_html__( "You don't have adequate permission to delete entries.", 'edforms' );
 					}
 					break;
 
 				case 'trash':
 					RGFormsModel::update_entries_property( $entries, 'status', 'trash' );
-					$message = sprintf( esc_html__( '%s moved to Trash.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s moved to Trash.', 'edforms' ), $entry_count );
 					break;
 
 				case 'restore':
 					RGFormsModel::update_entries_property( $entries, 'status', 'active' );
-					$message = sprintf( esc_html__( '%s restored from the Trash.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s restored from the Trash.', 'edforms' ), $entry_count );
 					break;
 
 				case 'unspam':
 					RGFormsModel::update_entries_property( $entries, 'status', 'active' );
-					$message = sprintf( esc_html__( '%s restored from the spam.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s restored from the spam.', 'edforms' ), $entry_count );
 					break;
 
 				case 'spam':
 					RGFormsModel::update_entries_property( $entries, 'status', 'spam' );
-					$message = sprintf( esc_html__( '%s marked as spam.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s marked as spam.', 'edforms' ), $entry_count );
 					break;
 
 				case 'mark_read':
 					RGFormsModel::update_entries_property( $entries, 'is_read', 1 );
-					$message = sprintf( esc_html__( '%s marked as read.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s marked as read.', 'edforms' ), $entry_count );
 					break;
 
 				case 'mark_unread':
 					RGFormsModel::update_entries_property( $entries, 'is_read', 0 );
-					$message = sprintf( esc_html__( '%s marked as unread.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s marked as unread.', 'edforms' ), $entry_count );
 					break;
 
 				case 'add_star':
 					RGFormsModel::update_entries_property( $entries, 'is_starred', 1 );
-					$message = sprintf( esc_html__( '%s starred.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s starred.', 'edforms' ), $entry_count );
 					break;
 
 				case 'remove_star':
 					RGFormsModel::update_entries_property( $entries, 'is_starred', 0 );
-					$message = sprintf( esc_html__( '%s unstarred.', 'gravityforms' ), $entry_count );
+					$message = sprintf( esc_html__( '%s unstarred.', 'edforms' ), $entry_count );
 					break;
 
 			}
@@ -1583,7 +1583,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				mysack.setVar("name", name);
 				mysack.setVar("value", value);
 				mysack.onError = function () {
-					alert(<?php echo json_encode( __( 'Ajax error while setting lead property', 'gravityforms' ) ); ?>)
+					alert(<?php echo json_encode( __( 'Ajax error while setting lead property', 'edforms' ) ); ?>)
 				};
 				mysack.runAJAX();
 
@@ -1637,7 +1637,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				var leadIds = getLeadIds();
 
 				if (leadIds.length == 0) {
-					alert(<?php echo json_encode( __( 'Please select at least one entry.', 'gravityforms' ) ); ?>);
+					alert(<?php echo json_encode( __( 'Please select at least one entry.', 'edforms' ) ); ?>);
 					return false;
 				}
 
@@ -1645,13 +1645,13 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 					case 'resend_notifications':
 						resetResendNotificationsUI();
-						tb_show(<?php echo json_encode( esc_html__( 'Resend Notifications', 'gravityforms' ) ); ?>, '#TB_inline?width=350&amp;inlineId=notifications_modal_container', '');
+						tb_show(<?php echo json_encode( esc_html__( 'Resend Notifications', 'edforms' ) ); ?>, '#TB_inline?width=350&amp;inlineId=notifications_modal_container', '');
 						return false;
 						break;
 
 					case 'print':
 						resetPrintUI();
-						tb_show(<?php echo json_encode( esc_html__( 'Print Entries', 'gravityforms' ) ); ?>, '#TB_inline?width=350&amp;height=250&amp;inlineId=print_modal_container', '');
+						tb_show(<?php echo json_encode( esc_html__( 'Print Entries', 'edforms' ) ); ?>, '#TB_inline?width=350&amp;height=250&amp;inlineId=print_modal_container', '');
 						return false;
 						break;
 
@@ -1688,7 +1688,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				var sendTo = jQuery('#notification_override_email').val();
 
 				if (selectedNotifications.length <= 0) {
-					displayMessage(<?php echo json_encode( esc_html__( 'You must select at least one type of notification to resend.', 'gravityforms' ) ); ?>, "error", "#notifications_container");
+					displayMessage(<?php echo json_encode( esc_html__( 'You must select at least one type of notification to resend.', 'edforms' ) ); ?>, "error", "#notifications_container");
 					return;
 				}
 
@@ -1713,9 +1713,9 @@ final class GF_Entry_List_Table extends WP_List_Table {
 						if (response) {
 							displayMessage(response, 'error', '#notifications_container');
 						} else {
-							var message = <?php echo json_encode( __( 'Notifications for %s were resent successfully.', 'gravityforms' ) ); ?>;
+							var message = <?php echo json_encode( __( 'Notifications for %s were resent successfully.', 'edforms' ) ); ?>;
 							var c = leadIds == 0 ? gformVars.countAllEntries : leadIds.length;
-							displayMessage(message.replace('%s', c + ' ' + getPlural(c, <?php echo json_encode( __( 'entry', 'gravityforms' ) ); ?>, <?php echo json_encode( __( 'entries', 'gravityforms' ) ); ?>)), "updated", "#entry_list_form");
+							displayMessage(message.replace('%s', c + ' ' + getPlural(c, <?php echo json_encode( __( 'entry', 'edforms' ) ); ?>, <?php echo json_encode( __( 'entries', 'edforms' ) ); ?>)), "updated", "#entry_list_form");
 							closeModal(true);
 						}
 
@@ -1834,10 +1834,10 @@ final class GF_Entry_List_Table extends WP_List_Table {
 			// Select All
 
 			var gformStrings = {
-				"allEntriesOnPageAreSelected": <?php echo json_encode( sprintf( esc_html__( 'All %s{0}%s entries on this page are selected.', 'gravityforms' ), '<strong>', '</strong>' ) ); ?>,
-				"selectAll"                  : <?php echo json_encode( sprintf( esc_html__( 'Select all %s{0}%s entries.', 'gravityforms' ), '<strong>', '</strong>' ) ); ?>,
-				"allEntriesSelected"         : <?php echo json_encode( sprintf( esc_html__( 'All %s{0}%s entries have been selected.', 'gravityforms' ), '<strong>', '</strong>' ) ); ?>,
-				"clearSelection"             : <?php echo json_encode( __( 'Clear selection', 'gravityforms' ) ); ?>
+				"allEntriesOnPageAreSelected": <?php echo json_encode( sprintf( esc_html__( 'All %s{0}%s entries on this page are selected.', 'edforms' ), '<strong>', '</strong>' ) ); ?>,
+				"selectAll"                  : <?php echo json_encode( sprintf( esc_html__( 'Select all %s{0}%s entries.', 'edforms' ), '<strong>', '</strong>' ) ); ?>,
+				"allEntriesSelected"         : <?php echo json_encode( sprintf( esc_html__( 'All %s{0}%s entries have been selected.', 'edforms' ), '<strong>', '</strong>' ) ); ?>,
+				"clearSelection"             : <?php echo json_encode( __( 'Clear selection', 'edforms' ) ); ?>
 			};
 
 			var gformVars = {
@@ -1923,7 +1923,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 			jQuery(document).ready(function () {
 
-				var list = jQuery("#the-list").wpList({ delAfter: afterAjaxDelete, alt: <?php echo json_encode( esc_html__( 'Entry List', 'gravityforms' ) ) ?>});
+				var list = jQuery("#the-list").wpList({ delAfter: afterAjaxDelete, alt: <?php echo json_encode( esc_html__( 'Entry List', 'edforms' ) ) ?>});
 				list.bind('wpListDelEnd', function (e, s, list) {
 					var currentStatus = <?php echo json_encode( $filter == 'trash' || $filter == 'spam' ? $filter : 'active' ); ?>;
 					var filter = <?php echo json_encode( $filter ); ?>;
@@ -1988,7 +1988,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 					var entryIds = getLeadIds();
 
 					if ( entryIds.length == 0 ) {
-						alert(<?php echo json_encode( __( 'Please select at least one entry...', 'gravityforms' ) ); ?>);
+						alert(<?php echo json_encode( __( 'Please select at least one entry...', 'edforms' ) ); ?>);
 						return false;
 					}
 
@@ -1996,13 +1996,13 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 						case 'resend_notifications':
 							resetResendNotificationsUI();
-							tb_show(<?php echo json_encode( esc_html__( 'Resend Notifications', 'gravityforms' ) ); ?>, '#TB_inline?width=350&amp;inlineId=notifications_modal_container', '');
+							tb_show(<?php echo json_encode( esc_html__( 'Resend Notifications', 'edforms' ) ); ?>, '#TB_inline?width=350&amp;inlineId=notifications_modal_container', '');
 							return false;
 							break;
 
 						case 'print':
 							resetPrintUI();
-							tb_show(<?php echo json_encode( esc_html__( 'Print Entries', 'gravityforms' ) ); ?>, '#TB_inline?width=350&amp;height=250&amp;inlineId=print_modal_container', '');
+							tb_show(<?php echo json_encode( esc_html__( 'Print Entries', 'edforms' ) ); ?>, '#TB_inline?width=350&amp;height=250&amp;inlineId=print_modal_container', '');
 							return false;
 							break;
 
@@ -2036,13 +2036,13 @@ final class GF_Entry_List_Table extends WP_List_Table {
 
 						if ( ! is_array( $notifications ) || count( $form['notifications'] ) <= 0 ) {
 							?>
-							<p class="description"><?php esc_html_e( 'You cannot resend notifications for these entries because this form does not currently have any notifications configured.', 'gravityforms' ); ?></p>
+							<p class="description"><?php esc_html_e( 'You cannot resend notifications for these entries because this form does not currently have any notifications configured.', 'edforms' ); ?></p>
 
-							<a href="<?php echo esc_url( admin_url( "admin.php?page=gf_edit_forms&view=settings&subview=notification&id={$form['id']}" ) ); ?>" class="button"><?php esc_html_e( 'Configure Notifications', 'gravityforms' ) ?></a>
+							<a href="<?php echo esc_url( admin_url( "admin.php?page=gf_edit_forms&view=settings&subview=notification&id={$form['id']}" ) ); ?>" class="button"><?php esc_html_e( 'Configure Notifications', 'edforms' ) ?></a>
 							<?php
 						} else {
 							?>
-							<p class="description"><?php esc_html_e( 'Specify which notifications you would like to resend for the selected entries.', 'gravityforms' ); ?></p>
+							<p class="description"><?php esc_html_e( 'Specify which notifications you would like to resend for the selected entries.', 'edforms' ); ?></p>
 							<?php
 							foreach ( $notifications as $notification ) {
 								?>
@@ -2056,16 +2056,16 @@ final class GF_Entry_List_Table extends WP_List_Table {
 							<div id="notifications_override_settings" style="display:none;">
 
 								<p class="description" style="padding-top:0; margin-top:0;">
-									<?php esc_html_e( 'You may override the default notification settings by entering a comma delimited list of emails to which the selected notifications should be sent.', 'gravityforms' ); ?>
+									<?php esc_html_e( 'You may override the default notification settings by entering a comma delimited list of emails to which the selected notifications should be sent.', 'edforms' ); ?>
 								</p>
-								<label for="notification_override_email"><?php esc_html_e( 'Send To', 'gravityforms' ); ?> <?php gform_tooltip( 'notification_override_email' ) ?></label><br />
+								<label for="notification_override_email"><?php esc_html_e( 'Send To', 'edforms' ); ?> <?php gform_tooltip( 'notification_override_email' ) ?></label><br />
 								<input type="text" name="notification_override_email" id="notification_override_email" style="width:99%;" /><br /><br />
 
 							</div>
 
-							<input type="button" name="notification_resend" id="notification_resend" value="<?php esc_attr_e( 'Resend Notifications', 'gravityforms' ) ?>" class="button" style="" onclick="BulkResendNotifications();" />
+							<input type="button" name="notification_resend" id="notification_resend" value="<?php esc_attr_e( 'Resend Notifications', 'edforms' ) ?>" class="button" style="" onclick="BulkResendNotifications();" />
 							<span id="please_wait_container" style="display:none; margin-left: 5px;">
-                                                <i class='gficon-gravityforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Resending...', 'gravityforms' ); ?>
+                                                <i class='gficon-edforms-spinner-icon gficon-spin'></i> <?php esc_html_e( 'Resending...', 'edforms' ); ?>
                                             </span>
 							<?php
 						}
@@ -2074,7 +2074,7 @@ final class GF_Entry_List_Table extends WP_List_Table {
 					</div>
 
 					<div id="resend_notifications_close" style="display:none;margin:10px 0 0;">
-						<input type="button" name="resend_notifications_close_button" value="<?php esc_attr_e( 'Close Window', 'gravityforms' ) ?>" class="button" style="" onclick="closeModal(true);" />
+						<input type="button" name="resend_notifications_close_button" value="<?php esc_attr_e( 'Close Window', 'edforms' ) ?>" class="button" style="" onclick="closeModal(true);" />
 					</div>
 
 				</div>
@@ -2089,19 +2089,19 @@ final class GF_Entry_List_Table extends WP_List_Table {
 				<div class="tagsdiv">
 					<div id="print_options">
 
-						<p class="description"><?php esc_html_e( 'Print all of the selected entries at once.', 'gravityforms' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Print all of the selected entries at once.', 'edforms' ); ?></p>
 
-						<?php if ( GFCommon::current_user_can_any( 'gravityforms_view_entry_notes' ) ) { ?>
+						<?php if ( GFCommon::current_user_can_any( 'edforms_view_entry_notes' ) ) { ?>
 							<input type="checkbox" name="gform_print_notes" value="print_notes" checked="checked" id="gform_print_notes" />
-							<label for="gform_print_notes"><?php esc_html_e( 'Include notes', 'gravityforms' ); ?></label>
+							<label for="gform_print_notes"><?php esc_html_e( 'Include notes', 'edforms' ); ?></label>
 							<br /><br />
 						<?php } ?>
 
 						<input type="checkbox" name="gform_print_page_break" value="print_notes" checked="checked" id="gform_print_page_break" />
-						<label for="gform_print_page_break"><?php esc_html_e( 'Add page break between entries', 'gravityforms' ); ?></label>
+						<label for="gform_print_page_break"><?php esc_html_e( 'Add page break between entries', 'edforms' ); ?></label>
 						<br /><br />
 
-						<input type="button" value="<?php esc_attr_e( 'Print', 'gravityforms' ); ?>" class="button" onclick="BulkPrint();" />
+						<input type="button" value="<?php esc_attr_e( 'Print', 'edforms' ); ?>" class="button" onclick="BulkPrint();" />
 
 					</div>
 				</div>

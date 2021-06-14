@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Gravity Forms Query JSON Literal class.
+ * The Ed Forms Query JSON Literal class.
  */
 class GF_Query_JSON_Literal extends GF_Query_Literal{
 	/**

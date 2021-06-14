@@ -2,7 +2,7 @@
 
 	<form class="gf-edit-shortcode-form">
 
-		<h2 class="gf-edit-shortcode-form-title"><?php _e('Insert A Form', 'gravityforms'); ?></h2>
+		<h2 class="gf-edit-shortcode-form-title"><?php _e('Insert A Form', 'edforms'); ?></h2>
 		<br />
 		<div class="gf-edit-shortcode-form-required-attrs">
 		</div>
@@ -11,15 +11,15 @@
 		</div>
 		<br />
 		<div>
-			<a href="javascript:void(0);" onclick="jQuery('#gf-edit-shortcode-form-advanced-attrs').toggle();" onkeypress="jQuery('#gf-edit-shortcode-form-advanced-attrs').toggle();" ><?php _e('Advanced Options', 'gravityforms'); ?></a>
+			<a href="javascript:void(0);" onclick="jQuery('#gf-edit-shortcode-form-advanced-attrs').toggle();" onkeypress="jQuery('#gf-edit-shortcode-form-advanced-attrs').toggle();" ><?php _e('Advanced Options', 'edforms'); ?></a>
 		</div>
 		<br />
 		<div id="gf-edit-shortcode-form-advanced-attrs" class="gf-edit-shortcode-form-advanced-attrs" style="display:none;">
 		</div>
 
-		<input id="gform-update-shortcode" type="button" class="button-primary" value="<?php _e( 'Update Form', 'gravityforms' ); ?>" />
-		<input id="gform-insert-shortcode" type="button" class="button-primary" value="<?php _e( 'Insert Form', 'gravityforms' ); ?>" />&nbsp;&nbsp;&nbsp;
-		<a id="gform-cancel-shortcode" class="button" style="color:#bbb;" href="#"><?php _e( 'Cancel', 'gravityforms' ); ?></a>
+		<input id="gform-update-shortcode" type="button" class="button-primary" value="<?php _e( 'Update Form', 'edforms' ); ?>" />
+		<input id="gform-insert-shortcode" type="button" class="button-primary" value="<?php _e( 'Insert Form', 'edforms' ); ?>" />&nbsp;&nbsp;&nbsp;
+		<a id="gform-cancel-shortcode" class="button" style="color:#bbb;" href="#"><?php _e( 'Cancel', 'edforms' ); ?></a>
 
 	</form>
 

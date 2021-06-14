@@ -26,7 +26,7 @@ class GFAsyncUpload {
 		// Validation in the browser reduces the risk of this happening.
 		if ( ! isset( $_REQUEST['form_id'] ) ) {
 			GFCommon::log_debug( 'GFAsyncUpload::upload(): File upload aborted because the form_id was not found. The file may have been bigger than the max post size ini setting.' );
-			self::die_error( 500, __( 'Failed to upload file.', 'gravityforms' ) );
+			self::die_error( 500, __( 'Failed to upload file.', 'edforms' ) );
 		}
 
 
@@ -54,7 +54,7 @@ class GFAsyncUpload {
 		if ( ! is_dir( $target_dir ) ) {
 			if ( ! wp_mkdir_p( $target_dir ) ) {
 				GFCommon::log_debug( "GFAsyncUpload::upload(): Couldn't create the tmp folder: " . $target_dir );
-				self::die_error( 500, __( 'Failed to upload file.', 'gravityforms' ) );
+				self::die_error( 500, __( 'Failed to upload file.', 'edforms' ) );
 			}
 		}
 
@@ -85,7 +85,7 @@ class GFAsyncUpload {
 		/**
 		 * Filter the field object that will be associated with the uploaded file.
 		 *
-		 * This is useful when you want to use Gravity Forms' upload system to upload files. Using this filter you can return a one-time-use field object
+		 * This is useful when you want to use Ed Forms' upload system to upload files. Using this filter you can return a one-time-use field object
 		 * to process the file as desired.
 		 *
 		 * @since 2.2.2
@@ -109,18 +109,18 @@ class GFAsyncUpload {
 		$max_upload_size_in_mb    = $max_upload_size_in_bytes / 1048576;
 
 		if ( $_FILES['file']['size'] > 0 && $_FILES['file']['size'] > $max_upload_size_in_bytes ) {
-			self::die_error( 104,sprintf( __( 'File exceeds size limit. Maximum file size: %dMB', 'gravityforms' ), $max_upload_size_in_mb ) );
+			self::die_error( 104,sprintf( __( 'File exceeds size limit. Maximum file size: %dMB', 'edforms' ), $max_upload_size_in_mb ) );
 		}
 
 		if ( GFCommon::file_name_has_disallowed_extension( $file_name ) || GFCommon::file_name_has_disallowed_extension( $uploaded_filename ) ) {
 			GFCommon::log_debug( "GFAsyncUpload::upload(): Illegal file extension: {$file_name}" );
-			self::die_error( 104, __( 'The uploaded file type is not allowed.', 'gravityforms' ) );
+			self::die_error( 104, __( 'The uploaded file type is not allowed.', 'edforms' ) );
 		}
 
 		if ( ! empty( $allowed_extensions ) ) {
 			if ( ! GFCommon::match_file_extension( $file_name, $allowed_extensions ) || ! GFCommon::match_file_extension( $uploaded_filename, $allowed_extensions ) ) {
 				GFCommon::log_debug( "GFAsyncUpload::upload(): The uploaded file type is not allowed: {$file_name}" );
-				self::die_error( 104, sprintf( __( 'The uploaded file type is not allowed. Must be one of the following: %s', 'gravityforms' ), strtolower( $field['allowedExtensions'] ) ) );
+				self::die_error( 104, sprintf( __( 'The uploaded file type is not allowed. Must be one of the following: %s', 'edforms' ), strtolower( $field['allowedExtensions'] ) ) );
 			}
 		}
 
@@ -170,7 +170,7 @@ class GFAsyncUpload {
 				closedir( $dir );
 			} else {
 				GFCommon::log_debug( 'GFAsyncUpload::upload(): Failed to open temp directory: ' . $target_dir );
-				self::die_error( 100, __( 'Failed to open temp directory.', 'gravityforms' ) );
+				self::die_error( 100, __( 'Failed to open temp directory.', 'edforms' ) );
 			}
 		}
 
@@ -199,17 +199,17 @@ class GFAsyncUpload {
 							fwrite( $out, $buff );
 						}
 					} else {
-						self::die_error( 101, __( 'Failed to open input stream.', 'gravityforms' ) );
+						self::die_error( 101, __( 'Failed to open input stream.', 'edforms' ) );
 					}
 
 					@fclose( $in );
 					@fclose( $out );
 					@unlink( $_FILES['file']['tmp_name'] );
 				} else {
-					self::die_error( 102, __( 'Failed to open output stream.', 'gravityforms' ) );
+					self::die_error( 102, __( 'Failed to open output stream.', 'edforms' ) );
 				}
 			} else {
-				self::die_error( 103, __( 'Failed to move uploaded file.', 'gravityforms' ) );
+				self::die_error( 103, __( 'Failed to move uploaded file.', 'edforms' ) );
 			}
 		} else {
 			// Open temp file
@@ -223,13 +223,13 @@ class GFAsyncUpload {
 						fwrite( $out, $buff );
 					}
 				} else {
-					self::die_error( 101, __( 'Failed to open input stream.', 'gravityforms' ) );
+					self::die_error( 101, __( 'Failed to open input stream.', 'edforms' ) );
 				}
 
 				@fclose( $in );
 				@fclose( $out );
 			} else {
-				self::die_error( 102, __( 'Failed to open output stream.', 'gravityforms' ) );
+				self::die_error( 102, __( 'Failed to open output stream.', 'edforms' ) );
 			}
 		}
 
@@ -240,7 +240,7 @@ class GFAsyncUpload {
 			if ( file_exists( $file_path ) ) {
 				GFFormsModel::set_permissions( $file_path );
 			} else {
-				self::die_error( 105, __( 'Upload unsuccessful', 'gravityforms' ) . ' ' . $uploaded_filename );
+				self::die_error( 105, __( 'Upload unsuccessful', 'edforms' ) . ' ' . $uploaded_filename );
 			}
 
 			gf_do_action( array( 'gform_post_multifile_upload', $form['id'] ), $form, $field, $uploaded_filename, $tmp_file_name, $file_path );
@@ -250,7 +250,7 @@ class GFAsyncUpload {
 			if ( file_exists( "{$file_path}.part" ) ) {
 				GFFormsModel::set_permissions( "{$file_path}.part" );
 			} else {
-				self::die_error( 105, __( 'Upload unsuccessful', 'gravityforms' ) . ' ' . $uploaded_filename );
+				self::die_error( 105, __( 'Upload unsuccessful', 'edforms' ) . ' ' . $uploaded_filename );
 			}
 
 			GFCommon::log_debug( sprintf( 'GFAsyncUpload::upload(): Chunk upload complete. temp_filename: %s  uploaded_filename: %s chunk: %d', $tmp_file_name, $uploaded_filename, $chunk ) );

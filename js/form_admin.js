@@ -878,7 +878,7 @@ var gfMergeTagsObj = function( form, element ) {
 		
 		self.addMergeTagIcon();
 
-		self.mergeTagIcon.find( 'a.open-list' ).on( 'click.gravityforms', function() {
+		self.mergeTagIcon.find( 'a.open-list' ).on( 'click.edforms', function() {
 
 			var trigger = jQuery(this);
 
@@ -920,7 +920,7 @@ var gfMergeTagsObj = function( form, element ) {
 		element = self.elem ? self.elem : element;
 		
 		element.next( '.all-merge-tags' ).remove();
-		element.off( 'keydown.gravityforms' );
+		element.off( 'keydown.edforms' );
 		element.autocomplete( 'destroy' );
 		element.data( 'mergeTags', null );
 		
@@ -937,7 +937,7 @@ var gfMergeTagsObj = function( form, element ) {
 	*/
 	self.bindKeyDown = function() {
 		
-		self.elem.on( 'keydown.gravityforms', function( event ) {
+		self.elem.on( 'keydown.edforms', function( event ) {
 			
 			var menuActive = self.elem.data( 'autocomplete' ) && self.elem.data( 'autocomplete' ).menu ? self.elem.data( 'autocomplete' ).menu.active : false;
 			
@@ -1422,7 +1422,7 @@ var gfMergeTagsObj = function( form, element ) {
 				var tag = tags[i];
 				
 				var tagHTML = jQuery( '<a class="" data-value="' + tag.tag + '">' + tag.label + '</a>' );
-				tagHTML.on( 'click.gravityforms', self.bindMergeTagListClick );
+				tagHTML.on( 'click.edforms', self.bindMergeTagListClick );
 								
 				optionsHTML.push( jQuery( '<li></li>' ).html( tagHTML ) );
 

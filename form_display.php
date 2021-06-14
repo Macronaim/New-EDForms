@@ -255,13 +255,13 @@ class GFFormDisplay {
 			'is_enabled'     => false,
 			'nextButton'     => array(
 					'type'     => 'text',
-					'text'     => __( 'Review Form', 'gravityforms' ),
+					'text'     => __( 'Review Form', 'edforms' ),
 					'imageUrl' => '',
 					'imageAlt' => '',
 			),
 			'previousButton' => array(
 					'type'     => 'text',
-					'text'     => __( 'Previous', 'gravityforms' ),
+					'text'     => __( 'Previous', 'edforms' ),
 					'imageUrl' => '',
 					'imageAlt' => '',
 			),
@@ -613,7 +613,7 @@ class GFFormDisplay {
 	/**
 	 * Determine if the last page for the current form object is being submitted or rendered (depending on the provided $mode).
 	 *
-	 * @param  array  $form A Gravity Forms form object.
+	 * @param  array  $form A Ed Forms form object.
 	 * @param  string $mode Mode to check for: 'submit' or 'render'
 	 *
 	 * @return boolean
@@ -817,7 +817,7 @@ class GFFormDisplay {
 			 * @param string                The default form not found message
 			 * @param int|string $form_id   The ID of the form we tried to retrieve
 			 */
-			return apply_filters( 'gform_form_not_found_message', '<p class="gform_not_found">' . esc_html__( 'Oops! We could not locate your form.', 'gravityforms' ) . '</p>', $form_id );
+			return apply_filters( 'gform_form_not_found_message', '<p class="gform_not_found">' . esc_html__( 'Oops! We could not locate your form.', 'edforms' ) . '</p>', $form_id );
 		}
 
 		$has_pages = self::has_pages( $form );
@@ -836,7 +836,7 @@ class GFFormDisplay {
 			// If form requires login, check if user is logged in
 			if ( rgar( $form, 'requireLogin' ) ) {
 				if ( ! is_user_logged_in() ) {
-					return empty( $form['requireLoginMessage'] ) ? '<p>' . esc_html__( 'Sorry. You must be logged in to view this form.', 'gravityforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['requireLoginMessage'] ) . '</p>';
+					return empty( $form['requireLoginMessage'] ) ? '<p>' . esc_html__( 'Sorry. You must be logged in to view this form.', 'edforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['requireLoginMessage'] ) . '</p>';
 				}
 			}
 		}
@@ -947,9 +947,9 @@ class GFFormDisplay {
 
 			if ( $is_postback && ! $is_valid ) {
 				if ( gf_upgrade()->get_submissions_block() ){
-					$validation_message = "<div class='gf_submission_limit_message'><p>" . esc_html__( 'Your form was not submitted. Please try again in a few minutes.', 'gravityforms' ) . '</p></div>';
+					$validation_message = "<div class='gf_submission_limit_message'><p>" . esc_html__( 'Your form was not submitted. Please try again in a few minutes.', 'edforms' ) . '</p></div>';
 				} else {
-					$validation_message = "<div class='validation_error'>" . esc_html__( 'There was a problem with your submission.', 'gravityforms' ) . ' ' . esc_html__( 'Errors have been highlighted below.', 'gravityforms' ) . '</div>';
+					$validation_message = "<div class='validation_error'>" . esc_html__( 'There was a problem with your submission.', 'edforms' ) . ' ' . esc_html__( 'Errors have been highlighted below.', 'edforms' ) . '</div>';
 				}
 				$form_string .= gf_apply_filters( array( 'gform_validation_message', $form_id ), $validation_message, $form );
 			}
@@ -990,8 +990,8 @@ class GFFormDisplay {
                             </ul>';
 
 			if ( $has_pages ) {
-				$previous_button_alt = rgempty( 'imageAlt', $form['lastPageButton'] ) ? __( 'Previous Page', 'gravityforms' ) : $form['lastPageButton']['imageAlt'];
-				$previous_button = self::get_form_button( $form['id'], "gform_previous_button_{$form['id']}", $form['lastPageButton'], __( 'Previous', 'gravityforms' ), 'gform_previous_button', $previous_button_alt, self::get_current_page( $form_id ) - 1 );
+				$previous_button_alt = rgempty( 'imageAlt', $form['lastPageButton'] ) ? __( 'Previous Page', 'edforms' ) : $form['lastPageButton']['imageAlt'];
+				$previous_button = self::get_form_button( $form['id'], "gform_previous_button_{$form['id']}", $form['lastPageButton'], __( 'Previous', 'edforms' ), 'gform_previous_button', $previous_button_alt, self::get_current_page( $form_id ) - 1 );
 
 				/**
 				 * Filter through the form previous button when paged
@@ -1042,7 +1042,7 @@ class GFFormDisplay {
 				$iframe_title = $is_html5 ? " title='Ajax Frame'" : '';
 
 				$form_string .= "
-                <iframe style='{$iframe_style}' src='about:blank' name='gform_ajax_frame_{$form_id}' id='gform_ajax_frame_{$form_id}'" . $iframe_title . ">" . esc_html__( 'This iframe contains the logic required to handle Ajax powered Gravity Forms.', 'gravityforms' ) . "</iframe>
+                <iframe style='{$iframe_style}' src='about:blank' name='gform_ajax_frame_{$form_id}' id='gform_ajax_frame_{$form_id}'" . $iframe_title . ">" . esc_html__( 'This iframe contains the logic required to handle Ajax powered Ed Forms.', 'edforms' ) . "</iframe>
                 <script type='text/javascript'>" . apply_filters( 'gform_cdata_open', '' ) . '' .
 					'jQuery(document).ready(function($){' .
 						"gformInitSpinner( {$form_id}, '{$spinner_url}' );" .
@@ -1215,7 +1215,7 @@ class GFFormDisplay {
 		$form_id      = absint( $form['id'] );
 		$footer       = "
         <div class='" . esc_attr( $class ) . "'>";
-		$button_input = self::get_form_button( $form['id'], "gform_submit_button_{$form['id']}", $form['button'], __( 'Submit', 'gravityforms' ), 'gform_button', __( 'Submit', 'gravityforms' ), 0 );
+		$button_input = self::get_form_button( $form['id'], "gform_submit_button_{$form['id']}", $form['button'], __( 'Submit', 'edforms' ), 'gform_button', __( 'Submit', 'edforms' ), 0 );
 		$button_input = gf_apply_filters( array( 'gform_submit_button', $form_id ), $button_input, $form );
 
 		$save_button = rgars( $form, 'save/enabled' ) ? self::get_form_button( $form_id, "gform_save_{$form_id}", $form['save']['button'], rgars( $form, 'save/button/text' ), 'gform_save_link', rgars( $form, 'save/button/text' ), 0, "jQuery(\"#gform_save_{$form_id}\").val(1);" ) : '';
@@ -1304,7 +1304,7 @@ class GFFormDisplay {
 	private static function get_honeypot_field( $form ) {
 		$max_id     = self::get_max_field_id( $form );
 		$labels     = self::get_honeypot_labels();
-		$properties = array( 'type' => 'honeypot', 'label' => $labels[ rand( 0, 3 ) ], 'id' => $max_id + 1, 'cssClass' => 'gform_validation_container', 'description' => __( 'This field is for validation purposes and should be left unchanged.', 'gravityforms' ) );
+		$properties = array( 'type' => 'honeypot', 'label' => $labels[ rand( 0, 3 ) ], 'id' => $max_id + 1, 'cssClass' => 'gform_validation_container', 'description' => __( 'This field is for validation purposes and should be left unchanged.', 'edforms' ) );
 		$field      = GF_Fields::create( $properties );
 
 		return $field;
@@ -1693,7 +1693,7 @@ class GFFormDisplay {
 			//display error message if field is marked as required and the submitted value is empty
 			if ( $field->isRequired && self::is_empty( $field, $form['id'] ) ) {
 				$field->failed_validation  = true;
-				$field->validation_message = empty( $field->errorMessage ) ? __( 'This field is required.', 'gravityforms' ) : $field->errorMessage;
+				$field->validation_message = empty( $field->errorMessage ) ? __( 'This field is required.', 'edforms' ) : $field->errorMessage;
 			} //display error if field does not allow duplicates and the submitted value already exists
 			else if ( $field->noDuplicates && RGFormsModel::is_duplicate( $form['id'], $field, $value ) ) {
 				$field->failed_validation = true;
@@ -1702,12 +1702,12 @@ class GFFormDisplay {
 
 				switch ( $input_type ) {
 					case 'date' :
-						$default_message = __( 'This date has already been taken. Please select a new date.', 'gravityforms' );
+						$default_message = __( 'This date has already been taken. Please select a new date.', 'edforms' );
 						break;
 
 					default:
-						$default_message = is_array( $value ) ? __( 'This field requires a unique entry and the values you entered have already been used.', 'gravityforms' ) :
-							sprintf( __( "This field requires a unique entry and '%s' has already been used", 'gravityforms' ), $value );
+						$default_message = is_array( $value ) ? __( 'This field requires a unique entry and the values you entered have already been used.', 'edforms' ) :
+							sprintf( __( "This field requires a unique entry and '%s' has already been used", 'edforms' ), $value );
 						break;
 				}
 
@@ -1716,7 +1716,7 @@ class GFFormDisplay {
 			} else {
 				if ( self::failed_state_validation( $form['id'], $field, $value ) ) {
 					$field->failed_validation  = true;
-					$field->validation_message = in_array( $field->inputType, array( 'singleproduct', 'singleshipping', 'hiddenproduct' ) ) ? __( 'Please enter a valid value.', 'gravityforms' ) : __( 'Invalid selection. Please select one of the available choices.', 'gravityforms' );
+					$field->validation_message = in_array( $field->inputType, array( 'singleproduct', 'singleshipping', 'hiddenproduct' ) ) ? __( 'Please enter a valid value.', 'edforms' ) : __( 'Invalid selection. Please select one of the available choices.', 'edforms' );
 				} else {
 					$field->validate( $value, $form );
 				}
@@ -1738,7 +1738,7 @@ class GFFormDisplay {
 		if ( $is_valid && $is_last_page && self::is_form_empty( $form ) ) {
 			foreach ( $form['fields'] as &$field ) {
 				$field->failed_validation  = true;
-				$field->validation_message = esc_html__( 'At least one field must be filled out', 'gravityforms' );
+				$field->validation_message = esc_html__( 'At least one field must be filled out', 'edforms' );
 				$is_valid                  = false;
 				unset( $field->is_field_hidden );
 			}
@@ -1841,7 +1841,7 @@ class GFFormDisplay {
 
 	public static function get_embedded_forms( $post_content, &$ajax ) {
 		$forms = array();
-		if ( preg_match_all( '/\[gravityform[s]? +.*?((id=.+?)|(name=.+?))\]/is', $post_content, $matches, PREG_SET_ORDER ) ) {
+		if ( preg_match_all( '/\[edform[s]? +.*?((id=.+?)|(name=.+?))\]/is', $post_content, $matches, PREG_SET_ORDER ) ) {
 			$ajax = false;
 			foreach ( $matches as $match ) {
 				//parsing shortcode attributes
@@ -1900,7 +1900,7 @@ class GFFormDisplay {
 		}
 
 		if ( $ajax || self::has_price_field( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_conditional_logic( $form ) || self::has_currency_format_number_field( $form ) || self::has_calculation_field( $form ) || self::has_recaptcha_field( $form ) || self::has_checkbox_field( $form, true ) ) {
-			wp_enqueue_script( 'gform_gravityforms' );
+			wp_enqueue_script( 'gform_edforms' );
 		}
 
 		if ( GFCommon::has_multifile_fileupload_field( $form ) ) {
@@ -1908,13 +1908,13 @@ class GFFormDisplay {
 		}
 
 		if ( self::has_fileupload_field( $form ) ) {
-			wp_enqueue_script( 'gform_gravityforms' );
-			GFCommon::localize_gform_gravityforms_multifile();
+			wp_enqueue_script( 'gform_edforms' );
+			GFCommon::localize_gform_edforms_multifile();
 		}
 
 		if ( self::has_enhanced_dropdown( $form ) || self::has_pages( $form ) ) {
 			wp_enqueue_script( 'gform_json' );
-			wp_enqueue_script( 'gform_gravityforms' );
+			wp_enqueue_script( 'gform_edforms' );
 		}
 
 		if ( self::has_character_counter( $form ) ) {
@@ -1991,8 +1991,8 @@ class GFFormDisplay {
 
 		$scripts = array();
 
-		if ( ( $ajax || self::has_enhanced_dropdown( $form ) || self::has_price_field( $form ) || self::has_password_strength( $form ) || self::has_pages( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_calculation_field( $form ) ) && ! wp_script_is( 'gform_gravityforms' ) ) {
-			$scripts[] = 'gform_gravityforms';
+		if ( ( $ajax || self::has_enhanced_dropdown( $form ) || self::has_price_field( $form ) || self::has_password_strength( $form ) || self::has_pages( $form ) || self::has_password_strength( $form ) || GFCommon::has_list_field( $form ) || GFCommon::has_credit_card_field( $form ) || self::has_calculation_field( $form ) ) && ! wp_script_is( 'gform_edforms' ) ) {
+			$scripts[] = 'gform_edforms';
 		}
 
 		if ( self::has_conditional_logic( $form ) && ! wp_script_is( 'gform_conditional_logic' ) ) {
@@ -2033,7 +2033,7 @@ class GFFormDisplay {
 
 		wp_print_scripts( $scripts );
 
-		if ( wp_script_is( 'gform_gravityforms' ) ) {
+		if ( wp_script_is( 'gform_edforms' ) ) {
 			echo '<script type="text/javascript"> ' . GFCommon::gf_global( false ) . ' </script>';
 		}
 
@@ -2353,7 +2353,7 @@ class GFFormDisplay {
 			}
 		}
         /**
-         * Fires when inline Gravity Forms scripts are enqueued
+         * Fires when inline Ed Forms scripts are enqueued
          *
          * Used to enqueue additional inline scripts
          *
@@ -2370,7 +2370,7 @@ class GFFormDisplay {
 		$script_string = '';
 
 		// temporary solution for output gf_global obj until wp min version raised to 3.3
-		if ( wp_script_is( 'gform_gravityforms' ) ) {
+		if ( wp_script_is( 'gform_edforms' ) ) {
 			$gf_global_script = "if(typeof gf_global == 'undefined') " . GFCommon::gf_global( false );
 		}
 
@@ -2421,7 +2421,7 @@ class GFFormDisplay {
 			}
 		}
 
-		return "gformInitChosenFields('" . implode( ',', $chosen_fields ) . "','" . esc_attr( gf_apply_filters( array( 'gform_dropdown_no_results_text', $form['id'] ), __( 'No results matched', 'gravityforms' ), $form['id'] ) ) . "');";
+		return "gformInitChosenFields('" . implode( ',', $chosen_fields ) . "','" . esc_attr( gf_apply_filters( array( 'gform_dropdown_no_results_text', $form['id'] ), __( 'No results matched', 'edforms' ), $form['id'] ) ) . "');";
 	}
 
 	public static function get_currency_format_init_script( $form ) {
@@ -2475,7 +2475,7 @@ class GFFormDisplay {
 					"    'originalStyle': 'ginput_counter{$tinymce_style}'," .
 					"	 'truncate': {$truncate}," .
 					"	 'errorStyle' : '{$error_style}'," .
-					"    'displayFormat' : '#input " . esc_js( __( 'of', 'gravityforms' ) ) . ' #max ' . esc_js( __( 'max characters', 'gravityforms' ) ) . "'" .
+					"    'displayFormat' : '#input " . esc_js( __( 'of', 'edforms' ) ) . ' #max ' . esc_js( __( 'max characters', 'edforms' ) ) . "'" .
 					"    } );";
 
 				$script .= gf_apply_filters( array( 'gform_counter_script', $form['id'] ), $field_script, $form['id'], $input_id, $max_length, $field );
@@ -2492,7 +2492,7 @@ class GFFormDisplay {
 
 	public static function get_password_strength_init_script( $form ) {
 
-		$field_script = "if(!window['gf_text']){window['gf_text'] = new Array();} window['gf_text']['password_blank'] = '" . esc_js( __( 'Strength indicator', 'gravityforms' ) ) . "'; window['gf_text']['password_mismatch'] = '" . esc_js( __( 'Mismatch', 'gravityforms' ) ) . "';window['gf_text']['password_bad'] = '" . esc_js( __( 'Bad', 'gravityforms' ) ) . "'; window['gf_text']['password_short'] = '" . esc_js( __( 'Short', 'gravityforms' ) ) . "'; window['gf_text']['password_good'] = '" . esc_js( __( 'Good', 'gravityforms' ) ) . "'; window['gf_text']['password_strong'] = '" . esc_js( __( 'Strong', 'gravityforms' ) ) . "';";
+		$field_script = "if(!window['gf_text']){window['gf_text'] = new Array();} window['gf_text']['password_blank'] = '" . esc_js( __( 'Strength indicator', 'edforms' ) ) . "'; window['gf_text']['password_mismatch'] = '" . esc_js( __( 'Mismatch', 'edforms' ) ) . "';window['gf_text']['password_bad'] = '" . esc_js( __( 'Bad', 'edforms' ) ) . "'; window['gf_text']['password_short'] = '" . esc_js( __( 'Short', 'edforms' ) ) . "'; window['gf_text']['password_good'] = '" . esc_js( __( 'Good', 'edforms' ) ) . "'; window['gf_text']['password_strong'] = '" . esc_js( __( 'Strong', 'edforms' ) ) . "';";
 
 		foreach ( $form['fields'] as $field ) {
 			if ( $field->type == 'password' && $field->passwordStrengthEnabled ) {
@@ -2828,14 +2828,14 @@ class GFFormDisplay {
 				return; //ignore page breaks in the entry detail page
 			} else if ( ! $is_form_editor ) {
 
-				$previous_button_alt = rgempty( 'imageAlt', $field->previousButton ) ? __( 'Previous Page', 'gravityforms' ) : $field->previousButton['imageAlt'];
-				$previous_button = $field->pageNumber == 2 ? '' : self::get_form_button( $form['id'], "gform_previous_button_{$form['id']}_{$field->id}", $field->previousButton, __( 'Previous', 'gravityforms' ), 'gform_previous_button', $previous_button_alt, $field->pageNumber - 2 );
+				$previous_button_alt = rgempty( 'imageAlt', $field->previousButton ) ? __( 'Previous Page', 'edforms' ) : $field->previousButton['imageAlt'];
+				$previous_button = $field->pageNumber == 2 ? '' : self::get_form_button( $form['id'], "gform_previous_button_{$form['id']}_{$field->id}", $field->previousButton, __( 'Previous', 'edforms' ), 'gform_previous_button', $previous_button_alt, $field->pageNumber - 2 );
 				if ( ! empty( $previous_button ) ) {
 					$previous_button = gf_apply_filters( array( 'gform_previous_button', $form['id'] ), $previous_button, $form );
 				}
 
-				$next_button_alt = rgempty( 'imageAlt', $field->nextButton ) ? __( 'Next Page', 'gravityforms' ) : $field->nextButton['imageAlt'];
-				$next_button     = self::get_form_button( $form['id'], "gform_next_button_{$form['id']}_{$field->id}", $field->nextButton, __( 'Next', 'gravityforms' ), 'gform_next_button', $next_button_alt, $field->pageNumber );
+				$next_button_alt = rgempty( 'imageAlt', $field->nextButton ) ? __( 'Next Page', 'edforms' ) : $field->nextButton['imageAlt'];
+				$next_button     = self::get_form_button( $form['id'], "gform_next_button_{$form['id']}_{$field->id}", $field->nextButton, __( 'Next', 'edforms' ), 'gform_next_button', $next_button_alt, $field->pageNumber );
 				$next_button     = gf_apply_filters( array( 'gform_next_button', $form['id'] ), $next_button, $form );
 
 				$save_button = rgars( $form, 'save/enabled' ) ? self::get_form_button( $form['id'], "gform_save_{$form['id']}", $form['save']['button'], rgars( $form, 'save/button/text' ), 'gform_save_link', rgars( $form, 'save/button/text' ), 0, "jQuery(\"#gform_save_{$form['id']}\").val(1);" ) : '';
@@ -2985,7 +2985,7 @@ class GFFormDisplay {
 		}
 
 		if ( $input_type == 'creditcard' && ! GFCommon::is_ssl() && ! $is_admin ) {
-			$field_content = "<div class='gfield_creditcard_warning_message'><span>" . esc_html__( 'This page is unsecured. Do not enter a real credit card number! Use this field only for testing purposes. ', 'gravityforms' ) . '</span></div>' . $field_content;
+			$field_content = "<div class='gfield_creditcard_warning_message'><span>" . esc_html__( 'This page is unsecured. Do not enter a real credit card number! Use this field only for testing purposes. ', 'edforms' ) . '</span></div>' . $field_content;
 		}
 
 		$value = $field->get_value_default_if_empty( $value );
@@ -3033,7 +3033,7 @@ class GFFormDisplay {
 		$progress_bar .= "
         <div id='gf_progressbar_wrapper_{$form_id}' class='gf_progressbar_wrapper'>
             <h3 class='gf_progressbar_title'>";
-		$progress_bar .= ! $progress_complete ? esc_html__( 'Step', 'gravityforms' ) . " {$current_page} " . esc_html__( 'of', 'gravityforms' ) . " {$page_count}{$page_name}" : "{$page_name}";
+		$progress_bar .= ! $progress_complete ? esc_html__( 'Step', 'edforms' ) . " {$current_page} " . esc_html__( 'of', 'edforms' ) . " {$page_count}{$page_name}" : "{$page_name}";
 		$progress_bar .= "
         </h3>
             <div class='gf_progressbar'>
@@ -3123,7 +3123,7 @@ class GFFormDisplay {
 			$entry_count = GFAPI::count_entries( $form['id'], $search_criteria );
 
 			if ( $entry_count >= $form['limitEntriesCount'] ) {
-				return empty( $form['limitEntriesMessage'] ) ? "<div class='gf_submission_limit_message'><p>" . esc_html__( 'Sorry. This form is no longer accepting new submissions.', 'gravityforms' ) . '</p></div>' : '<p>' . GFCommon::gform_do_shortcode( $form['limitEntriesMessage'] ) . '</p>';
+				return empty( $form['limitEntriesMessage'] ) ? "<div class='gf_submission_limit_message'><p>" . esc_html__( 'Sorry. This form is no longer accepting new submissions.', 'edforms' ) . '</p></div>' : '<p>' . GFCommon::gform_do_shortcode( $form['limitEntriesMessage'] ) . '</p>';
 			}
 		}
 
@@ -3140,9 +3140,9 @@ class GFFormDisplay {
 			$now              = current_time( 'timestamp' );
 
 			if ( ! empty( $form['scheduleStart'] ) && $now < $timestamp_start ) {
-				return empty( $form['schedulePendingMessage'] ) ? '<p>' . esc_html__( 'This form is not yet available.', 'gravityforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['schedulePendingMessage'] ) . '</p>';
+				return empty( $form['schedulePendingMessage'] ) ? '<p>' . esc_html__( 'This form is not yet available.', 'edforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['schedulePendingMessage'] ) . '</p>';
 			} elseif ( ! empty( $form['scheduleEnd'] ) && $now > $timestamp_end ) {
-				return empty( $form['scheduleMessage'] ) ? '<p>' . esc_html__( 'Sorry. This form is no longer available.', 'gravityforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['scheduleMessage'] ) . '</p>';
+				return empty( $form['scheduleMessage'] ) ? '<p>' . esc_html__( 'Sorry. This form is no longer available.', 'edforms' ) . '</p>' : '<p>' . GFCommon::gform_do_shortcode( $form['scheduleMessage'] ) . '</p>';
 			}
 		}
 
@@ -3276,9 +3276,9 @@ class GFFormDisplay {
 		$email_esc = esc_attr( $email );
 		$text      = str_replace( '{save_email}', $email_esc, $text );
 
-		$resume_submit_button_text       = esc_html__( 'Send Link', 'gravityforms' );
-		$resume_email_validation_message = esc_html__( 'Please enter a valid email address.', 'gravityforms' );
-		$email_input_placeholder         = esc_html__( 'email address', 'gravityforms' );
+		$resume_submit_button_text       = esc_html__( 'Send Link', 'edforms' );
+		$resume_email_validation_message = esc_html__( 'Please enter a valid email address.', 'edforms' );
+		$email_input_placeholder         = esc_html__( 'email address', 'edforms' );
 
 		// The {save_email_input} accepts shortcode-style options button_text and validation_message. E.g.,
 		// {save_email_input: button_text="Send the link to my email address" validation_message="The link couldn't be sent because the email address is not valid."}

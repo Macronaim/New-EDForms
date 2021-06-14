@@ -1,6 +1,6 @@
 <?php
 
-// If Gravity Forms isn't loaded, bail.
+// If Ed Forms isn't loaded, bail.
 if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
@@ -36,7 +36,7 @@ class GF_Field_Name extends GF_Field {
 	 * @return string
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Name', 'gravityforms' );
+		return esc_attr__( 'Name', 'edforms' );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class GF_Field_Name extends GF_Field {
 			if (   ( empty( $first ) && ! $this->get_input_property( '3', 'isHidden' ) )
 				|| ( empty( $last )  && ! $this->get_input_property( '6', 'isHidden' ) ) ) {
 				$this->failed_validation  = true;
-				$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'This field is required. Please enter the first and last name.', 'gravityforms' ) : $this->errorMessage;
+				$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'This field is required. Please enter the first and last name.', 'edforms' ) : $this->errorMessage;
 			}
 		}
 	}
@@ -191,10 +191,10 @@ class GF_Field_Name extends GF_Field {
 		$suffix_placeholder_attribute = GFCommon::get_input_placeholder_attribute( $suffix_input );
 
 		// ARIA labels. Prefix is handled in self::get_name_prefix_field().
-		$first_name_aria_label  = esc_attr__( 'First name', 'gravityforms' );
-		$middle_name_aria_label = esc_attr__( 'Middle name', 'gravityforms' );
-		$last_name_aria_label   = esc_attr__( 'Last name', 'gravityforms' );
-		$suffix_aria_label      = esc_attr__( 'Name suffix', 'gravityforms' );
+		$first_name_aria_label  = esc_attr__( 'First name', 'edforms' );
+		$middle_name_aria_label = esc_attr__( 'Middle name', 'edforms' );
+		$last_name_aria_label   = esc_attr__( 'Last name', 'edforms' );
+		$suffix_aria_label      = esc_attr__( 'Name suffix', 'edforms' );
 		$required_attribute     = $this->isRequired ? 'aria-required="true"' : '';
 		$invalid_attribute      = $this->failed_validation ? 'aria-invalid="true"' : 'aria-invalid="false"';
 
@@ -208,11 +208,11 @@ class GF_Field_Name extends GF_Field {
 				$last_tabindex   = GFCommon::get_tabindex();
 				$suffix_tabindex = GFCommon::get_tabindex();
 
-				$prefix_sub_label      = rgar( $prefix_input, 'customLabel' ) != '' ? $prefix_input['customLabel'] : gf_apply_filters( array( 'gform_name_prefix', $form_id ), esc_html__( 'Prefix', 'gravityforms' ), $form_id );
-				$first_name_sub_label  = rgar( $first_input, 'customLabel' ) != '' ? $first_input['customLabel'] : gf_apply_filters( array( 'gform_name_first', $form_id ), esc_html__( 'First', 'gravityforms' ), $form_id );
-				$middle_name_sub_label = rgar( $middle_input, 'customLabel' ) != '' ? $middle_input['customLabel'] : gf_apply_filters( array( 'gform_name_middle', $form_id ), esc_html__( 'Middle', 'gravityforms' ), $form_id );
-				$last_name_sub_label   = rgar( $last_input, 'customLabel' ) != '' ? $last_input['customLabel'] : gf_apply_filters( array( 'gform_name_last', $form_id ), esc_html__( 'Last', 'gravityforms' ), $form_id );
-				$suffix_sub_label      = rgar( $suffix_input, 'customLabel' ) != '' ? $suffix_input['customLabel'] : gf_apply_filters( array( 'gform_name_suffix', $form_id ), esc_html__( 'Suffix', 'gravityforms' ), $form_id );
+				$prefix_sub_label      = rgar( $prefix_input, 'customLabel' ) != '' ? $prefix_input['customLabel'] : gf_apply_filters( array( 'gform_name_prefix', $form_id ), esc_html__( 'Prefix', 'edforms' ), $form_id );
+				$first_name_sub_label  = rgar( $first_input, 'customLabel' ) != '' ? $first_input['customLabel'] : gf_apply_filters( array( 'gform_name_first', $form_id ), esc_html__( 'First', 'edforms' ), $form_id );
+				$middle_name_sub_label = rgar( $middle_input, 'customLabel' ) != '' ? $middle_input['customLabel'] : gf_apply_filters( array( 'gform_name_middle', $form_id ), esc_html__( 'Middle', 'edforms' ), $form_id );
+				$last_name_sub_label   = rgar( $last_input, 'customLabel' ) != '' ? $last_input['customLabel'] : gf_apply_filters( array( 'gform_name_last', $form_id ), esc_html__( 'Last', 'edforms' ), $form_id );
+				$suffix_sub_label      = rgar( $suffix_input, 'customLabel' ) != '' ? $suffix_input['customLabel'] : gf_apply_filters( array( 'gform_name_suffix', $form_id ), esc_html__( 'Suffix', 'edforms' ), $form_id );
 
 				$prefix_markup = '';
 				$first_markup  = '';
@@ -330,8 +330,8 @@ class GF_Field_Name extends GF_Field {
 			default :
 				$first_tabindex       = GFCommon::get_tabindex();
 				$last_tabindex        = GFCommon::get_tabindex();
-				$first_name_sub_label = rgar( $first_input, 'customLabel' ) != '' ? $first_input['customLabel'] : gf_apply_filters( array( 'gform_name_first', $form_id ), esc_html__( 'First', 'gravityforms' ), $form_id );
-				$last_name_sub_label  = rgar( $last_input, 'customLabel' ) != '' ? $last_input['customLabel'] : gf_apply_filters( array( 'gform_name_last', $form_id ), esc_html__( 'Last', 'gravityforms' ), $form_id );
+				$first_name_sub_label = rgar( $first_input, 'customLabel' ) != '' ? $first_input['customLabel'] : gf_apply_filters( array( 'gform_name_first', $form_id ), esc_html__( 'First', 'edforms' ), $form_id );
+				$last_name_sub_label  = rgar( $last_input, 'customLabel' ) != '' ? $last_input['customLabel'] : gf_apply_filters( array( 'gform_name_last', $form_id ), esc_html__( 'Last', 'edforms' ), $form_id );
 				if ( $is_sub_label_above ) {
 					$first_markup = '';
 					$style        = ( $is_admin && rgar( $first_input, 'isHidden' ) ) ? "style='display:none;'" : '';
@@ -477,7 +477,7 @@ class GF_Field_Name extends GF_Field {
 	 */
 	public static function get_name_prefix_field( $input, $id, $field_id, $value, $disabled_text, $tabindex ) {
 
-		$prefix_aria_label = esc_attr__( 'Name prefix', 'gravityforms' );
+		$prefix_aria_label = esc_attr__( 'Name prefix', 'edforms' );
 
 
 		if ( isset( $input['choices'] ) && is_array( $input['choices'] ) ) {

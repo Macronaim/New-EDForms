@@ -50,15 +50,15 @@ class GF_System_Report {
 
 		?>
 		<div class="updated gform_system_report_alert inline">
-			<p><?php _e( 'The following is a system report containing useful technical information for troubleshooting issues. If you need further help after viewing the report, click on the "Copy System Report" button below to copy the report and paste it in your message to support.', 'gravityforms' ); ?></p>
-			<p class="inline"><a href="#" class="button-primary" id="gf_copy_report" data-clipboard-target="#gf_system_report"><?php _e( 'Copy System Report', 'gravityforms' ); ?></a></p>
+			<p><?php _e( 'The following is a system report containing useful technical information for troubleshooting issues. If you need further help after viewing the report, click on the "Copy System Report" button below to copy the report and paste it in your message to support.', 'edforms' ); ?></p>
+			<p class="inline"><a href="#" class="button-primary" id="gf_copy_report" data-clipboard-target="#gf_system_report"><?php _e( 'Copy System Report', 'edforms' ); ?></a></p>
 
 			<div class="gf_copy_message inline" id="gf_copy_error_message">
-				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report generated!', 'gravityforms' ); echo ' <b>Press Ctrl+C to copy it.</b>'; ?></p>
+				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report generated!', 'edforms' ); echo ' <b>Press Ctrl+C to copy it.</b>'; ?></p>
 			</div>
 
 			<div class="gf_copy_message inline" id="gf_copy_success">
-				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report Copied!', 'gravityforms' ) ?></p>
+				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report Copied!', 'edforms' ) ?></p>
 			</div>
 
 			<textarea id="gf_system_report" readonly="readonly" ><?php echo esc_html( $system_report_text ) ?></textarea>
@@ -106,13 +106,13 @@ class GF_System_Report {
 			?>
 			<div id="gform_register_site">
 				<h3>
-				<?php esc_html_e( 'Site Registration', 'gravityforms' ); ?>
+				<?php esc_html_e( 'Site Registration', 'edforms' ); ?>
 				</h3>
 				<div>
 					<p>
-					<?php esc_html_e( 'To register your site, enter your license key below.', 'gravityforms' ); ?>
+					<?php esc_html_e( 'To register your site, enter your license key below.', 'edforms' ); ?>
 					</p>
-					<input type="text" id="gform_license_key" name="gform_license_key" placeholder="<?php esc_html_e( 'Enter Your License Key', 'gravityforms' ); ?>"/>
+					<input type="text" id="gform_license_key" name="gform_license_key" placeholder="<?php esc_html_e( 'Enter Your License Key', 'edforms' ); ?>"/>
 					<p>
 						<a class="button-primary" onclick="jQuery('#gf_arg').val( jQuery('#gform_license_key').val() ); gfDoAction('register_site');">Register</a>
 					</p>
@@ -276,11 +276,11 @@ class GF_System_Report {
 
 					$percent = self::get_upgrade_percent_complete();
 
-					$percent_label = sprintf( esc_html__( 'complete.', 'gravityforms' ), $percent );
+					$percent_label = sprintf( esc_html__( 'complete.', 'edforms' ), $percent );
 
 					$status = sprintf( '<span id="gf-upgrade-status">%s</span> <span id="gf-upgrade-precent">%s</span>%% %s', $status, $percent, $percent_label );
 
-					$message = sprintf( esc_html__( 'Current status: %s', 'gravityforms' ), $status );
+					$message = sprintf( esc_html__( 'Current status: %s', 'edforms' ), $status );
 
 					$message .= ' ' . sprintf( '<img id="gf-spinner" src="%s" />', GFCommon::get_base_url() . '/images/spinner.gif' );
 
@@ -293,9 +293,9 @@ class GF_System_Report {
 
 					$ajax_url = add_query_arg( $args, $ajax_url	);
 
-					echo '<h2>' . esc_html__( 'Upgrading Gravity Forms', 'gravityforms' ) . '</h2>';
+					echo '<h2>' . esc_html__( 'Upgrading Ed Forms', 'edforms' ) . '</h2>';
 
-					$warning = esc_html__( 'Do not close or navigate away from this page until the upgrade is 100% complete.', 'gravityfroms' );
+					$warning = esc_html__( 'Do not close or navigate away from this page until the upgrade is 100% complete.', 'edfroms' );
 
 					printf( '<p>%s</p>', $warning );
 					printf( '<p>%s</p>', $message );
@@ -326,7 +326,7 @@ class GF_System_Report {
 				break;
 
 			case 'register_site':
-				GFForms::include_gravity_api();
+				GFForms::include_ed_api();
 
 				$new_key = rgpost( 'gf_arg' );
 				if ( ! empty( $new_key ) && ! gapi()->is_site_registered() ) {
@@ -357,7 +357,7 @@ class GF_System_Report {
 	 *
 	 * @uses GFSystemReport::get_active_plugins()
 	 * @uses GFSystemReport::get_available_logs()
-	 * @uses GFSystemReport::get_gravityforms()
+	 * @uses GFSystemReport::get_edforms()
 	 * @uses GFSystemReport::get_database()
 	 * @uses GFSystemReport::get_network_active_plugins()
 	 * @uses wpdb::db_version()
@@ -396,9 +396,9 @@ class GF_System_Report {
 		} elseif ( ! $background_tasks ) {
 			$response_code = wp_remote_retrieve_response_code( $response );
 			if ( $response_code == 200 ) {
-				$background_validation_message = esc_html__( 'Unexpected content in the response.', 'gravityforms' );
+				$background_validation_message = esc_html__( 'Unexpected content in the response.', 'edforms' );
 			} else {
-				$background_validation_message = sprintf( esc_html__( 'Response code: %s', 'gravityforms' ), $response_code );
+				$background_validation_message = sprintf( esc_html__( 'Response code: %s', 'edforms' ), $response_code );
 			}
 		}
 		self::$background_tasks = $background_tasks;
@@ -406,51 +406,51 @@ class GF_System_Report {
 		// Prepare system report.
 		$system_report = array(
 			array(
-				'title'        => esc_html__( 'Gravity Forms Environment', 'gravityforms' ),
-				'title_export' => 'Gravity Forms Environment',
+				'title'        => esc_html__( 'Ed Forms Environment', 'edforms' ),
+				'title_export' => 'Ed Forms Environment',
 				'tables'       => array(
 					array(
-						'title'        => esc_html__( 'Gravity Forms', 'gravityforms' ),
-						'title_export' => 'Gravity Forms',
-						'items'        => self::get_gravityforms(),
+						'title'        => esc_html__( 'Ed Forms', 'edforms' ),
+						'title_export' => 'Ed Forms',
+						'items'        => self::get_edforms(),
 					),
 					array(
-						'title'        => esc_html__( 'Add-Ons', 'gravityforms' ),
+						'title'        => esc_html__( 'Add-Ons', 'edforms' ),
 						'title_export' => 'Add-Ons',
 						'items'        => self::get_active_plugins( false, true, false ),
 					),
 					array(
-						'title'        => esc_html__( 'Database', 'gravityforms' ),
+						'title'        => esc_html__( 'Database', 'edforms' ),
 						'title_export' => 'Database',
 						'items'        => self::get_database(),
 					),
 					array(
-						'title'        => esc_html__( 'Log Files', 'gravityforms' ),
+						'title'        => esc_html__( 'Log Files', 'edforms' ),
 						'title_export' => 'Log Files',
 						'items'        => self::get_available_logs(),
 					),
 				),
 			),
 			array(
-				'title'        => esc_html__( 'WordPress Environment', 'gravityforms' ),
+				'title'        => esc_html__( 'WordPress Environment', 'edforms' ),
 				'title_export' => 'WordPress Environment',
 				'tables'       => array(
 					array(
-						'title'        => esc_html__( 'WordPress', 'gravityforms' ),
+						'title'        => esc_html__( 'WordPress', 'edforms' ),
 						'title_export' => 'WordPress',
 						'items'        => array(
 							array(
-								'label'        => esc_html__( 'Home URL', 'gravityforms' ),
+								'label'        => esc_html__( 'Home URL', 'edforms' ),
 								'label_export' => 'Home URL',
 								'value'        => get_home_url(),
 							),
 							array(
-								'label'        => esc_html__( 'Site URL', 'gravityforms' ),
+								'label'        => esc_html__( 'Site URL', 'edforms' ),
 								'label_export' => 'Site URL',
 								'value'        => get_site_url(),
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Version', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Version', 'edforms' ),
 								'label_export' => 'WordPress Version',
 								'value'        => $wp_version,
 								'type'         => 'wordpress_version_check',
@@ -459,7 +459,7 @@ class GF_System_Report {
 										'version_compare'    => '>=',
 										'minimum_version'    => GF_MIN_WP_VERSION_SUPPORT_TERMS,
 										'validation_message' => sprintf(
-											esc_html__( 'The Gravity Forms support agreement requires WordPress %s or greater. This site must be upgraded in order to be eligible for support.', 'gravityforms' ),
+											esc_html__( 'The Ed Forms support agreement requires WordPress %s or greater. This site must be upgraded in order to be eligible for support.', 'edforms' ),
 											GF_MIN_WP_VERSION_SUPPORT_TERMS
 										),
 									),
@@ -467,58 +467,58 @@ class GF_System_Report {
 										'version_compare'    => '>=',
 										'minimum_version'    => GF_MIN_WP_VERSION,
 										'validation_message' => sprintf(
-											esc_html__( 'Gravity Forms requires WordPress %s or greater. You must upgrade WordPress in order to use Gravity Forms.', 'gravityforms' ),
+											esc_html__( 'Ed Forms requires WordPress %s or greater. You must upgrade WordPress in order to use Ed Forms.', 'edforms' ),
 											GF_MIN_WP_VERSION
 										),
 									),
 								),
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Multisite', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Multisite', 'edforms' ),
 								'label_export' => 'WordPress Multisite',
-								'value'        => is_multisite() ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => is_multisite() ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => is_multisite() ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Memory Limit', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Memory Limit', 'edforms' ),
 								'label_export' => 'WordPress Memory Limit',
 								'value'        => WP_MEMORY_LIMIT,
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Debug Mode', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Debug Mode', 'edforms' ),
 								'label_export' => 'WordPress Debug Mode',
-								'value'        => WP_DEBUG ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => WP_DEBUG ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => WP_DEBUG ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Debug Log', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Debug Log', 'edforms' ),
 								'label_export' => 'WordPress Debug Log',
-								'value'        => WP_DEBUG_LOG ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => WP_DEBUG_LOG ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => WP_DEBUG_LOG ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Script Debug Mode', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Script Debug Mode', 'edforms' ),
 								'label_export' => 'WordPress Script Debug Mode',
-								'value'        => SCRIPT_DEBUG ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => SCRIPT_DEBUG ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => SCRIPT_DEBUG ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Cron', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Cron', 'edforms' ),
 								'label_export' => 'WordPress Cron',
-								'value'        => ! $wp_cron_disabled ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => ! $wp_cron_disabled ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => ! $wp_cron_disabled ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'WordPress Alternate Cron', 'gravityforms' ),
+								'label'        => esc_html__( 'WordPress Alternate Cron', 'edforms' ),
 								'label_export' => 'WordPress Alternate Cron',
-								'value'        => $alternate_wp_cron ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => $alternate_wp_cron ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => $alternate_wp_cron ? 'Yes' : 'No',
 							),
 							array(
-								'label'              => esc_html__( 'Background tasks', 'gravityforms' ),
+								'label'              => esc_html__( 'Background tasks', 'edforms' ),
 								'label_export'       => 'Background tasks',
 								'type'               => 'wordpress_background_tasks',
-								'value'              => $background_tasks ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'              => $background_tasks ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export'       => $background_tasks ? 'Yes' : 'No',
 								'is_valid'           => $background_tasks,
 								'validation_message' => $background_validation_message,
@@ -526,116 +526,116 @@ class GF_System_Report {
 						),
 					),
 					array(
-						'title'        => esc_html__( 'Active Theme', 'gravityforms' ),
+						'title'        => esc_html__( 'Active Theme', 'edforms' ),
 						'title_export' => 'Active Theme',
 						'items'        => self::get_theme(),
 					),
 					array(
-						'title'        => esc_html__( 'Active Plugins', 'gravityforms' ),
+						'title'        => esc_html__( 'Active Plugins', 'edforms' ),
 						'title_export' => 'Active Plugins',
 						'items'        => self::get_active_plugins( false, false, true ),
 					),
 					array(
-						'title'        => esc_html__( 'Network Active Plugins', 'gravityforms' ),
+						'title'        => esc_html__( 'Network Active Plugins', 'edforms' ),
 						'title_export' => 'Network Active Plugins',
 						'items'        => self::get_network_active_plugins(),
 					),
 				),
 			),
 			array(
-				'title'        => esc_html__( 'Server Environment', 'gravityforms' ),
+				'title'        => esc_html__( 'Server Environment', 'edforms' ),
 				'title_export' => 'Server Environment',
 				'tables'       => array(
 					array(
-						'title'        => esc_html__( 'Web Server', 'gravityforms' ),
+						'title'        => esc_html__( 'Web Server', 'edforms' ),
 						'title_export' => 'Web Server',
 						'items'        => array(
 							array(
-								'label'        => esc_html__( 'Software', 'gravityforms' ),
+								'label'        => esc_html__( 'Software', 'edforms' ),
 								'label_export' => 'Software',
 								'value'        => esc_html( $_SERVER['SERVER_SOFTWARE'] ),
 							),
 							array(
-								'label'        => esc_html__( 'Port', 'gravityforms' ),
+								'label'        => esc_html__( 'Port', 'edforms' ),
 								'label_export' => 'Port',
 								'value'        => esc_html( $_SERVER['SERVER_PORT'] ),
 							),
 							array(
-								'label'        => esc_html__( 'Document Root', 'gravityforms' ),
+								'label'        => esc_html__( 'Document Root', 'edforms' ),
 								'label_export' => 'Document Root',
 								'value'        => esc_html( $_SERVER['DOCUMENT_ROOT'] ),
 							),
 						),
 					),
 					array(
-						'title'        => esc_html__( 'PHP', 'gravityforms' ),
+						'title'        => esc_html__( 'PHP', 'edforms' ),
 						'title_export' => 'PHP',
 						'items'        => array(
 							array(
-								'label'              => esc_html__( 'Version', 'gravityforms' ),
+								'label'              => esc_html__( 'Version', 'edforms' ),
 								'label_export'       => 'Version',
 								'value'              => esc_html( phpversion() ),
 								'type'               => 'version_check',
 								'version_compare'    => '>=',
 								'minimum_version'    => '5.6',
-								'validation_message' => esc_html__( 'Gravity Forms requires PHP 5.6 or above.', 'gravityforms' ),
+								'validation_message' => esc_html__( 'Ed Forms requires PHP 5.6 or above.', 'edforms' ),
 							),
 							array(
-								'label'        => esc_html__( 'Memory Limit', 'gravityforms' ) . ' (memory_limit)',
+								'label'        => esc_html__( 'Memory Limit', 'edforms' ) . ' (memory_limit)',
 								'label_export' => 'Memory Limit',
 								'value'        => esc_html( ini_get( 'memory_limit' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Maximum Execution Time', 'gravityforms' ) . ' (max_execution_time)',
+								'label'        => esc_html__( 'Maximum Execution Time', 'edforms' ) . ' (max_execution_time)',
 								'label_export' => 'Maximum Execution Time',
 								'value'        => esc_html( ini_get( 'max_execution_time' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Maximum File Upload Size', 'gravityforms' ) . ' (upload_max_filesize)',
+								'label'        => esc_html__( 'Maximum File Upload Size', 'edforms' ) . ' (upload_max_filesize)',
 								'label_export' => 'Maximum File Upload Size',
 								'value'        => esc_html( ini_get( 'upload_max_filesize' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Maximum File Uploads', 'gravityforms' ) . ' (max_file_uploads)',
+								'label'        => esc_html__( 'Maximum File Uploads', 'edforms' ) . ' (max_file_uploads)',
 								'label_export' => 'Maximum File Uploads',
 								'value'        => esc_html( ini_get( 'max_file_uploads' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Maximum Post Size', 'gravityforms' ) . ' (post_max_size)',
+								'label'        => esc_html__( 'Maximum Post Size', 'edforms' ) . ' (post_max_size)',
 								'label_export' => 'Maximum Post Size',
 								'value'        => esc_html( ini_get( 'post_max_size' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Maximum Input Variables', 'gravityforms' ) . ' (max_input_vars)',
+								'label'        => esc_html__( 'Maximum Input Variables', 'edforms' ) . ' (max_input_vars)',
 								'label_export' => 'Maximum Input Variables',
 								'value'        => esc_html( ini_get( 'max_input_vars' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'cURL Enabled', 'gravityforms' ),
+								'label'        => esc_html__( 'cURL Enabled', 'edforms' ),
 								'label_export' => 'cURL Enabled',
-								'value'        => function_exists( 'curl_init' ) ? __( 'Yes', 'gravityforms' ) . ' (' . __( 'version', 'gravityforms' ) . ' ' . rgar( curl_version(), 'version' ) . ')' : __( 'No', 'gravityforms' ),
-								'value_export' => function_exists( 'curl_init' ) ? 'Yes' . ' (' . __( 'version', 'gravityforms' ) . ' ' . rgar( curl_version(), 'version' ) . ')' : 'No',
+								'value'        => function_exists( 'curl_init' ) ? __( 'Yes', 'edforms' ) . ' (' . __( 'version', 'edforms' ) . ' ' . rgar( curl_version(), 'version' ) . ')' : __( 'No', 'edforms' ),
+								'value_export' => function_exists( 'curl_init' ) ? 'Yes' . ' (' . __( 'version', 'edforms' ) . ' ' . rgar( curl_version(), 'version' ) . ')' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'OpenSSL', 'gravityforms' ),
+								'label'        => esc_html__( 'OpenSSL', 'edforms' ),
 								'label_export' => 'OpenSSL',
-								'value'        => defined( 'OPENSSL_VERSION_TEXT' ) ? OPENSSL_VERSION_TEXT . ' (' . OPENSSL_VERSION_NUMBER . ')' : __( 'No', 'gravityforms' ),
+								'value'        => defined( 'OPENSSL_VERSION_TEXT' ) ? OPENSSL_VERSION_TEXT . ' (' . OPENSSL_VERSION_NUMBER . ')' : __( 'No', 'edforms' ),
 								'value_export' => defined( 'OPENSSL_VERSION_TEXT' ) ? OPENSSL_VERSION_TEXT . ' (' . OPENSSL_VERSION_NUMBER . ')' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'Mcrypt Enabled', 'gravityforms' ),
+								'label'        => esc_html__( 'Mcrypt Enabled', 'edforms' ),
 								'label_export' => 'Mcrypt Enabled',
-								'value'        => function_exists( 'mcrypt_encrypt' ) ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => function_exists( 'mcrypt_encrypt' ) ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => function_exists( 'mcrypt_encrypt' ) ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'Mbstring Enabled', 'gravityforms' ),
+								'label'        => esc_html__( 'Mbstring Enabled', 'edforms' ),
 								'label_export' => 'Mbstring Enabled',
-								'value'        => function_exists( 'mb_strlen' ) ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+								'value'        => function_exists( 'mb_strlen' ) ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 								'value_export' => function_exists( 'mb_strlen' ) ? 'Yes' : 'No',
 							),
 							array(
-								'label'        => esc_html__( 'Loaded Extensions', 'gravityforms' ),
+								'label'        => esc_html__( 'Loaded Extensions', 'edforms' ),
 								'label_export' => 'Loaded Extensions',
 								'type'         => 'csv',
 								'value'        => get_loaded_extensions(),
@@ -643,25 +643,25 @@ class GF_System_Report {
 						),
 					),
 					array(
-						'title'        => esc_html__( 'MySQL', 'gravityforms' ),
+						'title'        => esc_html__( 'MySQL', 'edforms' ),
 						'title_export' => 'MySQL',
 						'items'        => array(
 							array(
-								'label'              => esc_html__( 'Version', 'gravityforms' ),
+								'label'              => esc_html__( 'Version', 'edforms' ),
 								'label_export'       => 'Version',
 								'value'              => esc_html( $wpdb->db_version() ),
 								'type'               => 'version_check',
 								'version_compare'    => '>',
 								'minimum_version'    => '5.0.0',
-								'validation_message' => esc_html__( 'Gravity Forms requires MySQL 5 or above.', 'gravityforms' ),
+								'validation_message' => esc_html__( 'Ed Forms requires MySQL 5 or above.', 'edforms' ),
 							),
 							array(
-								'label'        => esc_html__( 'Database Character Set', 'gravityforms' ),
+								'label'        => esc_html__( 'Database Character Set', 'edforms' ),
 								'label_export' => 'Database Character Set',
 								'value'        => esc_html( $wpdb->get_var( 'SELECT @@character_set_database' ) ),
 							),
 							array(
-								'label'        => esc_html__( 'Database Collation', 'gravityforms' ),
+								'label'        => esc_html__( 'Database Collation', 'edforms' ),
 								'label_export' => 'Database Collation',
 								'value'        => esc_html( $wpdb->get_var( 'SELECT @@collation_database' ) ),
 							),
@@ -786,7 +786,7 @@ class GF_System_Report {
 	}
 
 	/**
-	 * Get Gravity Forms Info.
+	 * Get Ed Forms Info.
 	 *
 	 * @since  2.2
 	 * @access public
@@ -796,9 +796,9 @@ class GF_System_Report {
 	 *
 	 * @return array
 	 */
-	public static function get_gravityforms() {
+	public static function get_edforms() {
 
-		// Get Gravity Forms version info, clearing cache
+		// Get Ed Forms version info, clearing cache
 		$version_info = GFCommon::get_version_info( false );
 
 		// Re-caches remote message.
@@ -817,7 +817,7 @@ class GF_System_Report {
 		$no_conflict_mode = get_option( 'gform_enable_noconflict' );
 		$updates          = get_option( 'gform_enable_background_updates' );
 
-		GFForms::include_gravity_api();
+		GFForms::include_ed_api();
 		$site_key      = gapi()->get_site_key();
 		$is_registered = gapi()->is_site_registered();
 
@@ -825,81 +825,81 @@ class GF_System_Report {
 			$validation_message = '';
 		} elseif ( rgpost( 'gf_action' ) == 'register_site' ) {
 			//if there was an error during site registration, display appropriate message
-			$validation_message = sprintf( esc_html__( 'There was an error registering your site. Please check that the licence key entered is valid and not expired. If the problem persists, please contact support. %1$sRegister Site%2$s.', 'gravityforms' ), '<a class="thickbox" href="#TB_inline?width=400&inlineId=gform_register_site">', '</a>' );
+			$validation_message = sprintf( esc_html__( 'There was an error registering your site. Please check that the licence key entered is valid and not expired. If the problem persists, please contact support. %1$sRegister Site%2$s.', 'edforms' ), '<a class="thickbox" href="#TB_inline?width=400&inlineId=gform_register_site">', '</a>' );
 		} else {
-			$validation_message = sprintf( esc_html__( 'This site has not been registered. %1$sPlease register your site%2$s.', 'gravityforms' ), '<a class="thickbox" href="#TB_inline?width=400&inlineId=gform_register_site">', '</a>' );
+			$validation_message = sprintf( esc_html__( 'This site has not been registered. %1$sPlease register your site%2$s.', 'edforms' ), '<a class="thickbox" href="#TB_inline?width=400&inlineId=gform_register_site">', '</a>' );
 		}
 
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'gravityforms' );
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'edforms' );
 
 		// Prepare versions array.
-		$gravityforms = array(
+		$edforms = array(
 			array(
 				'export_only'               => true,
-				'label'                     => esc_html__( 'Registration', 'gravityforms' ),
+				'label'                     => esc_html__( 'Registration', 'edforms' ),
 				'label_export'              => 'Registration',
-				'value'                     => $is_registered ? esc_html__( 'Site registered ', 'gravityforms' ) . ' ( ' . $site_key . ' ) ' : '',
+				'value'                     => $is_registered ? esc_html__( 'Site registered ', 'edforms' ) . ' ( ' . $site_key . ' ) ' : '',
 				'is_valid'                  => $is_registered,
 				'value_export'              => $is_registered ? 'Site registered ( ' . $site_key . ' ) ' : 'Not registered',
 				'validation_message'        => $validation_message,
 				'validation_message_export' => '',
 			),
 			array(
-				'label'              => esc_html__( 'Version', 'gravityforms' ),
+				'label'              => esc_html__( 'Version', 'edforms' ),
 				'label_export'       => 'Version',
 				'value'              => GFForms::$version,
 				'type'               => 'version_check',
 				'version_compare'    => '>=',
 				'minimum_version'    => $version_info['version'],
 				'validation_message' => sprintf(
-					esc_html__( 'New version %s available.', 'gravityforms' ),
+					esc_html__( 'New version %s available.', 'edforms' ),
 					esc_html( $version_info['version'] )
 				),
 			),
 			array(
-				'label'        => esc_html__( 'Upload folder', 'gravityforms' ),
+				'label'        => esc_html__( 'Upload folder', 'edforms' ),
 				'label_export' => 'Upload folder',
 				'value'        => GFFormsModel::get_upload_root(),
 			),
 			array(
-				'label'              => esc_html__( 'Upload folder permissions', 'gravityforms' ),
+				'label'              => esc_html__( 'Upload folder permissions', 'edforms' ),
 				'label_export'       => 'Upload folder permissions',
-				'value'              => $is_writable ? __( 'Writable', 'gravityforms' ) : __( 'Not writable', 'gravityforms' ),
+				'value'              => $is_writable ? __( 'Writable', 'edforms' ) : __( 'Not writable', 'edforms' ),
 				'value_export'       => $is_writable ? 'Writable' : 'Not writable',
 				'is_valid'           => $is_writable,
-				'validation_message' => $is_writable ? '' : esc_html__( 'File uploads, entry exports, and logging will not function properly.', 'gravityforms' ),
+				'validation_message' => $is_writable ? '' : esc_html__( 'File uploads, entry exports, and logging will not function properly.', 'edforms' ),
 			),
 			array(
-				'label'        => esc_html__( 'Output CSS', 'gravityforms' ),
+				'label'        => esc_html__( 'Output CSS', 'edforms' ),
 				'label_export' => 'Output CSS',
-				'value'        => ! $disable_css ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+				'value'        => ! $disable_css ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 				'value_export' => ! $disable_css ? 'Yes' : 'No',
 			),
 			array(
-				'label'        => esc_html__( 'Output HTML5', 'gravityforms' ),
+				'label'        => esc_html__( 'Output HTML5', 'edforms' ),
 				'label_export' => 'Output HTML5',
-				'value'        => $enable_html5 ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+				'value'        => $enable_html5 ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 				'value_export' => $enable_html5 ? 'Yes' : 'No',
 			),
 			array(
-				'label'        => esc_html__( 'No-Conflict Mode', 'gravityforms' ),
+				'label'        => esc_html__( 'No-Conflict Mode', 'edforms' ),
 				'label_export' => 'No-Conflict Mode',
-				'value'        => $no_conflict_mode ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+				'value'        => $no_conflict_mode ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 				'value_export' => $no_conflict_mode ? 'Yes' : 'No',
 			),
 			array(
-				'label'        => esc_html__( 'Currency', 'gravityforms' ),
+				'label'        => esc_html__( 'Currency', 'edforms' ),
 				'label_export' => 'Currency',
 				'value'        => get_option( 'rg_gforms_currency' ),
 			),
 			array(
-				'label'        => esc_html__( 'Background updates', 'gravityforms' ),
+				'label'        => esc_html__( 'Background updates', 'edforms' ),
 				'label_export' => 'Background updates',
-				'value'        => $updates ? __( 'Yes', 'gravityforms' ) : __( 'No', 'gravityforms' ),
+				'value'        => $updates ? __( 'Yes', 'edforms' ) : __( 'No', 'edforms' ),
 				'value_export' => $updates ? 'Yes' : 'No',
 			),
 			array(
-				'label'        => esc_html__( 'Locale', 'gravityforms' ),
+				'label'        => esc_html__( 'Locale', 'edforms' ),
 				'label_export' => 'Locale',
 				'value'        => $locale,
 				'value_export' => $locale,
@@ -907,13 +907,13 @@ class GF_System_Report {
 		);
 
 
-		return $gravityforms;
+		return $edforms;
 
 	}
 
 
 	/**
-	 * Get Gravity Forms database tables.
+	 * Get Ed Forms database tables.
 	 *
 	 * @since  2.2
 	 * @access public
@@ -930,19 +930,19 @@ class GF_System_Report {
 
 		global $wpdb;
 
-		// Get Gravity Forms version information.
+		// Get Ed Forms version information.
 		$versions = gf_upgrade()->get_versions();
 
 		// Initialize available tables.
 		$tables = array(
 			array(
-				'label'        => __( 'Database Version', 'gravityforms' ),
+				'label'        => __( 'Database Version', 'edforms' ),
 				'label_export' => 'Database Version',
 				'value'        => $versions['current_db_version'],
 			),
 		);
 
-		// Get Gravity Forms tables to check for.
+		// Get Ed Forms tables to check for.
 		$gf_tables = GFFormsModel::get_tables();
 
 		// Add feeds table if any Feed Add-Ons are active.
@@ -963,7 +963,7 @@ class GF_System_Report {
 		// Define initial failed tables state.
 		$has_failed_tables = false;
 
-		// Loop through Gravity Forms tables.
+		// Loop through Ed Forms tables.
 		foreach ( $gf_tables as $i => $table_name ) {
 
 			// Set initial validity and validation message states.
@@ -975,14 +975,14 @@ class GF_System_Report {
 			if ( ! GFCommon::table_exists( $table_name ) ) {
 				$has_failed_tables         = true;
 				$value                     = false;
-				$validation_message        = __( 'Table does not exist', 'gravityforms' );
+				$validation_message        = __( 'Table does not exist', 'edforms' );
 				$validation_message_export = 'Table does not exist';
 
 			} elseif ( ! gf_upgrade()->check_table_schema( $table_name ) ) {
 
 				$has_failed_tables         = true;
 				$value                     = false;
-				$validation_message        = __( 'Table has not been upgraded successfully.', 'gravityforms' );
+				$validation_message        = __( 'Table has not been upgraded successfully.', 'edforms' );
 				$validation_message_export = 'Table has not been upgraded successfully.';
 			}
 
@@ -998,32 +998,32 @@ class GF_System_Report {
 		}
 
 		// Define database upgrade warning message.
-		$warning_message = __( "WARNING! Re-running the upgrade process is only recommended if you are currently experiencing issues with your database. This process may take several minutes to complete. 'OK' to upgrade. 'Cancel' to abort.", 'gravityforms' );
+		$warning_message = __( "WARNING! Re-running the upgrade process is only recommended if you are currently experiencing issues with your database. This process may take several minutes to complete. 'OK' to upgrade. 'Cancel' to abort.", 'edforms' );
 
 		// If database version is out of date, add upgrade database option.
 		if ( version_compare( $versions['current_db_version'], GFForms::$version, '<' ) ) {
 
 			if ( gf_upgrade()->is_upgrading() ) {
 				$status = get_option( 'gform_upgrade_status' );
-				$status = empty( $status ) ? '' : sprintf( __( 'Current Status: %s', 'gravityforms' ), $status );
+				$status = empty( $status ) ? '' : sprintf( __( 'Current Status: %s', 'edforms' ), $status );
 				$percent = self::get_upgrade_percent_complete();
-				$percent_label = sprintf( esc_html__( '%s%% complete.', 'gravityforms' ), $percent );
+				$percent_label = sprintf( esc_html__( '%s%% complete.', 'edforms' ), $percent );
 				$status .= ' ' . $percent_label;
 				if ( defined( 'GFORM_AUTO_DB_MIGRATION_DISABLED' ) && GFORM_AUTO_DB_MIGRATION_DISABLED ) {
-					$message = sprintf( __( 'Automatic background migration is disabled but the database needs to be upgraded to version %s. %s', 'gravityforms' ), GFForms::$version, $status );
-					$action_label = __( 'Force the migration manually', 'gravityforms' );
+					$message = sprintf( __( 'Automatic background migration is disabled but the database needs to be upgraded to version %s. %s', 'edforms' ), GFForms::$version, $status );
+					$action_label = __( 'Force the migration manually', 'edforms' );
 				} else {
-					$message = sprintf( __( 'The database is currently being upgraded to version %s. %s', 'gravityforms' ), GFForms::$version, $status );
+					$message = sprintf( __( 'The database is currently being upgraded to version %s. %s', 'edforms' ), GFForms::$version, $status );
 					if ( ! self::$background_tasks ) {
-						$message .= ' ' . __( "As this site doesn't support background tasks the upgrade process will take longer than usual and the status will change infrequently.", 'gravityforms' );
+						$message .= ' ' . __( "As this site doesn't support background tasks the upgrade process will take longer than usual and the status will change infrequently.", 'edforms' );
 					}
-					$action_label = __( 'Force the upgrade', 'gravityforms' );
+					$action_label = __( 'Force the upgrade', 'edforms' );
 				}
 
 				$tables[0] = array_merge(
 					$tables[0],
 					array(
-						'label'   => __( 'Database Version', 'gravityforms' ),
+						'label'   => __( 'Database Version', 'edforms' ),
 						'action'         => array(
 							'label'   => $action_label,
 							'code'    => 'upgrade_database',
@@ -1039,12 +1039,12 @@ class GF_System_Report {
 					$tables[0],
 					array(
 						'action'         => array(
-							'label'   => __( 'Upgrade database', 'gravityforms' ),
+							'label'   => __( 'Upgrade database', 'edforms' ),
 							'code'    => 'upgrade_database',
 							'confirm' => $warning_message,
 						),
 						'is_valid'       => false,
-						'message'        => __( 'Your database version is out of date.', 'gravityforms' ),
+						'message'        => __( 'Your database version is out of date.', 'edforms' ),
 						'message_export' => 'Your database version is out of date.',
 					)
 				);
@@ -1056,12 +1056,12 @@ class GF_System_Report {
 				$tables[0],
 				array(
 					'action'         => array(
-						'label'   => __( 'Re-run database upgrade', 'gravityforms' ),
+						'label'   => __( 'Re-run database upgrade', 'edforms' ),
 						'code'    => 'upgrade_database',
 						'confirm' => $warning_message,
 					),
 					'is_valid'       => false,
-					'message'        => 'upgrade_database' == rgpost( 'gf_action' ) ? __( 'Database upgrade failed.', 'gravityforms' ) : __( 'There are issues with your database.', 'gravityforms' ),
+					'message'        => 'upgrade_database' == rgpost( 'gf_action' ) ? __( 'Database upgrade failed.', 'edforms' ) : __( 'There are issues with your database.', 'edforms' ),
 					'message_export' => 'upgrade_database' == rgpost( 'gf_action' ) ? 'Database upgrade failed.' : 'There are issues with your database.',
 				)
 			);
@@ -1072,12 +1072,12 @@ class GF_System_Report {
 				$tables[0],
 				array(
 					'action'         => array(
-						'label'   => __( 'Re-run database upgrade', 'gravityforms' ),
+						'label'   => __( 'Re-run database upgrade', 'edforms' ),
 						'code'    => 'upgrade_database',
 						'confirm' => $warning_message,
 					),
 					'is_valid'       => true,
-					'message'        => 'upgrade_database' == rgpost( 'gf_action' ) ? __( 'Database upgraded successfully.', 'gravityforms' ) : __( 'Your database is up-to-date.', 'gravityforms' ) . ' ' . __( 'Warning: downgrading Gravity Forms is not recommended.', 'gravityforms' ),
+					'message'        => 'upgrade_database' == rgpost( 'gf_action' ) ? __( 'Database upgraded successfully.', 'edforms' ) : __( 'Your database is up-to-date.', 'edforms' ) . ' ' . __( 'Warning: downgrading Ed Forms is not recommended.', 'edforms' ),
 					'message_export' => 'upgrade_database' == rgpost( 'gf_action' ) ? 'Database upgraded successfully.' : 'Your database is up-to-date.',
 				)
 			);
@@ -1089,7 +1089,7 @@ class GF_System_Report {
 	}
 
 	/**
-	 * Get available Gravity Forms log files.
+	 * Get available Ed Forms log files.
 	 *
 	 * @since  2.2
 	 * @access public
@@ -1142,7 +1142,7 @@ class GF_System_Report {
 	 * @since  2.2
 	 * @access public
 	 *
-	 * @param bool $include_gravity_forms  Include Gravity Forms in plugin list.
+	 * @param bool $include_ed_forms  Include Ed Forms in plugin list.
 	 * @param bool $include_gf_addons      Include Add-On Framework plugins in plugin list.
 	 * @param bool $included_non_gf_addons Include non Add-On Framework plugins in plugin list.
 	 *
@@ -1152,12 +1152,12 @@ class GF_System_Report {
 	 *
 	 * @return string
 	 */
-	public static function get_active_plugins( $include_gravity_forms = true, $include_gf_addons = true, $include_non_gf_addons = true ) {
+	public static function get_active_plugins( $include_ed_forms = true, $include_gf_addons = true, $include_non_gf_addons = true ) {
 
 		// Initialize active plugins array.
 		$active_plugins = array();
 
-		// Get Gravity Forms version info.
+		// Get Ed Forms version info.
 		$version_info = GFCommon::get_version_info();
 
 		// Prepare active plugins.
@@ -1168,12 +1168,12 @@ class GF_System_Report {
 				continue;
 			}
 
-			// If this plugin is Gravity Forms and it is not to be included, skip it.
-			if ( 'gravityforms/gravityforms.php' === $plugin_path && ! $include_gravity_forms ) {
+			// If this plugin is Ed Forms and it is not to be included, skip it.
+			if ( 'edforms/edforms.php' === $plugin_path && ! $include_ed_forms ) {
 				continue;
 			}
 
-			// Check if plugin is a Gravity Forms Add-On.
+			// Check if plugin is a Ed Forms Add-On.
 			$addon    = self::get_gf_addon( $plugin_path );
 			$is_addon = $addon !== false;
 
@@ -1204,20 +1204,20 @@ class GF_System_Report {
 				if ( isset( $version_info['offerings'][ $slug ] ) && version_compare( $plugin['Version'], $version_info['offerings'][ $slug ]['version'], '<' ) ) {
 
 					$is_valid           = false;
-					$validation_message = sprintf( __( 'New version %s available.', 'gravityforms' ), $version_info['offerings'][ $slug ]['version'] );
+					$validation_message = sprintf( __( 'New version %s available.', 'edforms' ), $version_info['offerings'][ $slug ]['version'] );
 
 				} elseif ( ! $minimum_requirements['meets_requirements'] ) {
 
 					$errors                    = $minimum_requirements['errors'];
 					$is_valid                  = false;
-					$validation_message        = sprintf( __( 'Your system does not meet the minimum requirements for this Add-On (%d errors).', 'gravityforms' ), count( $errors ) );
+					$validation_message        = sprintf( __( 'Your system does not meet the minimum requirements for this Add-On (%d errors).', 'edforms' ), count( $errors ) );
 					$validation_message_export = sprintf( 'Your system does not meet the minimum requirements for this Add-On (%1$d errors). %2$s', count( $errors ), implode( '. ', $errors ) );
 
 				}
 			}
 
 			// Cleaning up Add-On name
-			$plugin_name = $is_addon ? str_replace( ' Add-On', '', str_replace( 'Gravity Forms ', '', $plugin['Name'] ) ) : $plugin['Name'];
+			$plugin_name = $is_addon ? str_replace( ' Add-On', '', str_replace( 'Ed Forms ', '', $plugin['Name'] ) ) : $plugin['Name'];
 
 			// Prepare plugin label.
 			if ( rgar( $plugin, 'PluginURI' ) ) {
@@ -1317,17 +1317,17 @@ class GF_System_Report {
 	}
 
 	/**
-	 * Returns a GFAddon child class if the plugin slug specified is a Gravity Forms Add-On.
+	 * Returns a GFAddon child class if the plugin slug specified is a Ed Forms Add-On.
 	 *
 	 * @since  2.2
 	 * @access public
 	 *
-	 * @param string $path Plugin path. (e.g. gravityformsmailchimp/mailchimp.php)
+	 * @param string $path Plugin path. (e.g. edformsmailchimp/mailchimp.php)
 	 *
 	 * @uses GFAddOn::get_instance()
 	 * @uses GFAddOn::get_registered_addons()
 	 *
-	 * @return object|bool Returns a subclass of GFAddon if the specified plugin is a Gravity Forms Add-On. Returns false otherwise
+	 * @return object|bool Returns a subclass of GFAddon if the specified plugin is a Ed Forms Add-On. Returns false otherwise
 	 */
 	public static function get_gf_addon( $path ) {
 
@@ -1480,7 +1480,7 @@ class GF_System_Report {
 			$parent_author_uri = esc_url( $parent_theme->get( 'AuthorURI' ) );
 
 			$theme_details[] = array(
-				'label'        => sprintf( '%s (%s)', $parent_name, esc_html__( 'Parent', 'gravityforms' ) ),
+				'label'        => sprintf( '%s (%s)', $parent_name, esc_html__( 'Parent', 'edforms' ) ),
 				'label_export' => $parent_name . ' (Parent)',
 				'value'        => sprintf( 'by <a href="%s">%s</a> - %s', $parent_author_uri, $parent_author, $parent_version ),
 				'value_export' => sprintf( 'by %s (%s) - %s', $parent_author, $parent_author_uri, $parent_version ),

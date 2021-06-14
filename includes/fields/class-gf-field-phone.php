@@ -1,6 +1,6 @@
 <?php
 
-// If Gravity Forms isn't loaded, bail.
+// If Ed Forms isn't loaded, bail.
 if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
@@ -35,7 +35,7 @@ class GF_Field_Phone extends GF_Field {
 	 * @return string The field title. Translatable and escaped.
 	 */
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Phone', 'gravityforms' );
+		return esc_attr__( 'Phone', 'edforms' );
 	}
 
 	/**
@@ -153,7 +153,7 @@ class GF_Field_Phone extends GF_Field {
 		if ( $this->failed_validation ) {
 			$phone_format = $this->get_phone_format();
 			if ( rgar( $phone_format, 'instruction' ) ) {
-				$instruction_div = sprintf( "<div class='instruction validation_message'>%s %s</div>", esc_html__( 'Phone format:', 'gravityforms' ), $phone_format['instruction'] );
+				$instruction_div = sprintf( "<div class='instruction validation_message'>%s %s</div>", esc_html__( 'Phone format:', 'edforms' ), $phone_format['instruction'] );
 			}
 		}
 
@@ -311,7 +311,7 @@ class GF_Field_Phone extends GF_Field {
 				'instruction' => '(###) ###-####',
 			),
 			'international' => array(
-				'label'       => __( 'International', 'gravityforms' ),
+				'label'       => __( 'International', 'edforms' ),
 				'mask'        => false,
 				'regex'       => false,
 				'instruction' => false,

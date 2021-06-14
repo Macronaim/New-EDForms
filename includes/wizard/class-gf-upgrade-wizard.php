@@ -25,16 +25,16 @@ class GF_Upgrade_Wizard {
 
 		<div class="wrap about-wrap gform_installation_progress_step_wrap">
 
-			<h1><?php esc_html_e( 'Gravity Forms Upgrade', 'gravityforms' ) ?></h1>
+			<h1><?php esc_html_e( 'Ed Forms Upgrade', 'edforms' ) ?></h1>
 
 			<hr/>
 
-			<h2><?php esc_html_e( 'Database Update Required', 'gravityforms' ); ?></h2>
+			<h2><?php esc_html_e( 'Database Update Required', 'edforms' ); ?></h2>
 
-			<p><?php esc_html_e( 'Gravity Forms has been updated! Before we send you on your way, we have to update your database to the newest version.', 'gravityforms' ); ?></p>
-			<p><?php esc_html_e( 'The database update process may take a little while, so please be patient.', 'gravityforms' ); ?></p>
+			<p><?php esc_html_e( 'Ed Forms has been updated! Before we send you on your way, we have to update your database to the newest version.', 'edforms' ); ?></p>
+			<p><?php esc_html_e( 'The database update process may take a little while, so please be patient.', 'edforms' ); ?></p>
 
-			<input class="button button-primary" type="submit" value="<?php esc_attr_e( 'Upgrade', 'gravityforms' ) ?>" name="_upgrade"/>
+			<input class="button button-primary" type="submit" value="<?php esc_attr_e( 'Upgrade', 'edforms' ) ?>" name="_upgrade"/>
 
 			<script type="text/javascript">
 

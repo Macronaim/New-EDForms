@@ -10,7 +10,7 @@ class GF_Field_Select extends GF_Field {
 	public $type = 'select';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Drop Down', 'gravityforms' );
+		return esc_attr__( 'Drop Down', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {

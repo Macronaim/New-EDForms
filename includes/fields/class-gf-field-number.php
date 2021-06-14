@@ -10,7 +10,7 @@ class GF_Field_Number extends GF_Field {
 	public $type = 'number';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Number', 'gravityforms' );
+		return esc_attr__( 'Number', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {
@@ -72,10 +72,10 @@ class GF_Field_Number extends GF_Field {
 		} elseif ( $this->type == 'quantity' ) {
 			if ( intval( $value ) != $value ) {
 				$this->failed_validation  = true;
-				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity. Quantity cannot contain decimals.', 'gravityforms' ) : $field['errorMessage'];
+				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity. Quantity cannot contain decimals.', 'edforms' ) : $field['errorMessage'];
 			} elseif ( ! empty( $value ) && ( ! is_numeric( $value ) || intval( $value ) != floatval( $value ) || intval( $value ) < 0 ) ) {
 				$this->failed_validation  = true;
-				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity', 'gravityforms' ) : $field['errorMessage'];
+				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity', 'edforms' ) : $field['errorMessage'];
 			}
 		}
 
@@ -121,13 +121,13 @@ class GF_Field_Number extends GF_Field {
 		$message = '';
 
 		if ( is_numeric( $numeric_min ) && is_numeric( $numeric_max ) ) {
-			$message = sprintf( esc_html__( 'Please enter a value between %s and %s.', 'gravityforms' ), "<strong>$min</strong>", "<strong>$max</strong>" );
+			$message = sprintf( esc_html__( 'Please enter a value between %s and %s.', 'edforms' ), "<strong>$min</strong>", "<strong>$max</strong>" );
 		} elseif ( is_numeric( $numeric_min ) ) {
-			$message = sprintf( esc_html__( 'Please enter a value greater than or equal to %s.', 'gravityforms' ), "<strong>$min</strong>" );
+			$message = sprintf( esc_html__( 'Please enter a value greater than or equal to %s.', 'edforms' ), "<strong>$min</strong>" );
 		} elseif ( is_numeric( $numeric_max ) ) {
-			$message = sprintf( esc_html__( 'Please enter a value less than or equal to %s.', 'gravityforms' ), "<strong>$max</strong>" );
+			$message = sprintf( esc_html__( 'Please enter a value less than or equal to %s.', 'edforms' ), "<strong>$max</strong>" );
 		} elseif ( $this->failed_validation ) {
-			$message = esc_html__( 'Please enter a valid number', 'gravityforms' );
+			$message = esc_html__( 'Please enter a valid number', 'edforms' );
 		}
 
 		return $message;

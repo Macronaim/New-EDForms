@@ -59,7 +59,7 @@ class GF_System_Status {
 		$subviews = array(
 			10 => array(
 				'name'  => 'report',
-				'label' => __( 'System Report', 'gravityforms' ),
+				'label' => __( 'System Report', 'edforms' ),
 			),
 		);
 
@@ -67,7 +67,7 @@ class GF_System_Status {
 		if ( current_user_can( 'install_plugins' ) ) {
 			$subviews[20] = array(
 				'name'  => 'updates',
-				'label' => __( 'Updates', 'gravityforms' ),
+				'label' => __( 'Updates', 'edforms' ),
 			);
 		}
 
@@ -127,7 +127,7 @@ class GF_System_Status {
 		<?php echo GFCommon::get_remote_message(); ?>
 		<div class="wrap <?php echo GFCommon::get_browser_class() ?>">
 
-			<h2><?php esc_html_e( 'System Status', 'gravityforms' ) ?></h2>
+			<h2><?php esc_html_e( 'System Status', 'edforms' ) ?></h2>
 			<?php GFCommon::display_admin_message();
 			GFCommon::display_dismissible_message(); ?>
 

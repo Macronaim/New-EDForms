@@ -85,19 +85,19 @@ class GFFormList {
 
 		</style>
 
-		<?php if ( GFCommon::current_user_can_any( 'gravityforms_create_form' ) ) { ?>
+		<?php if ( GFCommon::current_user_can_any( 'edforms_create_form' ) ) { ?>
 
 		<div id="gf_new_form_modal" style="display:none;">
 			<div class="gf_new_form_modal_container">
 
 				<div class="setting-row">
-					<label for="new_form_title"><?php esc_html_e( 'Form Title', 'gravityforms' ); ?>
+					<label for="new_form_title"><?php esc_html_e( 'Form Title', 'edforms' ); ?>
 						<span class="gfield_required">*</span></label><br />
 					<input type="text" class="regular-text" value="" id="new_form_title" tabindex="9000">
 				</div>
 
 				<div class="setting-row">
-					<label for="new_form_description"><?php esc_html_e( 'Form Description', 'gravityforms' ); ?></label><br />
+					<label for="new_form_description"><?php esc_html_e( 'Form Description', 'edforms' ); ?></label><br />
 					<textarea class="regular-text" id="new_form_description" tabindex="9001"></textarea>
 				</div>
 
@@ -108,7 +108,7 @@ class GFFormList {
 					 *
 					 * @param string The HTML rendered for the "New Form" button.
 					 */
-					echo apply_filters( 'gform_new_form_button', '<input id="save_new_form" type="button" class="button button-large button-primary" value="' . esc_html__( 'Create Form', 'gravityforms' ) . '" onclick="saveNewForm();" onkeypress="saveNewForm();" tabindex="9002" />' ); ?>
+					echo apply_filters( 'gform_new_form_button', '<input id="save_new_form" type="button" class="button button-large button-primary" value="' . esc_html__( 'Create Form', 'edforms' ) . '" onclick="saveNewForm();" onkeypress="saveNewForm();" tabindex="9002" />' ); ?>
 					<div id="gf_new_form_error_message" style="display:inline-block;"></div>
 				</div>
 
@@ -137,7 +137,7 @@ class GFFormList {
 			}
 
 			function ConfirmDeleteForm(form_id){
-				if( confirm(<?php echo json_encode( __( 'WARNING: You are about to delete this form and ALL entries associated with it. ', 'gravityforms' ) . esc_html__( 'Cancel to stop, OK to delete.', 'gravityforms' ) ); ?>) ){
+				if( confirm(<?php echo json_encode( __( 'WARNING: You are about to delete this form and ALL entries associated with it. ', 'edforms' ) . esc_html__( 'Cancel to stop, OK to delete.', 'edforms' ) ); ?>) ){
 					DeleteForm(form_id);
 				}
 			}
@@ -157,11 +157,11 @@ class GFFormList {
 				var is_active = img.src.indexOf("active1.png") >= 0
 				if (is_active) {
 					img.src = img.src.replace("active1.png", 'active0.png');
-					jQuery(img).attr('title', <?php echo json_encode( esc_attr__( 'Inactive', 'gravityforms' ) ); ?>).attr('alt', <?php echo json_encode( esc_attr__( 'Inactive', 'gravityforms' ) ); ?>);
+					jQuery(img).attr('title', <?php echo json_encode( esc_attr__( 'Inactive', 'edforms' ) ); ?>).attr('alt', <?php echo json_encode( esc_attr__( 'Inactive', 'edforms' ) ); ?>);
 				}
 				else {
 					img.src = img.src.replace("active0.png", 'active1.png');
-					jQuery(img).attr('title', <?php echo json_encode( esc_attr__( 'Active', 'gravityforms' ) ); ?>).attr('alt', <?php echo json_encode( esc_attr__( 'Active', 'gravityforms' ) ); ?>);
+					jQuery(img).attr('title', <?php echo json_encode( esc_attr__( 'Active', 'edforms' ) ); ?>).attr('alt', <?php echo json_encode( esc_attr__( 'Active', 'edforms' ) ); ?>);
 				}
 
 				UpdateCount("active_count", is_active ? -1 : 1);
@@ -175,7 +175,7 @@ class GFFormList {
 				mysack.setVar("form_id", form_id);
 				mysack.setVar("is_active", is_active ? 0 : 1);
 				mysack.onError = function () {
-					alert(<?php echo json_encode( __( 'Ajax error while updating form', 'gravityforms' ) ); ?>)
+					alert(<?php echo json_encode( __( 'Ajax error while updating form', 'edforms' ) ); ?>)
 				};
 				mysack.runAJAX();
 
@@ -190,11 +190,11 @@ class GFFormList {
 			function gfConfirmBulkAction(element_id) {
 				var element = "#" + element_id;
 				if (jQuery(element).val() == 'delete')
-					return confirm(<?php echo json_encode( __( 'WARNING: You are about to delete these forms and ALL entries associated with them. ', 'gravityforms' ) . __( "'Cancel' to stop, 'OK' to delete.", 'gravityforms' ) ); ?>);
+					return confirm(<?php echo json_encode( __( 'WARNING: You are about to delete these forms and ALL entries associated with them. ', 'edforms' ) . __( "'Cancel' to stop, 'OK' to delete.", 'edforms' ) ); ?>);
 				else if (jQuery(element).val() == 'reset_views')
-					return confirm(<?php echo json_encode( __( 'Are you sure you would like to reset the Views for the selected forms? ', 'gravityforms' ) . __( "'Cancel' to stop, 'OK' to reset.", 'gravityforms' ) ); ?>);
+					return confirm(<?php echo json_encode( __( 'Are you sure you would like to reset the Views for the selected forms? ', 'edforms' ) . __( "'Cancel' to stop, 'OK' to reset.", 'edforms' ) ); ?>);
 				else if (jQuery(element).val() == 'delete_entries')
-					return confirm(<?php echo json_encode( __( 'WARNING: You are about to delete ALL entries associated with the selected forms. ', 'gravityforms' ) . __( "'Cancel' to stop, 'OK' to delete.", 'gravityforms' ) ); ?>);
+					return confirm(<?php echo json_encode( __( 'WARNING: You are about to delete ALL entries associated with the selected forms. ', 'edforms' ) . __( "'Cancel' to stop, 'OK' to delete.", 'edforms' ) ); ?>);
 
 				return true;
 			}
@@ -204,9 +204,9 @@ class GFFormList {
 		<div class="wrap <?php echo sanitize_html_class( GFCommon::get_browser_class() ); ?>">
 
 		<h2>
-			<?php esc_html_e( 'Forms', 'gravityforms' );
-			if ( GFCommon::current_user_can_any( 'gravityforms_create_form' ) ) {
-				echo '<a class="add-new-h2" href="" onclick="return loadNewFormModal();" onkeypress="return loadNewFormModal();">' . esc_html__( 'Add New', 'gravityforms' ) . '</a>';
+			<?php esc_html_e( 'Forms', 'edforms' );
+			if ( GFCommon::current_user_can_any( 'edforms_create_form' ) ) {
+				echo '<a class="add-new-h2" href="" onclick="return loadNewFormModal();" onkeypress="return loadNewFormModal();">' . esc_html__( 'Add New', 'edforms' ) . '</a>';
 			} ?>
 		</h2>
 
@@ -227,7 +227,7 @@ class GFFormList {
 				echo '<input type="hidden" value="' . esc_attr( rgget( 'filter' ) ) . '" name="filter" />';
 			}
 						
-			$table->search_box( esc_html__( 'Search Forms', 'gravityforms' ), 'form' );
+			$table->search_box( esc_html__( 'Search Forms', 'edforms' ), 'form' );
 		?>
 		</form>
 		<form id="form_list_form" method="post">
@@ -242,7 +242,7 @@ class GFFormList {
 	public static function save_new_form() {
 
 		if ( ! check_admin_referer( 'gf_save_new_form', 'gf_save_new_form' ) ) {
-			die( json_encode( array( 'error' => __( 'There was an issue creating your form.', 'gravityforms' ) ) ) );
+			die( json_encode( array( 'error' => __( 'There was an issue creating your form.', 'edforms' ) ) ) );
 		}
 
 		GFFormsModel::ensure_tables_exist();
@@ -254,7 +254,7 @@ class GFFormList {
 		$form = json_decode( stripslashes( $form_json ), true );
 
 		if ( empty( $form['title'] ) ) {
-			$result = array( 'error' => __( 'Please enter a form title.', 'gravityforms' ) );
+			$result = array( 'error' => __( 'Please enter a form title.', 'edforms' ) );
 			die( json_encode( $result ) );
 		}
 
@@ -262,11 +262,11 @@ class GFFormList {
 
 		switch ( rgar( $result, 'status' ) ) {
 			case 'invalid_json':
-				$result['error'] = __( 'There was an issue creating your form.', 'gravityforms' );
+				$result['error'] = __( 'There was an issue creating your form.', 'edforms' );
 				die( json_encode( $result ) );
 
 			case 'duplicate_title':
-				$result['error'] = __( 'Please enter a unique form title.', 'gravityforms' );
+				$result['error'] = __( 'Please enter a unique form title.', 'edforms' );
 				die( json_encode( $result ) );
 
 			default:
@@ -314,7 +314,7 @@ class GFFormList {
 
 			function loadNewFormModal() {
 				resetNewFormModal();
-				tb_show(<?php echo json_encode( esc_html__( 'Create a New Form', 'gravityforms' ) ); ?>, '#TB_inline?width=375&amp;inlineId=gf_new_form_modal');
+				tb_show(<?php echo json_encode( esc_html__( 'Create a New Form', 'edforms' ) ); ?>, '#TB_inline?width=375&amp;inlineId=gf_new_form_modal');
 				jQuery('#new_form_title').focus();
 
 				jQuery( '#new_form_title').keyup( function( event ) {
@@ -335,7 +335,7 @@ class GFFormList {
 				jQuery('#gf_new_form_error_message').html('');
 
 				var origVal = createButton.val();
-				createButton.val(<?php echo json_encode( esc_html__( 'Creating Form...', 'gravityforms' ) ); ?>);
+				createButton.val(<?php echo json_encode( esc_html__( 'Creating Form...', 'edforms' ) ); ?>);
 
 				var form = {
 					title: jQuery('#new_form_title').val(),
@@ -344,7 +344,7 @@ class GFFormList {
 					descriptionPlacement:'below',
 					button: {
 						type: 'text',
-						text: <?php echo json_encode( esc_html__( 'Submit', 'gravityforms' ) ); ?>,
+						text: <?php echo json_encode( esc_html__( 'Submit', 'edforms' ) ); ?>,
 						imageUrl : ''
 					},
 					fields:[]
@@ -367,7 +367,7 @@ class GFFormList {
 						createButton.val(origVal);
 					} else {
 						location.href = respData.redirect;
-						createButton.val(<?php echo json_encode( esc_html__( 'Saved! Redirecting...', 'gravityforms' ) ); ?>);
+						createButton.val(<?php echo json_encode( esc_html__( 'Saved! Redirecting...', 'edforms' ) ); ?>);
 					}
 
 				});
@@ -449,10 +449,10 @@ class GF_Form_List_Table extends WP_List_Table {
 		$trash_class = ( $this->filter == 'trash' ) ? 'current' : '' ;
 
 		$views = array(
-			'all' => '<a class="' . $all_class . '" href="?page=gf_edit_forms">' . esc_html( _x( 'All', 'Form List', 'gravityforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['total'] . '</span>)</span></a>',
-			'active' => '<a class="' . $active_class . '" href="?page=gf_edit_forms&filter=active">' . esc_html( _x( 'Active', 'Form List', 'gravityforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['active'] . '</span>)</span></a>',
-			'inactive' => '<a class="' . $inactive_class . '" href="?page=gf_edit_forms&filter=inactive">' . esc_html( _x( 'Inactive', 'Form List', 'gravityforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['inactive'] . '</span>)</span></a>',
-			'trash' => '<a class="' . $trash_class . '" href="?page=gf_edit_forms&filter=trash">' . esc_html( _x( 'Trash', 'Form List', 'gravityforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['trash'] . '</span>)</span></a>',
+			'all' => '<a class="' . $all_class . '" href="?page=gf_edit_forms">' . esc_html( _x( 'All', 'Form List', 'edforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['total'] . '</span>)</span></a>',
+			'active' => '<a class="' . $active_class . '" href="?page=gf_edit_forms&filter=active">' . esc_html( _x( 'Active', 'Form List', 'edforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['active'] . '</span>)</span></a>',
+			'inactive' => '<a class="' . $inactive_class . '" href="?page=gf_edit_forms&filter=inactive">' . esc_html( _x( 'Inactive', 'Form List', 'edforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['inactive'] . '</span>)</span></a>',
+			'trash' => '<a class="' . $trash_class . '" href="?page=gf_edit_forms&filter=trash">' . esc_html( _x( 'Trash', 'Form List', 'edforms' ) ) . ' <span class="count">(<span id="all_count">' . $form_count['trash'] . '</span>)</span></a>',
 		);
 		return $views;
 	}
@@ -528,16 +528,16 @@ class GF_Form_List_Table extends WP_List_Table {
 	function get_bulk_actions() {
 		if ( $this->filter == 'trash' ) {
 			$actions = array(
-				'restore' => esc_html__( 'Restore', 'gravityforms' ),
-				'delete' => esc_html__( 'Delete permanently', 'gravityforms' ),
+				'restore' => esc_html__( 'Restore', 'edforms' ),
+				'delete' => esc_html__( 'Delete permanently', 'edforms' ),
 			);
 		} else {
 			$actions = array(
-				'activate' => esc_html__( 'Mark as Active', 'gravityforms' ),
-				'deactivate' => esc_html__( 'Mark as Inactive', 'gravityforms' ),
-				'reset_views' => esc_html__( 'Reset Views', 'gravityforms' ),
-				'delete_entries' => esc_html__( 'Permanently Delete Entries', 'gravityforms' ),
-				'trash' => esc_html__( 'Move to trash', 'gravityforms' ),
+				'activate' => esc_html__( 'Mark as Active', 'edforms' ),
+				'deactivate' => esc_html__( 'Mark as Inactive', 'edforms' ),
+				'reset_views' => esc_html__( 'Reset Views', 'edforms' ),
+				'delete_entries' => esc_html__( 'Permanently Delete Entries', 'edforms' ),
+				'trash' => esc_html__( 'Move to trash', 'edforms' ),
 			);
 		}
 		return $actions;
@@ -548,11 +548,11 @@ class GF_Form_List_Table extends WP_List_Table {
 		$columns = array(
 			'cb'         => '<input type="checkbox" />',
 			'is_active'  => '',
-			'title'      => esc_html__( 'Title', 'gravityforms' ),
-			'id'         => esc_html__( 'ID', 'gravityforms' ),
-			'entry_count' => esc_html__( 'Entries', 'gravityforms' ),
-			'view_count' => esc_html__( 'Views', 'gravityforms' ),
-			'conversion' => esc_html__( 'Conversion', 'gravityforms' ),
+			'title'      => esc_html__( 'Title', 'edforms' ),
+			'id'         => esc_html__( 'ID', 'edforms' ),
+			'entry_count' => esc_html__( 'Entries', 'edforms' ),
+			'view_count' => esc_html__( 'Views', 'edforms' ),
+			'conversion' => esc_html__( 'Conversion', 'edforms' ),
 		);
 
 		$columns = apply_filters( 'gform_form_list_columns', $columns );
@@ -619,7 +619,7 @@ class GF_Form_List_Table extends WP_List_Table {
 		echo '<th scope="row" class="manage-column column-is_active">';
 		if ( $this->filter !== 'trash' ) {
 			?>
-			<img class="gform_active_icon" src="<?php echo esc_url( GFCommon::get_base_url() ); ?>/images/active<?php echo intval( $form->is_active ) ?>.png" style="cursor: pointer;" alt="<?php echo $form->is_active ? esc_attr__( 'Active', 'gravityforms' ) : esc_attr__( 'Inactive', 'gravityforms' ); ?>" title="<?php echo $form->is_active ? esc_attr__( 'Active', 'gravityforms' ) : esc_attr__( 'Inactive', 'gravityforms' ); ?>" onclick="ToggleActive(this, <?php echo absint( $form->id ); ?>); " onkeypress="ToggleActive(this, <?php echo absint( $form->id ); ?>); " />
+			<img class="gform_active_icon" src="<?php echo esc_url( GFCommon::get_base_url() ); ?>/images/active<?php echo intval( $form->is_active ) ?>.png" style="cursor: pointer;" alt="<?php echo $form->is_active ? esc_attr__( 'Active', 'edforms' ) : esc_attr__( 'Inactive', 'edforms' ); ?>" title="<?php echo $form->is_active ? esc_attr__( 'Active', 'edforms' ) : esc_attr__( 'Inactive', 'edforms' ); ?>" onclick="ToggleActive(this, <?php echo absint( $form->id ); ?>); " onkeypress="ToggleActive(this, <?php echo absint( $form->id ); ?>); " />
 			<?php
 		}
 		echo '</th>';
@@ -670,22 +670,22 @@ class GF_Form_List_Table extends WP_List_Table {
 
 			if ( $this->filter == 'trash' ) {
 				$form_actions['restore'] = array(
-					'label'        => __( 'Restore', 'gravityforms' ),
-					'title'        => __( 'Restore', 'gravityforms' ),
+					'label'        => __( 'Restore', 'edforms' ),
+					'title'        => __( 'Restore', 'edforms' ),
 					'url'          => '#',
 					'onclick'      => 'RestoreForm(' . absint( $form->id ) . ');',
 					'onkeypress'   => 'RestoreForm(' . absint( $form->id ) . ');',
-					'capabilities' => 'gravityforms_delete_forms',
+					'capabilities' => 'edforms_delete_forms',
 					'priority'     => 600,
 				);
 				$form_actions['delete']  = array(
-					'label'        => __( 'Delete permanently', 'gravityforms' ),
-					'title'        => __( 'Delete permanently', 'gravityforms' ),
+					'label'        => __( 'Delete permanently', 'edforms' ),
+					'title'        => __( 'Delete permanently', 'edforms' ),
 					'menu_class'   => 'delete',
 					'url'          => '#',
 					'onclick'      => 'ConfirmDeleteForm(' . absint( $form->id ) . ');',
 					'onkeypress'   => 'ConfirmDeleteForm(' . absint( $form->id ) . ');',
-					'capabilities' => 'gravityforms_delete_forms',
+					'capabilities' => 'edforms_delete_forms',
 					'priority'     => 500,
 				);
 
@@ -698,22 +698,22 @@ class GF_Form_List_Table extends WP_List_Table {
 				$form_actions = GFForms::get_toolbar_menu_items( $form->id, true );
 
 				$form_actions['duplicate'] = array(
-					'label'        => __( 'Duplicate', 'gravityforms' ),
-					'title'        => __( 'Duplicate this form', 'gravityforms' ),
+					'label'        => __( 'Duplicate', 'edforms' ),
+					'title'        => __( 'Duplicate this form', 'edforms' ),
 					'url'          => '#',
 					'onclick'      => 'DuplicateForm(' . absint( $form->id ) . ');return false;',
 					'onkeypress'   => 'DuplicateForm(' . absint( $form->id ) . ');return false;',
-					'capabilities' => 'gravityforms_create_form',
+					'capabilities' => 'edforms_create_form',
 					'priority'     => 600,
 				);
 
 				$form_actions['trash'] = array(
-					'label'        => __( 'Trash', 'gravityforms' ),
-					'title'        => __( 'Move this form to the trash', 'gravityforms' ),
+					'label'        => __( 'Trash', 'edforms' ),
+					'title'        => __( 'Move this form to the trash', 'edforms' ),
 					'url'          => '#',
 					'onclick'      => 'TrashForm(' . absint( $form->id ) . ');return false;',
 					'onkeypress'   => 'TrashForm(' . absint( $form->id ) . ');return false;',
-					'capabilities' => 'gravityforms_delete_forms',
+					'capabilities' => 'edforms_delete_forms',
 					'menu_class'   => 'trash',
 					'priority'     => 500,
 				);
@@ -734,14 +734,14 @@ class GF_Form_List_Table extends WP_List_Table {
 	function no_items() {
 		if ( rgget( 's' ) ) {
 			printf(
-				esc_html__( "No forms were found for your search query. %sView all forms%s.", 'gravityforms' ),
+				esc_html__( "No forms were found for your search query. %sView all forms%s.", 'edforms' ),
 				'<a href="' . remove_query_arg( 's' ) . '">',
 				'</a>'
 			);
 		} else if ( $this->filter == 'trash' ) {
-			esc_html_e( 'There are no forms in the trash.', 'gravityforms' );
+			esc_html_e( 'There are no forms in the trash.', 'edforms' );
 		} else {
-			printf( esc_html__( "You don't have any forms. Let's go %screate one%s!", 'gravityforms' ), '<a href="admin.php?page=gf_new_form">', '</a>' );
+			printf( esc_html__( "You don't have any forms. Let's go %screate one%s!", 'edforms' ), '<a href="admin.php?page=gf_new_form">', '</a>' );
 		}
 	}
 
@@ -764,27 +764,27 @@ class GF_Form_List_Table extends WP_List_Table {
 			switch ( $single_action ) {
 				case 'trash' :
 					$trashed = RGFormsModel::trash_form( $form_id );
-					$message = is_wp_error( $trashed ) ? $trashed->get_error_message() : __( 'Form moved to the trash.', 'gravityforms' );
+					$message = is_wp_error( $trashed ) ? $trashed->get_error_message() : __( 'Form moved to the trash.', 'edforms' );
 					$message_class = is_wp_error( $trashed ) ? 'error' : 'updated';
 					break;
 				case 'restore' :
 					$restored = RGFormsModel::restore_form( $form_id );
-					$message = is_wp_error( $restored ) ? $restored->get_error_message() : __( 'Form restored.', 'gravityforms' );
+					$message = is_wp_error( $restored ) ? $restored->get_error_message() : __( 'Form restored.', 'edforms' );
 					$message_class = is_wp_error( $restored ) ? 'error' : 'updated';
 					break;
 				case 'delete' :
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_forms' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_forms' ) ) {
 						$deleted = RGFormsModel::delete_form( $form_id );
-					    $message = is_wp_error( $deleted ) ? $deleted->get_error_message() : __( 'Form deleted.', 'gravityforms' );
+					    $message = is_wp_error( $deleted ) ? $deleted->get_error_message() : __( 'Form deleted.', 'edforms' );
 					    $message_class = is_wp_error( $deleted ) ? 'error' : 'updated';
 					} else {
-						$message = __( "You don't have adequate permission to delete forms.", 'gravityforms' );
+						$message = __( "You don't have adequate permission to delete forms.", 'edforms' );
 						$message_class = 'error';
 					}
 					break;
 				case 'duplicate' :
 					$duplicated = RGFormsModel::duplicate_form( $form_id );
-					$message = is_wp_error( $duplicated ) ? $duplicated->get_error_message() : __( 'Form duplicated.', 'gravityforms' );
+					$message = is_wp_error( $duplicated ) ? $duplicated->get_error_message() : __( 'Form duplicated.', 'edforms' );
 					$message_class = is_wp_error( $duplicated ) ? 'error' : 'updated';
 					break;
 
@@ -798,13 +798,13 @@ class GF_Form_List_Table extends WP_List_Table {
 					check_admin_referer( "gf_delete_form_{$form_id}" );
 
 					$trashed = RGFormsModel::trash_form( $form_id );
-					$message = is_wp_error( $trashed ) ? $trashed->get_error_message() : __( 'Form moved to the trash.', 'gravityforms' );
+					$message = is_wp_error( $trashed ) ? $trashed->get_error_message() : __( 'Form moved to the trash.', 'edforms' );
 					$message_class = is_wp_error( $trashed ) ? 'error' : 'updated';
 					break;				
 				case 'duplicate' :
 					check_ajax_referer( "gf_duplicate_form_{$form_id}" );
 					$duplicated = RGFormsModel::duplicate_form( $form_id );
-					$message = is_wp_error( $duplicated ) ? $duplicated->get_error_message() : __( 'Form duplicated.', 'gravityforms' );
+					$message = is_wp_error( $duplicated ) ? $duplicated->get_error_message() : __( 'Form duplicated.', 'edforms' );
 					$message_class = is_wp_error( $duplicated ) ? 'error' : 'updated';
 					break;
 
@@ -821,18 +821,18 @@ class GF_Form_List_Table extends WP_List_Table {
 			switch ( $bulk_action ) {
 				case 'trash':
 					GFFormsModel::trash_forms( $form_ids );
-					$message = _n( '%s form moved to the trash.', '%s forms moved to the trash.', $form_count, 'gravityforms' );
+					$message = _n( '%s form moved to the trash.', '%s forms moved to the trash.', $form_count, 'edforms' );
 					break;
 				case 'restore':
 					GFFormsModel::restore_forms( $form_ids );
-					$message = _n( '%s form restored.', '%s forms restored.', $form_count, 'gravityforms' );
+					$message = _n( '%s form restored.', '%s forms restored.', $form_count, 'edforms' );
 					break;
 				case 'delete':
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_forms' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_forms' ) ) {
 						GFFormsModel::delete_forms( $form_ids );
-						$message = _n( '%s form deleted.', '%s forms deleted.', $form_count, 'gravityforms' );
+						$message = _n( '%s form deleted.', '%s forms deleted.', $form_count, 'edforms' );
 					} else {
-						$message = __( "You don't have adequate permissions to delete forms.", 'gravityforms' );
+						$message = __( "You don't have adequate permissions to delete forms.", 'edforms' );
 					}
 					break;
 				case 'reset_views':
@@ -840,16 +840,16 @@ class GF_Form_List_Table extends WP_List_Table {
 						GFFormsModel::delete_views( $form_id );
 					}
 					GFCache::delete( 'get_view_count_per_form' );
-					$message = _n( 'Views for %s form have been reset.', 'Views for %s forms have been reset.', $form_count, 'gravityforms' );
+					$message = _n( 'Views for %s form have been reset.', 'Views for %s forms have been reset.', $form_count, 'edforms' );
 					break;
 				case 'delete_entries':
-					if ( GFCommon::current_user_can_any( 'gravityforms_delete_entries' ) ) {
+					if ( GFCommon::current_user_can_any( 'edforms_delete_entries' ) ) {
 						foreach ( $form_ids as $form_id ) {
 							GFFormsModel::delete_leads_by_form( $form_id );
 						}
-						$message = _n( 'Entries for %s form have been deleted.', 'Entries for %s forms have been deleted.', $form_count, 'gravityforms' );
+						$message = _n( 'Entries for %s form have been deleted.', 'Entries for %s forms have been deleted.', $form_count, 'edforms' );
 					} else {
-						$message = __( "You don't have adequate permission to delete entries.", 'gravityforms' );
+						$message = __( "You don't have adequate permission to delete entries.", 'edforms' );
 					}
 
 					break;
@@ -857,13 +857,13 @@ class GF_Form_List_Table extends WP_List_Table {
 					foreach ( $form_ids as $form_id ) {
 						GFFormsModel::update_form_active( $form_id, 1 );
 					}
-					$message = _n( '%s form has been marked as active.', '%s forms have been marked as active.', $form_count, 'gravityforms' );
+					$message = _n( '%s form has been marked as active.', '%s forms have been marked as active.', $form_count, 'edforms' );
 					break;
 				case 'deactivate':
 					foreach ( $form_ids as $form_id ) {
 						GFFormsModel::update_form_active( $form_id, 0 );
 					}
-					$message = _n( '%s form has been marked as inactive.', '%s forms have been marked as inactive.', $form_count, 'gravityforms' );
+					$message = _n( '%s form has been marked as inactive.', '%s forms have been marked as inactive.', $form_count, 'edforms' );
 					break;
 			}
 

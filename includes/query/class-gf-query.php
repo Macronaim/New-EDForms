@@ -25,7 +25,7 @@ if ( ! class_exists( 'GF_Query_Series' ) ) {
 }
 
 /**
- * The Gravity Forms Query Builder class.
+ * The Ed Forms Query Builder class.
  *
  * @internal
  *

@@ -10,7 +10,7 @@ class GF_Field_Textarea extends GF_Field {
 	public $type = 'textarea';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Paragraph Text', 'gravityforms' );
+		return esc_attr__( 'Paragraph Text', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {
@@ -155,7 +155,7 @@ class GF_Field_Textarea extends GF_Field {
 
 		if ( GFCommon::safe_strlen( $value ) > $this->maxLength ) {
 			$this->failed_validation  = true;
-			$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'The text entered exceeds the maximum number of characters.', 'gravityforms' ) : $this->errorMessage;
+			$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'The text entered exceeds the maximum number of characters.', 'edforms' ) : $this->errorMessage;
 		}
 	}
 

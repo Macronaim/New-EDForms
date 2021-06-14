@@ -21,7 +21,7 @@ class GF_Field_Total extends GF_Field {
 	}
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Total', 'gravityforms' );
+		return esc_attr__( 'Total', 'edforms' );
 	}
 
 	public function get_field_input( $form, $value = '', $entry = null ) {

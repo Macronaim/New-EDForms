@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Gravity Forms Query Column class.
+ * The Ed Forms Query Column class.
  */
 class GF_Query_Column {
 

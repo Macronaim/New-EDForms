@@ -14,7 +14,7 @@ class GFAddonLocking extends GFLocking {
 	 *
 	 *  array(
 	 *     "object_type" => 'contact',
-	 *     "capabilities" => array("gravityforms_contacts_edit_contacts"),
+	 *     "capabilities" => array("edforms_contacts_edit_contacts"),
 	 *     "redirect_url" => admin_url("admin.php?page=gf_contacts"),
 	 *     "edit_url" => admin_url(sprintf("admin.php?page=gf_contacts&id=%d", $contact_id)),
 	 *     "strings" => $strings

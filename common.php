@@ -6,7 +6,7 @@ if ( ! class_exists( 'GFForms' ) ) {
 /**
  * Class GFCommon
  *
- * Includes common methods accessed throughout Gravity Forms and add-ons.
+ * Includes common methods accessed throughout Ed Forms and add-ons.
  */
 class GFCommon {
 
@@ -202,7 +202,7 @@ class GFCommon {
 		$rules = explode( "\n", $txt );
 
 		/**
-		 * A filter to allow the modification/disabling of parsing certain PHP within Gravity Forms
+		 * A filter to allow the modification/disabling of parsing certain PHP within Ed Forms
 		 *
 		 * @since 1.9.2
 		 *
@@ -213,7 +213,7 @@ class GFCommon {
 			if ( ! function_exists( 'insert_with_markers' ) ) {
 				require_once( ABSPATH . 'wp-admin/includes/misc.php' );
 			}
-			insert_with_markers( $htaccess_file, 'Gravity Forms', $rules );
+			insert_with_markers( $htaccess_file, 'Ed Forms', $rules );
 		}
 	}
 
@@ -411,7 +411,7 @@ class GFCommon {
 		?>
 
 		<select id="<?php echo esc_attr( $element_id ); ?>_variable_select" onchange="<?php echo $onchange ?>" class="<?php echo esc_attr( $class ) ?>">
-			<option value=''><?php esc_html_e( 'Insert Merge Tag', 'gravityforms' ); ?></option>
+			<option value=''><?php esc_html_e( 'Insert Merge Tag', 'edforms' ); ?></option>
 
 			<?php foreach ( $merge_tags as $group => $group_tags ) {
 
@@ -473,7 +473,7 @@ class GFCommon {
 		if ( ! $hide_all_fields ) {
 			$ungrouped[] = array(
 				'tag'   => '{all_fields}',
-				'label' => esc_html__( 'All Submitted Fields', 'gravityforms' )
+				'label' => esc_html__( 'All Submitted Fields', 'edforms' )
 			);
 		}
 
@@ -546,7 +546,7 @@ class GFCommon {
 			if ( ! $hide_all_fields ) {
 				$pricing_group[] = array(
 					'tag'   => '{pricing_fields}',
-					'label' => esc_html__( 'All Pricing Fields', 'gravityforms' )
+					'label' => esc_html__( 'All Pricing Fields', 'edforms' )
 				);
 			}
 
@@ -555,45 +555,45 @@ class GFCommon {
 			}
 		}
 
-		$other_group[] = array( 'tag' => '{ip}', 'label' => esc_html__( 'User IP Address', 'gravityforms' ) );
+		$other_group[] = array( 'tag' => '{ip}', 'label' => esc_html__( 'User IP Address', 'edforms' ) );
 		$other_group[] = array(
 			'tag'   => '{date_mdy}',
-			'label' => esc_html__( 'Date', 'gravityforms' ) . ' (mm/dd/yyyy)'
+			'label' => esc_html__( 'Date', 'edforms' ) . ' (mm/dd/yyyy)'
 		);
 		$other_group[] = array(
 			'tag'   => '{date_dmy}',
-			'label' => esc_html__( 'Date', 'gravityforms' ) . ' (dd/mm/yyyy)'
+			'label' => esc_html__( 'Date', 'edforms' ) . ' (dd/mm/yyyy)'
 		);
 		$other_group[] = array(
 			'tag'   => '{embed_post:ID}',
-			'label' => esc_html__( 'Embed Post/Page Id', 'gravityforms' )
+			'label' => esc_html__( 'Embed Post/Page Id', 'edforms' )
 		);
 		$other_group[] = array(
 			'tag'   => '{embed_post:post_title}',
-			'label' => esc_html__( 'Embed Post/Page Title', 'gravityforms' )
+			'label' => esc_html__( 'Embed Post/Page Title', 'edforms' )
 		);
-		$other_group[] = array( 'tag' => '{embed_url}', 'label' => esc_html__( 'Embed URL', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{entry_id}', 'label' => esc_html__( 'Entry Id', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{entry_url}', 'label' => esc_html__( 'Entry URL', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{form_id}', 'label' => esc_html__( 'Form Id', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{form_title}', 'label' => esc_html__( 'Form Title', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{user_agent}', 'label' => esc_html__( 'HTTP User Agent', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{referer}', 'label' => esc_html__( 'HTTP Referer URL', 'gravityforms' ) );
+		$other_group[] = array( 'tag' => '{embed_url}', 'label' => esc_html__( 'Embed URL', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{entry_id}', 'label' => esc_html__( 'Entry Id', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{entry_url}', 'label' => esc_html__( 'Entry URL', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{form_id}', 'label' => esc_html__( 'Form Id', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{form_title}', 'label' => esc_html__( 'Form Title', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{user_agent}', 'label' => esc_html__( 'HTTP User Agent', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{referer}', 'label' => esc_html__( 'HTTP Referer URL', 'edforms' ) );
 
 		if ( self::has_post_field( $fields ) ) {
-			$other_group[] = array( 'tag' => '{post_id}', 'label' => esc_html__( 'Post Id', 'gravityforms' ) );
+			$other_group[] = array( 'tag' => '{post_id}', 'label' => esc_html__( 'Post Id', 'edforms' ) );
 			$other_group[] = array(
 				'tag'   => '{post_edit_url}',
-				'label' => esc_html__( 'Post Edit URL', 'gravityforms' )
+				'label' => esc_html__( 'Post Edit URL', 'edforms' )
 			);
 		}
 
 		$other_group[] = array(
 			'tag'   => '{user:display_name}',
-			'label' => esc_html__( 'User Display Name', 'gravityforms' )
+			'label' => esc_html__( 'User Display Name', 'edforms' )
 		);
-		$other_group[] = array( 'tag' => '{user:user_email}', 'label' => esc_html__( 'User Email', 'gravityforms' ) );
-		$other_group[] = array( 'tag' => '{user:user_login}', 'label' => esc_html__( 'User Login', 'gravityforms' ) );
+		$other_group[] = array( 'tag' => '{user:user_email}', 'label' => esc_html__( 'User Email', 'edforms' ) );
+		$other_group[] = array( 'tag' => '{user:user_login}', 'label' => esc_html__( 'User Login', 'edforms' ) );
 
 		$form_id = isset( $fields[0] ) ? $fields[0]->formId : rgget( 'id' );
 		$form_id = absint( $form_id );
@@ -606,23 +606,23 @@ class GFCommon {
 				'tags'  => $ungrouped,
 			),
 			'required'  => array(
-				'label' => esc_html__( 'Required form fields', 'gravityforms' ),
+				'label' => esc_html__( 'Required form fields', 'edforms' ),
 				'tags'  => $required_group,
 			),
 			'optional'  => array(
-				'label' => esc_html__( 'Optional form fields', 'gravityforms' ),
+				'label' => esc_html__( 'Optional form fields', 'edforms' ),
 				'tags'  => $optional_group,
 			),
 			'pricing'   => array(
-				'label' => esc_html__( 'Pricing form fields', 'gravityforms' ),
+				'label' => esc_html__( 'Pricing form fields', 'edforms' ),
 				'tags'  => $pricing_group,
 			),
 			'other'     => array(
-				'label' => esc_html__( 'Other', 'gravityforms' ),
+				'label' => esc_html__( 'Other', 'edforms' ),
 				'tags'  => $other_group,
 			),
 			'custom'    => array(
-				'label' => esc_html__( 'Custom', 'gravityforms' ),
+				'label' => esc_html__( 'Custom', 'edforms' ),
 				'tags'  => $custom_group,
 			)
 		);
@@ -712,26 +712,26 @@ class GFCommon {
 		?>
 		&nbsp;&nbsp;
 		<select id="<?php echo $element_id ?>_image_size_select" onchange="InsertPostImageVariable('<?php echo esc_js( $element_id ); ?>', '<?php echo esc_js( $element_id ); ?>'); SetCustomFieldTemplate();" style="display:none;">
-			<option value=""><?php esc_html_e( 'Select image size', 'gravityforms' ) ?></option>
-			<option value="thumbnail"><?php esc_html_e( 'Thumbnail', 'gravityforms' ) ?></option>
-			<option value="thumbnail:left"><?php esc_html_e( 'Thumbnail - Left Aligned', 'gravityforms' ) ?></option>
-			<option value="thumbnail:center"><?php esc_html_e( 'Thumbnail - Centered', 'gravityforms' ) ?></option>
-			<option value="thumbnail:right"><?php esc_html_e( 'Thumbnail - Right Aligned', 'gravityforms' ) ?></option>
+			<option value=""><?php esc_html_e( 'Select image size', 'edforms' ) ?></option>
+			<option value="thumbnail"><?php esc_html_e( 'Thumbnail', 'edforms' ) ?></option>
+			<option value="thumbnail:left"><?php esc_html_e( 'Thumbnail - Left Aligned', 'edforms' ) ?></option>
+			<option value="thumbnail:center"><?php esc_html_e( 'Thumbnail - Centered', 'edforms' ) ?></option>
+			<option value="thumbnail:right"><?php esc_html_e( 'Thumbnail - Right Aligned', 'edforms' ) ?></option>
 
-			<option value="medium"><?php esc_html_e( 'Medium', 'gravityforms' ) ?></option>
-			<option value="medium:left"><?php esc_html_e( 'Medium - Left Aligned', 'gravityforms' ) ?></option>
-			<option value="medium:center"><?php esc_html_e( 'Medium - Centered', 'gravityforms' ) ?></option>
-			<option value="medium:right"><?php esc_html_e( 'Medium - Right Aligned', 'gravityforms' ) ?></option>
+			<option value="medium"><?php esc_html_e( 'Medium', 'edforms' ) ?></option>
+			<option value="medium:left"><?php esc_html_e( 'Medium - Left Aligned', 'edforms' ) ?></option>
+			<option value="medium:center"><?php esc_html_e( 'Medium - Centered', 'edforms' ) ?></option>
+			<option value="medium:right"><?php esc_html_e( 'Medium - Right Aligned', 'edforms' ) ?></option>
 
-			<option value="large"><?php esc_html_e( 'Large', 'gravityforms' ) ?></option>
-			<option value="large:left"><?php esc_html_e( 'Large - Left Aligned', 'gravityforms' ) ?></option>
-			<option value="large:center"><?php esc_html_e( 'Large - Centered', 'gravityforms' ) ?></option>
-			<option value="large:right"><?php esc_html_e( 'Large - Right Aligned', 'gravityforms' ) ?></option>
+			<option value="large"><?php esc_html_e( 'Large', 'edforms' ) ?></option>
+			<option value="large:left"><?php esc_html_e( 'Large - Left Aligned', 'edforms' ) ?></option>
+			<option value="large:center"><?php esc_html_e( 'Large - Centered', 'edforms' ) ?></option>
+			<option value="large:right"><?php esc_html_e( 'Large - Right Aligned', 'edforms' ) ?></option>
 
-			<option value="full"><?php esc_html_e( 'Full Size', 'gravityforms' ) ?></option>
-			<option value="full:left"><?php esc_html_e( 'Full Size - Left Aligned', 'gravityforms' ) ?></option>
-			<option value="full:center"><?php esc_html_e( 'Full Size - Centered', 'gravityforms' ) ?></option>
-			<option value="full:right"><?php esc_html_e( 'Full Size - Right Aligned', 'gravityforms' ) ?></option>
+			<option value="full"><?php esc_html_e( 'Full Size', 'edforms' ) ?></option>
+			<option value="full:left"><?php esc_html_e( 'Full Size - Left Aligned', 'edforms' ) ?></option>
+			<option value="full:center"><?php esc_html_e( 'Full Size - Centered', 'edforms' ) ?></option>
+			<option value="full:right"><?php esc_html_e( 'Full Size - Right Aligned', 'edforms' ) ?></option>
 		</select>
 		<?php
 	}
@@ -747,8 +747,8 @@ class GFCommon {
 		?>
 
 		<select id="<?php echo esc_attr( $element_id ); ?>_variable_select" onchange="<?php echo $onchange ?>" class="<?php echo esc_attr( $class ) ?>">
-			<option value=''><?php esc_html_e( 'Insert Merge Tag', 'gravityforms' ); ?></option>
-			<optgroup label="<?php esc_attr_e( 'Allowable form fields', 'gravityforms' ); ?>">
+			<option value=''><?php esc_html_e( 'Insert Merge Tag', 'edforms' ); ?></option>
+			<optgroup label="<?php esc_attr_e( 'Allowable form fields', 'edforms' ); ?>">
 
 				<?php
 				foreach ( $fields as $field ) {
@@ -780,7 +780,7 @@ class GFCommon {
 			if ( is_array( $custom_merge_tags ) && ! empty( $custom_merge_tags ) ) {
 				?>
 
-				<optgroup label="<?php esc_attr_e( 'Custom', 'gravityforms' ); ?>">
+				<optgroup label="<?php esc_attr_e( 'Custom', 'edforms' ); ?>">
 
 					<?php foreach ( $custom_merge_tags as $custom_merge_tag ) { ?>
 
@@ -922,7 +922,7 @@ class GFCommon {
 			return $text;
 		}
 
-		// Replacing conditional merge tag variables: [gravityforms action="conditional" merge_tag="{Other Services:4}" ....
+		// Replacing conditional merge tag variables: [edforms action="conditional" merge_tag="{Other Services:4}" ....
 		preg_match_all( '/merge_tag\s*=\s*["|\']({[^{]*?:(\d+(\.\d+)?)(:(.*?))?})["|\']/mi', $text, $matches, PREG_SET_ORDER );
 		if ( is_array( $matches ) ) {
 			foreach ( $matches as $match ) {
@@ -1392,7 +1392,7 @@ class GFCommon {
 		$order_label = gf_apply_filters( array(
 			'gform_order_label',
 			$form_id
-		), esc_html__( 'Order', 'gravityforms' ), $form['id'] );
+		), esc_html__( 'Order', 'edforms' ), $form['id'] );
 		$products    = GFCommon::get_product_fields( $form, $lead, $use_text, $use_admin_label );
 		$total       = 0;
 		$field_data  = '';
@@ -1424,7 +1424,7 @@ class GFCommon {
 						$field_data .= $products['shipping']['name'] . ': ' . self::to_money( $products['shipping']['price'], $lead['currency'] ) . "\n\n";
 					}
 
-					$field_data .= esc_html__( 'Total', 'gravityforms' ) . ': ' . self::to_money( $total, $lead['currency'] ) . "\n\n";
+					$field_data .= esc_html__( 'Total', 'edforms' ) . ': ' . self::to_money( $total, $lead['currency'] ) . "\n\n";
 				}
 				break;
 
@@ -1441,7 +1441,7 @@ class GFCommon {
 					$gform_product = gf_apply_filters( array(
 						'gform_product',
 						$form_id
-					), esc_html__( 'Product', 'gravityforms' ), $form_id );
+					), esc_html__( 'Product', 'edforms' ), $form_id );
 					/**
 					 * Filters the default quantity label.
 					 *
@@ -1451,7 +1451,7 @@ class GFCommon {
 					$gform_product_qty = gf_apply_filters( array(
 						'gform_product_qty',
 						$form_id
-					), esc_html__( 'Qty', 'gravityforms' ), $form_id );
+					), esc_html__( 'Qty', 'edforms' ), $form_id );
 					/**
 					 * Filters the default unit price label.
 					 *
@@ -1461,7 +1461,7 @@ class GFCommon {
 					$gform_product_unitprice = gf_apply_filters( array(
 						'gform_product_unitprice',
 						$form_id
-					), esc_html__( 'Unit Price', 'gravityforms' ), $form_id );
+					), esc_html__( 'Unit Price', 'edforms' ), $form_id );
 					/**
 					 * Filters the default product price label.
 					 *
@@ -1471,7 +1471,7 @@ class GFCommon {
 					$gform_product_price = gf_apply_filters( array(
 						'gform_product_price',
 						$form_id
-					), esc_html__( 'Price', 'gravityforms' ), $form_id );
+					), esc_html__( 'Price', 'edforms' ), $form_id );
 
 					$field_data = '<tr bgcolor="#EAF2FA">
                             <td colspan="2">
@@ -1540,7 +1540,7 @@ class GFCommon {
 					}
 
 					$field_data .= '
-                                        <td style="border-bottom:1px solid #DFDFDF; border-right:1px solid #DFDFDF; padding:7px; text-align:right; width:155px; font-family: sans-serif;"><strong style="font-size:12px;">' . esc_html__( 'Total:', 'gravityforms' ) . '</strong></td>
+                                        <td style="border-bottom:1px solid #DFDFDF; border-right:1px solid #DFDFDF; padding:7px; text-align:right; width:155px; font-family: sans-serif;"><strong style="font-size:12px;">' . esc_html__( 'Total:', 'edforms' ) . '</strong></td>
                                         <td style="border-bottom:1px solid #DFDFDF; border-right:1px solid #DFDFDF; padding:7px; width:155px; font-family: sans-serif;"><strong style="font-size:12px;">' . self::to_money( $total, $lead['currency'] ) . '</strong></td>
                                     </tr>
                                 </tfoot>
@@ -1658,7 +1658,7 @@ class GFCommon {
 		$version_info = self::get_version_info();
 		$is_expired   = ! rgempty( 'expiration_time', $version_info ) && $version_info['expiration_time'] < time();
 		if ( ! rgar( $version_info, 'is_valid_key' ) && $is_expired ) {
-			$message .= "<br/><br/>Your Gravity Forms License Key has expired. In order to continue receiving support and software updates you must renew your license key. You can do so by following the renewal instructions on the Gravity Forms Settings page in your WordPress Dashboard or by <a href='http://www.gravityhelp.com/renew-license/?key=" . self::get_key() . "'>clicking here</a>.";
+			$message .= "<br/><br/>Your Ed Forms License Key has expired. In order to continue receiving support and software updates you must renew your license key. You can do so by following the renewal instructions on the Ed Forms Settings page in your WordPress Dashboard or by <a href='http://www.edhelp.com/renew-license/?key=" . self::get_key() . "'>clicking here</a>.";
 		}
 		*/
 
@@ -1993,7 +1993,7 @@ class GFCommon {
 			GFCommon::log_error( print_r( compact( 'to', 'subject', 'message' ), true ) );
 
 			/**
-			 * Fires when an email from Gravity Forms has failed to send
+			 * Fires when an email from Ed Forms has failed to send
 			 *
 			 * @since 1.8.10
 			 *
@@ -2325,11 +2325,11 @@ Content-Type: text/html;
 	 * @access public
 	 *
 	 * @param string $caps Capabilities that current user must have to be able to uninstall the plugin.
-	 * @param string $plugin_path Path of the plugin to be checked, relative to the plugins folder. i.e. "gravityforms/gravityforms.php"
+	 * @param string $plugin_path Path of the plugin to be checked, relative to the plugins folder. i.e. "edforms/edforms.php"
 	 *
 	 * @return bool True if current user can uninstall the plugin. False otherwise
 	 */
-	public static function current_user_can_uninstall( $caps = 'gravityforms_uninstall', $plugin_path = 'gravityforms/gravityforms.php' ) {
+	public static function current_user_can_uninstall( $caps = 'edforms_uninstall', $plugin_path = 'edforms/edforms.php' ) {
 
 		$is_multisite = function_exists( 'is_multisite' ) && is_multisite();
 		$is_network_activated = is_plugin_active_for_network( $plugin_path );
@@ -2417,29 +2417,29 @@ Content-Type: text/html;
 	/**
 	 * Returns all the plugin capabilities.
 	 *
-	 * @since 2.2.1.12 Added gravityforms_system_status.
+	 * @since 2.2.1.12 Added edforms_system_status.
 	 * @since unknown
 	 *
 	 * @return array
 	 */
 	public static function all_caps() {
 		return array(
-			'gravityforms_edit_forms',
-			'gravityforms_delete_forms',
-			'gravityforms_create_form',
-			'gravityforms_view_entries',
-			'gravityforms_edit_entries',
-			'gravityforms_delete_entries',
-			'gravityforms_view_settings',
-			'gravityforms_edit_settings',
-			'gravityforms_export_entries',
-			'gravityforms_uninstall',
-			'gravityforms_view_entry_notes',
-			'gravityforms_edit_entry_notes',
-			'gravityforms_view_updates',
-			'gravityforms_view_addons',
-			'gravityforms_preview_forms',
-			'gravityforms_system_status',
+			'edforms_edit_forms',
+			'edforms_delete_forms',
+			'edforms_create_form',
+			'edforms_view_entries',
+			'edforms_edit_entries',
+			'edforms_delete_entries',
+			'edforms_view_settings',
+			'edforms_edit_settings',
+			'edforms_export_entries',
+			'edforms_uninstall',
+			'edforms_view_entry_notes',
+			'edforms_edit_entry_notes',
+			'edforms_view_updates',
+			'edforms_view_addons',
+			'edforms_preview_forms',
+			'edforms_system_status',
 		);
 	}
 
@@ -2561,7 +2561,7 @@ Content-Type: text/html;
 	public static function get_remote_request_params() {
 		global $wpdb;
 
-		return sprintf( 'of=GravityForms&key=%s&v=%s&wp=%s&php=%s&mysql=%s&version=2', urlencode( self::get_key() ), urlencode( self::$version ), urlencode( get_bloginfo( 'version' ) ), urlencode( phpversion() ), urlencode( $wpdb->db_version() ) );
+		return sprintf( 'of=EdForms&key=%s&v=%s&wp=%s&php=%s&mysql=%s&version=2', urlencode( self::get_key() ), urlencode( self::$version ), urlencode( get_bloginfo( 'version' ) ), urlencode( phpversion() ), urlencode( $wpdb->db_version() ) );
 	}
 
 	public static function get_remote_post_params() {
@@ -2611,7 +2611,7 @@ Content-Type: text/html;
 		$lang           = get_locale();
 
 		$post = array(
-			'of'      => 'gravityforms',
+			'of'      => 'edforms',
 			'key'     => self::get_key(),
 			'v'       => self::$version,
 			'wp'      => get_bloginfo( 'version' ),
@@ -2640,7 +2640,7 @@ Content-Type: text/html;
 
 	public static function ensure_wp_version() {
 		if ( ! GF_SUPPORTED_WP_VERSION ) {
-			echo "<div class='error' style='padding:10px;'>" . sprintf( esc_html__( 'Gravity Forms requires WordPress %s or greater. You must upgrade WordPress in order to use Gravity Forms', 'gravityforms' ), GF_MIN_WP_VERSION ) . '</div>';
+			echo "<div class='error' style='padding:10px;'>" . sprintf( esc_html__( 'Ed Forms requires WordPress %s or greater. You must upgrade WordPress in order to use Ed Forms', 'edforms' ), GF_MIN_WP_VERSION ) . '</div>';
 
 			return false;
 		}
@@ -2660,7 +2660,7 @@ Content-Type: text/html;
 			return $option;
 		}
 
-		$plugin_path = 'gravityforms/gravityforms.php';
+		$plugin_path = 'edforms/edforms.php';
 		if ( empty( $option->response[ $plugin_path ] ) ) {
 			$option->response[ $plugin_path ] = new stdClass();
 		}
@@ -2703,7 +2703,7 @@ Content-Type: text/html;
 			$message = $raw_response['body'];
 		}
 
-		//validating that message is a valid Gravity Form message. If message is invalid, don't display anything
+		//validating that message is a valid Ed Form message. If message is invalid, don't display anything
 		if ( substr( $message, 0, 10 ) != '<!--GFM-->' ) {
 			$message = '';
 		}
@@ -2713,14 +2713,14 @@ Content-Type: text/html;
 
 	public static function post_to_manager( $file, $query, $options ) {
 
-		$request_url = GRAVITY_MANAGER_URL . '/' . $file . '?' . $query;
+		$request_url = ED_MANAGER_URL . '/' . $file . '?' . $query;
 		self::log_debug( __METHOD__ . '(): endpoint: ' . $request_url );
 		$raw_response = wp_remote_post( $request_url, $options );
 		self::log_remote_response( $raw_response );
 
 		if ( is_wp_error( $raw_response ) || 200 != $raw_response['response']['code'] ) {
 			self::log_error( __METHOD__ . '(): Error from manager. Sending to proxy...' );
-			$request_url  = GRAVITY_MANAGER_PROXY_URL . '/proxy.php?f=' . $file . '&' . $query;
+			$request_url  = ED_MANAGER_PROXY_URL . '/proxy.php?f=' . $file . '&' . $query;
 			$raw_response = wp_remote_post( $request_url, $options );
 			self::log_remote_response( $raw_response );
 		}
@@ -2767,12 +2767,12 @@ Content-Type: text/html;
 			$time_diff = time() - $lead_gmt_time;
 
 			if ( $time_diff > 0 && $time_diff < 24 * 60 * 60 ) {
-				$date_display = sprintf( esc_html__( '%s ago', 'gravityforms' ), human_time_diff( $lead_gmt_time ) );
+				$date_display = sprintf( esc_html__( '%s ago', 'edforms' ), human_time_diff( $lead_gmt_time ) );
 			} else {
-				$date_display = $include_time ? sprintf( esc_html__( '%1$s at %2$s', 'gravityforms' ), date_i18n( $date_format, $lead_local_time, true ), date_i18n( get_option( 'time_format' ), $lead_local_time, true ) ) : date_i18n( $date_format, $lead_local_time, true );
+				$date_display = $include_time ? sprintf( esc_html__( '%1$s at %2$s', 'edforms' ), date_i18n( $date_format, $lead_local_time, true ), date_i18n( get_option( 'time_format' ), $lead_local_time, true ) ) : date_i18n( $date_format, $lead_local_time, true );
 			}
 		} else {
-			$date_display = $include_time ? sprintf( esc_html__( '%1$s at %2$s', 'gravityforms' ), date_i18n( $date_format, $lead_local_time, true ), date_i18n( get_option( 'time_format' ), $lead_local_time, true ) ) : date_i18n( $date_format, $lead_local_time, true );
+			$date_display = $include_time ? sprintf( esc_html__( '%1$s at %2$s', 'edforms' ), date_i18n( $date_format, $lead_local_time, true ), date_i18n( get_option( 'time_format' ), $lead_local_time, true ) ) : date_i18n( $date_format, $lead_local_time, true );
 		}
 
 		return $date_display;
@@ -3170,7 +3170,7 @@ Content-Type: text/html;
 	}
 
 	public static function form_page_title( $form ) {
-		$editable_class = GFCommon::current_user_can_any( 'gravityforms_edit_forms' ) ? ' gform_settings_page_title_editable' : '';
+		$editable_class = GFCommon::current_user_can_any( 'edforms_edit_forms' ) ? ' gform_settings_page_title_editable' : '';
 
 		?>
 		<h1>
@@ -3247,11 +3247,11 @@ Content-Type: text/html;
 		// Product fields are not editable
 		if ( rgget('view') == 'entry' && self::is_product_field( $field->type ) ) {
 
-			return "<div class='ginput_container'>" . esc_html__( 'Product fields are not editable' , 'gravityforms' ) . '</div>';
+			return "<div class='ginput_container'>" . esc_html__( 'Product fields are not editable' , 'edforms' ) . '</div>';
 
 		} elseif ( rgget('view') == 'entry' && $field->type == 'donation' ) {
 
-			return "<div class='ginput_container'>" . esc_html__( 'Donations are not editable' , 'gravityforms' ) . '</div>';
+			return "<div class='ginput_container'>" . esc_html__( 'Donations are not editable' , 'edforms' ) . '</div>';
 		}
 
 		// Add categories as choices for Post Category field
@@ -3814,7 +3814,7 @@ Content-Type: text/html;
 
 		// Gathering Akismet information
 		$akismet_info                         = array();
-		$akismet_info['comment_type']         = 'gravity_form';
+		$akismet_info['comment_type']         = 'ed_form';
 		$akismet_info['comment_author']       = self::get_akismet_field( 'name', $form, $lead );
 		$akismet_info['comment_author_email'] = self::get_akismet_field( 'email', $form, $lead );
 		$akismet_info['comment_author_url']   = self::get_akismet_field( 'website', $form, $lead );
@@ -3856,7 +3856,7 @@ Content-Type: text/html;
 	 * @return string
 	 */
 	public static function get_other_choice_value( $field = null ) {
-		$placeholder = esc_html__( 'Other', 'gravityforms' );
+		$placeholder = esc_html__( 'Other', 'edforms' );
 
 		/**
 		 * Filter the default placeholder for the radio button field other choice.
@@ -4103,7 +4103,7 @@ Content-Type: text/html;
 	 * @since  2.2
 	 * @access public
 	 *
-	 * @used-by GFSettings::gravityforms_settings_page()
+	 * @used-by GFSettings::edforms_settings_page()
 	 *
 	 * @return bool If the logging plugin is active.
 	 */
@@ -4113,7 +4113,7 @@ Content-Type: text/html;
 		}
 
 		// In some scenarios, is_plugin_active() will return true when plugin file has been manually deleted.
-		return is_plugin_active( 'gravityformslogging/logging.php' ) && file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'gravityformslogging/logging.php' );
+		return is_plugin_active( 'edformslogging/logging.php' ) && file_exists( trailingslashit( WP_PLUGIN_DIR ) . 'edformslogging/logging.php' );
 
 	}
 
@@ -4395,14 +4395,14 @@ Content-Type: text/html;
 	public static function log_error( $message ) {
 		if ( class_exists( 'GFLogging' ) ) {
 			GFLogging::include_logger();
-			GFLogging::log_message( 'gravityforms', $message, KLogger::ERROR );
+			GFLogging::log_message( 'edforms', $message, KLogger::ERROR );
 		}
 	}
 
 	public static function log_debug( $message ) {
 		if ( class_exists( 'GFLogging' ) ) {
 			GFLogging::include_logger();
-			GFLogging::log_message( 'gravityforms', $message, KLogger::DEBUG );
+			GFLogging::log_message( 'edforms', $message, KLogger::DEBUG );
 		}
 	}
 
@@ -4453,58 +4453,58 @@ Content-Type: text/html;
 
 	public static function gf_vars( $echo = true ) {
 		$gf_vars                            = array();
-		$gf_vars['active']                  = esc_attr__( 'Active', 'gravityforms' );
-		$gf_vars['inactive']                = esc_attr__( 'Inactive', 'gravityforms' );
-		$gf_vars['save']                    = esc_html__( 'Save', 'gravityforms' );
-		$gf_vars['update']                  = esc_html__( 'Update', 'gravityforms' );
-		$gf_vars['previousLabel']           = esc_html__( 'Previous', 'gravityforms' );
-		$gf_vars['selectFormat']            = esc_html__( 'Select a format', 'gravityforms' );
-		$gf_vars['editToViewAll']           = esc_html__( '5 of %d items shown. Edit field to view all', 'gravityforms' );
-		$gf_vars['enterValue']              = esc_html__( 'Enter a value', 'gravityforms' );
-		$gf_vars['formTitle']               = esc_html__( 'Untitled Form', 'gravityforms' );
-		$gf_vars['formDescription']         = esc_html__( 'We would love to hear from you! Please fill out this form and we will get in touch with you shortly.', 'gravityforms' );
-		$gf_vars['formConfirmationMessage'] = esc_html__( 'Thanks for contacting us! We will get in touch with you shortly.', 'gravityforms' );
-		$gf_vars['buttonText']              = esc_html__( 'Submit', 'gravityforms' );
-		$gf_vars['loading']                 = esc_html__( 'Loading...', 'gravityforms' );
-		$gf_vars['thisFieldIf']             = esc_html__( 'this field if', 'gravityforms' );
-		$gf_vars['thisSectionIf']           = esc_html__( 'this section if', 'gravityforms' );
-		$gf_vars['thisPage']                = esc_html__( 'this page', 'gravityforms' );
-		$gf_vars['thisFormButton']          = esc_html__( 'this form button if', 'gravityforms' );
-		$gf_vars['show']                    = esc_html__( 'Show', 'gravityforms' );
-		$gf_vars['hide']                    = esc_html__( 'Hide', 'gravityforms' );
-		$gf_vars['all']                     = esc_html( _x( 'All', 'Conditional Logic', 'gravityforms' ) );
-		$gf_vars['any']                     = esc_html( _x( 'Any', 'Conditional Logic', 'gravityforms' ) );
-		$gf_vars['ofTheFollowingMatch']     = esc_html__( 'of the following match:', 'gravityforms' );
-		$gf_vars['is']                      = esc_html__( 'is', 'gravityforms' );
-		$gf_vars['isNot']                   = esc_html__( 'is not', 'gravityforms' );
-		$gf_vars['greaterThan']             = esc_html__( 'greater than', 'gravityforms' );
-		$gf_vars['lessThan']                = esc_html__( 'less than', 'gravityforms' );
-		$gf_vars['contains']                = esc_html__( 'contains', 'gravityforms' );
-		$gf_vars['startsWith']              = esc_html__( 'starts with', 'gravityforms' );
-		$gf_vars['endsWith']                = esc_html__( 'ends with', 'gravityforms' );
+		$gf_vars['active']                  = esc_attr__( 'Active', 'edforms' );
+		$gf_vars['inactive']                = esc_attr__( 'Inactive', 'edforms' );
+		$gf_vars['save']                    = esc_html__( 'Save', 'edforms' );
+		$gf_vars['update']                  = esc_html__( 'Update', 'edforms' );
+		$gf_vars['previousLabel']           = esc_html__( 'Previous', 'edforms' );
+		$gf_vars['selectFormat']            = esc_html__( 'Select a format', 'edforms' );
+		$gf_vars['editToViewAll']           = esc_html__( '5 of %d items shown. Edit field to view all', 'edforms' );
+		$gf_vars['enterValue']              = esc_html__( 'Enter a value', 'edforms' );
+		$gf_vars['formTitle']               = esc_html__( 'Untitled Form', 'edforms' );
+		$gf_vars['formDescription']         = esc_html__( 'We would love to hear from you! Please fill out this form and we will get in touch with you shortly.', 'edforms' );
+		$gf_vars['formConfirmationMessage'] = esc_html__( 'Thanks for contacting us! We will get in touch with you shortly.', 'edforms' );
+		$gf_vars['buttonText']              = esc_html__( 'Submit', 'edforms' );
+		$gf_vars['loading']                 = esc_html__( 'Loading...', 'edforms' );
+		$gf_vars['thisFieldIf']             = esc_html__( 'this field if', 'edforms' );
+		$gf_vars['thisSectionIf']           = esc_html__( 'this section if', 'edforms' );
+		$gf_vars['thisPage']                = esc_html__( 'this page', 'edforms' );
+		$gf_vars['thisFormButton']          = esc_html__( 'this form button if', 'edforms' );
+		$gf_vars['show']                    = esc_html__( 'Show', 'edforms' );
+		$gf_vars['hide']                    = esc_html__( 'Hide', 'edforms' );
+		$gf_vars['all']                     = esc_html( _x( 'All', 'Conditional Logic', 'edforms' ) );
+		$gf_vars['any']                     = esc_html( _x( 'Any', 'Conditional Logic', 'edforms' ) );
+		$gf_vars['ofTheFollowingMatch']     = esc_html__( 'of the following match:', 'edforms' );
+		$gf_vars['is']                      = esc_html__( 'is', 'edforms' );
+		$gf_vars['isNot']                   = esc_html__( 'is not', 'edforms' );
+		$gf_vars['greaterThan']             = esc_html__( 'greater than', 'edforms' );
+		$gf_vars['lessThan']                = esc_html__( 'less than', 'edforms' );
+		$gf_vars['contains']                = esc_html__( 'contains', 'edforms' );
+		$gf_vars['startsWith']              = esc_html__( 'starts with', 'edforms' );
+		$gf_vars['endsWith']                = esc_html__( 'ends with', 'edforms' );
 
-		$gf_vars['thisConfirmation']                 = esc_html__( 'Use this confirmation if', 'gravityforms' );
-		$gf_vars['thisNotification']                 = esc_html__( 'Send this notification if', 'gravityforms' );
-		$gf_vars['confirmationSave']                 = esc_html__( 'Save', 'gravityforms' );
-		$gf_vars['confirmationSaving']               = esc_html__( 'Saving...', 'gravityforms' );
-		$gf_vars['confirmationAreYouSure']           = __( 'Are you sure you wish to cancel these changes?', 'gravityforms' );
-		$gf_vars['confirmationIssueSaving']          = __( 'There was an issue saving this confirmation.', 'gravityforms' );
-		$gf_vars['confirmationConfirmDelete']        = __( 'Are you sure you wish to delete this confirmation?', 'gravityforms' );
-		$gf_vars['confirmationIssueDeleting']        = __( 'There was an issue deleting this confirmation.', 'gravityforms' );
-		$gf_vars['confirmationConfirmDiscard']       = __( 'There are unsaved changes to the current confirmation. Would you like to discard these changes?', 'gravityforms' );
-		$gf_vars['confirmationDefaultName']          = __( 'Untitled Confirmation', 'gravityforms' );
-		$gf_vars['confirmationDefaultMessage']       = __( 'Thanks for contacting us! We will get in touch with you shortly.', 'gravityforms' );
-		$gf_vars['confirmationInvalidPageSelection'] = __( 'Please select a page.', 'gravityforms' );
-		$gf_vars['confirmationInvalidRedirect']      = __( 'Please enter a URL.', 'gravityforms' );
-		$gf_vars['confirmationInvalidName']          = __( 'Please enter a confirmation name.', 'gravityforms' );
-		$gf_vars['confirmationDeleteField']          = __( "Warning! Deleting this field will also delete all entry data associated with it. 'Cancel' to stop. 'OK' to delete.", 'gravityforms' );
+		$gf_vars['thisConfirmation']                 = esc_html__( 'Use this confirmation if', 'edforms' );
+		$gf_vars['thisNotification']                 = esc_html__( 'Send this notification if', 'edforms' );
+		$gf_vars['confirmationSave']                 = esc_html__( 'Save', 'edforms' );
+		$gf_vars['confirmationSaving']               = esc_html__( 'Saving...', 'edforms' );
+		$gf_vars['confirmationAreYouSure']           = __( 'Are you sure you wish to cancel these changes?', 'edforms' );
+		$gf_vars['confirmationIssueSaving']          = __( 'There was an issue saving this confirmation.', 'edforms' );
+		$gf_vars['confirmationConfirmDelete']        = __( 'Are you sure you wish to delete this confirmation?', 'edforms' );
+		$gf_vars['confirmationIssueDeleting']        = __( 'There was an issue deleting this confirmation.', 'edforms' );
+		$gf_vars['confirmationConfirmDiscard']       = __( 'There are unsaved changes to the current confirmation. Would you like to discard these changes?', 'edforms' );
+		$gf_vars['confirmationDefaultName']          = __( 'Untitled Confirmation', 'edforms' );
+		$gf_vars['confirmationDefaultMessage']       = __( 'Thanks for contacting us! We will get in touch with you shortly.', 'edforms' );
+		$gf_vars['confirmationInvalidPageSelection'] = __( 'Please select a page.', 'edforms' );
+		$gf_vars['confirmationInvalidRedirect']      = __( 'Please enter a URL.', 'edforms' );
+		$gf_vars['confirmationInvalidName']          = __( 'Please enter a confirmation name.', 'edforms' );
+		$gf_vars['confirmationDeleteField']          = __( "Warning! Deleting this field will also delete all entry data associated with it. 'Cancel' to stop. 'OK' to delete.", 'edforms' );
 
-		$gf_vars['conditionalLogicDependency']           = __( "Warning! This form contains conditional logic dependent upon this field. Deleting this field will deactivate those conditional logic rules and also delete all entry data associated with the field. 'OK' to delete, 'Cancel' to abort.", 'gravityforms' );
-		$gf_vars['conditionalLogicDependencyChoice']     = __( "This form contains conditional logic dependent upon this choice. Are you sure you want to delete this choice? 'OK' to delete, 'Cancel' to abort.", 'gravityforms' );
-		$gf_vars['conditionalLogicDependencyChoiceEdit'] = __( "This form contains conditional logic dependent upon this choice. Are you sure you want to modify this choice? 'OK' to delete, 'Cancel' to abort.", 'gravityforms' );
-		$gf_vars['conditionalLogicDependencyAdminOnly']  = __( "This form contains conditional logic dependent upon this field. Are you sure you want to mark this field as Admin Only? 'OK' to confirm, 'Cancel' to abort.", 'gravityforms' );
+		$gf_vars['conditionalLogicDependency']           = __( "Warning! This form contains conditional logic dependent upon this field. Deleting this field will deactivate those conditional logic rules and also delete all entry data associated with the field. 'OK' to delete, 'Cancel' to abort.", 'edforms' );
+		$gf_vars['conditionalLogicDependencyChoice']     = __( "This form contains conditional logic dependent upon this choice. Are you sure you want to delete this choice? 'OK' to delete, 'Cancel' to abort.", 'edforms' );
+		$gf_vars['conditionalLogicDependencyChoiceEdit'] = __( "This form contains conditional logic dependent upon this choice. Are you sure you want to modify this choice? 'OK' to delete, 'Cancel' to abort.", 'edforms' );
+		$gf_vars['conditionalLogicDependencyAdminOnly']  = __( "This form contains conditional logic dependent upon this field. Are you sure you want to mark this field as Admin Only? 'OK' to confirm, 'Cancel' to abort.", 'edforms' );
 
-		$gf_vars['mergeTagsTooltip'] = '<h6>' . esc_html__( 'Merge Tags', 'gravityforms' ) . '</h6>' . esc_html__( 'Merge tags allow you to dynamically populate submitted field values in your form content wherever this merge tag icon is present.', 'gravityforms' );
+		$gf_vars['mergeTagsTooltip'] = '<h6>' . esc_html__( 'Merge Tags', 'edforms' ) . '</h6>' . esc_html__( 'Merge tags allow you to dynamically populate submitted field values in your form content wherever this merge tag icon is present.', 'edforms' );
 
 		$gf_vars['baseUrl']              = GFCommon::get_base_url();
 		$gf_vars['gf_currency_config']   = RGCurrency::get_currency( GFCommon::get_currency() );
@@ -4513,12 +4513,12 @@ Content-Type: text/html;
 		$gf_vars['currentlyAddingField'] = false;
 		$gf_vars['visibilityOptions']    = GFCommon::get_visibility_options();
 
-		$gf_vars['addFieldFilter']    = esc_html__( 'Add a condition', 'gravityforms' );
-		$gf_vars['removeFieldFilter'] = esc_html__( 'Remove a condition', 'gravityforms' );
-		$gf_vars['filterAndAny']      = esc_html__( 'Include results if {0} match:', 'gravityforms' );
+		$gf_vars['addFieldFilter']    = esc_html__( 'Add a condition', 'edforms' );
+		$gf_vars['removeFieldFilter'] = esc_html__( 'Remove a condition', 'edforms' );
+		$gf_vars['filterAndAny']      = esc_html__( 'Include results if {0} match:', 'edforms' );
 
-		$gf_vars['customChoices']     = esc_html__( 'Custom Choices', 'gravityforms' );
-		$gf_vars['predefinedChoices'] = esc_html__( 'Predefined Choices', 'gravityforms' );
+		$gf_vars['customChoices']     = esc_html__( 'Custom Choices', 'edforms' );
+		$gf_vars['predefinedChoices'] = esc_html__( 'Predefined Choices', 'edforms' );
 
 		if ( is_admin() && rgget( 'id' ) ) {
 
@@ -4648,7 +4648,7 @@ Content-Type: text/html;
 	 * Outputs dismissible messages on the page.
 	 *
 	 * @param bool        $messages
-	 * @param string|null $page Defaults to current Gravity Forms page from GFForms::get_page().
+	 * @param string|null $page Defaults to current Ed Forms page from GFForms::get_page().
 	 *
 	 * @since 2.0
 	 */
@@ -4764,7 +4764,7 @@ Content-Type: text/html;
 	private static function requires_gf_vars() {
 		$dependent_scripts = array(
 			'gform_form_admin',
-			'gform_gravityforms',
+			'gform_edforms',
 			'gform_form_editor',
 			'gform_field_filter'
 		);
@@ -4834,7 +4834,7 @@ Content-Type: text/html;
 		$field_filters = array(
 			array(
 				'key'             => '0',
-				'text'            => esc_html__( 'Any form field', 'gravityforms' ),
+				'text'            => esc_html__( 'Any form field', 'edforms' ),
 				'operators'       => array( 'contains', 'is' ),
 				'preventMultiple' => false,
 			),
@@ -4899,7 +4899,7 @@ Content-Type: text/html;
 
 				$field_filter['operators'] = $operators;
 
-				$field_filter['placeholder'] = esc_html__( 'yyyy-mm-dd', 'gravityforms' );
+				$field_filter['placeholder'] = esc_html__( 'yyyy-mm-dd', 'edforms' );
 				$field_filter['cssClass']    = 'datepicker ymd_dash';
 			} else {
 				$field_filter['key']             = $key;
@@ -4982,17 +4982,17 @@ Content-Type: text/html;
 
 		return array(
 			'entry_id'       => array(
-				'text'      => esc_html__( 'Entry ID', 'gravityforms' ),
+				'text'      => esc_html__( 'Entry ID', 'edforms' ),
 				'operators' => array( 'is', 'isnot', '>', '<' )
 			),
 			'date_created'   => array(
-				'text'        => esc_html__( 'Entry Date', 'gravityforms' ),
+				'text'        => esc_html__( 'Entry Date', 'edforms' ),
 				'operators'   => array( 'is', '>', '<' ),
-				'placeholder' => __( 'yyyy-mm-dd', 'gravityforms' ),
+				'placeholder' => __( 'yyyy-mm-dd', 'edforms' ),
 				'cssClass'    => 'datepicker ymd_dash',
 			),
 			'is_starred'     => array(
-				'text'      => esc_html__( 'Starred', 'gravityforms' ),
+				'text'      => esc_html__( 'Starred', 'edforms' ),
 				'operators' => array( 'is', 'isnot' ),
 				'values'    => array(
 					array(
@@ -5006,15 +5006,15 @@ Content-Type: text/html;
 				)
 			),
 			'ip'             => array(
-				'text'      => esc_html__( 'IP Address', 'gravityforms' ),
+				'text'      => esc_html__( 'IP Address', 'edforms' ),
 				'operators' => array( 'is', 'isnot', '>', '<', 'contains' )
 			),
 			'source_url'     => array(
-				'text'      => esc_html__( 'Source URL', 'gravityforms' ),
+				'text'      => esc_html__( 'Source URL', 'edforms' ),
 				'operators' => array( 'is', 'isnot', '>', '<', 'contains' )
 			),
 			'payment_status' => array(
-				'text'      => esc_html__( 'Payment Status', 'gravityforms' ),
+				'text'      => esc_html__( 'Payment Status', 'edforms' ),
 				'operators' => array( 'is', 'isnot' ),
 				'values'    => array(
 					array(
@@ -5052,21 +5052,21 @@ Content-Type: text/html;
 				)
 			),
 			'payment_date'   => array(
-				'text'        => esc_html__( 'Payment Date', 'gravityforms' ),
+				'text'        => esc_html__( 'Payment Date', 'edforms' ),
 				'operators'   => array( 'is', 'isnot', '>', '<' ),
-				'placeholder' => __( 'yyyy-mm-dd', 'gravityforms' ),
+				'placeholder' => __( 'yyyy-mm-dd', 'edforms' ),
 				'cssClass'    => 'datepicker ymd_dash',
 			),
 			'payment_amount' => array(
-				'text'      => esc_html__( 'Payment Amount', 'gravityforms' ),
+				'text'      => esc_html__( 'Payment Amount', 'edforms' ),
 				'operators' => array( 'is', 'isnot', '>', '<', 'contains' )
 			),
 			'transaction_id' => array(
-				'text'      => esc_html__( 'Transaction ID', 'gravityforms' ),
+				'text'      => esc_html__( 'Transaction ID', 'edforms' ),
 				'operators' => array( 'is', 'isnot', '>', '<', 'contains' )
 			),
 			'created_by'     => array(
-				'text'      => esc_html__( 'User', 'gravityforms' ),
+				'text'      => esc_html__( 'User', 'edforms' ),
 				'operators' => array( 'is', 'isnot' ),
 				'values'    => $account_choices,
 			)
@@ -5154,21 +5154,21 @@ Content-Type: text/html;
 		return false;
 	}
 
-	public static function localize_gform_gravityforms_multifile() {
+	public static function localize_gform_edforms_multifile() {
 		wp_localize_script(
-			'gform_gravityforms', 'gform_gravityforms', array(
+			'gform_edforms', 'gform_edforms', array(
 				'strings' => array(
-					'invalid_file_extension' => esc_html__( 'This type of file is not allowed. Must be one of the following: ', 'gravityforms' ),
-					'delete_file'            => esc_html__( 'Delete this file', 'gravityforms' ),
-					'in_progress'            => esc_html__( 'in progress', 'gravityforms' ),
-					'file_exceeds_limit'     => esc_html__( 'File exceeds size limit', 'gravityforms' ),
-					'illegal_extension'      => esc_html__( 'This type of file is not allowed.', 'gravityforms' ),
-					'max_reached'            => esc_html__( 'Maximum number of files reached', 'gravityforms' ),
-					'unknown_error'          => esc_html__( 'There was a problem while saving the file on the server', 'gravityforms' ),
-					'currently_uploading'    => esc_html__( 'Please wait for the uploading to complete', 'gravityforms' ),
-					'cancel'                 => esc_html__( 'Cancel', 'gravityforms' ),
-					'cancel_upload'          => esc_html__( 'Cancel this upload', 'gravityforms' ),
-					'cancelled'              => esc_html__( 'Cancelled', 'gravityforms' )
+					'invalid_file_extension' => esc_html__( 'This type of file is not allowed. Must be one of the following: ', 'edforms' ),
+					'delete_file'            => esc_html__( 'Delete this file', 'edforms' ),
+					'in_progress'            => esc_html__( 'in progress', 'edforms' ),
+					'file_exceeds_limit'     => esc_html__( 'File exceeds size limit', 'edforms' ),
+					'illegal_extension'      => esc_html__( 'This type of file is not allowed.', 'edforms' ),
+					'max_reached'            => esc_html__( 'Maximum number of files reached', 'edforms' ),
+					'unknown_error'          => esc_html__( 'There was a problem while saving the file on the server', 'edforms' ),
+					'currently_uploading'    => esc_html__( 'Please wait for the uploading to complete', 'edforms' ),
+					'cancel'                 => esc_html__( 'Cancel', 'edforms' ),
+					'cancel_upload'          => esc_html__( 'Cancel this upload', 'edforms' ),
+					'cancelled'              => esc_html__( 'Cancelled', 'edforms' )
 				),
 				'vars'    => array(
 					'images_url' => GFCommon::get_base_url() . '/images'
@@ -5373,7 +5373,7 @@ Content-Type: text/html;
 			$nonce = openssl_random_pseudo_bytes( 16 );
 
 			if ( empty( $encryption_key ) ) {
-				$encryption_key = 'gravityforms_encryption_key' . wp_salt( 'nonce' );
+				$encryption_key = 'edforms_encryption_key' . wp_salt( 'nonce' );
 			}
 
 			// OPENSSL_RAW_DATA is not available on PHP 5.3
@@ -5386,7 +5386,7 @@ Content-Type: text/html;
 			}
 
 			if ( empty( $mac_key ) ) {
-				$mac_key = 'gravityforms_encryption_mac' . wp_salt( 'nonce' );
+				$mac_key = 'edforms_encryption_mac' . wp_salt( 'nonce' );
 			}
 
 			$mac = hash_hmac( 'sha512', $nonce . $ciphertext, $mac_key, true );
@@ -5424,7 +5424,7 @@ Content-Type: text/html;
 			$ciphertext = substr( $text_decoded, 80 );
 
 			if ( empty( $mac_key ) ) {
-				$mac_key = 'gravityforms_encryption_mac' . wp_salt( 'nonce' );
+				$mac_key = 'edforms_encryption_mac' . wp_salt( 'nonce' );
 			}
 
 			$mac_check = hash_hmac( 'sha512', $nonce . $ciphertext, $mac_key, true );
@@ -5434,7 +5434,7 @@ Content-Type: text/html;
 			}
 
 			if ( empty( $encryption_key ) ) {
-				$encryption_key = 'gravityforms_encryption_key' . wp_salt( 'nonce' );
+				$encryption_key = 'edforms_encryption_key' . wp_salt( 'nonce' );
 			}
 
 			// OPENSSL_RAW_DATA is not available on PHP 5.3
@@ -5570,17 +5570,17 @@ Content-Type: text/html;
 	 *
 	 * Translation files in the WP_LANG_DIR folder have a higher priority.
 	 *
-	 * @param string $domain   The plugin text domain. Default is gravityforms.
-	 * @param string $basename The plugin basename. plugin_basename() will be used to get the Gravity Forms basename when not provided.
+	 * @param string $domain   The plugin text domain. Default is edforms.
+	 * @param string $basename The plugin basename. plugin_basename() will be used to get the Ed Forms basename when not provided.
 	 */
-	public static function load_gf_text_domain( $domain = 'gravityforms', $basename = '' ) {
+	public static function load_gf_text_domain( $domain = 'edforms', $basename = '' ) {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 		if ( $locale != 'en_US' && ! is_textdomain_loaded( $domain ) ) {
 			if ( empty( $basename ) ) {
 				$basename = plugin_basename( self::get_base_path() );
 			}
 
-			load_textdomain( $domain, sprintf( '%s/gravityforms/%s-%s.mo', WP_LANG_DIR, $domain, $locale ) );
+			load_textdomain( $domain, sprintf( '%s/edforms/%s-%s.mo', WP_LANG_DIR, $domain, $locale ) );
 			load_plugin_textdomain( $domain, false, $basename . '/languages' );
 		}
 	}
@@ -5721,7 +5721,7 @@ Content-Type: text/html;
 	}
 
 	/**
-	 * Generates a hash for a Gravity Forms download.
+	 * Generates a hash for a Ed Forms download.
 	 *
 	 * May return false if the algorithm is not available.
 	 *
@@ -5761,19 +5761,19 @@ Content-Type: text/html;
 
 		$options = array(
 			array(
-				'label'       => __( 'Visible', 'gravityforms' ),
+				'label'       => __( 'Visible', 'edforms' ),
 				'value'       => 'visible',
-				'description' => __( 'Default option. The field is visible when viewing the form.', 'gravityforms' )
+				'description' => __( 'Default option. The field is visible when viewing the form.', 'edforms' )
 			),
 			array(
-				'label'       => __( 'Hidden', 'gravityforms' ),
+				'label'       => __( 'Hidden', 'edforms' ),
 				'value'       => 'hidden',
-				'description' => __( 'The field is hidden when viewing the form. Useful when you require the functionality of this field but do not want the user to be able to see this field.', 'gravityforms' )
+				'description' => __( 'The field is hidden when viewing the form. Useful when you require the functionality of this field but do not want the user to be able to see this field.', 'edforms' )
 			),
 			array(
-				'label'       => __( 'Administrative', 'gravityforms' ),
+				'label'       => __( 'Administrative', 'edforms' ),
 				'value'       => 'administrative',
-				'description' => __( 'The field is only visible when administering submitted entries. The field is not visible or functional when viewing the form.', 'gravityforms' )
+				'description' => __( 'The field is only visible when administering submitted entries. The field is not visible or functional when viewing the form.', 'edforms' )
 			),
 		);
 
@@ -5804,7 +5804,7 @@ Content-Type: text/html;
 
 		$markup = sprintf( '<ul><li>%s</li></ul>', implode( '</li><li>', $markup ) );
 
-		return sprintf( '<h6>%s</h6> %s<br><br>%s', __( 'Visibility', 'gravityforms' ), __( 'Select the visibility for this field.', 'gravityforms' ), $markup );
+		return sprintf( '<h6>%s</h6> %s<br><br>%s', __( 'Visibility', 'edforms' ), __( 'Select the visibility for this field.', 'edforms' ), $markup );
 	}
 
 	/**
@@ -5880,14 +5880,14 @@ Content-Type: text/html;
 	 *
 	 * @since 2.3
 	 *
-	 * @param $new_key string Unhashed Gravity Forms license key
+	 * @param $new_key string Unhashed Ed Forms license key
 	 * @param $is_md5 boolean Specifies if the $new_key parameter is an md5 key or an unhashed key. Defaults to false.
 	 *
 	 * @return bool|WP_Error Returns true if site was updated or created successfully, otherwise returns an instance of WP_Error.
 	 */
 	public static function update_site_registration( $new_key, $is_md5 = false ) {
 
-		GFForms::include_gravity_api();
+		GFForms::include_ed_api();
 
 		$result = null;
 
@@ -5926,7 +5926,7 @@ Content-Type: text/html;
 		}
 
 		if ( is_wp_error( $result ) ) {
-			GFCommon::log_error( 'Failed to update site registration with Gravity Manager. ' . print_r( $result, true ) );
+			GFCommon::log_error( 'Failed to update site registration with Ed Manager. ' . print_r( $result, true ) );
 		}
 
 		return $result;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Gravity Forms Query Call class.
+ * The Ed Forms Query Call class.
  */
 class GF_Query_Call {
 	/**

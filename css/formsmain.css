@@ -1,11 +1,11 @@
 /*
 ----------------------------------------------------------------
 
-Gravity Forms Front End Form Styles
+Ed Forms Front End Form Styles
 http: //www.edconcept24.fr
 updated: May 22, 2018 03:17 PM US Eastern Time
 
-Gravity Forms is a Rocketgenius project
+Ed Forms is a Rocketgenius project
 copyright 2008-2018 Rocketgenius Inc.
 http: //www.rocketgenius.com
 this may not be redistributed without the
@@ -2410,7 +2410,7 @@ body .gform_wrapper div.gform_body ul.gform_fields li.gfield.gfield_html dl dd {
 
 /* @end */
 
-/* updated chosen 1.8.5 styles - gravityforms specific  */
+/* updated chosen 1.8.5 styles - edforms specific  */
 
 body .gform_wrapper .chosen-container a.chosen-single {
     border-radius: inherit;
@@ -3062,7 +3062,7 @@ body .gform_wrapper ul.chosen-results li {
         margin-right: 10px;
     }
 
-    /* updated chosen 1.8.5 styles - gravityforms specific  */
+    /* updated chosen 1.8.5 styles - edforms specific  */
 
     body .gform_wrapper select.medium.gfield_select + div.chosen-container-single[style],
     body .gform_wrapper select.medium.gfield_select + div.chosen-container-multi[style] {

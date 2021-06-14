@@ -586,7 +586,7 @@ if ( ! class_exists( 'GF_Background_Process' ) ) {
 			// Adds every 5 minutes to the existing schedules.
 			$schedules[ $this->identifier . '_cron_interval' ] = array(
 				'interval' => MINUTE_IN_SECONDS * $interval,
-				'display'  => sprintf( __( 'Every %d Minutes', 'gravityforms' ), $interval ),
+				'display'  => sprintf( __( 'Every %d Minutes', 'edforms' ), $interval ),
 			);
 
 			return $schedules;

@@ -23,8 +23,8 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 }
 
-if ( ! GFCommon::current_user_can_any( 'gravityforms_view_entries' ) ) {
-	die( __( "You don't have adequate permission to view entries.", 'gravityforms' ) );
+if ( ! GFCommon::current_user_can_any( 'edforms_view_entries' ) ) {
+	die( __( "You don't have adequate permission to view entries.", 'edforms' ) );
 }
 
 add_action( 'gform_print_entry_content', 'gform_default_entry_content', 10, 3 );
@@ -156,7 +156,7 @@ if ( 0 == $entry_ids ) {
 
 // If no form ID or entry IDs are set, exit.
 if ( empty( $form_id ) || empty( $entry_ids ) ) {
-	die( esc_html__( 'Form Id and Entry Id are required parameters.', 'gravityforms' ) );
+	die( esc_html__( 'Form Id and Entry Id are required parameters.', 'edforms' ) );
 }
 
 // Get form.
@@ -179,13 +179,13 @@ $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] 
 		<title>
 			Print Preview :
 			<?php echo esc_html( $form['title'] ) ?> :
-			<?php echo count( $entry_ids ) > 1 ? esc_html__( 'Bulk Print', 'gravityforms' ) : esc_html__( 'Entry # ', 'gravityforms' ) . absint( $entry_ids[0] ); ?>
+			<?php echo count( $entry_ids ) > 1 ? esc_html__( 'Bulk Print', 'edforms' ) : esc_html__( 'Entry # ', 'edforms' ) . absint( $entry_ids[0] ); ?>
 		</title>
 		<link rel='stylesheet' href='<?php echo GFCommon::get_base_url() ?>/css/print<?php echo $min; ?>.css' type='text/css' />
 		<?php
 
 			/**
-			 * Determines if the Gravity Forms styles should be printed
+			 * Determines if the Ed Forms styles should be printed
 			 *
 			 * @since 1.7
 			 *
@@ -217,7 +217,7 @@ $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] 
 
 		<div id="print_preview_hdr" style="display:none">
 			<div>
-				<span class="actionlinks"><a href="#" onclick="window.print();" onkeypress="window.print();" class="header-print-link">print this page</a> | <a href="javascript:window.close()" class="close_window"><?php esc_html_e( 'close window', 'gravityforms' ) ?></a></span><?php esc_html_e( 'Print Preview', 'gravityforms' ) ?>
+				<span class="actionlinks"><a href="#" onclick="window.print();" onkeypress="window.print();" class="header-print-link">print this page</a> | <a href="javascript:window.close()" class="close_window"><?php esc_html_e( 'close window', 'edforms' ) ?></a></span><?php esc_html_e( 'Print Preview', 'edforms' ) ?>
 			</div>
 		</div>
 		<div id="view-container">

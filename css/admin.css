@@ -1,18 +1,18 @@
 @import url('datepicker.css');
 @import url('jquery-ui.custom.css');
 @import url('font-awesome.css');
-@import url('gravityfont.css');
+@import url('edfont.css');
 @import url('rtl.css');
 
 /*
 ----------------------------------------------------------------
 
 admin.css
-Gravity Forms Administration Styles
+Ed Forms Administration Styles
 http: //www.edconcept24.fr
 updated: January 24, 2017 05:08 PM (GMT-05:00) US Eastern Time
 
-Gravity Forms is a Rocketgenius project
+Ed Forms is a Rocketgenius project
 copyright 2008-2017 Rocketgenius Inc.
 http: //www.rocketgenius.com
 this may not be re-distrubited without the
@@ -1103,7 +1103,7 @@ td.pad_top {
 	color: #0074A2;
 }
 
-#tab_gravityformslogging .gforms_form_settings th {
+#tab_edformslogging .gforms_form_settings th {
 	width: auto;
 }
 
@@ -2201,13 +2201,13 @@ div.gf_upgrade_business_license {
 }
 
 div.gf_upgrade_developer_license {
-	background-image: url(../images/gravityforms-developer-upgrade.png);
+	background-image: url(../images/edforms-developer-upgrade.png);
 	margin: 30px 0 0 0;
 	background-size: 133px 169px;
 }
 
 div.gf_upgrade_business_license {
-	background-image: url(../images/gravityforms-business-upgrade.png);
+	background-image: url(../images/edforms-business-upgrade.png);
 	margin: 0;
 	background-size: 133px 169px;
 }
@@ -2853,52 +2853,52 @@ div.gform_editor_status {
 	margin: 4px 4px 0 0;
 }
 
-div#gravity-edit-icon,
-div#gravity-notification-icon,
-div#gravity-entry-icon,
-div#gravity-title-icon,
-div#gravity-settings-icon,
-div#gravity-export-icon,
-div#gravity-import-icon,
-div#gravity-update-icon,
-div#gravity-help-icon {
+div#ed-edit-icon,
+div#ed-notification-icon,
+div#ed-entry-icon,
+div#ed-title-icon,
+div#ed-settings-icon,
+div#ed-export-icon,
+div#ed-import-icon,
+div#ed-update-icon,
+div#ed-help-icon {
 	background-image:url(../images/gf-32-iconsprite.png);
 	background-repeat: no-repeat;
 }
 
-div#gravity-edit-icon {
+div#ed-edit-icon {
 	background-position: 0 0;
 }
 
-div#gravity-entry-icon {
+div#ed-entry-icon {
 	background-position: 0 -50px;
 }
 
-div#gravity-export-icon {
+div#ed-export-icon {
 	background-position: 0 -100px;
 }
 
-div#gravity-help-icon {
+div#ed-help-icon {
 	background-position: 0 -150px;
 }
 
-div#gravity-import-icon {
+div#ed-import-icon {
 	background-position: 0 -200px;
 }
 
-div#gravity-notification-icon {
+div#ed-notification-icon {
 	background-position: 0 -250px;
 }
 
-div#gravity-settings-icon {
+div#ed-settings-icon {
 	background-position: 0 -300px;
 }
 
-div#gravity-update-icon {
+div#ed-update-icon {
 	background-position: 0 -400px;
 }
 
-div#gravity-title-icon {
+div#ed-title-icon {
 	background-position: 0 -350px;
 }
 

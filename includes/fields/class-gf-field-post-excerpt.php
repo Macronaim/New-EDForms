@@ -9,7 +9,7 @@ class GF_Field_Post_Excerpt extends GF_Field {
 	public $type = 'post_excerpt';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Excerpt', 'gravityforms' );
+		return esc_attr__( 'Excerpt', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {

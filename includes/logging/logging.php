@@ -7,10 +7,10 @@ if ( ! class_exists( 'GFForms' ) ) {
 GFForms::include_addon_framework();
 
 /**
- * Gravity Forms Logging.
+ * Ed Forms Logging.
  *
  * @since     2.2
- * @package   GravityForms
+ * @package   EdForms
  * @author    Rocketgenius
  * @copyright Copyright (c) 2016, Rocketgenius
  */
@@ -32,7 +32,7 @@ class GFLogging extends GFAddOn {
 	 * @access protected
 	 * @var    string $_slug The slug used for this plugin.
 	 */
-	protected $_slug = 'gravityformslogging';
+	protected $_slug = 'edformslogging';
 
 	/**
 	 * Defines the main plugin file.
@@ -41,7 +41,7 @@ class GFLogging extends GFAddOn {
 	 * @access protected
 	 * @var    string $_path The path to the main plugin file, relative to the plugins folder.
 	 */
-	protected $_path = 'gravityformslogging/logging.php';
+	protected $_path = 'edformslogging/logging.php';
 
 	/**
 	 * Defines the full path to this class file.
@@ -77,7 +77,7 @@ class GFLogging extends GFAddOn {
 	 * @access protected
 	 * @var    string $_capabilities_settings_page The capability needed to access the Add-On settings page.
 	 */
-	protected $_capabilities_settings_page = 'gravityforms_logging';
+	protected $_capabilities_settings_page = 'edforms_logging';
 
 	/**
 	 * Defines the capability needed to access the Add-On form settings page.
@@ -86,7 +86,7 @@ class GFLogging extends GFAddOn {
 	 * @access protected
 	 * @var    string $_capabilities_form_settings The capability needed to access the Add-On form settings page.
 	 */
-	protected $_capabilities_form_settings = 'gravityforms_logging';
+	protected $_capabilities_form_settings = 'edforms_logging';
 
 	/**
 	 * Defines the capabilities needed for the Logging Add-On
@@ -95,7 +95,7 @@ class GFLogging extends GFAddOn {
 	 * @access protected
 	 * @var    array $_capabilities The capabilities needed for the Add-On
 	 */
-	protected $_capabilities = array( 'gravityforms_logging' );
+	protected $_capabilities = array( 'edforms_logging' );
 
 	/**
 	 * Defines the nonce action used when deleting logs from the logging page.
@@ -209,16 +209,16 @@ class GFLogging extends GFAddOn {
 				} else {
 
 					// Display error message.
-					GFCommon::add_error_message( esc_html__( 'Log file could not be deleted.', 'gravityforms' ) );
+					GFCommon::add_error_message( esc_html__( 'Log file could not be deleted.', 'edforms' ) );
 				}
 			} else {
-				GFCommon::add_error_message( esc_html__( 'Invalid log file.', 'gravityforms' ) );
+				GFCommon::add_error_message( esc_html__( 'Invalid log file.', 'edforms' ) );
 			}
 		}
 
 		// If a log file was deleted, display message.
 		if ( '1' === rgget( 'deleted' ) ) {
-			GFCommon::add_message( esc_html__( 'Log file was successfully deleted.', 'gravityforms' ) );
+			GFCommon::add_message( esc_html__( 'Log file was successfully deleted.', 'edforms' ) );
 		}
 
 		parent::plugin_settings_page();
@@ -242,7 +242,7 @@ class GFLogging extends GFAddOn {
 		$plugin_fields[] = array(
 			'type'     => 'save',
 			'messages' => array(
-				'success' => esc_html__( 'Plugin logging settings have been updated.', 'gravityforms' ),
+				'success' => esc_html__( 'Plugin logging settings have been updated.', 'edforms' ),
 			),
 		);
 
@@ -267,7 +267,7 @@ class GFLogging extends GFAddOn {
 	public function plugin_settings_description() {
 
 		$html  = '<p>';
-		$html .= esc_html__( 'Logging assists in tracking down issues by logging debug and error messages in Gravity Forms Core and Gravity Forms Add-Ons. Important information may be included in the logging messages, including API usernames, passwords and credit card numbers. Logging is intended only to be used temporarily while trying to track down issues. Once the issue is identified and resolved, it should be disabled.', 'gravityforms' );
+		$html .= esc_html__( 'Logging assists in tracking down issues by logging debug and error messages in Ed Forms Core and Ed Forms Add-Ons. Important information may be included in the logging messages, including API usernames, passwords and credit card numbers. Logging is intended only to be used temporarily while trying to track down issues. Once the issue is identified and resolved, it should be disabled.', 'edforms' );
 		$html .= '</p>';
 
 		return $html;
@@ -284,7 +284,7 @@ class GFLogging extends GFAddOn {
 	 */
 	public function plugin_settings_title() {
 
-		return esc_html__( 'Plugin Logging Settings', 'gravityforms' );
+		return esc_html__( 'Plugin Logging Settings', 'edforms' );
 
 	}
 
@@ -329,7 +329,7 @@ class GFLogging extends GFAddOn {
 		$checkbox_field = array(
 			'type'       => 'checkbox',
 			'name'       => $field['name'] . 'Enable',
-			'label'      => esc_html__( 'Enable', 'gravityforms' ),
+			'label'      => esc_html__( 'Enable', 'edforms' ),
 			'horizontal' => true,
 			'value'      => '1',
 			'choices'    => false,
@@ -393,11 +393,11 @@ class GFLogging extends GFAddOn {
 		// Setup logging options.
 		$logging_options = array(
 			array(
-				'label' => esc_html__( 'and log all messages', 'gravityforms' ),
+				'label' => esc_html__( 'and log all messages', 'edforms' ),
 				'value' => KLogger::DEBUG,
 			),
 			array(
-				'label' => esc_html__( 'and log only error messages', 'gravityforms' ),
+				'label' => esc_html__( 'and log only error messages', 'edforms' ),
 				'value' => KLogger::ERROR,
 			),
 		);
@@ -411,11 +411,11 @@ class GFLogging extends GFAddOn {
 			$after_select = '';
 
 			if ( $this->log_file_exists( $plugin_slug ) ) {
-				$delete_url = add_query_arg( array( 'delete_log' => $plugin_slug, $this->_nonce_action => $nonce ), admin_url( 'admin.php?page=gf_settings&subview=gravityformslogging' ) );
+				$delete_url = add_query_arg( array( 'delete_log' => $plugin_slug, $this->_nonce_action => $nonce ), admin_url( 'admin.php?page=gf_settings&subview=edformslogging' ) );
 
 				$after_select  = '<br />';
-				$after_select .= '<span style="font-size:85%"><a href="' . esc_attr( $this->get_log_file_url( $plugin_slug ) ) . '" target="_blank">' . esc_html__( 'view log', 'gravityforms' ) . '</a>';
-				$after_select .= '&nbsp;&nbsp;<a href="' . $delete_url . '">' . esc_html__( 'delete log', 'gravityforms' ) . '</a>';
+				$after_select .= '<span style="font-size:85%"><a href="' . esc_attr( $this->get_log_file_url( $plugin_slug ) ) . '" target="_blank">' . esc_html__( 'view log', 'edforms' ) . '</a>';
+				$after_select .= '&nbsp;&nbsp;<a href="' . $delete_url . '">' . esc_html__( 'delete log', 'edforms' ) . '</a>';
 				$after_select .= '&nbsp;&nbsp;(' . $this->get_log_file_size( $plugin_slug ) . ')</span>';
 			}
 
@@ -424,7 +424,7 @@ class GFLogging extends GFAddOn {
 				'label'        => $plugin_name . $after_select,
 				'type'         => 'checkbox_and_select',
 				'checkbox'     => array(
-					'label' => esc_html__( 'Enable logging', 'gravityforms' ),
+					'label' => esc_html__( 'Enable logging', 'edforms' ),
 					'name'  => $plugin_slug . '[enable]',
 				),
 				'select' => array(
@@ -879,7 +879,7 @@ class GFLogging extends GFAddOn {
 				}
 
 				// Save new settings.
-				update_blog_option( $site['blog_id'], 'gravityformsaddon_' . $this->_slug . '_settings', $new_settings );
+				update_blog_option( $site['blog_id'], 'edformsaddon_' . $this->_slug . '_settings', $new_settings );
 
 				// Delete old settings.
 				delete_blog_option( $site['blog_id'], 'gf_logging_settings' );
@@ -952,11 +952,11 @@ class GFLogging extends GFAddOn {
 
 	public function delete_settings() {
 		delete_option( 'gform_enable_logging' );
-		delete_option( 'gravityformsaddon_' . $this->_slug . '_settings' );
+		delete_option( 'edformsaddon_' . $this->_slug . '_settings' );
 	}
 
 	/**
-	 * Initializing translations using the gravityforms domain.
+	 * Initializing translations using the edforms domain.
 	 *
 	 * @since  2.2
 	 * @access public

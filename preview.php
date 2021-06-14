@@ -18,8 +18,8 @@ if ( ! class_exists( 'RGForms' ) ) {
 }
 
 // If user doesn't have appropriate permissions, die.
-if ( ! GFCommon::current_user_can_any( array( 'gravityforms_edit_forms', 'gravityforms_create_form', 'gravityforms_preview_forms' ) ) ) {
-	die( esc_html__( "You don't have adequate permission to preview forms.", 'gravityforms' ) );
+if ( ! GFCommon::current_user_can_any( array( 'edforms_edit_forms', 'edforms_create_form', 'edforms_preview_forms' ) ) ) {
+	die( esc_html__( "You don't have adequate permission to preview forms.", 'edforms' ) );
 }
 
 // Load form display class.
@@ -41,7 +41,7 @@ $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] 
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Imagetoolbar" content="No" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php esc_html_e( 'Form Preview', 'gravityforms' ) ?></title>
+	<title><?php esc_html_e( 'Form Preview', 'edforms' ) ?></title>
 	<?php
 
 		// If form exists, enqueue its scripts.
@@ -150,15 +150,15 @@ $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || isset( $_GET['gform_debug'] 
 		<div>
 
 			<span class="toggle_helpers">
-				<input type="checkbox" name="showgrid" id="showgrid" value="Y" class="show-grid-input" /><label for="showgrid" class="show-grid-label"><?php esc_html_e( 'display grid', 'gravityforms' ) ?></label>
-				<input type="checkbox" name="showme" id="showme" value="Y" class="show-helpers-input" /><label for="showme" class="show-helpers-label"><?php esc_html_e( 'show structure', 'gravityforms' ) ?></label>
+				<input type="checkbox" name="showgrid" id="showgrid" value="Y" class="show-grid-input" /><label for="showgrid" class="show-grid-label"><?php esc_html_e( 'display grid', 'edforms' ) ?></label>
+				<input type="checkbox" name="showme" id="showme" value="Y" class="show-helpers-input" /><label for="showme" class="show-helpers-label"><?php esc_html_e( 'show structure', 'edforms' ) ?></label>
 			</span>
 
-			<h2><?php esc_html_e( 'Form Preview', 'gravityforms' ) ?> : ID <?php echo $form_id; ?></h2>
+			<h2><?php esc_html_e( 'Form Preview', 'edforms' ) ?> : ID <?php echo $form_id; ?></h2>
 		</div>
 	</div>
 	<div id="preview_note" class="preview_notice">
-		<?php esc_html_e( 'Note: This is a simple form preview. This form may display differently when added to your page based on normal inheritance from parent theme styles.', 'gravityforms' ) ?> <i class="hidenotice" title="<?php esc_html_e( 'dismiss', 'gravityforms' ) ?>"></i>
+		<?php esc_html_e( 'Note: This is a simple form preview. This form may display differently when added to your page based on normal inheritance from parent theme styles.', 'edforms' ) ?> <i class="hidenotice" title="<?php esc_html_e( 'dismiss', 'edforms' ) ?>"></i>
 	</div>
 </div>
 <div id="helper_legend_container">

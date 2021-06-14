@@ -9,7 +9,7 @@ class GF_Field_Post_Custom_Field extends GF_Field {
 	public $type = 'post_custom_field';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Custom Field', 'gravityforms' );
+		return esc_attr__( 'Custom Field', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {

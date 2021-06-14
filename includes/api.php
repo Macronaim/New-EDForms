@@ -5,13 +5,13 @@ if ( ! class_exists( 'GFForms' ) ) {
 }
 
 /**
- * API for standard Gravity Forms functionality.
+ * API for standard Ed Forms functionality.
  *
  * Supports:
  * - Forms
  * - Entries
  *
- * @package    Gravity Forms
+ * @package    Ed Forms
  * @subpackage GFAPI
  * @since      1.8
  * @access     public
@@ -118,12 +118,12 @@ class GFAPI {
 	public static function delete_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$form = self::get_form( $form_id );
 		if ( empty( $form ) ) {
-			return new WP_Error( 'not_found', sprintf( __( 'Form with id: %s not found', 'gravityforms' ), $form_id ), $form_id );
+			return new WP_Error( 'not_found', sprintf( __( 'Form with id: %s not found', 'edforms' ), $form_id ), $form_id );
 		}
 		self::delete_forms( array( $form_id ) );
 
@@ -145,7 +145,7 @@ class GFAPI {
 	public static function duplicate_form( $form_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		return GFFormsModel::duplicate_form( $form_id );
@@ -167,7 +167,7 @@ class GFAPI {
 	public static function update_forms( $forms ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		foreach ( $forms as $form ) {
@@ -199,11 +199,11 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		if ( ! $form ) {
-			return new WP_Error( 'invalid', __( 'Invalid form object', 'gravityforms' ) );
+			return new WP_Error( 'invalid', __( 'Invalid form object', 'edforms' ) );
 		}
 
 		$form_table_name = GFFormsModel::get_form_table_name();
@@ -224,13 +224,13 @@ class GFAPI {
 		}
 
 		if ( empty( $form_id ) ) {
-			return new WP_Error( 'missing_form_id', __( 'Missing form id', 'gravityforms' ) );
+			return new WP_Error( 'missing_form_id', __( 'Missing form id', 'edforms' ) );
 		}
 
 		$meta_table_name = GFFormsModel::get_meta_table_name();
 
 		if ( intval( $wpdb->get_var( $wpdb->prepare( "SELECT count(0) FROM {$meta_table_name} WHERE form_id=%d", $form_id ) ) ) == 0 ) {
-			return new WP_Error( 'not_found', __( 'Form not found', 'gravityforms' ) );
+			return new WP_Error( 'not_found', __( 'Form not found', 'edforms' ) );
 		}
 
 		// Strip confirmations and notifications.
@@ -240,20 +240,20 @@ class GFAPI {
 
 		$result = GFFormsModel::update_form_meta( $form_id, $form_display_meta );
 		if ( false === $result ) {
-			return new WP_Error( 'error_updating_form', __( 'Error updating form', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'error_updating_form', __( 'Error updating form', 'edforms' ), $wpdb->last_error );
 		}
 
 		if ( isset( $form['confirmations'] ) && is_array( $form['confirmations'] ) ) {
 			$result = GFFormsModel::update_form_meta( $form_id, $form['confirmations'], 'confirmations' );
 			if ( false === $result ) {
-				return new WP_Error( 'error_updating_confirmations', __( 'Error updating form confirmations', 'gravityforms' ), $wpdb->last_error );
+				return new WP_Error( 'error_updating_confirmations', __( 'Error updating form confirmations', 'edforms' ), $wpdb->last_error );
 			}
 		}
 
 		if ( isset( $form['notifications'] ) && is_array( $form['notifications'] ) ) {
 			$result = GFFormsModel::update_form_meta( $form_id, $form['notifications'], 'notifications' );
 			if ( false === $result ) {
-				return new WP_Error( 'error_updating_notifications', __( 'Error updating form notifications', 'gravityforms' ), $wpdb->last_error );
+				return new WP_Error( 'error_updating_notifications', __( 'Error updating form notifications', 'edforms' ), $wpdb->last_error );
 			}
 		}
 
@@ -261,7 +261,7 @@ class GFAPI {
 		$is_active = rgar( $form, 'is_active' ) ? '1' : '0';
 		$result    = $wpdb->query( $wpdb->prepare( "UPDATE {$form_table_name} SET title=%s, is_active=%s WHERE id=%d", $form['title'], $is_active, $form['id'] ) );
 		if ( false === $result ) {
-			return new WP_Error( 'error_updating_title', __( 'Error updating title', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'error_updating_title', __( 'Error updating title', 'edforms' ), $wpdb->last_error );
 		}
 
 		return true;
@@ -286,7 +286,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$table        = GFFormsModel::get_form_table_name();
@@ -294,7 +294,7 @@ class GFAPI {
 		$db_columns = GFFormsModel::get_form_db_columns();
 
 		if ( ! in_array( strtolower( $property_key ), $db_columns ) ) {
-			return new WP_Error( 'property_key_incorrect', __( 'Property key incorrect', 'gravityforms' ) );
+			return new WP_Error( 'property_key_incorrect', __( 'Property key incorrect', 'edforms' ) );
 		}
 
 		$value = esc_sql( $value );
@@ -332,7 +332,7 @@ class GFAPI {
 	 */
 	public static function update_form_property( $form_id, $property_key, $value ) {
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 		return self::update_forms_property( array( $form_id ), $property_key, $value );
 	}
@@ -353,11 +353,11 @@ class GFAPI {
 	public static function add_forms( $forms ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		if ( ! $forms || ! is_array( $forms ) ) {
-			return new WP_Error( 'invalid', __( 'Invalid form objects', 'gravityforms' ) );
+			return new WP_Error( 'invalid', __( 'Invalid form objects', 'edforms' ) );
 		}
 		$form_ids = array();
 		foreach ( $forms as $form ) {
@@ -391,15 +391,15 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		if ( ! $form_meta || ! is_array( $form_meta ) ) {
-			return new WP_Error( 'invalid', __( 'Invalid form object', 'gravityforms' ) );
+			return new WP_Error( 'invalid', __( 'Invalid form object', 'edforms' ) );
 		}
 
 		if ( rgar( $form_meta, 'title' ) == '' ) {
-			return new WP_Error( 'missing_title', __( 'The form title is missing', 'gravityforms' ) );
+			return new WP_Error( 'missing_title', __( 'The form title is missing', 'edforms' ) );
 		}
 		// Making sure title is not duplicate.
 		$title = $form_meta['title'];
@@ -427,10 +427,10 @@ class GFAPI {
 			// Add default confirmation to form.
 			$form_meta['confirmations'][ $confirmation_id ] = array(
 				'id'          => $confirmation_id,
-				'name'        => __( 'Default Confirmation', 'gravityforms' ),
+				'name'        => __( 'Default Confirmation', 'edforms' ),
 				'isDefault'   => true,
 				'type'        => 'message',
-				'message'     => __( 'Thanks for contacting us! We will get in touch with you shortly.', 'gravityforms' ),
+				'message'     => __( 'Thanks for contacting us! We will get in touch with you shortly.', 'edforms' ),
 				'url'         => '',
 				'pageId'      => '',
 				'queryString' => '',
@@ -454,7 +454,7 @@ class GFAPI {
 		$result = GFFormsModel::update_form_meta( $form_id, $form_meta );
 
 		if ( false === $result ) {
-			return new WP_Error( 'insert_form_error', __( 'There was a problem while inserting the form', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'insert_form_error', __( 'There was a problem while inserting the form', 'edforms' ), $wpdb->last_error );
 		}
 
 		return $form_id;
@@ -641,7 +641,7 @@ class GFAPI {
 			$paging  = array( 'offset' => 0, 'page_size' => 1 );
 			$entries = self::get_entries( 0, $search_criteria, null, $paging );
 			if ( empty( $entries ) ) {
-				return new WP_Error( 'not_found', sprintf( __( 'Entry with id %s not found', 'gravityforms' ), $entry_id ), $entry_id );
+				return new WP_Error( 'not_found', sprintf( __( 'Entry with id %s not found', 'edforms' ), $entry_id ), $entry_id );
 			}
 
 			return $entries[0];
@@ -652,7 +652,7 @@ class GFAPI {
 		$entry = $q->get_entry( $entry_id );
 
 		if ( empty( $entry ) ) {
-			return new WP_Error( 'not_found', sprintf( __( 'Entry with id %s not found', 'gravityforms' ), $entry_id ), $entry_id );
+			return new WP_Error( 'not_found', sprintf( __( 'Entry with id %s not found', 'edforms' ), $entry_id ), $entry_id );
 		}
 
 		return $entry;
@@ -674,7 +674,7 @@ class GFAPI {
 	public static function add_entries( $entries, $form_id = null ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$entry_ids = array();
@@ -708,7 +708,7 @@ class GFAPI {
 	public static function update_entries( $entries ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		foreach ( $entries as $entry ) {
@@ -758,7 +758,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
@@ -774,13 +774,13 @@ class GFAPI {
 		}
 
 		if ( empty( $entry_id ) ) {
-			return new WP_Error( 'missing_entry_id', __( 'Missing entry id', 'gravityforms' ) );
+			return new WP_Error( 'missing_entry_id', __( 'Missing entry id', 'edforms' ) );
 		}
 
 		$current_entry = $original_entry = self::get_entry( $entry_id );
 
 		if ( ! $current_entry ) {
-			return new WP_Error( 'not_found', __( 'Entry not found', 'gravityforms' ), $entry_id );
+			return new WP_Error( 'not_found', __( 'Entry not found', 'edforms' ), $entry_id );
 		}
 
 		if ( is_wp_error( $current_entry ) ) {
@@ -794,7 +794,7 @@ class GFAPI {
 		}
 
 		if ( false === self::form_id_exists( $form_id ) ) {
-			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'gravityforms' ) );
+			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'edforms' ) );
 		}
 
 		/**
@@ -861,7 +861,7 @@ class GFAPI {
 		);
 		$result     = $wpdb->query( $sql );
 		if ( false === $result ) {
-			return new WP_Error( 'update_entry_properties_failed', __( 'There was a problem while updating the entry properties', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'update_entry_properties_failed', __( 'There was a problem while updating the entry properties', 'edforms' ), $wpdb->last_error );
 		}
 
 		// Only save field values for fields that currently exist in the form. The rest in $entry will be ignored. The rest in $current_entry will get deleted.
@@ -892,7 +892,7 @@ class GFAPI {
 							$lead_detail_id = GFFormsModel::get_lead_detail_id( $current_fields, $input_id );
 							$result         = GFFormsModel::queue_batch_field_operation( $form, $entry, $field, $lead_detail_id, $input_id, $entry[ $input_id ] );
 							if ( false === $result ) {
-								return new WP_Error( 'update_input_value_failed', __( 'There was a problem while updating one of the input values for the entry', 'gravityforms' ), $wpdb->last_error );
+								return new WP_Error( 'update_input_value_failed', __( 'There was a problem while updating one of the input values for the entry', 'edforms' ), $wpdb->last_error );
 							}
 						}
 						unset( $current_entry[ $input_id ] );
@@ -905,7 +905,7 @@ class GFAPI {
 					$lead_detail_id = GFFormsModel::get_lead_detail_id( $current_fields, $field_id );
 					$result         = GFFormsModel::queue_batch_field_operation( $form, $entry, $field, $lead_detail_id, $field_id, $field_value );
 					if ( false === $result ) {
-						return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'gravityforms' ), $wpdb->last_error );
+						return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'edforms' ), $wpdb->last_error );
 					}
 				}
 				unset( $current_entry[ $field_id ] );
@@ -951,7 +951,7 @@ class GFAPI {
 			$field          = self::get_field( $form, $k );
 			$result         = GFFormsModel::queue_batch_field_operation( $form, $entry, $field, $lead_detail_id, $k, '' );
 			if ( false === $result ) {
-				return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'gravityforms' ), $wpdb->last_error );
+				return new WP_Error( 'update_field_values_failed', __( 'There was a problem while updating the field values', 'edforms' ), $wpdb->last_error );
 			}
 		}
 
@@ -1003,7 +1003,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
@@ -1011,17 +1011,17 @@ class GFAPI {
 		}
 
 		if ( ! is_array( $entry ) ) {
-			return new WP_Error( 'invalid_entry_object', __( 'The entry object must be an array', 'gravityforms' ) );
+			return new WP_Error( 'invalid_entry_object', __( 'The entry object must be an array', 'edforms' ) );
 		}
 
 		// Make sure the form id exists.
 		$form_id = rgar( $entry, 'form_id' );
 		if ( empty( $form_id ) ) {
-			return new WP_Error( 'empty_form_id', __( 'The form id must be specified', 'gravityforms' ) );
+			return new WP_Error( 'empty_form_id', __( 'The form id must be specified', 'edforms' ) );
 		}
 
 		if ( false === self::form_id_exists( $form_id ) ) {
-			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'gravityforms' ) );
+			return new WP_Error( 'invalid_form_id', __( 'The form for this entry does not exist', 'edforms' ) );
 		}
 
 		// Use values in the entry object if present
@@ -1061,7 +1061,7 @@ class GFAPI {
 			)
 		);
 		if ( false === $result ) {
-			return new WP_Error( 'insert_entry_properties_failed', __( 'There was a problem while inserting the entry properties', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'insert_entry_properties_failed', __( 'There was a problem while inserting the entry properties', 'edforms' ), $wpdb->last_error );
 		}
 		// Reading newly created lead id.
 		$entry_id    = $wpdb->insert_id;
@@ -1083,7 +1083,7 @@ class GFAPI {
 					if ( isset( $entry[ $input_id ] ) ) {
 						$result = GFFormsModel::queue_batch_field_operation( $form, $entry, $field, 0, $input_id, $entry[ $input_id ] );
 						if ( false === $result ) {
-							return new WP_Error( 'insert_input_value_failed', __( 'There was a problem while inserting one of the input values for the entry', 'gravityforms' ), $wpdb->last_error );
+							return new WP_Error( 'insert_input_value_failed', __( 'There was a problem while inserting one of the input values for the entry', 'edforms' ), $wpdb->last_error );
 						}
 					}
 				}
@@ -1092,7 +1092,7 @@ class GFAPI {
 				$field_value = isset( $entry[ (string) $field_id ] ) ? $entry[ (string) $field_id ] : '';
 				$result      = GFFormsModel::queue_batch_field_operation( $form, $entry, $field, 0, $field_id, $field_value );
 				if ( false === $result ) {
-					return new WP_Error( 'insert_field_values_failed', __( 'There was a problem while inserting the field values', 'gravityforms' ), $wpdb->last_error );
+					return new WP_Error( 'insert_field_values_failed', __( 'There was a problem while inserting the field values', 'edforms' ), $wpdb->last_error );
 				}
 			}
 		}
@@ -1142,12 +1142,12 @@ class GFAPI {
 	public static function delete_entry( $entry_id ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$entry = GFFormsModel::get_entry( $entry_id );
 		if ( empty( $entry ) ) {
-			return new WP_Error( 'invalid_entry_id', sprintf( __( 'Invalid entry id: %s', 'gravityforms' ), $entry_id ), $entry_id );
+			return new WP_Error( 'invalid_entry_id', sprintf( __( 'Invalid entry id: %s', 'edforms' ), $entry_id ), $entry_id );
 		}
 		GFFormsModel::delete_entry( $entry_id );
 
@@ -1288,14 +1288,14 @@ class GFAPI {
 	public static function submit_form( $form_id, $input_values, $field_values = array(), $target_page = 0, $source_page = 1 ) {
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$form_id = absint( $form_id );
 		$form    = GFAPI::get_form( $form_id );
 
 		if ( empty( $form ) || ! $form['is_active'] || $form['is_trash'] ) {
-			return new WP_Error( 'form_not_found', __( 'Your form could not be found', 'gravityforms' ) );
+			return new WP_Error( 'form_not_found', __( 'Your form could not be found', 'edforms' ) );
 		}
 
 		$input_values[ 'is_submit_' . $form_id ]                = true;
@@ -1320,13 +1320,13 @@ class GFAPI {
 			GFFormDisplay::process_form( $form_id );
 		} catch ( Exception $ex ) {
 			remove_filter( 'gform_suppress_confirmation_redirect', '__return_true' );
-			return new WP_Error( 'error_processing_form', __( 'There was an error while processing the form:', 'gravityforms' ) . ' ' . $ex->getCode() . ' ' . $ex->getMessage() );
+			return new WP_Error( 'error_processing_form', __( 'There was an error while processing the form:', 'edforms' ) . ' ' . $ex->getCode() . ' ' . $ex->getMessage() );
 		}
 
 		remove_filter( 'gform_suppress_confirmation_redirect', '__return_true' );
 
 		if ( empty( GFFormDisplay::$submission ) ) {
-			return new WP_Error( 'error_processing_form', __( 'There was an error while processing the form:', 'gravityforms' ) );
+			return new WP_Error( 'error_processing_form', __( 'There was an error while processing the form:', 'edforms' ) );
 		}
 
 		$submissions_array = GFFormDisplay::$submission;
@@ -1422,7 +1422,7 @@ class GFAPI {
 
 		$results = $wpdb->get_results( $sql, ARRAY_A );
 		if ( empty( $results ) ) {
-			return new WP_Error( 'not_found', __( 'Feed not found', 'gravityforms' ) );
+			return new WP_Error( 'not_found', __( 'Feed not found', 'edforms' ) );
 		}
 
 		foreach ( $results as &$result ) {
@@ -1447,7 +1447,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$table = $wpdb->prefix . 'gf_addon_feed';
@@ -1456,11 +1456,11 @@ class GFAPI {
 
 		$results = $wpdb->query( $sql );
 		if ( false === $results ) {
-			return new WP_Error( 'error_deleting', sprintf( __( 'There was an error while deleting feed id %s', 'gravityforms' ), $feed_id ), $wpdb->last_error );
+			return new WP_Error( 'error_deleting', sprintf( __( 'There was an error while deleting feed id %s', 'edforms' ), $feed_id ), $wpdb->last_error );
 		}
 
 		if ( 0 === $results ) {
-			return new WP_Error( 'not_found', sprintf( __( 'Feed id %s not found', 'gravityforms' ), $feed_id ) );
+			return new WP_Error( 'not_found', sprintf( __( 'Feed id %s not found', 'edforms' ), $feed_id ) );
 		}
 
 		return true;
@@ -1479,7 +1479,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$lookup_result = self::get_feeds( $feed_id, $form_id );
@@ -1499,7 +1499,7 @@ class GFAPI {
 		$results = $wpdb->query( $sql );
 
 		if ( false === $results ) {
-			return new WP_Error( 'error_updating', sprintf( __( 'There was an error while updating feed id %s', 'gravityforms' ), $feed_id ), $wpdb->last_error );
+			return new WP_Error( 'error_updating', sprintf( __( 'There was an error while updating feed id %s', 'edforms' ), $feed_id ), $wpdb->last_error );
 		}
 
 		return $results;
@@ -1522,7 +1522,7 @@ class GFAPI {
 		global $wpdb;
 
 		if ( gf_upgrade()->get_submissions_block() ) {
-			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'gravityforms' ) );
+			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
 		$table          = $wpdb->prefix . 'gf_addon_feed';
@@ -1532,7 +1532,7 @@ class GFAPI {
 		$results = $wpdb->query( $sql );
 
 		if ( false === $results ) {
-			return new WP_Error( 'error_inserting', __( 'There was an error while inserting a feed', 'gravityforms' ), $wpdb->last_error );
+			return new WP_Error( 'error_inserting', __( 'There was an error while inserting a feed', 'edforms' ), $wpdb->last_error );
 		}
 
 		return $wpdb->insert_id;

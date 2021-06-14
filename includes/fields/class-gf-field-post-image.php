@@ -10,7 +10,7 @@ class GF_Field_Post_Image extends GF_Field_Fileupload {
 	public $type = 'post_image';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'Post Image', 'gravityforms' );
+		return esc_attr__( 'Post Image', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {
@@ -60,11 +60,11 @@ class GF_Field_Post_Image extends GF_Field_Fileupload {
 		if ( $file_info ) {
 			$hidden_class     = ' gform_hidden';
 			$file_label_style = $hidden_style;
-			$preview          = "<span class='ginput_preview'><strong>" . esc_html( $file_info['uploaded_filename'] ) . "</strong> | <a href='javascript:;' onclick='gformDeleteUploadedFile({$form_id}, {$id});' onkeypress='gformDeleteUploadedFile({$form_id}, {$id});'>" . __( 'delete', 'gravityforms' ) . '</a></span>';
+			$preview          = "<span class='ginput_preview'><strong>" . esc_html( $file_info['uploaded_filename'] ) . "</strong> | <a href='javascript:;' onclick='gformDeleteUploadedFile({$form_id}, {$id});' onkeypress='gformDeleteUploadedFile({$form_id}, {$id});'>" . __( 'delete', 'edforms' ) . '</a></span>';
 		}
 
 		//in admin, render all meta fields to allow for immediate feedback, but hide the ones not selected
-		$file_label = ( $is_admin || $this->displayTitle || $this->displayCaption || $this->displayDescription ) ? "<label for='$field_id' class='ginput_post_image_file' $file_label_style>" . gf_apply_filters( array( 'gform_postimage_file', $form_id ), __( 'File', 'gravityforms' ), $form_id ) . '</label>' : '';
+		$file_label = ( $is_admin || $this->displayTitle || $this->displayCaption || $this->displayDescription ) ? "<label for='$field_id' class='ginput_post_image_file' $file_label_style>" . gf_apply_filters( array( 'gform_postimage_file', $form_id ), __( 'File', 'edforms' ), $form_id ) . '</label>' : '';
 
 		$tabindex = $this->get_tabindex();
 
@@ -72,15 +72,15 @@ class GF_Field_Post_Image extends GF_Field_Fileupload {
 
 		$tabindex = $this->get_tabindex();
 
-		$title_field = $this->displayTitle || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_title' $title_style><input type='text' name='input_%d.1' id='%s_1' value='%s' $tabindex %s/><label for='%s_1'>" . gf_apply_filters( array( 'gform_postimage_title', $form_id ), __( 'Title', 'gravityforms' ), $form_id ) . '</label></span>', $id, $field_id, $title, $disabled_text, $field_id ) : '';
+		$title_field = $this->displayTitle || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_title' $title_style><input type='text' name='input_%d.1' id='%s_1' value='%s' $tabindex %s/><label for='%s_1'>" . gf_apply_filters( array( 'gform_postimage_title', $form_id ), __( 'Title', 'edforms' ), $form_id ) . '</label></span>', $id, $field_id, $title, $disabled_text, $field_id ) : '';
 
 		$tabindex = $this->get_tabindex();
 
-		$caption_field = $this->displayCaption || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_caption' $caption_style><input type='text' name='input_%d.4' id='%s_4' value='%s' $tabindex %s/><label for='%s_4'>" . gf_apply_filters( array( 'gform_postimage_caption', $form_id ), __( 'Caption', 'gravityforms' ), $form_id ) . '</label></span>', $id, $field_id, $caption, $disabled_text, $field_id ) : '';
+		$caption_field = $this->displayCaption || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_caption' $caption_style><input type='text' name='input_%d.4' id='%s_4' value='%s' $tabindex %s/><label for='%s_4'>" . gf_apply_filters( array( 'gform_postimage_caption', $form_id ), __( 'Caption', 'edforms' ), $form_id ) . '</label></span>', $id, $field_id, $caption, $disabled_text, $field_id ) : '';
 
 		$tabindex = $this->get_tabindex();
 
-		$description_field = $this->displayDescription || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_description' $description_style><input type='text' name='input_%d.7' id='%s_7' value='%s' $tabindex %s/><label for='%s_7'>" . gf_apply_filters( array( 'gform_postimage_description', $form_id ), __( 'Description', 'gravityforms' ), $form_id ) . '</label></span>', $id, $field_id, $description, $disabled_text, $field_id ) : '';
+		$description_field = $this->displayDescription || $is_admin ? sprintf( "<span class='ginput_full$class_suffix ginput_post_image_description' $description_style><input type='text' name='input_%d.7' id='%s_7' value='%s' $tabindex %s/><label for='%s_7'>" . gf_apply_filters( array( 'gform_postimage_description', $form_id ), __( 'Description', 'edforms' ), $form_id ) . '</label></span>', $id, $field_id, $description, $disabled_text, $field_id ) : '';
 
 		return "<div class='ginput_complex$class_suffix ginput_container ginput_container_post_image'>" . $upload . $title_field . $caption_field . $description_field . '</div>';
 	}
@@ -111,7 +111,7 @@ class GF_Field_Post_Image extends GF_Field_Fileupload {
 		if ( ! empty( $url ) ) {
 			//displaying thumbnail (if file is an image) or an icon based on the extension
 			$thumb = GFEntryList::get_icon_url( $url );
-			$value = "<a href='" . esc_attr( $url ) . "' target='_blank' title='" . __( 'Click to view', 'gravityforms' ) . "'><img src='$thumb'/></a>";
+			$value = "<a href='" . esc_attr( $url ) . "' target='_blank' title='" . __( 'Click to view', 'edforms' ) . "'><img src='$thumb'/></a>";
 		}
 		return $value;
 	}
@@ -129,13 +129,13 @@ class GF_Field_Post_Image extends GF_Field_Fileupload {
 			switch ( $format ) {
 				case 'text' :
 					$value = $url;
-					$value .= ! empty( $title ) ? "\n\n" . $this->label . ' (' . __( 'Title', 'gravityforms' ) . '): ' . $title : '';
-					$value .= ! empty( $caption ) ? "\n\n" . $this->label . ' (' . __( 'Caption', 'gravityforms' ) . '): ' . $caption : '';
-					$value .= ! empty( $description ) ? "\n\n" . $this->label . ' (' . __( 'Description', 'gravityforms' ) . '): ' . $description : '';
+					$value .= ! empty( $title ) ? "\n\n" . $this->label . ' (' . __( 'Title', 'edforms' ) . '): ' . $title : '';
+					$value .= ! empty( $caption ) ? "\n\n" . $this->label . ' (' . __( 'Caption', 'edforms' ) . '): ' . $caption : '';
+					$value .= ! empty( $description ) ? "\n\n" . $this->label . ' (' . __( 'Description', 'edforms' ) . '): ' . $description : '';
 					break;
 
 				default :
-					$value = "<a href='$url' target='_blank' title='" . __( 'Click to view', 'gravityforms' ) . "'><img src='$url' width='100' /></a>";
+					$value = "<a href='$url' target='_blank' title='" . __( 'Click to view', 'edforms' ) . "'><img src='$url' width='100' /></a>";
 					$value .= ! empty( $title ) ? "<div>Title: $title</div>" : '';
 					$value .= ! empty( $caption ) ? "<div>Caption: $caption</div>" : '';
 					$value .= ! empty( $description ) ? "<div>Description: $description</div>" : '';

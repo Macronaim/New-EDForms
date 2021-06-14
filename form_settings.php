@@ -165,7 +165,7 @@ class GFFormSettings {
 
 		$form = gf_apply_filters( array( 'gform_admin_pre_render', $form_id ), $form );
 
-		self::page_header( __( 'Form Settings', 'gravityforms' ) );
+		self::page_header( __( 'Form Settings', 'edforms' ) );
 
 		?>
 
@@ -324,7 +324,7 @@ class GFFormSettings {
 
 				window.onbeforeunload = function () {
 					if (hasUnsavedChanges){
-						return '<?php echo esc_js( 'You have unsaved changes.', 'gravityforms' ); ?>';
+						return '<?php echo esc_js( 'You have unsaved changes.', 'edforms' ); ?>';
 					}
 
 				}
@@ -346,8 +346,8 @@ class GFFormSettings {
 				?>
 				<div class="error below-h2" id="after_update_error_dialog">
 					<p>
-						<?php _e( 'There was an error while saving your form.', 'gravityforms' ) ?>
-						<?php printf( __( 'Please %scontact our support team%s.', 'gravityforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
+						<?php _e( 'There was an error while saving your form.', 'edforms' ) ?>
+						<?php printf( __( 'Please %scontact our support team%s.', 'edforms' ), '<a href="https://www.edconcept24.fr/support/">', '</a>' ) ?>
 					</p>
 				</div>
 				<?php
@@ -357,7 +357,7 @@ class GFFormSettings {
 				?>
 				<div class="error below-h2" id="after_update_error_dialog">
 					<p>
-						<?php _e( 'The form title you have entered has already been used. Please enter a unique form title.', 'gravityforms' ) ?>
+						<?php _e( 'The form title you have entered has already been used. Please enter a unique form title.', 'edforms' ) ?>
 					</p>
 				</div>
 				<?php
@@ -368,7 +368,7 @@ class GFFormSettings {
 					?>
 					<div class="updated below-h2" id="after_update_dialog">
 						<p>
-							<strong><?php _e( 'Form settings updated successfully.', 'gravityforms' ); ?></strong>
+							<strong><?php _e( 'Form settings updated successfully.', 'edforms' ); ?></strong>
 						</p>
 					</div>
 				<?php
@@ -396,7 +396,7 @@ class GFFormSettings {
         <tr>
             <th>
                 ' .
-			__( 'Form title', 'gravityforms' ) . ' ' .
+			__( 'Form title', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_title', '', true ) .
 			'
 		</th>
@@ -410,7 +410,7 @@ class GFFormSettings {
         <tr>
             <th>
                 ' .
-			__( 'Form description', 'gravityforms' ) . ' ' .
+			__( 'Form description', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_description', '', true ) .
 			'
 		</th>
@@ -421,9 +421,9 @@ class GFFormSettings {
 
 		// Form label placement.
 		$alignment_options = array(
-			'top_label'   => __( 'Top aligned', 'gravityforms' ),
-			'left_label'  => __( 'Left aligned', 'gravityforms' ),
-			'right_label' => __( 'Right aligned', 'gravityforms' )
+			'top_label'   => __( 'Top aligned', 'edforms' ),
+			'left_label'  => __( 'Left aligned', 'edforms' ),
+			'right_label' => __( 'Right aligned', 'edforms' )
 		);
 
 		$label_dd = '';
@@ -436,7 +436,7 @@ class GFFormSettings {
         <tr>
             <th>
                 ' .
-			__( 'Label placement', 'gravityforms' ) . ' ' .
+			__( 'Label placement', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_label_placement', '', true ) .
 			'
 		</th>
@@ -451,8 +451,8 @@ class GFFormSettings {
 		$style               = $form['labelPlacement'] != 'top_label' ? 'display:none;' : '';
 		$description_dd      = '';
 		$description_options = array(
-			'below' => __( 'Below inputs', 'gravityforms' ),
-			'above' => __( 'Above inputs', 'gravityforms' )
+			'below' => __( 'Below inputs', 'edforms' ),
+			'above' => __( 'Above inputs', 'edforms' )
 		);
 		foreach ( $description_options as $value => $label ) {
 			$selected = rgar( $form, 'descriptionPlacement' ) == $value ? 'selected="selected"' : '';
@@ -463,7 +463,7 @@ class GFFormSettings {
         <tr id="description_placement_setting" style="' . $style . '">
             <th>
                 ' .
-			__( 'Description placement', 'gravityforms' ) . ' ' .
+			__( 'Description placement', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_description_placement', '', true ) .
 			'
 		</th>
@@ -478,8 +478,8 @@ class GFFormSettings {
 		// Sub-label placement.
 		$sub_label_placement_dd      = '';
 		$sub_label_placement_options = array(
-			'below' => __( 'Below inputs', 'gravityforms' ),
-			'above' => __( 'Above inputs', 'gravityforms' )
+			'below' => __( 'Below inputs', 'edforms' ),
+			'above' => __( 'Above inputs', 'edforms' )
 		);
 		foreach ( $sub_label_placement_options as $value => $label ) {
 			$selected = rgar( $form, 'subLabelPlacement' ) == $value ? 'selected="selected"' : '';
@@ -490,7 +490,7 @@ class GFFormSettings {
         <tr id="sub_label_placement_setting">
             <th>
                 ' .
-			__( 'Sub-Label Placement', 'gravityforms' ) . ' ' .
+			__( 'Sub-Label Placement', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_sub_label_placement', '', true ) .
 			'
 			</th>
@@ -507,7 +507,7 @@ class GFFormSettings {
         <tr>
             <th>
                 <label for="form_css_class" style="display:block;">' .
-			__( 'CSS Class Name', 'gravityforms' ) . ' ' .
+			__( 'CSS Class Name', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_css_class', '', true ) .
 			'</label>
 		</th>
@@ -535,20 +535,20 @@ class GFFormSettings {
 		$tr_form_button = '
         <tr>
             <th>
-                ' . __( 'Input type', 'gravityforms' ) . '
+                ' . __( 'Input type', 'edforms' ) . '
             </th>
             <td>
 
                 <input type="radio" id="form_button_text" name="form_button" value="text" onclick="ToggleButton();" onkeypress="ToggleButton();" ' . $text_button_checked . ' />
                 <label for="form_button_text" class="inline">' .
-			__( 'Text', 'gravityforms' ) .
+			__( 'Text', 'edforms' ) .
 			'</label>
 
 			&nbsp;&nbsp;
 
 			<input type="radio" id="form_button_image" name="form_button" value="image" onclick="ToggleButton();" onkeypress="ToggleButton();" ' . $image_button_checked . ' />
                 <label for="form_button_image" class="inline">' .
-			__( 'Image', 'gravityforms' ) . '</label>
+			__( 'Image', 'edforms' ) . '</label>
 
 
             </td>
@@ -559,7 +559,7 @@ class GFFormSettings {
         <tr id="form_button_text_setting" class="child_setting_row" style="' . $text_style_display . '">
             <th>
                 ' .
-			__( 'Button text', 'gravityforms' ) . ' ' .
+			__( 'Button text', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_button_text', '', true ) .
 			'
 		</th>
@@ -573,7 +573,7 @@ class GFFormSettings {
         <tr id="form_button_image_path_setting" class="child_setting_row" style="' . $image_style_display . '">
             <th>
                 ' .
-			__( 'Button image path', 'gravityforms' ) . '  ' .
+			__( 'Button image path', 'edforms' ) . '  ' .
 			gform_tooltip( 'form_button_image', '', true ) .
 			'
 		</th>
@@ -591,11 +591,11 @@ class GFFormSettings {
 		$tr_form_button_conditional = '
         <tr>
             <th>
-                ' . __( 'Button conditional logic', 'gravityforms' ) . ' ' . gform_tooltip( 'form_button_conditional_logic', '', true ) . '
+                ' . __( 'Button conditional logic', 'edforms' ) . ' ' . gform_tooltip( 'form_button_conditional_logic', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="form_button_conditional_logic" onclick="SetButtonConditionalLogic(this.checked); ToggleConditionalLogic(false, \'form_button\');" onkeypress="SetButtonConditionalLogic(this.checked); ToggleConditionalLogic(false, \'form_button\');"' . $button_conditional_checked . ' />
-                <label for="form_button_conditional_logic" class="inline">' . ' ' . __( 'Enable Conditional Logic', 'gravityforms' ) . '</label>
+                <label for="form_button_conditional_logic" class="inline">' . ' ' . __( 'Enable Conditional Logic', 'edforms' ) . '</label>
             </td>
          </tr>
          <tr>
@@ -618,16 +618,16 @@ class GFFormSettings {
 			$save_enabled_style = 'style="display:none;"';
 		}
 
-		$save_button_text = isset( $form['save']['button']['text'] ) ? esc_attr( rgars( $form, 'save/button/text' ) ) : __( 'Save and Continue Later', 'gravityforms' );
+		$save_button_text = isset( $form['save']['button']['text'] ) ? esc_attr( rgars( $form, 'save/button/text' ) ) : __( 'Save and Continue Later', 'edforms' );
 
 		$tr_enable_save = '
         <tr>
             <th>
-                ' . __( 'Save and Continue', 'gravityforms' ) . ' ' . gform_tooltip( 'form_enable_save', '', true ) . '
+                ' . __( 'Save and Continue', 'edforms' ) . ' ' . gform_tooltip( 'form_enable_save', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="form_save_enabled" name="form_save_enabled" onclick="ToggleEnableSave();" onkeypress="ToggleEnableSave();" value="1" ' . $save_enabled_checked . ' />
-                <label for="form_save_enabled">' . __( 'Enable Save and Continue', 'gravityforms' ) . '</label>
+                <label for="form_save_enabled">' . __( 'Enable Save and Continue', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -641,12 +641,12 @@ class GFFormSettings {
                 <div class="gforms_help_alert fieldwidth-3">
                     <div>
                     <i class="fa fa-warning"></i>
-                    '. __('This feature stores potentially private and sensitive data on this server and protects it with a unique link which is displayed to the user on the page in plain, unencrypted text. The link is similar to a password so it\'s strongly advisable to ensure that the page enforces a secure connection (HTTPS) before activating this setting.', 'gravityforms').
+                    '. __('This feature stores potentially private and sensitive data on this server and protects it with a unique link which is displayed to the user on the page in plain, unencrypted text. The link is similar to a password so it\'s strongly advisable to ensure that the page enforces a secure connection (HTTPS) before activating this setting.', 'edforms').
 		            '</div>
 		            <br />
 		            <div>
 		            <i class="fa fa-warning"></i>
-                    '. __('When this setting is activated two confirmations and one notification are automatically generated and can be modified in their respective editors. When this setting is deactivated the confirmations and the notification will be deleted automatically and any modifications will be lost.', 'gravityforms').
+                    '. __('When this setting is activated two confirmations and one notification are automatically generated and can be modified in their respective editors. When this setting is deactivated the confirmations and the notification will be deleted automatically and any modifications will be lost.', 'edforms').
 		            '</div>
                 </div>
             </td>
@@ -658,7 +658,7 @@ class GFFormSettings {
         <tr id="form_save_button_text_setting" class="child_setting_row" ' . $save_enabled_style . '>
             <th>
                 ' .
-			__( 'Link text', 'gravityforms' ) . ' ' .
+			__( 'Link text', 'edforms' ) . ' ' .
 			gform_tooltip( 'form_save_button_text', '', true ) .
 			'
 		</th>
@@ -680,11 +680,11 @@ class GFFormSettings {
 		}
 
 		$limit_periods = array(
-			''      => __( 'total entries', 'gravityforms' ),
-			'day'   => __( 'per day', 'gravityforms' ),
-			'week'  => __( 'per week', 'gravityforms' ),
-			'month' => __( 'per month', 'gravityforms' ),
-			'year'  => __( 'per year', 'gravityforms' )
+			''      => __( 'total entries', 'edforms' ),
+			'day'   => __( 'per day', 'edforms' ),
+			'week'  => __( 'per week', 'edforms' ),
+			'month' => __( 'per month', 'edforms' ),
+			'year'  => __( 'per year', 'edforms' )
 		);
 		foreach ( $limit_periods as $value => $label ) {
 			$selected = rgar( $form, 'limitEntriesPeriod' ) == $value ? 'selected="selected"' : '';
@@ -694,11 +694,11 @@ class GFFormSettings {
 		$tr_limit_entries = '
         <tr>
             <th>
-                ' . __( 'Limit number of entries', 'gravityforms' ) . ' ' . gform_tooltip( 'form_limit_entries', '', true ) . '
+                ' . __( 'Limit number of entries', 'edforms' ) . ' ' . gform_tooltip( 'form_limit_entries', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="gform_limit_entries" name="form_limit_entries" onclick="ToggleLimitEntry();" onkeypress="ToggleLimitEntry();" value="1" ' . $limit_entry_checked . ' />
-                <label for="gform_limit_entries">' . __( 'Enable entry limit', 'gravityforms' ) . '</label>
+                <label for="gform_limit_entries">' . __( 'Enable entry limit', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -708,7 +708,7 @@ class GFFormSettings {
             ' . $subsetting_open . '
             <th>
                 ' .
-			__( 'Number of Entries', 'gravityforms' ) .
+			__( 'Number of Entries', 'edforms' ) .
 			'
 		</th>
 		<td>
@@ -727,7 +727,7 @@ class GFFormSettings {
             ' . $subsetting_open . '
             <th>
                 <label for="form_limit_entries_message">' .
-			__( 'Entry Limit Reached Message', 'gravityforms' ) .
+			__( 'Entry Limit Reached Message', 'edforms' ) .
 			'</label>
 		</th>
 		<td>
@@ -791,11 +791,11 @@ class GFFormSettings {
 		$tr_schedule_form = '
         <tr>
             <th>
-                ' . __( 'Schedule form', 'gravityforms' ) . ' ' . gform_tooltip( 'form_schedule_form', '', true ) . '
+                ' . __( 'Schedule form', 'edforms' ) . ' ' . gform_tooltip( 'form_schedule_form', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="gform_schedule_form" name="form_schedule_form" value="1" onclick="ToggleSchedule();" onkeypress="ToggleSchedule();"' . $schedule_form_checked . '/>
-                <label for="gform_schedule_form">' . __( 'Schedule form', 'gravityforms' ) . '</label>
+                <label for="gform_schedule_form">' . __( 'Schedule form', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -804,7 +804,7 @@ class GFFormSettings {
         <tr id="schedule_start_setting" class="child_setting_row" style="' . $schedule_form_style . '">
             ' . $subsetting_open . '
             <th>
-                <label for="gform_schedule_start">' . __( 'Schedule Start Date/Time', 'gravityforms' ) . '</label>
+                <label for="gform_schedule_start">' . __( 'Schedule Start Date/Time', 'edforms' ) . '</label>
             </th>
             <td>
                 <input type="text" id="gform_schedule_start" name="gform_schedule_start" class="datepicker" value="' . esc_attr( rgar( $form, 'scheduleStart' ) ) . '" />
@@ -829,7 +829,7 @@ class GFFormSettings {
         <tr id="schedule_end_setting" class="child_setting_row" style="' . esc_attr( $schedule_form_style ) . '">
             ' . $subsetting_open . '
             <th>
-                ' . __( 'Schedule Form End Date/Time', 'gravityforms' ) . '
+                ' . __( 'Schedule Form End Date/Time', 'edforms' ) . '
             </th>
             <td>
                 <input type="text" id="gform_schedule_end" name="form_schedule_end" class="datepicker" value="' . esc_attr( rgar( $form, 'scheduleEnd' ) ) . '" />
@@ -854,7 +854,7 @@ class GFFormSettings {
         <tr id="schedule_pending_message_setting" class="child_setting_row" style="' . esc_attr( $schedule_form_style ) . '">
             ' . $subsetting_open . '
             <th>
-                ' . __( 'Form Pending Message', 'gravityforms' ) . '
+                ' . __( 'Form Pending Message', 'edforms' ) . '
             </th>
             <td>
                 <textarea id="gform_schedule_pending_message" name="form_schedule_pending_message" class="fieldwidth-3">' . esc_html( rgar( $form, 'schedulePendingMessage' ) ) . '</textarea>
@@ -867,7 +867,7 @@ class GFFormSettings {
         <tr id="schedule_message_setting" class="child_setting_row" style="' . esc_attr( $schedule_form_style ) . '">
             ' . $subsetting_open . '
             <th>
-                ' . __( 'Form Expired Message', 'gravityforms' ) . '
+                ' . __( 'Form Expired Message', 'edforms' ) . '
             </th>
             <td>
                 <textarea id="gform_schedule_message" name="form_schedule_message" class="fieldwidth-3">' . esc_html( rgar( $form, 'scheduleMessage' ) ) . '</textarea>
@@ -883,11 +883,11 @@ class GFFormSettings {
 		$tr_honey_pot = '
         <tr>
             <th>
-                ' . __( 'Anti-spam honeypot', 'gravityforms' ) . ' ' . gform_tooltip( 'form_honeypot', '', true ) . '
+                ' . __( 'Anti-spam honeypot', 'edforms' ) . ' ' . gform_tooltip( 'form_honeypot', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="gform_enable_honeypot" name="form_enable_honeypot" value="1" ' . $honey_pot_checked . '/>
-                <label for="gform_enable_honeypot">' . __( 'Enable anti-spam honeypot', 'gravityforms' ) . '</label>
+                <label for="gform_enable_honeypot">' . __( 'Enable anti-spam honeypot', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -899,11 +899,11 @@ class GFFormSettings {
 		$tr_enable_animation = '
         <tr>
             <th>
-                ' . __( 'Animated transitions', 'gravityforms' ) . ' ' . gform_tooltip( 'form_animation', '', true ) . '
+                ' . __( 'Animated transitions', 'edforms' ) . ' ' . gform_tooltip( 'form_animation', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="gform_enable_animation" name="form_enable_animation" value="1" ' . $enable_animation_checked . ' />
-                <label for="gform_enable_animation">' . __( 'Enable animations', 'gravityforms' ) . '</label>
+                <label for="gform_enable_animation">' . __( 'Enable animations', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -918,11 +918,11 @@ class GFFormSettings {
 		$tr_requires_login = '
         <tr>
             <th>
-                ' . __( 'Require user to be logged in', 'gravityforms' ) . ' ' . gform_tooltip( 'form_require_login', '', true ) . '
+                ' . __( 'Require user to be logged in', 'edforms' ) . ' ' . gform_tooltip( 'form_require_login', '', true ) . '
             </th>
             <td>
                 <input type="checkbox" id="gform_require_login" name="form_require_login" value="1" onclick="ToggleRequireLogin();" onkeypress="ToggleRequireLogin();"' . $require_login_checked . ' />
-                <label for="gform_require_login">' . __( 'Require user to be logged in', 'gravityforms' ) . '</label>
+                <label for="gform_require_login">' . __( 'Require user to be logged in', 'edforms' ) . '</label>
             </td>
         </tr>';
 
@@ -931,7 +931,7 @@ class GFFormSettings {
         <tr id="require_login_message_setting" class="child_setting_row" style="' . esc_attr( $require_login_style ) . '">
             ' . $subsetting_open . '
             <th>
-                ' . __( 'Require Login Message', 'gravityforms' ) . ' ' . gform_tooltip( 'form_require_login_message', '', true ) . '
+                ' . __( 'Require Login Message', 'edforms' ) . ' ' . gform_tooltip( 'form_require_login_message', '', true ) . '
             </th>
             <td>
                 <textarea id="gform_require_login_message" name="form_require_login_message" class="fieldwidth-3">' . esc_html( rgar( $form, 'requireLoginMessage' ) ) . '</textarea>
@@ -948,12 +948,12 @@ class GFFormSettings {
 		$form_options      = array( 'honey_pot' => $tr_honey_pot, 'enable_animation' => $tr_enable_animation );
 
 		$form_settings = array(
-			__( 'Form Basics', 'gravityforms' )       => $form_basics,
-			__( 'Form Layout', 'gravityforms' )       => $form_layout,
-			__( 'Form Button', 'gravityforms' )       => $form_button,
-			__( 'Save and Continue', 'gravityforms' ) => $save_button,
-			__( 'Restrictions', 'gravityforms' )      => $form_restrictions,
-			__( 'Form Options', 'gravityforms' )      => $form_options,
+			__( 'Form Basics', 'edforms' )       => $form_basics,
+			__( 'Form Layout', 'edforms' )       => $form_layout,
+			__( 'Form Button', 'edforms' )       => $form_button,
+			__( 'Save and Continue', 'edforms' ) => $save_button,
+			__( 'Restrictions', 'edforms' )      => $form_restrictions,
+			__( 'Form Options', 'edforms' )      => $form_options,
 		);
 
 		/**
@@ -969,7 +969,7 @@ class GFFormSettings {
 
 		<div class="gform_panel gform_panel_form_settings" id="form_settings">
 
-			<h3><span><i class="fa fa-cogs"></i> <?php _e( 'Form Settings', 'gravityforms' ) ?></span></h3>
+			<h3><span><i class="fa fa-cogs"></i> <?php _e( 'Form Settings', 'edforms' ) ?></span></h3>
 
 			<form action="" method="post" id="gform_form_settings">
 
@@ -981,7 +981,7 @@ class GFFormSettings {
 							?>
 							<tr>
 								<td colspan="2">
-									<h4 class="gf_settings_subgroup_title"><?php _e( $key, 'gravityforms' ); ?></h4>
+									<h4 class="gf_settings_subgroup_title"><?php _e( $key, 'edforms' ); ?></h4>
 								</td>
 							</tr>
 							<?php
@@ -1038,7 +1038,7 @@ class GFFormSettings {
 
 				<?php wp_nonce_field( "gform_save_form_settings_{$form_id}", 'gform_save_form_settings' ); ?>
 				<input type="hidden" id="gform_meta" name="gform_meta" />
-				<input type="button" id="gform_save_settings" name="gform_save_settings" value="<?php _e( 'Update Form Settings', 'gravityforms' ); ?>" class="button-primary gfbutton" onclick="SaveFormSettings();" onkeypress="SaveFormSettings();" />
+				<input type="button" id="gform_save_settings" name="gform_save_settings" value="<?php _e( 'Update Form Settings', 'edforms' ); ?>" class="button-primary gfbutton" onclick="SaveFormSettings();" onkeypress="SaveFormSettings();" />
 
 			</form>
 
@@ -1095,13 +1095,13 @@ class GFFormSettings {
 
 		self::maybe_process_confirmation_list_action();
 
-		self::page_header( __( 'Confirmations', 'gravityforms' ) );
+		self::page_header( __( 'Confirmations', 'edforms' ) );
 
 		$add_new_url = add_query_arg( array( 'cid' => 0 ) );
 		?>
 
-		<h3><span><i class="fa fa-envelope-o"></i> <?php _e( 'Confirmations', 'gravityforms' ) ?>
-				<a id="add-new-confirmation" class="add-new-h2" href="<?php echo esc_url( $add_new_url ) ?>"><?php _e( 'Add New', 'gravityforms' ) ?></a></span>
+		<h3><span><i class="fa fa-envelope-o"></i> <?php _e( 'Confirmations', 'edforms' ) ?>
+				<a id="add-new-confirmation" class="add-new-h2" href="<?php echo esc_url( $add_new_url ) ?>"><?php _e( 'Add New', 'edforms' ) ?></a></span>
 		</h3>
 
 		<?php $form = GFFormsModel::get_form_meta( $form_id ); ?>
@@ -1113,11 +1113,11 @@ class GFFormSettings {
 				var is_active = img.src.indexOf("active1.png") >= 0
 				if (is_active) {
 					img.src = img.src.replace("active1.png", 'active0.png');
-					jQuery(img).attr('title', '<?php _e( 'Inactive', 'gravityforms' ) ?>').attr('alt', '<?php _e( 'Inactive', 'gravityforms' ) ?>');
+					jQuery(img).attr('title', '<?php _e( 'Inactive', 'edforms' ) ?>').attr('alt', '<?php _e( 'Inactive', 'edforms' ) ?>');
 				}
 				else {
 					img.src = img.src.replace("active0.png", 'active1.png');
-					jQuery(img).attr('title', '<?php _e( 'Active', 'gravityforms' ) ?>').attr('alt', '<?php _e( 'Active', 'gravityforms' ) ?>');
+					jQuery(img).attr('title', '<?php _e( 'Active', 'edforms' ) ?>').attr('alt', '<?php _e( 'Active', 'edforms' ) ?>');
 				}
 
 				var mysack = new sack("<?php echo admin_url( 'admin-ajax.php' )?>");
@@ -1129,7 +1129,7 @@ class GFFormSettings {
 				mysack.setVar("confirmation_id", confirmation_id);
 				mysack.setVar("is_active", is_active ? 0 : 1);
 				mysack.onError = function () {
-					alert('<?php echo esc_js( __( 'Ajax error while updating confirmation', 'gravityforms' ) ) ?>')
+					alert('<?php echo esc_js( __( 'Ajax error while updating confirmation', 'edforms' ) ) ?>')
 				};
 				mysack.runAJAX();
 
@@ -1233,12 +1233,12 @@ class GFFormSettings {
 		$entry_meta = apply_filters( 'gform_entry_meta_conditional_logic_confirmations', $entry_meta, $form, $confirmation_id );
 
 		if ( ! empty( $confirmation['message'] ) && self::confirmation_looks_unsafe( $confirmation['message'] ) ) {
-			$dismissible_message = esc_html__( 'Your confirmation message appears to contain a merge tag as the value for an HTML attribute. Depending on the attribute and field type, this might be a security risk. %sFurther details%s', 'gravityforms' );
+			$dismissible_message = esc_html__( 'Your confirmation message appears to contain a merge tag as the value for an HTML attribute. Depending on the attribute and field type, this might be a security risk. %sFurther details%s', 'edforms' );
 			$dismissible_message = sprintf( $dismissible_message, '<a href="https://docs.edconcept24.fr/security-warning-merge-tags-html-attribute-values/" target="_blank">', '</a>' );
 			GFCommon::add_dismissible_message( $dismissible_message, 'confirmation_unsafe_' . $form_id );
 		}
 
-		self::page_header( __( 'Confirmations', 'gravityforms' ) );
+		self::page_header( __( 'Confirmations', 'edforms' ) );
 
 		?>
 
@@ -1262,7 +1262,7 @@ class GFFormSettings {
 
 				<?php if ( $is_duplicate ) :?>
 				$('#confirmation_conditional_logic_container').pointer({
-					content: <?php echo json_encode( sprintf( '<h3>%s</h3><p>%s</p>', __( 'Important', 'gravityforms' ), __( 'Ensure that the conditional logic for this confirmation is different from all the other confirmations for this form and then press save to create the new confirmation.', 'gravityforms' ) ) ); ?>,
+					content: <?php echo json_encode( sprintf( '<h3>%s</h3><p>%s</p>', __( 'Important', 'edforms' ), __( 'Ensure that the conditional logic for this confirmation is different from all the other confirmations for this form and then press save to create the new confirmation.', 'edforms' ) ) ); ?>,
 					position: {
 						edge: 'bottom', // arrow direction
 						align: 'center' // vertical alignment
@@ -1277,12 +1277,12 @@ class GFFormSettings {
 			function MaybeAddSaveMergeTags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option) {
 				var event = confirmation.event;
 				if ( event === 'form_saved' || event === 'form_save_email_sent' ) {
-					mergeTags['other'].tags.push({ tag: '{save_link}', label: <?php echo json_encode( __( 'Save &amp; Continue Link', 'gravityforms' ) ) ?> });
-					mergeTags['other'].tags.push({ tag: '{save_token}', label: <?php echo json_encode( __( 'Save &amp; Continue Token', 'gravityforms' ) ) ?> });
+					mergeTags['other'].tags.push({ tag: '{save_link}', label: <?php echo json_encode( __( 'Save &amp; Continue Link', 'edforms' ) ) ?> });
+					mergeTags['other'].tags.push({ tag: '{save_token}', label: <?php echo json_encode( __( 'Save &amp; Continue Token', 'edforms' ) ) ?> });
 				}
 
 				if ( event === 'form_saved' ) {
-					mergeTags['other'].tags.push({ tag: '{save_email_input}', label: <?php echo json_encode( __( 'Save &amp; Continue Email Input', 'gravityforms' ) ) ?> });
+					mergeTags['other'].tags.push({ tag: '{save_email_input}', label: <?php echo json_encode( __( 'Save &amp; Continue Email Input', 'edforms' ) ) ?> });
 				}
 
 				return mergeTags;
@@ -1321,7 +1321,7 @@ class GFFormSettings {
 				<input type="hidden" id="conditional_logic" name="conditional_logic" value="<?php echo htmlentities( json_encode( rgget( 'conditionalLogic', $confirmation ) ) ); ?>" />
 
 				<p class="submit">
-					<input type="submit" name="save" value="<?php _e( 'Save Confirmation', 'gravityforms' ); ?>" onclick="StashConditionalLogic(event);" onkeypress="StashConditionalLogic(event);" class="button-primary">
+					<input type="submit" name="save" value="<?php _e( 'Save Confirmation', 'edforms' ); ?>" onclick="StashConditionalLogic(event);" onkeypress="StashConditionalLogic(event);" class="button-primary">
 				</p>
 
 				<?php wp_nonce_field( 'gform_confirmation_edit', 'gform_confirmation_edit' ); ?>
@@ -1376,7 +1376,7 @@ class GFFormSettings {
 
 		<?php $class = ! $is_default && ! $is_valid && $confirmation_type == 'page' && ! rgar( $confirmation, 'name' ) ? 'gfield_error' : ''; ?>
 		<tr <?php echo $is_default ? 'style="display:none;"' : ''; ?> class="<?php echo $class; ?>">
-			<th><?php _e( 'Confirmation Name', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Confirmation Name', 'edforms' ); ?></th>
 			<td>
 				<input type="text" id="form_confirmation_name" name="form_confirmation_name" value="<?php echo esc_attr( rgar( $confirmation, 'name' ) ); ?>" />
 			</td>
@@ -1386,23 +1386,23 @@ class GFFormSettings {
 
 
 		<tr>
-			<th><?php _e( 'Confirmation Type', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Confirmation Type', 'edforms' ); ?></th>
 			<td>
 				<input type="radio" id="form_confirmation_show_message" name="form_confirmation" <?php checked( 'message', $confirmation_type ); ?> value="message" onclick="ToggleConfirmation();" onkeypress="ToggleConfirmation();" />
 				<label for="form_confirmation_show_message" class="inline">
-					<?php _e( 'Text', 'gravityforms' ); ?>
+					<?php _e( 'Text', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_confirmation_message' ) ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="form_confirmation_show_page" name="form_confirmation" <?php checked( 'page', $confirmation_type ); ?> value="page" onclick="ToggleConfirmation();" onkeypress="ToggleConfirmation();" />
 				<label for="form_confirmation_show_page" class="inline">
-					<?php _e( 'Page', 'gravityforms' ); ?>
+					<?php _e( 'Page', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_redirect_to_webpage' ) ?>
 				</label>
 				&nbsp;&nbsp;
 				<input type="radio" id="form_confirmation_redirect" name="form_confirmation" <?php checked( 'redirect', $confirmation_type ); ?> value="redirect" onclick="ToggleConfirmation();" onkeypress="ToggleConfirmation();" />
 				<label for="form_confirmation_redirect" class="inline">
-					<?php _e( 'Redirect', 'gravityforms' ); ?>
+					<?php _e( 'Redirect', 'edforms' ); ?>
 					<?php gform_tooltip( 'form_redirect_to_url' ) ?>
 				</label>
 			</td>
@@ -1413,7 +1413,7 @@ class GFFormSettings {
 
 		<tr id="form_confirmation_message_container" <?php echo $confirmation_type != 'message' ? 'style="display:none;"' : ''; ?> >
 			<?php echo $subsetting_open; ?>
-			<th><?php _e( 'Message', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Message', 'edforms' ); ?></th>
 			<td>
 				<span class="mt-form_confirmation_message"></span>
 				<?php
@@ -1421,7 +1421,7 @@ class GFFormSettings {
 				?>
 				<div style="margin-top:5px;">
 					<input type="checkbox" id="form_disable_autoformatting" name="form_disable_autoformatting" value="1" <?php echo empty( $confirmation['disableAutoformat'] ) ? '' : "checked='checked'" ?> />
-					<label for="form_disable_autoformatting"><?php _e( 'Disable Auto-formatting', 'gravityforms' ) ?> <?php gform_tooltip( 'form_confirmation_autoformat' ) ?></label>
+					<label for="form_disable_autoformatting"><?php _e( 'Disable Auto-formatting', 'edforms' ) ?> <?php gform_tooltip( 'form_confirmation_autoformat' ) ?></label>
 				</div>
 			</td>
 			<?php echo $subsetting_close; ?>
@@ -1433,9 +1433,9 @@ class GFFormSettings {
 		<?php $class = ! $is_valid && $confirmation_type == 'page' && ! rgar( $confirmation, 'pageId' ) ? 'gfield_error' : ''; ?>
 		<tr class="form_confirmation_page_container" <?php echo $confirmation_type != 'page' ? 'style="display:none;"' : '' ?> class="<?php echo $class; ?>">
 			<?php echo $subsetting_open; ?>
-			<th><?php _e( 'Page', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Page', 'edforms' ); ?></th>
 			<td>
-				<?php wp_dropdown_pages( array( 'name' => 'form_confirmation_page', 'selected' => rgar( $confirmation, 'pageId' ), 'show_option_none' => __( 'Select a page', 'gravityforms' ) ) ); ?>
+				<?php wp_dropdown_pages( array( 'name' => 'form_confirmation_page', 'selected' => rgar( $confirmation, 'pageId' ), 'show_option_none' => __( 'Select a page', 'edforms' ) ) ); ?>
 			</td>
 			<?php echo $subsetting_close; ?>
 		</tr> <!-- / confirmation page -->
@@ -1444,10 +1444,10 @@ class GFFormSettings {
 
 		<tr class="form_confirmation_page_container" <?php echo $confirmation_type != 'page' ? 'style="display:none;"' : '' ?> class="<?php echo $class; ?>">
 			<?php echo $subsetting_open; ?>
-			<th><?php _e( 'Redirect Query String', 'gravityforms' ); ?> <?php gform_tooltip( 'form_redirect_querystring' ) ?></th>
+			<th><?php _e( 'Redirect Query String', 'edforms' ); ?> <?php gform_tooltip( 'form_redirect_querystring' ) ?></th>
 			<td>
 				<input type="checkbox" id="form_page_use_querystring" name="form_page_use_querystring" <?php echo empty( $confirmation['queryString'] ) ? '' : "checked='checked'" ?> onclick="TogglePageQueryString()" onkeypress="TogglePageQueryString()" />
-				<label for="form_page_use_querystring"><?php _e( 'Pass Field Data Via Query String', 'gravityforms' ) ?></label>
+				<label for="form_page_use_querystring"><?php _e( 'Pass Field Data Via Query String', 'edforms' ) ?></label>
 
 				<div id="form_page_querystring_container" <?php echo empty( $confirmation['queryString'] ) ? 'style="display:none;"' : ''; ?> >
 					<?php
@@ -1455,7 +1455,7 @@ class GFFormSettings {
 					?>
 					<textarea name="form_page_querystring" id="form_page_querystring" class="merge-tag-support mt-position-right mt-hide_all_fields mt-option-url" style="width:98%; height:100px;"><?php echo esc_textarea( $query_string ); ?></textarea><br />
 
-					<div class="instruction"><?php _e( 'Sample: phone={Phone:1}&email={Email:2}', 'gravityforms' ); ?></div>
+					<div class="instruction"><?php _e( 'Sample: phone={Phone:1}&email={Email:2}', 'edforms' ); ?></div>
 				</div>
 			</td>
 			<?php echo $subsetting_close; ?>
@@ -1466,7 +1466,7 @@ class GFFormSettings {
 		<?php $class = ! $is_valid && $confirmation_type == 'redirect' && ! rgar( $confirmation, 'url' ) ? 'gfield_error' : ''; ?>
 		<tr class="form_confirmation_redirect_container <?php echo $class; ?>" <?php echo $confirmation_type != 'redirect' ? 'style="display:none;"' : '' ?> >
 			<?php echo $subsetting_open; ?>
-			<th><?php _e( 'Redirect URL', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Redirect URL', 'edforms' ); ?></th>
 			<td>
 				<input type="text" id="form_confirmation_url" name="form_confirmation_url" value="<?php echo esc_attr( rgget( 'url', $confirmation ) ); ?>" style="width:98%;" />
 			</td>
@@ -1478,10 +1478,10 @@ class GFFormSettings {
 
 		<tr class="form_confirmation_redirect_container" <?php echo $confirmation_type != 'redirect' ? 'style="display:none;"' : '' ?> >
 			<?php echo $subsetting_open; ?>
-			<th><?php _e( 'Redirect Query String', 'gravityforms' ); ?> <?php gform_tooltip( 'form_redirect_querystring' ) ?></th>
+			<th><?php _e( 'Redirect Query String', 'edforms' ); ?> <?php gform_tooltip( 'form_redirect_querystring' ) ?></th>
 			<td>
 				<input type="checkbox" id="form_redirect_use_querystring" name="form_redirect_use_querystring" <?php echo empty( $confirmation['queryString'] ) ? '' : "checked='checked'" ?> onclick="ToggleQueryString()" onkeypress="ToggleQueryString()" />
-				<label for="form_redirect_use_querystring"><?php _e( 'Pass Field Data Via Query String', 'gravityforms' ) ?></label>
+				<label for="form_redirect_use_querystring"><?php _e( 'Pass Field Data Via Query String', 'edforms' ) ?></label>
 
 				<div id="form_redirect_querystring_container" <?php echo empty( $confirmation['queryString'] ) ? 'style="display:none;"' : ''; ?> >
 
@@ -1491,7 +1491,7 @@ class GFFormSettings {
 
 					<textarea name="form_redirect_querystring" id="form_redirect_querystring" class="merge-tag-support mt-position-right mt-hide_all_fields mt-option-url" style="width:98%; height:100px;"><?php echo esc_textarea( $query_string ); ?></textarea><br />
 
-					<div class="instruction"><?php _e( 'Sample: phone={Phone:1}&email={Email:2}', 'gravityforms' ); ?></div>
+					<div class="instruction"><?php _e( 'Sample: phone={Phone:1}&email={Email:2}', 'edforms' ); ?></div>
 				</div>
 			</td>
 			<?php echo $subsetting_close; ?>
@@ -1501,7 +1501,7 @@ class GFFormSettings {
 
 
 		<tr <?php echo rgget( 'isDefault', $confirmation ) ? 'style="display:none;"' : ''; ?> >
-			<th><?php _e( 'Conditional Logic', 'gravityforms' ); ?></th>
+			<th><?php _e( 'Conditional Logic', 'edforms' ); ?></th>
 			<td>
 				<input type="checkbox" id="confirmation_conditional_logic" name="confirmation_conditional_logic" style="display:none;" checked="checked" />
 
@@ -1676,9 +1676,9 @@ class GFFormSettings {
 	public static function get_tabs( $form_id ) {
 
 		$setting_tabs = array(
-			'10' => array( 'name' => 'settings', 'label' => __( 'Form Settings', 'gravityforms' ) ),
-			'20' => array( 'name' => 'confirmation', 'label' => __( 'Confirmations', 'gravityforms' ), 'query' => array( 'cid' => null, 'duplicatedcid' => null ) ),
-			'30' => array( 'name' => 'notification', 'label' => __( 'Notifications', 'gravityforms' ), 'query' => array( 'nid' => null ) ),
+			'10' => array( 'name' => 'settings', 'label' => __( 'Form Settings', 'edforms' ) ),
+			'20' => array( 'name' => 'confirmation', 'label' => __( 'Confirmations', 'edforms' ), 'query' => array( 'cid' => null, 'duplicatedcid' => null ) ),
+			'30' => array( 'name' => 'notification', 'label' => __( 'Notifications', 'edforms' ), 'query' => array( 'nid' => null ) ),
 		);
 
 		/**
@@ -1758,20 +1758,20 @@ class GFFormSettings {
 
 		if ( ! $confirmation['name'] ) {
 			$failed_validation = true;
-			GFCommon::add_error_message( __( 'You must specify a Confirmation Name.', 'gravityforms' ) );
+			GFCommon::add_error_message( __( 'You must specify a Confirmation Name.', 'edforms' ) );
 		}
 
 		switch ( $type ) {
 			case 'page':
 				if ( empty( $confirmation['pageId'] ) ) {
 					$failed_validation = true;
-					GFCommon::add_error_message( __( 'You must select a Confirmation Page.', 'gravityforms' ) );
+					GFCommon::add_error_message( __( 'You must select a Confirmation Page.', 'edforms' ) );
 				}
 				break;
 			case 'redirect':
 				if ( ( empty( $confirmation['url'] ) || ! GFCommon::is_valid_url( $confirmation['url'] ) ) && ! GFCommon::has_merge_tag( $confirmation['url'] ) ) {
 					$failed_validation = true;
-					GFCommon::add_error_message( __( 'You must specify a valid Redirect URL.', 'gravityforms' ) );
+					GFCommon::add_error_message( __( 'You must specify a valid Redirect URL.', 'edforms' ) );
 				}
 				break;
 		}
@@ -1802,9 +1802,9 @@ class GFFormSettings {
 
 		if ( $result !== false ) {
 			$url = remove_query_arg( array( 'cid', 'duplicatedcid' ) );
-			GFCommon::add_message( sprintf( __( 'Confirmation saved successfully. %sBack to confirmations.%s', 'gravityforms' ), '<a href="' . esc_url( $url ) . '">', '</a>' ) );
+			GFCommon::add_message( sprintf( __( 'Confirmation saved successfully. %sBack to confirmations.%s', 'edforms' ), '<a href="' . esc_url( $url ) . '">', '</a>' ) );
 		} else {
-			GFCommon::add_error_message( __( 'There was an issue saving this confirmation.', 'gravityforms' ) );
+			GFCommon::add_error_message( __( 'There was an issue saving this confirmation.', 'edforms' ) );
 		}
 
 		return $confirmation;
@@ -1835,9 +1835,9 @@ class GFFormSettings {
 			case 'delete':
 				$confirmation_deleted = self::delete_confirmation( $object_id, rgget( 'id' ) );
 				if ( $confirmation_deleted ) {
-					GFCommon::add_message( __( 'Confirmation deleted.', 'gravityforms' ) );
+					GFCommon::add_message( __( 'Confirmation deleted.', 'edforms' ) );
 				} else {
-					GFCommon::add_error_message( __( 'There was an issue deleting this confirmation.', 'gravityforms' ) );
+					GFCommon::add_error_message( __( 'There was an issue deleting this confirmation.', 'edforms' ) );
 				}
 				break;
 		}
@@ -1987,12 +1987,12 @@ class GFFormSettings {
 			$form['notifications'][ $notification_id ] = array(
 				'id'      => $notification_id,
 				'isDefault' => true,
-				'name'    => __( 'Save and Continue Email', 'gravityforms' ),
+				'name'    => __( 'Save and Continue Email', 'edforms' ),
 				'event'   => 'form_save_email_requested',
 				'toType'  => 'hidden',
 				'from' => '{admin_email}',
 				'subject' => __( 'Link to continue {form_title}' ),
-				'message' => __( 'Thank you for saving {form_title}. Please use the unique link below to return to the form from any computer. <br /><br /> {save_link} <br /><br /> Remember that the link will expire after 30 days so please return via the provided link to complete your form submission.', 'gravityforms' ),
+				'message' => __( 'Thank you for saving {form_title}. Please use the unique link below to return to the form from any computer. <br /><br /> {save_link} <br /><br /> Remember that the link will expire after 30 days so please return via the provided link to complete your form submission.', 'edforms' ),
 			);
 			GFFormsModel::save_form_notifications( $form_id, $form['notifications'] );
 		}
@@ -2011,10 +2011,10 @@ class GFFormSettings {
 			$form['confirmations'][ $confirmation_id ] = array(
 				'id'          => $confirmation_id,
 				'event'       => 'form_saved',
-				'name'        => __( 'Save and Continue Confirmation', 'gravityforms' ),
+				'name'        => __( 'Save and Continue Confirmation', 'edforms' ),
 				'isDefault'   => true,
 				'type'        => 'message',
-				'message'     => __( '<p>Please use the following link to return and complete this form from any computer.</p><p class="resume_form_link_wrapper"> {save_link} </p><p> Note: This link will expire after 30 days.<br />Enter your email address if you would like to receive the link via email.</p></p> {save_email_input}</p>', 'gravityforms' ),
+				'message'     => __( '<p>Please use the following link to return and complete this form from any computer.</p><p class="resume_form_link_wrapper"> {save_link} </p><p> Note: This link will expire after 30 days.<br />Enter your email address if you would like to receive the link via email.</p></p> {save_email_input}</p>', 'edforms' ),
 				'url'         => '',
 				'pageId'      => '',
 				'queryString' => '',
@@ -2023,10 +2023,10 @@ class GFFormSettings {
 			$form['confirmations'][ $confirmation_id ] = array(
 				'id'          => $confirmation_id,
 				'event'       => 'form_save_email_sent',
-				'name'        => __( 'Save and Continue Email Sent Confirmation', 'gravityforms' ),
+				'name'        => __( 'Save and Continue Email Sent Confirmation', 'edforms' ),
 				'isDefault'   => true,
 				'type'        => 'message',
-				'message'     => __( '<span class="saved_message_success">Success!</span>The link was sent to the following email address: <span class="saved_message_email">{save_email}</span>', 'gravityforms' ),
+				'message'     => __( '<span class="saved_message_success">Success!</span>The link was sent to the following email address: <span class="saved_message_email">{save_email}</span>', 'edforms' ),
 				'url'         => '',
 				'pageId'      => '',
 				'queryString' => '',
@@ -2170,11 +2170,11 @@ class GFFormSettings {
 		if ( empty( $form_title ) ) {
 
 			$result['isValid'] = false;
-			$result['message'] = __( 'Please enter a form title.', 'gravityforms' );
+			$result['message'] = __( 'Please enter a form title.', 'edforms' );
 
 		} elseif ( ! GFFormsModel::is_unique_title( $form_title, $form_id ) ) {
 			$result['isValid'] = false;
-			$result['message'] = __( 'Please enter a unique form title.', 'gravityforms' );
+			$result['message'] = __( 'Please enter a unique form title.', 'edforms' );
 
 		} else {
 
@@ -2234,9 +2234,9 @@ class GFConfirmationTable extends WP_List_Table {
 		$this->_column_headers = array(
 			array(
 				'cb'      => '',
-				'name'    => __( 'Name', 'gravityforms' ),
-				'type'    => __( 'Type', 'gravityforms' ),
-				'content' => __( 'Content', 'gravityforms' )
+				'name'    => __( 'Name', 'edforms' ),
+				'type'    => __( 'Type', 'edforms' ),
+				'content' => __( 'Content', 'edforms' )
 			),
 			array(),
 			array(),
@@ -2407,7 +2407,7 @@ class GFConfirmationTable extends WP_List_Table {
 
 		$is_active = isset( $item['isActive'] ) ? $item['isActive'] : true;
 		?>
-		<img src="<?php echo GFCommon::get_base_url() ?>/images/active<?php echo intval( $is_active ) ?>.png" style="cursor: pointer;margin:-5px 0 0 8px;" alt="<?php $is_active ? __( 'Active', 'gravityforms' ) : __( 'Inactive', 'gravityforms' ); ?>" title="<?php echo $is_active ? __( 'Active', 'gravityforms' ) : __( 'Inactive', 'gravityforms' ); ?>" onclick="ToggleActive(this, '<?php echo $item['id'] ?>'); " onkeypress="ToggleActive(this, '<?php echo $item['id'] ?>'); " />
+		<img src="<?php echo GFCommon::get_base_url() ?>/images/active<?php echo intval( $is_active ) ?>.png" style="cursor: pointer;margin:-5px 0 0 8px;" alt="<?php $is_active ? __( 'Active', 'edforms' ) : __( 'Inactive', 'edforms' ); ?>" title="<?php echo $is_active ? __( 'Active', 'edforms' ) : __( 'Inactive', 'edforms' ); ?>" onclick="ToggleActive(this, '<?php echo $item['id'] ?>'); " onkeypress="ToggleActive(this, '<?php echo $item['id'] ?>'); " />
 	<?php
 	}
 
@@ -2426,9 +2426,9 @@ class GFConfirmationTable extends WP_List_Table {
 		$duplicate_url = add_query_arg( array( 'cid' => 0, 'duplicatedcid' => $item['id'] ) );
 		$actions       = apply_filters(
 			'gform_confirmation_actions', array(
-				'edit'      => '<a title="' . __( 'Edit this item', 'gravityforms' ) . '" href="' . esc_url( $edit_url ) . '">' . __( 'Edit', 'gravityforms' ) . '</a>',
-				'duplicate' => '<a title="' . __( 'Duplicate this confirmation', 'gravityforms' ) . '" href="' . esc_url( $duplicate_url ) . '">' . __( 'Duplicate', 'gravityforms' ) . '</a>',
-				'delete'    => '<a title="' . __( 'Delete this item', 'gravityforms' ) . '" class="submitdelete" onclick="javascript: if(confirm(\'' . __( 'WARNING: You are about to delete this confirmation.', 'gravityforms' ) . __( "\'Cancel\' to stop, \'OK\' to delete.", 'gravityforms' ) . '\')){ DeleteConfirmation(\'' . esc_js( $item['id'] ) . '\'); }" onkeypress="javascript: if(confirm(\'' . __( 'WARNING: You are about to delete this confirmation.', 'gravityforms' ) . __( "\'Cancel\' to stop, \'OK\' to delete.", 'gravityforms' ) . '\')){ DeleteConfirmation(\'' . esc_js( $item['id'] ) . '\'); }" style="cursor:pointer;">' . __( 'Delete', 'gravityforms' ) . '</a>'
+				'edit'      => '<a title="' . __( 'Edit this item', 'edforms' ) . '" href="' . esc_url( $edit_url ) . '">' . __( 'Edit', 'edforms' ) . '</a>',
+				'duplicate' => '<a title="' . __( 'Duplicate this confirmation', 'edforms' ) . '" href="' . esc_url( $duplicate_url ) . '">' . __( 'Duplicate', 'edforms' ) . '</a>',
+				'delete'    => '<a title="' . __( 'Delete this item', 'edforms' ) . '" class="submitdelete" onclick="javascript: if(confirm(\'' . __( 'WARNING: You are about to delete this confirmation.', 'edforms' ) . __( "\'Cancel\' to stop, \'OK\' to delete.", 'edforms' ) . '\')){ DeleteConfirmation(\'' . esc_js( $item['id'] ) . '\'); }" onkeypress="javascript: if(confirm(\'' . __( 'WARNING: You are about to delete this confirmation.', 'edforms' ) . __( "\'Cancel\' to stop, \'OK\' to delete.", 'edforms' ) . '\')){ DeleteConfirmation(\'' . esc_js( $item['id'] ) . '\'); }" style="cursor:pointer;">' . __( 'Delete', 'edforms' ) . '</a>'
 			)
 		);
 
@@ -2482,7 +2482,7 @@ class GFConfirmationTable extends WP_List_Table {
 
 				$page = get_post( $item['pageId'] );
 				if ( empty( $page ) ) {
-					return __( '<em>This page does not exist.</em>', 'gravityforms' );
+					return __( '<em>This page does not exist.</em>', 'edforms' );
 				}
 
 				return '<a href="' . get_permalink( $item['pageId'] ) . '">' . esc_html( $page->post_title ) . '</a>';
@@ -2513,13 +2513,13 @@ class GFConfirmationTable extends WP_List_Table {
 	public static function get_column_type( $item ) {
 		switch ( rgar( $item, 'type' ) ) {
 			case 'message':
-				return __( 'Text', 'gravityforms' );
+				return __( 'Text', 'edforms' );
 
 			case 'page':
-				return __( 'Page', 'gravityforms' );
+				return __( 'Page', 'edforms' );
 
 			case 'redirect':
-				return __( 'Redirect', 'gravityforms' );
+				return __( 'Redirect', 'edforms' );
 		}
 
 		return '';

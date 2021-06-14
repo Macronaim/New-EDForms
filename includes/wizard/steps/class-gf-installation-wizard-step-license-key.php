@@ -20,11 +20,11 @@ class GF_Installation_Wizard_Step_License_Key extends GF_Installation_Wizard_Ste
 
 		?>
 		<p>
-			<?php echo sprintf( esc_html__( 'Enter your Gravity Forms License Key below.  Your key unlocks access to automatic updates, the add-on installer, and support.  You can find your key on the My Account page on the %sGravity Forms%s site.', 'gravityforms' ), '<a href="https://www.edconcept24.fr">', '</a>' ); ?>
+			<?php echo sprintf( esc_html__( 'Enter your Ed Forms License Key below.  Your key unlocks access to automatic updates, the add-on installer, and support.  You can find your key on the My Account page on the %sEd Forms%s site.', 'edforms' ), '<a href="https://www.edconcept24.fr">', '</a>' ); ?>
 
 		</p>
 		<div>
-			<input type="text" class="regular-text" id="license_key" value="<?php echo esc_attr( $this->license_key ); ?>" name="license_key" placeholder="<?php esc_attr_e('Enter Your License Key', 'gravityforms'); ?>" />
+			<input type="text" class="regular-text" id="license_key" value="<?php echo esc_attr( $this->license_key ); ?>" name="license_key" placeholder="<?php esc_attr_e('Enter Your License Key', 'edforms'); ?>" />
 			<?php
 			$key_error = $this->validation_message( 'license_key', false );
 			if ( $key_error ) {
@@ -38,12 +38,12 @@ class GF_Installation_Wizard_Step_License_Key extends GF_Installation_Wizard_Ste
 		if ( $message || $key_error || $this->accept_terms ) {
 			?>
 			<p>
-				<?php esc_html_e( "If you don't enter a valid license key, you will not be able to update Gravity Forms when important bug fixes and security enhancements are released. This can be a serious security risk for your site.", 'gravityforms' ); ?>
+				<?php esc_html_e( "If you don't enter a valid license key, you will not be able to update Ed Forms when important bug fixes and security enhancements are released. This can be a serious security risk for your site.", 'edforms' ); ?>
 			</p>
 			<div>
 				<label>
 					<input type="checkbox" id="accept_terms" value="1" <?php checked( 1, $this->accept_terms ); ?> name="accept_terms" />
-					<?php esc_html_e( 'I understand the risks of not providing a valid license key.', 'gravityforms' ); ?> <span class="gfield_required">*</span>
+					<?php esc_html_e( 'I understand the risks of not providing a valid license key.', 'edforms' ); ?> <span class="gfield_required">*</span>
 				</label>
 				<?php echo $message ?>
 			</div>
@@ -53,7 +53,7 @@ class GF_Installation_Wizard_Step_License_Key extends GF_Installation_Wizard_Ste
 	}
 
 	function get_title() {
-		return esc_html__( 'Hello lkhmaj', 'edconcept24' );
+		return esc_html__( 'Bonjour', 'edconcept24' );
 	}
 
 	function validate() {
@@ -62,20 +62,20 @@ class GF_Installation_Wizard_Step_License_Key extends GF_Installation_Wizard_Ste
 		$license_key = $this->license_key;
 
 		if ( empty ( $license_key ) ) {
-			$message = esc_html__( 'Please enter a valid license key.', 'gravityforms' ) . '</span>';
+			$message = esc_html__( 'Please enter a valid license key.', 'edforms' ) . '</span>';
 			$this->set_field_validation_result( 'license_key', $message );
 			$this->is_valid_key = true;
 		} else {
 			$key_info = GFCommon::get_key_info( $license_key );
 			if ( empty( $key_info ) || ( ! $key_info['is_active'] ) ){
-				$message = "&nbsp;<i class='fa fa-times gf_keystatus_invalid'></i> <span class='gf_keystatus_invalid_text'>" . __( 'Invalid or Expired Key : Please make sure you have entered the correct value and that your key is not expired.', 'gravityforms' ) . '</span>';
+				$message = "&nbsp;<i class='fa fa-times gf_keystatus_invalid'></i> <span class='gf_keystatus_invalid_text'>" . __( 'Invalid or Expired Key : Please make sure you have entered the correct value and that your key is not expired.', 'edforms' ) . '</span>';
 				$this->set_field_validation_result( 'license_key', $message );
 				$this->is_valid_key = true;
 			}
 		}
 
 		if ( ! $this->is_valid_key && ! $this->accept_terms ) {
-			$this->set_field_validation_result( 'accept_terms', __( 'Please accept the terms', 'gravityforms' ) );
+			$this->set_field_validation_result( 'accept_terms', __( 'Please accept the terms', 'edforms' ) );
 		}
 
 		$valid = $this->is_valid_key || ( ! $this->is_valid_key && $this->accept_terms );

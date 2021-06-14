@@ -99,11 +99,11 @@ abstract class GF_Installation_Wizard_Step extends stdClass {
 	}
 
 	function get_next_button_text(){
-		return __( 'Next', 'gravityforms' );
+		return __( 'Next', 'edforms' );
 	}
 
 	function get_previous_button_text(){
-		return __( 'Back', 'gravityforms' );
+		return __( 'Back', 'edforms' );
 	}
 
 	function update( $posted_values = array() ){

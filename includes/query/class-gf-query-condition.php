@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The Gravity Forms Query Condition class.
+ * The Ed Forms Query Condition class.
  */
 class GF_Query_Condition {
 	/**

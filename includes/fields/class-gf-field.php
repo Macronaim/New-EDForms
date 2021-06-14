@@ -7,7 +7,7 @@ if ( ! class_exists( 'GFForms' ) ) {
 /**
  * Class GF_Field
  *
- * This class provides the base functionality for developers when creating new fields for Gravity Forms. It facilitates the following:
+ * This class provides the base functionality for developers when creating new fields for Ed Forms. It facilitates the following:
  *  Adding a button for the field to the form editor
  *  Defining the field title to be used in the form editor
  *  Defining which settings should be present when editing the field
@@ -829,7 +829,7 @@ class GF_Field extends stdClass implements ArrayAccess {
 			'shipping',
 			'creditcard'
 		);
-		$duplicate_field_link = ! in_array( $this->type, $duplicate_disabled ) ? "<a class='field_duplicate_icon' id='gfield_duplicate_{$this->id}' title='" . esc_attr__( 'click to duplicate this field', 'gravityforms' ) . "' href='#' onclick='StartDuplicateField(this); return false;' onkeypress='StartDuplicateField(this); return false;'><i class='fa fa-files-o fa-lg'></i></a>" : '';
+		$duplicate_field_link = ! in_array( $this->type, $duplicate_disabled ) ? "<a class='field_duplicate_icon' id='gfield_duplicate_{$this->id}' title='" . esc_attr__( 'click to duplicate this field', 'edforms' ) . "' href='#' onclick='StartDuplicateField(this); return false;' onkeypress='StartDuplicateField(this); return false;'><i class='fa fa-files-o fa-lg'></i></a>" : '';
 
 		/**
 		 * This filter allows for modification of the form field duplicate link. This will change the link for all fields
@@ -838,7 +838,7 @@ class GF_Field extends stdClass implements ArrayAccess {
 		 */
 		$duplicate_field_link = apply_filters( 'gform_duplicate_field_link', $duplicate_field_link );
 
-		$delete_field_link = "<a class='field_delete_icon' id='gfield_delete_{$this->id}' title='" . esc_attr__( 'click to delete this field', 'gravityforms' ) . "' href='#' onclick='DeleteField(this); return false;' onkeypress='DeleteField(this); return false;'><i class='fa fa-times fa-lg'></i></a>";
+		$delete_field_link = "<a class='field_delete_icon' id='gfield_delete_{$this->id}' title='" . esc_attr__( 'click to delete this field', 'edforms' ) . "' href='#' onclick='DeleteField(this); return false;' onkeypress='DeleteField(this); return false;'><i class='fa fa-times fa-lg'></i></a>";
 
 		/**
 		 * This filter allows for modification of a form field delete link. This will change the link for all fields
@@ -852,7 +852,7 @@ class GF_Field extends stdClass implements ArrayAccess {
 		$is_entry_detail = $this->is_entry_detail();
 		$is_admin        = $is_form_editor || $is_entry_detail;
 
-		$admin_buttons = $is_admin ? "<div class='gfield_admin_icons'><div class='gfield_admin_header_title'>{$field_type_title} : " . esc_html__( 'Field ID', 'gravityforms' ) . " {$this->id}</div>" . $delete_field_link . $duplicate_field_link . "<a href='javascript:void(0);' class='field_edit_icon edit_icon_collapsed' aria-expanded='false' title='" . esc_attr__( 'click to expand and edit the options for this field', 'gravityforms' ) . "'><i class='fa fa-caret-down fa-lg'></i></a></div>" : '';
+		$admin_buttons = $is_admin ? "<div class='gfield_admin_icons'><div class='gfield_admin_header_title'>{$field_type_title} : " . esc_html__( 'Field ID', 'edforms' ) . " {$this->id}</div>" . $delete_field_link . $duplicate_field_link . "<a href='javascript:void(0);' class='field_edit_icon edit_icon_collapsed' aria-expanded='false' title='" . esc_attr__( 'click to expand and edit the options for this field', 'edforms' ) . "'><i class='fa fa-caret-down fa-lg'></i></a></div>" : '';
 
 		return $admin_buttons;
 	}

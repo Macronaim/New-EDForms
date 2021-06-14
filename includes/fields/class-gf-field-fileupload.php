@@ -10,7 +10,7 @@ class GF_Field_FileUpload extends GF_Field {
 	public $type = 'fileupload';
 
 	public function get_form_editor_field_title() {
-		return esc_attr__( 'File Upload', 'gravityforms' );
+		return esc_attr__( 'File Upload', 'edforms' );
 	}
 
 	function get_form_editor_field_settings() {
@@ -48,11 +48,11 @@ class GF_Field_FileUpload extends GF_Field {
 						case UPLOAD_ERR_INI_SIZE :
 						case UPLOAD_ERR_FORM_SIZE :
 							GFCommon::log_debug( __METHOD__ . '(): File ' . $_FILES[ $input_name ]['name'] . ' exceeds size limit. Maximum file size: ' . $max_upload_size_in_mb . 'MB' );
-							$fileupload_validation_message = sprintf( esc_html__( 'File exceeds size limit. Maximum file size: %dMB', 'gravityforms' ), $max_upload_size_in_mb );
+							$fileupload_validation_message = sprintf( esc_html__( 'File exceeds size limit. Maximum file size: %dMB', 'edforms' ), $max_upload_size_in_mb );
 							break;
 						default :
 							GFCommon::log_debug( __METHOD__ . '(): The following error occurred while uploading - ' . $_FILES[ $input_name ]['error'] );
-							$fileupload_validation_message = sprintf( esc_html__( 'There was an error while uploading the file. Error code: %d', 'gravityforms' ), $_FILES[ $input_name ]['error'] );
+							$fileupload_validation_message = sprintf( esc_html__( 'There was an error while uploading the file. Error code: %d', 'edforms' ), $_FILES[ $input_name ]['error'] );
 					}
 					$this->validation_message = empty( $this->errorMessage ) ? $fileupload_validation_message : $this->errorMessage;
 					return;
@@ -60,7 +60,7 @@ class GF_Field_FileUpload extends GF_Field {
 			} elseif ( $_FILES[ $input_name ]['size'] > 0 && $_FILES[ $input_name ]['size'] > $max_upload_size_in_bytes ) {
 				$this->failed_validation = true;
 				GFCommon::log_debug( __METHOD__ . '(): File ' . $_FILES[ $input_name ]['name'] . ' exceeds size limit. Maximum file size: ' . $max_upload_size_in_mb . 'MB' );
-				$this->validation_message = sprintf( esc_html__( 'File exceeds size limit. Maximum file size: %dMB', 'gravityforms' ), $max_upload_size_in_mb );
+				$this->validation_message = sprintf( esc_html__( 'File exceeds size limit. Maximum file size: %dMB', 'edforms' ), $max_upload_size_in_mb );
 				return;
 			}
 
@@ -76,7 +76,7 @@ class GF_Field_FileUpload extends GF_Field {
 				if ( is_wp_error( $check_result ) ) {
 					$this->failed_validation = true;
 					GFCommon::log_debug( __METHOD__ . '(): The uploaded file type is not allowed.' );
-					$this->validation_message = esc_html__( 'The uploaded file type is not allowed.', 'gravityforms' );
+					$this->validation_message = esc_html__( 'The uploaded file type is not allowed.', 'edforms' );
 					return;
 				}
 			}
@@ -92,13 +92,13 @@ class GF_Field_FileUpload extends GF_Field {
 				if ( GFCommon::file_name_has_disallowed_extension( rgar( $file_name, 'uploaded_filename' ) ) ) {
 					GFCommon::log_debug( __METHOD__ . '(): The file has a disallowed extension, failing validation.' );
 					$this->failed_validation  = true;
-					$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'The uploaded file type is not allowed.', 'gravityforms' ) : $this->errorMessage;
+					$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'The uploaded file type is not allowed.', 'edforms' ) : $this->errorMessage;
 				}
 			} else {
 				if ( ! empty( $info['basename'] ) && ! GFCommon::match_file_extension( rgar( $file_name, 'uploaded_filename' ), $allowed_extensions ) ) {
 					GFCommon::log_debug( __METHOD__ . '(): The file is of a type that cannot be uploaded, failing validation.' );
 					$this->failed_validation  = true;
-					$this->validation_message = empty( $this->errorMessage ) ? sprintf( esc_html__( 'The uploaded file type is not allowed. Must be one of the following: %s', 'gravityforms' ), strtolower( $this->allowedExtensions ) ) : $this->errorMessage;
+					$this->validation_message = empty( $this->errorMessage ) ? sprintf( esc_html__( 'The uploaded file type is not allowed. Must be one of the following: %s', 'edforms' ), strtolower( $this->allowedExtensions ) ) : $this->errorMessage;
 				}
 			}
 		}
@@ -139,7 +139,7 @@ class GF_Field_FileUpload extends GF_Field {
 		$max_upload_size = ! $is_admin && $this->maxFileSize > 0 ? $this->maxFileSize * 1048576 : wp_max_upload_size();
 		$allowed_extensions = ! empty( $this->allowedExtensions ) ? join( ',', GFCommon::clean_extensions( explode( ',', strtolower( $this->allowedExtensions ) ) ) ) : array();
 		if ( ! empty( $allowed_extensions ) ) {
-			$extensions_message = esc_attr( sprintf( __( 'Accepted file types: %s.', 'gravityforms' ), str_replace( ',', ', ', $allowed_extensions ) ) );
+			$extensions_message = esc_attr( sprintf( __( 'Accepted file types: %s.', 'edforms' ), str_replace( ',', ', ', $allowed_extensions ) ) );
 		} else {
 			$extensions_message = '';
 		}
@@ -174,7 +174,7 @@ class GF_Field_FileUpload extends GF_Field {
 					'flash_swf_url'       => includes_url( 'js/plupload/plupload.flash.swf' ),
 					'silverlight_xap_url' => includes_url( 'js/plupload/plupload.silverlight.xap' ),
 					'filters'             => array(
-						'mime_types'    => array( array( 'title' => __( 'Allowed Files', 'gravityforms' ), 'extensions' => $allowed_extensions ) ),
+						'mime_types'    => array( array( 'title' => __( 'Allowed Files', 'edforms' ), 'extensions' => $allowed_extensions ) ),
 						'max_file_size' => $max_upload_size . 'b',
 					),
 					'multipart'           => true,
@@ -197,14 +197,14 @@ class GF_Field_FileUpload extends GF_Field {
 				// plupload 2 was introduced in WordPress 3.9. Plupload 1 accepts a slightly different init array.
 				if ( version_compare( get_bloginfo( 'version' ), '3.9-RC1', '<' ) ) {
 					$plupload_init['max_file_size'] = $max_upload_size . 'b';
-					$plupload_init['filters']       = array( array( 'title' => __( 'Allowed Files', 'gravityforms' ), 'extensions' => $allowed_extensions ) );
+					$plupload_init['filters']       = array( array( 'title' => __( 'Allowed Files', 'edforms' ), 'extensions' => $allowed_extensions ) );
 				}
 			}
 
 			$plupload_init = gf_apply_filters( array( 'gform_plupload_settings', $form_id ), $plupload_init, $form_id, $this );
 
-			$drop_files_here_text = esc_html__( 'Drop files here or', 'gravityforms' );
-			$select_files_text    = esc_attr__( 'Select files', 'gravityforms' );
+			$drop_files_here_text = esc_html__( 'Drop files here or', 'edforms' );
+			$select_files_text    = esc_attr__( 'Select files', 'edforms' );
 
 			$plupload_init_json = htmlspecialchars( json_encode( $plupload_init ), ENT_QUOTES, 'UTF-8' );
 			$upload             = "<div id='{$container_id}' data-settings='{$plupload_init_json}' class='gform_fileupload_multifile'>
@@ -250,7 +250,7 @@ class GF_Field_FileUpload extends GF_Field {
 				/**
 				 * Allow for override of SSL replacement.
 				 *
-				 * By default Gravity Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
+				 * By default Ed Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
 				 * This is not ideal for all situations, particularly domain mapping. Setting $field_ssl to false will prevent
 				 * the override.
 				 *
@@ -265,8 +265,8 @@ class GF_Field_FileUpload extends GF_Field {
 				if ( GFCommon::is_ssl() && strpos( $file_url, 'http:' ) !== false && $field_ssl === true ) {
 					$file_url = str_replace( 'http:', 'https:', $file_url );
 				}
-				$download_file_text  = esc_attr__( 'Download file', 'gravityforms' );
-				$delete_file_text    = esc_attr__( 'Delete file', 'gravityforms' );
+				$download_file_text  = esc_attr__( 'Download file', 'edforms' );
+				$delete_file_text    = esc_attr__( 'Delete file', 'edforms' );
 				$file_index          = intval( $file_index );
 				$file_url            = esc_attr( $file_url );
 				$display_file_url    = GFCommon::truncate_url( $file_url );
@@ -292,7 +292,7 @@ class GF_Field_FileUpload extends GF_Field {
 				$preview    = sprintf( "<div id='%s'>", $file_list_id );
 				$file_infos = $multiple_files ? $uploaded_files : array( $file_infos );
 				foreach ( $file_infos as $file_info ) {
-					$file_upload_markup = apply_filters( 'gform_file_upload_markup', "<img alt='" . esc_attr__( 'Delete file', 'gravityforms' ) . "' title='" . esc_attr__( 'Delete file', 'gravityforms' ) . "' class='gform_delete' src='" . GFCommon::get_base_url() . "/images/delete.png' onclick='gformDeleteUploadedFile({$form_id}, {$id}, this);' onkeypress='gformDeleteUploadedFile({$form_id}, {$id}, this);' /> <strong>" . esc_html( $file_info['uploaded_filename'] ) . '</strong>', $file_info, $form_id, $id );
+					$file_upload_markup = apply_filters( 'gform_file_upload_markup', "<img alt='" . esc_attr__( 'Delete file', 'edforms' ) . "' title='" . esc_attr__( 'Delete file', 'edforms' ) . "' class='gform_delete' src='" . GFCommon::get_base_url() . "/images/delete.png' onclick='gformDeleteUploadedFile({$form_id}, {$id}, this);' onkeypress='gformDeleteUploadedFile({$form_id}, {$id}, this);' /> <strong>" . esc_html( $file_info['uploaded_filename'] ) . '</strong>', $file_info, $form_id, $id );
 					$preview .= "<div class='ginput_preview'>{$file_upload_markup}</div>";
 				}
 				$preview .= '</div>';
@@ -434,7 +434,7 @@ class GF_Field_FileUpload extends GF_Field {
 			$uploaded_files_arr = empty( $value ) ? array() : json_decode( $value, true );
 			$file_count         = count( $uploaded_files_arr );
 			if ( $file_count > 1 ) {
-				$value = empty( $uploaded_files_arr ) ? '' : sprintf( esc_html__( '%d files', 'gravityforms' ), count( $uploaded_files_arr ) );
+				$value = empty( $uploaded_files_arr ) ? '' : sprintf( esc_html__( '%d files', 'edforms' ), count( $uploaded_files_arr ) );
 				return $value;
 			} elseif ( $file_count == 1 ) {
 				$value = current( $uploaded_files_arr );
@@ -449,7 +449,7 @@ class GF_Field_FileUpload extends GF_Field {
 			$thumb     = GFEntryList::get_icon_url( $file_path );
 			$file_path = $this->get_download_url( $file_path );
 			$file_path = esc_attr( $file_path );
-			$value     = "<a href='$file_path' target='_blank' title='" . esc_attr__( 'Click to view', 'gravityforms' ) . "'><img src='$thumb'/></a>";
+			$value     = "<a href='$file_path' target='_blank' title='" . esc_attr__( 'Click to view', 'edforms' ) . "'><img src='$thumb'/></a>";
 		}
 		return $value;
 	}
@@ -469,7 +469,7 @@ class GF_Field_FileUpload extends GF_Field {
 					/**
 					 * Allow for override of SSL replacement
 					 *
-					 * By default Gravity Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
+					 * By default Ed Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
 					 * This is not ideal for all situations, particularly domain mapping. Setting $field_ssl to false will prevent
 					 * the override.
 					 *
@@ -494,7 +494,7 @@ class GF_Field_FileUpload extends GF_Field {
 					 * @param GF_Field_FileUpload $field     The field object for further context.
 					 */
 					$file_path    = str_replace( ' ', '%20', apply_filters( 'gform_fileupload_entry_value_file_path', $file_path, $this ) );
-					$output_arr[] = $format == 'text' ? $file_path : sprintf( "<li><a href='%s' target='_blank' title='%s'>%s</a></li>", esc_attr( $file_path ), esc_attr__( 'Click to view', 'gravityforms' ), $info['basename'] );
+					$output_arr[] = $format == 'text' ? $file_path : sprintf( "<li><a href='%s' target='_blank' title='%s'>%s</a></li>", esc_attr( $file_path ), esc_attr__( 'Click to view', 'edforms' ), $info['basename'] );
 
 				}
 				$output = join( PHP_EOL, $output_arr );

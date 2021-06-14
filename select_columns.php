@@ -45,7 +45,7 @@ class GFSelectColumns {
 
 		$form_id = absint( $_GET['id'] );
 		if ( empty( $form_id ) ) {
-			echo __( 'Oops! We could not locate your form. Please try again.', 'gravityforms' );
+			echo __( 'Oops! We could not locate your form. Please try again.', 'edforms' );
 			exit;
 		}
 		?>
@@ -181,23 +181,23 @@ class GFSelectColumns {
 		$columns = RGFormsModel::get_grid_columns( $form_id );
 		$field_ids = array_keys( $columns );
 		$form = RGFormsModel::get_form_meta( $form_id );
-		array_push( $form['fields'], array( 'id' => 'id', 'label' => __( 'Entry Id', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'date_created', 'label' => __( 'Entry Date', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'ip', 'label' => __( 'User IP', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'source_url', 'label' => __( 'Source Url', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_status', 'label' => __( 'Payment Status', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'transaction_id', 'label' => __( 'Transaction Id', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_amount', 'label' => __( 'Payment Amount', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'payment_date', 'label' => __( 'Payment Date', 'gravityforms' ) ) );
-		array_push( $form['fields'], array( 'id' => 'created_by', 'label' => __( 'User', 'gravityforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'id', 'label' => __( 'Entry Id', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'date_created', 'label' => __( 'Entry Date', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'ip', 'label' => __( 'User IP', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'source_url', 'label' => __( 'Source Url', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_status', 'label' => __( 'Payment Status', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'transaction_id', 'label' => __( 'Transaction Id', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_amount', 'label' => __( 'Payment Amount', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'payment_date', 'label' => __( 'Payment Date', 'edforms' ) ) );
+		array_push( $form['fields'], array( 'id' => 'created_by', 'label' => __( 'User', 'edforms' ) ) );
 
 		$form = self::get_selectable_entry_meta( $form );
 		$form = GFFormsModel::convert_field_objects( $form );
 		?>
-		<div class="panel-instructions"><?php esc_html_e( 'Drag & drop to order and select which columns are displayed in the entries table.', 'gravityforms' ) ?></div>
+		<div class="panel-instructions"><?php esc_html_e( 'Drag & drop to order and select which columns are displayed in the entries table.', 'edforms' ) ?></div>
 		<div class="gcolumn_wrapper">
 			<div class="gcolumn_container_left">
-				<div class="gform_select_column_heading"><?php esc_html_e( 'Active Columns', 'gravityforms' ); ?></div>
+				<div class="gform_select_column_heading"><?php esc_html_e( 'Active Columns', 'edforms' ); ?></div>
 				<ul id="sortable_selected" class="sortable_connected">
 				<?php
 				foreach ( $columns as $field_id => $field_info ) {
@@ -212,7 +212,7 @@ class GFSelectColumns {
 			<div class="column-arrow-mid"></div>
 
 			<div class="gcolumn_container_right" id="available_column">
-				<div class="gform_select_column_heading"> <?php esc_html_e( 'Inactive Columns', 'gravityforms' ); ?></div>
+				<div class="gform_select_column_heading"> <?php esc_html_e( 'Inactive Columns', 'edforms' ); ?></div>
 				<ul id="sortable_available" class="sortable_connected">
 				<?php
 				foreach ( $form['fields'] as $field ) {
@@ -249,8 +249,8 @@ class GFSelectColumns {
 		</div>
 
 		<div class="panel-buttons">
-			<input type="button" value="  <?php esc_attr_e( 'Save', 'gravityforms' ); ?>  " class="button-primary" onclick="SelectColumns();" onkeypress="SelectColumns();" />&nbsp;
-			<input type="button" value="<?php esc_attr_e( 'Cancel', 'gravityforms' ); ?>" class="button" onclick="self.parent.tb_remove();" onkeypress="self.parent.tb_remove();" />
+			<input type="button" value="  <?php esc_attr_e( 'Save', 'edforms' ); ?>  " class="button-primary" onclick="SelectColumns();" onkeypress="SelectColumns();" />&nbsp;
+			<input type="button" value="<?php esc_attr_e( 'Cancel', 'edforms' ); ?>" class="button" onclick="self.parent.tb_remove();" onkeypress="self.parent.tb_remove();" />
 		</div>
 
 		</body>

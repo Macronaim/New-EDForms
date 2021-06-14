@@ -4,22 +4,22 @@ if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
 
-if ( ! defined( 'GRAVITY_API_URL' ) ) {
-	define( 'GRAVITY_API_URL', 'https://gravityapi.com/wp-json/gravityapi/v1' );
+if ( ! defined( 'ED_API_URL' ) ) {
+	define( 'ED_API_URL', 'https://edapi.com/wp-json/edapi/v1' );
 }
 
-if ( ! class_exists( 'Gravity_Api' ) ) {
+if ( ! class_exists( 'Ed_Api' ) ) {
 
 	/**
-	 * Client-side API wrapper for interacting with the Gravity APIs.
+	 * Client-side API wrapper for interacting with the Ed APIs.
 	 *
-	 * @package    Gravity Forms
-	 * @subpackage Gravity_Api
+	 * @package    Ed Forms
+	 * @subpackage Ed_Api
 	 * @since      1.9
 	 * @access     public
 	 */
 
-	class Gravity_Api {
+	class Ed_Api {
 
 		private static $instance = null;
 
@@ -159,14 +159,14 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 		private function get_site_auth_header( $site_key, $site_secret ) {
 
 			$auth = base64_encode( "{$site_key}:{$site_secret}" );
-			return array( 'Authorization' => 'GravityAPI ' . $auth );
+			return array( 'Authorization' => 'EdAPI ' . $auth );
 
 		}
 
 		private function get_license_auth_header( $license_key_md5 ) {
 
 			$auth = base64_encode( "license:{$license_key_md5}" );
-			return array( 'Authorization' => 'GravityAPI ' . $auth );
+			return array( 'Authorization' => 'EdAPI ' . $auth );
 
 		}
 
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 			// WP docs say method should be uppercase
 			$options['method'] = strtoupper( $options['method'] );
 
-			$request_url  = $this->get_gravity_api_url() . $resource;
+			$request_url  = $this->get_ed_api_url() . $resource;
 			$raw_response = wp_remote_request( $request_url, $options );
 
 
@@ -224,8 +224,8 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 
 		public function get_site_key() {
 
-			if ( defined( 'GRAVITY_API_SITE_KEY' ) ) {
-				return GRAVITY_API_SITE_KEY;
+			if ( defined( 'ED_API_SITE_KEY' ) ) {
+				return ED_API_SITE_KEY;
 			}
 
 			$site_key = get_option( 'gf_site_key' );
@@ -237,8 +237,8 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 		}
 
 		public function get_site_secret() {
-			if ( defined( 'GRAVITY_API_SITE_SECRET' ) ) {
-				return GRAVITY_API_SITE_SECRET;
+			if ( defined( 'ED_API_SITE_SECRET' ) ) {
+				return ED_API_SITE_SECRET;
 			}
 			$site_secret = get_option( 'gf_site_secret' );
 			if ( empty( $site_secret ) ) {
@@ -247,8 +247,8 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 			return $site_secret;
 		}
 
-		public function get_gravity_api_url() {
-			return trailingslashit( GRAVITY_API_URL );
+		public function get_ed_api_url() {
+			return trailingslashit( ED_API_URL );
 		}
 
 		public function is_site_registered() {
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Gravity_Api' ) ) {
 	}
 
 	function gapi() {
-		return Gravity_Api::get_instance();
+		return Ed_Api::get_instance();
 	}
 
 	gapi();

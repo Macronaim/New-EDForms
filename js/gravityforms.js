@@ -1401,7 +1401,7 @@ function gformValidateFileSize( field, max_file_size ) {
 	if ( file && file.size > max_file_size ) {
 
 		// Set validation message.
-		validation_element.text( file.name + " - " + gform_gravityforms.strings.file_exceeds_limit );
+		validation_element.text( file.name + " - " + gform_edforms.strings.file_exceeds_limit );
 		
 		// Unset file selection.
 		var input = jQuery( field );
@@ -1422,8 +1422,8 @@ function gformValidateFileSize( field, max_file_size ) {
 
 (function (gfMultiFileUploader, $) {
     gfMultiFileUploader.uploaders = {};
-    var strings = typeof gform_gravityforms != 'undefined' ? gform_gravityforms.strings : {};
-    var imagesUrl = typeof gform_gravityforms != 'undefined' ? gform_gravityforms.vars.images_url : "";
+    var strings = typeof gform_edforms != 'undefined' ? gform_edforms.strings : {};
+    var imagesUrl = typeof gform_edforms != 'undefined' ? gform_edforms.vars.images_url : "";
 
 
 	$(document).bind('gform_post_render', function(e, formID){
@@ -1840,7 +1840,7 @@ function gformExtractInputIndex( inputId ) {
     return ! inputIndex ? false : inputIndex;
 }
 
-jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( event ) {
+jQuery( document ).on( 'submit.edforms', '.gform_wrapper form', function( event ) {
 
 	var formWrapper = jQuery( this ).closest( '.gform_wrapper' ),
 		formID = formWrapper.attr( 'id' ).split( '_' )[ 2 ],

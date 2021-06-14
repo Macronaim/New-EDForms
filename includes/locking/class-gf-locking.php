@@ -196,18 +196,18 @@ abstract class GFLocking {
 
 	protected function get_strings() {
 		$strings = array(
-			'currently_locked'  => esc_html__( 'This page is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'gravityforms' ),
-			'accept'            => esc_html__( 'Accept', 'gravityforms' ),
-			'cancel'            => esc_html__( 'Cancel', 'gravityforms' ),
-			'currently_editing' => esc_html__( '%s is currently editing', 'gravityforms' ),
-			'taken_over'        => esc_html__( '%s has taken over and is currently editing.', 'gravityforms' ),
-			'lock_requested'    => esc_html__( '%s has requested permission to take over control.', 'gravityforms' ),
-			'gained_control'    => esc_html__( 'You now have control', 'gravityforms' ),
-			'request_pending'   => esc_html__( 'Pending', 'gravityforms' ),
-			'no_response'       => esc_html__( 'No response', 'gravityforms' ),
-			'request_again'     => esc_html__( 'Request again', 'gravityforms' ),
-			'request_error'     => esc_html__( 'Error', 'gravityforms' ),
-			'request_rejected'  => esc_html__( 'Your request was rejected', 'gravityforms' ),
+			'currently_locked'  => esc_html__( 'This page is currently locked. Click on the "Request Control" button to let %s know you\'d like to take over.', 'edforms' ),
+			'accept'            => esc_html__( 'Accept', 'edforms' ),
+			'cancel'            => esc_html__( 'Cancel', 'edforms' ),
+			'currently_editing' => esc_html__( '%s is currently editing', 'edforms' ),
+			'taken_over'        => esc_html__( '%s has taken over and is currently editing.', 'edforms' ),
+			'lock_requested'    => esc_html__( '%s has requested permission to take over control.', 'edforms' ),
+			'gained_control'    => esc_html__( 'You now have control', 'edforms' ),
+			'request_pending'   => esc_html__( 'Pending', 'edforms' ),
+			'no_response'       => esc_html__( 'No response', 'edforms' ),
+			'request_again'     => esc_html__( 'Request again', 'edforms' ),
+			'request_error'     => esc_html__( 'Error', 'edforms' ),
+			'request_rejected'  => esc_html__( 'Your request was rejected', 'edforms' ),
 		);
 
 		return $strings;
@@ -282,12 +282,12 @@ abstract class GFLocking {
 		$result = array();
 		if ( ! $lock_holder_user_id ) {
 			$this->set_lock( $object_id );
-			$result['html']   = __( 'You now have control', 'gravityforms' );
+			$result['html']   = __( 'You now have control', 'edforms' );
 			$result['status'] = 'lock_obtained';
 		} else {
 			$user = get_userdata( $lock_holder_user_id );
 			$this->update_lock_request_meta( $object_id, $user_id );
-			$result['html']   = sprintf( __( 'Your request has been sent to %s.', 'gravityforms' ), $user->display_name );
+			$result['html']   = sprintf( __( 'Your request has been sent to %s.', 'edforms' ), $user->display_name );
 			$result['status'] = 'lock_requested';
 		}
 
@@ -487,8 +487,8 @@ abstract class GFLocking {
                             <p class="currently-editing" tabindex="0">' . sprintf( $this->get_string( 'currently_locked' ), $user->display_name ) . '</p>
                             <p>
 
-                                <a id="gform-take-over-button" style="display:none" class="button button-primary wp-tab-first" href="' . esc_url( add_query_arg( 'get-edit-lock', '1', $edit_url ) ) . '">' . __( 'Take Over', 'gravityforms' ) . '</a>
-                                <button id="gform-lock-request-button" class="button button-primary wp-tab-last">' . __( 'Request Control', 'gravityforms' ) . '</button>
+                                <a id="gform-take-over-button" style="display:none" class="button button-primary wp-tab-first" href="' . esc_url( add_query_arg( 'get-edit-lock', '1', $edit_url ) ) . '">' . __( 'Take Over', 'edforms' ) . '</a>
+                                <button id="gform-lock-request-button" class="button button-primary wp-tab-last">' . __( 'Request Control', 'edforms' ) . '</button>
                                 <a class="button" href="' . esc_url( $this->_redirect_url ) . '">' . $this->get_string( 'cancel' ) . '</a>
                             </p>
                             <div id="gform-lock-request-status">
@@ -505,7 +505,7 @@ abstract class GFLocking {
                             </p>
                             <p>
                                 <a id="gform-release-lock-button" class="button button-primary wp-tab-last"  href="' . esc_url( add_query_arg( 'release-edit-lock', '1', $edit_url ) ) . '">' . $this->get_string( 'accept' ) . '</a>
-                                <button id="gform-reject-lock-request-button" style="display:none"  class="button button-primary wp-tab-last">' . __( 'Reject Request', 'gravityforms' ) . '</button>
+                                <button id="gform-reject-lock-request-button" style="display:none"  class="button button-primary wp-tab-last">' . __( 'Reject Request', 'edforms' ) . '</button>
                             </p>
                         </div>';
 

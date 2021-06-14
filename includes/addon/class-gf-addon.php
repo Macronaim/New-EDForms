@@ -11,7 +11,7 @@ if ( ! class_exists( 'GFForms' ) ) {
 /**
  * Class GFAddOn
  *
- * Handles all tasks mostly common to any Gravity Forms Add-On, including third party ones.
+ * Handles all tasks mostly common to any Ed Forms Add-On, including third party ones.
  */
 abstract class GFAddOn {
 
@@ -20,15 +20,15 @@ abstract class GFAddOn {
 	 */
 	protected $_version;
 	/**
-	 * @var string Gravity Forms minimum version requirement
+	 * @var string Ed Forms minimum version requirement
 	 */
-	protected $_min_gravityforms_version;
+	protected $_min_edforms_version;
 	/**
 	 * @var string URL-friendly identifier used for form settings, add-on settings, text domain localization...
 	 */
 	protected $_slug;
 	/**
-	 * @var string Relative path to the plugin from the plugins folder. Example "gravityforms/gravityforms.php"
+	 * @var string Relative path to the plugin from the plugins folder. Example "edforms/edforms.php"
 	 */
 	protected $_path;
 	/**
@@ -36,11 +36,11 @@ abstract class GFAddOn {
 	 */
 	protected $_full_path;
 	/**
-	 * @var string URL to the Gravity Forms website. Example: 'http://www.edconcept24.fr' OR affiliate link.
+	 * @var string URL to the Ed Forms website. Example: 'http://www.edconcept24.fr' OR affiliate link.
 	 */
 	protected $_url;
 	/**
-	 * @var string Title of the plugin to be used on the settings page, form settings and plugins page. Example: 'Gravity Forms MailChimp Add-On'
+	 * @var string Title of the plugin to be used on the settings page, form settings and plugins page. Example: 'Ed Forms MailChimp Add-On'
 	 */
 	protected $_title;
 	/**
@@ -115,8 +115,8 @@ abstract class GFAddOn {
 
 		if ( $this->_enable_rg_autoupgrade ) {
 			require_once( 'class-gf-auto-upgrade.php' );
-			$is_gravityforms_supported = $this->is_gravityforms_supported( $this->_min_gravityforms_version );
-			new GFAutoUpgrade( $this->_slug, $this->_version, $this->_min_gravityforms_version, $this->_title, $this->_full_path, $this->_path, $this->_url, $is_gravityforms_supported );
+			$is_edforms_supported = $this->is_edforms_supported( $this->_min_edforms_version );
+			new GFAutoUpgrade( $this->_slug, $this->_version, $this->_min_edforms_version, $this->_title, $this->_full_path, $this->_path, $this->_url, $is_edforms_supported );
 		}
 
 		$this->pre_init();
@@ -184,7 +184,7 @@ abstract class GFAddOn {
 	 */
 	public function pre_init() {
 
-		if ( $this->is_gravityforms_supported() ) {
+		if ( $this->is_edforms_supported() ) {
 
 			//Entry meta
 			if ( $this->method_is_overridden( 'get_entry_meta' ) ) {
@@ -202,15 +202,15 @@ abstract class GFAddOn {
 
 		add_filter( 'gform_logging_supported', array( $this, 'set_logging_supported' ) );
 
-		add_action( 'gform_post_upgrade', array( $this, 'post_gravityforms_upgrade' ), 10, 3 );
+		add_action( 'gform_post_upgrade', array( $this, 'post_edforms_upgrade' ), 10, 3 );
 
 		// Get minimum requirements state.
 		$meets_requirements = $this->meets_minimum_requirements();
 
 		if ( RG_CURRENT_PAGE == 'admin-ajax.php' ) {
 
-			//If gravity forms is supported, initialize AJAX
-			if ( $this->is_gravityforms_supported() && $meets_requirements['meets_requirements'] ) {
+			//If ed forms is supported, initialize AJAX
+			if ( $this->is_edforms_supported() && $meets_requirements['meets_requirements'] ) {
 				$this->init_ajax();
 			}
 		} elseif ( is_admin() ) {
@@ -219,7 +219,7 @@ abstract class GFAddOn {
 
 		} else {
 
-			if ( $this->is_gravityforms_supported() && $meets_requirements['meets_requirements'] ) {
+			if ( $this->is_edforms_supported() && $meets_requirements['meets_requirements'] ) {
 				$this->init_frontend();
 			}
 		}
@@ -235,13 +235,13 @@ abstract class GFAddOn {
 		// enqueues admin scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 0 );
 
-		// message enforcing min version of Gravity Forms
-		if ( isset( $this->_min_gravityforms_version ) && RG_CURRENT_PAGE == 'plugins.php' && false === $this->_enable_rg_autoupgrade ) {
+		// message enforcing min version of Ed Forms
+		if ( isset( $this->_min_edforms_version ) && RG_CURRENT_PAGE == 'plugins.php' && false === $this->_enable_rg_autoupgrade ) {
 			add_action( 'after_plugin_row_' . $this->_path, array( $this, 'plugin_row' ) );
 		}
 
-		// STOP HERE IF GRAVITY FORMS IS NOT SUPPORTED
-		if ( isset( $this->_min_gravityforms_version ) && ! $this->is_gravityforms_supported( $this->_min_gravityforms_version ) ) {
+		// STOP HERE IF ED FORMS IS NOT SUPPORTED
+		if ( isset( $this->_min_edforms_version ) && ! $this->is_edforms_supported( $this->_min_edforms_version ) ) {
 			return;
 		}
 		
@@ -438,7 +438,7 @@ abstract class GFAddOn {
 							$addon_name = rgar( $addon_requirements, 'name' ) ? $addon_requirements['name'] : $addon_slug;
 
 							$meets_requirements['meets_requirements'] = false;
-							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required Gravity Forms Add-On is missing: %s.', 'gravityforms' ), $addon_name );
+							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required Ed Forms Add-On is missing: %s.', 'edforms' ), $addon_name );
 							continue;
 
 						}
@@ -446,7 +446,7 @@ abstract class GFAddOn {
 						// If Add-On does not meet minimum version, set error.
 						if ( rgar( $addon_requirements, 'version' ) && ! version_compare( $active_addons[ $addon_slug ]['version'], $addon_requirements['version'], '>=' ) ) {
 							$meets_requirements['meets_requirements'] = false;
-							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required Gravity Forms Add-On "%s" does not meet minimum version requirement: %s.', 'gravityforms' ), $active_addons[ $addon_slug ]['title'], $addon_requirements['version'] );
+							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required Ed Forms Add-On "%s" does not meet minimum version requirement: %s.', 'edforms' ), $active_addons[ $addon_slug ]['title'], $addon_requirements['version'] );
 							continue;
 						}
 					}
@@ -466,7 +466,7 @@ abstract class GFAddOn {
 						// If plugin is not active, set error.
 						if ( ! is_plugin_active( $plugin_path ) ) {
 							$meets_requirements['meets_requirements'] = false;
-							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required WordPress plugin is missing: %s.', 'gravityforms' ), $plugin_name );
+							$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required WordPress plugin is missing: %s.', 'edforms' ), $plugin_name );
 							continue;
 						}
 					}
@@ -476,7 +476,7 @@ abstract class GFAddOn {
 					// Check version.
 					if ( rgar( $requirement, 'version' ) && ! version_compare( PHP_VERSION, $requirement['version'], '>=' ) ) {
 						$meets_requirements['meets_requirements'] = false;
-						$meets_requirements['errors'][]           = sprintf( esc_html__( 'Current PHP version (%s) does not meet minimum PHP version requirement (%s).', 'gravityforms' ), PHP_VERSION, $requirement['version'] );
+						$meets_requirements['errors'][]           = sprintf( esc_html__( 'Current PHP version (%s) does not meet minimum PHP version requirement (%s).', 'edforms' ), PHP_VERSION, $requirement['version'] );
 					}
 
 					// Check extensions.
@@ -493,14 +493,14 @@ abstract class GFAddOn {
 							// If PHP extension is not loaded, set error.
 							if ( ! extension_loaded( $extension ) ) {
 								$meets_requirements['meets_requirements'] = false;
-								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP extension missing: %s', 'gravityforms' ), $extension );
+								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP extension missing: %s', 'edforms' ), $extension );
 								continue;
 							}
 
 							// If PHP extension does not meet minimum version, set error.
 							if ( rgar( $extension_requirements, 'version' ) && ! version_compare( phpversion( $extension ), $extension_requirements['version'], '>=' ) ) {
 								$meets_requirements['meets_requirements'] = false;
-								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP extension "%s" does not meet minimum version requirement: %s.', 'gravityforms' ), $extension, $extension_requirements['version'] );
+								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP extension "%s" does not meet minimum version requirement: %s.', 'edforms' ), $extension, $extension_requirements['version'] );
 								continue;
 							}
 
@@ -515,7 +515,7 @@ abstract class GFAddOn {
 						foreach ( $requirement['functions'] as $function ) {
 							if ( ! function_exists( $function ) ) {
 								$meets_requirements['meets_requirements'] = false;
-								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP function missing: %s', 'gravityforms' ), $function );
+								$meets_requirements['errors'][]           = sprintf( esc_html__( 'Required PHP function missing: %s', 'edforms' ), $function );
 							}
 						}
 
@@ -528,7 +528,7 @@ abstract class GFAddOn {
 					// Check version.
 					if ( rgar( $requirement, 'version' ) && ! version_compare( get_bloginfo( 'version' ), $requirement['version'], '>=' ) ) {
 						$meets_requirements['meets_requirements'] = false;
-						$meets_requirements['errors'][]           = sprintf( esc_html__( 'Current WordPress version (%s) does not meet minimum WordPress version requirement (%s).', 'gravityforms' ), get_bloginfo( 'version' ), $requirement['version'] );
+						$meets_requirements['errors'][]           = sprintf( esc_html__( 'Current WordPress version (%s) does not meet minimum WordPress version requirement (%s).', 'edforms' ), get_bloginfo( 'version' ), $requirement['version'] );
 					}
 
 					break;
@@ -542,7 +542,7 @@ abstract class GFAddOn {
 	}
 	
 	/**
-	 * Register failed requirements page under Gravity Forms settings.
+	 * Register failed requirements page under Ed Forms settings.
 	 *
 	 * @since  2.2
 	 * @access public
@@ -567,8 +567,8 @@ abstract class GFAddOn {
 		// Prepare error message.
 		$error_message = sprintf(
 			'%s<br />%s<ol>%s</ol>',
-			sprintf( esc_html__( '%s is not able to run because your WordPress environment has not met the minimum requirements.', 'gravityforms' ), $this->_title ),
-			sprintf( esc_html__( 'Please resolve the following issues to use %s:', 'gravityforms' ), $this->get_short_title() ),
+			sprintf( esc_html__( '%s is not able to run because your WordPress environment has not met the minimum requirements.', 'edforms' ), $this->_title ),
+			sprintf( esc_html__( 'Please resolve the following issues to use %s:', 'edforms' ), $this->get_short_title() ),
 			$errors
 		);
 
@@ -587,18 +587,18 @@ abstract class GFAddOn {
 	public function setup() {
 
 		//Upgrading add-on
-		$installed_version = get_option( 'gravityformsaddon_' . $this->_slug . '_version' );
+		$installed_version = get_option( 'edformsaddon_' . $this->_slug . '_version' );
 
 		//Making sure version has really changed. Gets around aggressive caching issue on some sites that cause setup to run multiple times.
 		if ( $installed_version != $this->_version ) {
-			$installed_version = GFForms::get_wp_option( 'gravityformsaddon_' . $this->_slug . '_version' );
+			$installed_version = GFForms::get_wp_option( 'edformsaddon_' . $this->_slug . '_version' );
 		}
 
 		//Upgrade if version has changed
 		if ( $installed_version != $this->_version ) {
 
 			$this->upgrade( $installed_version );
-			update_option( 'gravityformsaddon_' . $this->_slug . '_version', $this->_version );
+			update_option( 'edformsaddon_' . $this->_slug . '_version', $this->_version );
 		}
 	}
 
@@ -611,20 +611,20 @@ abstract class GFAddOn {
 
 
 	/**
-	 * Gets called when Gravity Forms upgrade process is completed. This function is intended to be used internally, override the upgrade() function to execute database update scripts.
-	 * @param $db_version - Current Gravity Forms database version
-	 * @param $previous_db_version - Previous Gravity Forms database version
+	 * Gets called when Ed Forms upgrade process is completed. This function is intended to be used internally, override the upgrade() function to execute database update scripts.
+	 * @param $db_version - Current Ed Forms database version
+	 * @param $previous_db_version - Previous Ed Forms database version
 	 * @param $force_upgrade - True if this is a request to force an upgrade. False if this is a standard upgrade (due to version change)
 	 */
-	public function post_gravityforms_upgrade( $db_version, $previous_db_version, $force_upgrade ){
+	public function post_edforms_upgrade( $db_version, $previous_db_version, $force_upgrade ){
 
 		// Forcing Upgrade
 		if( $force_upgrade ){
 
-			$installed_version = get_option( 'gravityformsaddon_' . $this->_slug . '_version' );
+			$installed_version = get_option( 'edformsaddon_' . $this->_slug . '_version' );
 
 			$this->upgrade( $installed_version );
-			update_option( 'gravityformsaddon_' . $this->_slug . '_version', $this->_version );
+			update_option( 'edformsaddon_' . $this->_slug . '_version', $this->_version );
 
 		}
 
@@ -702,8 +702,8 @@ abstract class GFAddOn {
 	 *            'callback' => array( $this, 'localize_scripts' ),
 	 *            'strings'  => array(
 	 *                // Accessible in JavaScript using the global variable "[script handle]_strings"
-	 *                'stringKey1' => __( 'The string', 'gravityforms' ),
-	 *                'stringKey2' => __( 'Another string.', 'gravityforms' )
+	 *                'stringKey1' => __( 'The string', 'edforms' ),
+	 *                'stringKey2' => __( 'Another string.', 'edforms' )
 	 *            )
 	 *            "enqueue"  => array(
 	 *                // field_types - Specifies one or more field types that requires this script.
@@ -725,7 +725,7 @@ abstract class GFAddOn {
 				'enqueue' => array( array( 'admin_page' => array( 'form_settings' ) ) )
 			),
 			array(
-				'handle'  => 'gform_gravityforms',
+				'handle'  => 'gform_edforms',
 				'enqueue' => array( array( 'admin_page' => array( 'form_settings' ) ) )
 			),
 			array(
@@ -1076,7 +1076,7 @@ abstract class GFAddOn {
 	 * @return array
 	 */
 	public function register_noconflict_scripts( $scripts ) {
-		//registering scripts with Gravity Forms so that they get enqueued when running in no-conflict mode
+		//registering scripts with Ed Forms so that they get enqueued when running in no-conflict mode
 		return array_merge( $scripts, $this->_no_conflict_scripts );
 	}
 
@@ -1092,7 +1092,7 @@ abstract class GFAddOn {
 	 * @return array
 	 */
 	public function register_noconflict_styles( $styles ) {
-		//registering styles with Gravity Forms so that they get enqueued when running in no-conflict mode
+		//registering styles with Ed Forms so that they get enqueued when running in no-conflict mode
 		return array_merge( $styles, $this->_no_conflict_styles );
 	}
 
@@ -1123,7 +1123,7 @@ abstract class GFAddOn {
 	 * public function get_results_page_config() {
 	 *      return array(
 	 *       "title" => 'Quiz Results',
-	 *       "capabilities" => array("gravityforms_quiz_results"),
+	 *       "capabilities" => array("edforms_quiz_results"),
 	 *       "callbacks" => array(
 	 *          "fields" => array($this, 'results_fields'),
 	 *          "calculation" => array($this, 'results_calculation'),
@@ -1392,7 +1392,7 @@ abstract class GFAddOn {
 		} elseif ( is_callable( array( $this, "settings_{$field['type']}" ) ) ) {
 			call_user_func( array( $this, "settings_{$field['type']}" ), $field );
 		} else {
-			printf( esc_html__( "Field type '%s' has not been implemented", 'gravityforms' ), esc_html( $field['type'] ) );
+			printf( esc_html__( "Field type '%s' has not been implemented", 'edforms' ), esc_html( $field['type'] ) );
 		}
 	}
 
@@ -1589,13 +1589,13 @@ abstract class GFAddOn {
 	public function get_save_success_message( $sections ) {
 		$save_button = $this->get_save_button( $sections );
 
-		return isset( $save_button['messages']['success'] ) ? $save_button['messages']['success'] : sprintf( esc_html__( '%s settings updated.', 'gravityforms' ), $this->get_short_title() );
+		return isset( $save_button['messages']['success'] ) ? $save_button['messages']['success'] : sprintf( esc_html__( '%s settings updated.', 'edforms' ), $this->get_short_title() );
 	}
 
 	public function get_save_error_message( $sections ) {
 		$save_button = $this->get_save_button( $sections );
 
-		return isset( $save_button['messages']['error'] ) ? $save_button['messages']['error'] : esc_html__( 'There was an error while saving your settings.', 'gravityforms' );
+		return isset( $save_button['messages']['error'] ) ? $save_button['messages']['error'] : esc_html__( 'There was an error while saving your settings.', 'edforms' );
 	}
 
 	public function get_save_button( $sections ) {
@@ -2057,7 +2057,7 @@ abstract class GFAddOn {
 		}
 		if ( ! $has_gf_custom ) {
 			$select_field['choices'][] = array(
-				'label' => esc_html__( 'Add Custom', 'gravityforms' ) .' ' . $select_field['label'],
+				'label' => esc_html__( 'Add Custom', 'edforms' ) .' ' . $select_field['label'],
 				'value' => 'gf_custom'
 			);
 		}
@@ -2199,7 +2199,7 @@ abstract class GFAddOn {
 		$custom_key_field['name']        .= '_custom_key_{i}';
 		$custom_key_field['class']        = 'custom_key custom_key_{i}';
 		$custom_key_field['value']        = '{custom_key}';
-		$custom_key_field['placeholder']  = rgars( $field, 'key_field/placeholder' ) ? $field['key_field']['placeholder'] : esc_html__( 'Custom Key', 'gravityforms' );
+		$custom_key_field['placeholder']  = rgars( $field, 'key_field/placeholder' ) ? $field['key_field']['placeholder'] : esc_html__( 'Custom Key', 'edforms' );
 
 		// Define value field properties.
 		$value_field['name']   .= '_custom_value';
@@ -2210,11 +2210,11 @@ abstract class GFAddOn {
 		$custom_value_field['name']        .= '_custom_value_{i}';
 		$custom_value_field['class']        = 'custom_value custom_value_{i}';
 		$custom_value_field['value']        = '{custom_value}';
-		$custom_value_field['placeholder']  = rgars( $field, 'value_field/placeholder' ) ? $field['value_field']['placeholder'] : esc_html__( 'Custom Value', 'gravityforms' );
+		$custom_value_field['placeholder']  = rgars( $field, 'value_field/placeholder' ) ? $field['value_field']['placeholder'] : esc_html__( 'Custom Value', 'edforms' );
 
 		// Get key/field column titles.
-		$key_field_title   = rgars( $field, 'key_field/title' ) ? $field['key_field']['title'] : esc_html__( 'Key', 'gravityforms' );
-		$value_field_title = rgars( $field, 'value_field/title' ) ? $field['value_field']['title'] : esc_html__( 'Value', 'gravityforms' );
+		$key_field_title   = rgars( $field, 'key_field/title' ) ? $field['key_field']['title'] : esc_html__( 'Key', 'edforms' );
+		$value_field_title = rgars( $field, 'value_field/title' ) ? $field['value_field']['title'] : esc_html__( 'Value', 'edforms' );
 
 		// Remove unneeded field properties.
 		$unneeded_props = array( 'field_map', 'key_choices', 'value_choices', 'placeholders', 'callback' );
@@ -2500,7 +2500,7 @@ abstract class GFAddOn {
 				$type = is_array( $field_type ) ? $field_type[0] : $field_type;
 				$type = ucfirst( GF_Fields::get( $type )->get_form_editor_field_title() );
 
-				return sprintf( __( 'Please add a %s field to your form.', 'gravityforms' ), $type );
+				return sprintf( __( 'Please add a %s field to your form.', 'edforms' ), $type );
 
 			}
 
@@ -2593,7 +2593,7 @@ abstract class GFAddOn {
 					
 					$enable_custom = rgars( $select_field, 'key_field/custom_value' ) ? (bool) $select_field['key_field']['custom_value'] : ! (bool) rgar( $select_field, 'disable_custom' );
 					$enable_custom = isset( $select_field['enable_custom_key'] ) ? (bool) $select_field['enable_custom_key'] : $enable_custom;
-					$label         = esc_html__( 'Add Custom Key', 'gravityforms' );
+					$label         = esc_html__( 'Add Custom Key', 'edforms' );
 					
 				} else {
 					
@@ -2603,7 +2603,7 @@ abstract class GFAddOn {
 					}
 					
 					$enable_custom = rgars( $select_field, 'value_field/custom_value' ) ? (bool) $select_field['value_field']['custom_value'] : (bool) rgars( $select_field, 'enable_custom_value' );
-					$label         = esc_html__( 'Add Custom Value', 'gravityforms' );
+					$label         = esc_html__( 'Add Custom Value', 'edforms' );
 					
 				}
 
@@ -2624,7 +2624,7 @@ abstract class GFAddOn {
 				implode( ' ', $additional_classes ),
 				$this->settings_text( $text_field, false ),
 				$type,
-				esc_html__( 'Reset', 'gravityforms' )
+				esc_html__( 'Reset', 'edforms' )
 			);
 
 		}
@@ -2646,7 +2646,7 @@ abstract class GFAddOn {
 		return '<thead>
 					<tr>
 						<th>' . $this->field_map_title() . '</th>
-						<th>' . esc_html__( 'Form Field', 'gravityforms' ) . '</th>
+						<th>' . esc_html__( 'Form Field', 'edforms' ) . '</th>
 					</tr>
 				</thead>';
 
@@ -2664,7 +2664,7 @@ abstract class GFAddOn {
 	 */
 	public function field_map_title() {
 
-		return esc_html__( 'Field', 'gravityforms' );
+		return esc_html__( 'Field', 'edforms' );
 
 	}
 
@@ -2696,14 +2696,14 @@ abstract class GFAddOn {
 		// Setup first choice
 		if ( rgblank( $field_type ) || ( is_array( $field_type ) && count( $field_type ) > 1 ) ) {
 
-			$first_choice_label = __( 'Select a Field', 'gravityforms' );
+			$first_choice_label = __( 'Select a Field', 'edforms' );
 
 		} else {
 
 			$type = is_array( $field_type ) ? $field_type[0] : $field_type;
 			$type = ucfirst( GF_Fields::get( $type )->get_form_editor_field_title() );
 
-			$first_choice_label = sprintf( __( 'Select a %s Field', 'gravityforms' ), $type );
+			$first_choice_label = sprintf( __( 'Select a %s Field', 'edforms' ), $type );
 
 		}
 
@@ -2711,11 +2711,11 @@ abstract class GFAddOn {
 
 		// if field types not restricted add the default fields and entry meta
 		if ( is_null( $field_type ) ) {
-			$fields[] = array( 'value' => 'id', 'label' => esc_html__( 'Entry ID', 'gravityforms' ) );
-			$fields[] = array( 'value' => 'date_created', 'label' => esc_html__( 'Entry Date', 'gravityforms' ) );
-			$fields[] = array( 'value' => 'ip', 'label' => esc_html__( 'User IP', 'gravityforms' ) );
-			$fields[] = array( 'value' => 'source_url', 'label' => esc_html__( 'Source Url', 'gravityforms' ) );
-			$fields[] = array( 'value' => 'form_title', 'label' => esc_html__( 'Form Title', 'gravityforms' ) );
+			$fields[] = array( 'value' => 'id', 'label' => esc_html__( 'Entry ID', 'edforms' ) );
+			$fields[] = array( 'value' => 'date_created', 'label' => esc_html__( 'Entry Date', 'edforms' ) );
+			$fields[] = array( 'value' => 'ip', 'label' => esc_html__( 'User IP', 'edforms' ) );
+			$fields[] = array( 'value' => 'source_url', 'label' => esc_html__( 'Source Url', 'edforms' ) );
+			$fields[] = array( 'value' => 'form_title', 'label' => esc_html__( 'Form Title', 'edforms' ) );
 
 			$entry_meta = GFFormsModel::get_entry_meta( $form['id'] );
 			foreach ( $entry_meta as $meta_key => $meta ) {
@@ -2752,21 +2752,21 @@ abstract class GFAddOn {
 					if ( $input_type == 'address' ) {
 						$fields[] = array(
 							'value' => $field->id,
-							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')' )
+							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')' )
 						);
 					}
 					//If this is a name field, add full name to the list
 					if ( $input_type == 'name' ) {
 						$fields[] = array(
 							'value' => $field->id,
-							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')' )
+							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')' )
 						);
 					}
 					//If this is a checkbox field, add to the list
 					if ( $input_type == 'checkbox' ) {
 						$fields[] = array(
 							'value' => $field->id,
-							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Selected', 'gravityforms' ) . ')' )
+							'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Selected', 'edforms' ) . ')' )
 						);
 					}
 
@@ -2779,7 +2779,7 @@ abstract class GFAddOn {
 				} elseif ( $input_type == 'list' && $field->enableColumns && $field_is_valid_type && ! $exclude_field ) {
 					$fields[] = array(
 						'value' => $field->id,
-						'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')' )
+						'label' => strip_tags( GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')' )
 					);
 					$col_index = 0;
 					foreach ( $field->choices as $column ) {
@@ -3013,14 +3013,14 @@ abstract class GFAddOn {
 			// Setup first choice
 			if ( empty( $args['input_types'] ) || ( is_array( $args['input_types'] ) && count( $args['input_types'] ) > 1 ) ) {
 
-				$first_choice_label = __( 'Select a Field', 'gravityforms' );
+				$first_choice_label = __( 'Select a Field', 'edforms' );
 
 			} else {
 
 				$type = is_array( $args['input_types'] ) ? $args['input_types'][0] : $args['input_types'];
 				$type = ucfirst( GF_Fields::get( $type )->get_form_editor_field_title() );
 
-				$first_choice_label = sprintf( __( 'Select a %s Field', 'gravityforms' ), $type );
+				$first_choice_label = sprintf( __( 'Select a %s Field', 'edforms' ), $type );
 
 			}
 
@@ -3074,14 +3074,14 @@ abstract class GFAddOn {
 
 			// Define global aliases to help with the common case mappings.
 			$global_aliases = array(
-				__('First Name', 'gravityforms') => array( __( 'Name (First)', 'gravityforms' ) ),
-				__('Last Name', 'gravityforms') => array( __( 'Name (Last)', 'gravityforms' ) ),
-				__('Address', 'gravityforms') => array( __( 'Address (Street Address)', 'gravityforms' ) ),
-				__('Address 2', 'gravityforms') => array( __( 'Address (Address Line 2)', 'gravityforms' ) ),
-				__('City', 'gravityforms') => array( __( 'Address (City)', 'gravityforms' ) ),
-				__('State', 'gravityforms') => array( __( 'Address (State / Province)', 'gravityforms' ) ),
-				__('Zip', 'gravityforms') => array( __( 'Address (Zip / Postal Code)', 'gravityforms' ) ),
-				__('Country', 'gravityforms') => array( __( 'Address (Country)', 'gravityforms' ) ),
+				__('First Name', 'edforms') => array( __( 'Name (First)', 'edforms' ) ),
+				__('Last Name', 'edforms') => array( __( 'Name (Last)', 'edforms' ) ),
+				__('Address', 'edforms') => array( __( 'Address (Street Address)', 'edforms' ) ),
+				__('Address 2', 'edforms') => array( __( 'Address (Address Line 2)', 'edforms' ) ),
+				__('City', 'edforms') => array( __( 'Address (City)', 'edforms' ) ),
+				__('State', 'edforms') => array( __( 'Address (State / Province)', 'edforms' ) ),
+				__('Zip', 'edforms') => array( __( 'Address (Zip / Postal Code)', 'edforms' ) ),
+				__('Country', 'edforms') => array( __( 'Address (Country)', 'edforms' ) ),
 			);
 
 			// If one or more global aliases are defined for this particular field label, merge them into auto-population choices.
@@ -3172,21 +3172,21 @@ abstract class GFAddOn {
 				if ( $input_type == 'address' ) {
 					$fields[] = array(
 						'value' => $field->id,
-						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')'
+						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')'
 					);
 				}
 				// if this is a name field, add full name to the list
 				if ( $input_type == 'name' ) {
 					$fields[] = array(
 						'value' => $field->id,
-						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')'
+						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')'
 					);
 				}
 				// if this is a checkbox field, add to the list
 				if ( $input_type == 'checkbox' ) {
 					$fields[] = array(
 						'value' => $field->id,
-						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Selected', 'gravityforms' ) . ')'
+						'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Selected', 'edforms' ) . ')'
 					);
 				}
 
@@ -3199,7 +3199,7 @@ abstract class GFAddOn {
 			} elseif ( $input_type == 'list' && $field->enableColumns ) {
 				$fields[] = array(
 					'value' => $field->id,
-					'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'gravityforms' ) . ')'
+					'label' => GFCommon::get_label( $field ) . ' (' . esc_html__( 'Full', 'edforms' ) . ')'
 				);
 				$col_index = 0;
 				foreach ( $field->choices as $column ) {
@@ -3267,7 +3267,7 @@ abstract class GFAddOn {
 		$checkbox_field = array(
 			'type'       => 'checkbox',
 			'name'       => $field['name'] . 'Enable',
-			'label'      => esc_html__( 'Enable', 'gravityforms' ),
+			'label'      => esc_html__( 'Enable', 'edforms' ),
 			'horizontal' => true,
 			'value'      => '1',
 			'choices'    => false,
@@ -3334,7 +3334,7 @@ abstract class GFAddOn {
 		$field['class'] = 'button-primary gfbutton';
 
 		if ( ! rgar( $field, 'value' ) ) {
-			$field['value'] = esc_html__( 'Update Settings', 'gravityforms' );
+			$field['value'] = esc_html__( 'Update Settings', 'edforms' );
 		}
 
 		$attributes = $this->get_field_attributes( $field );
@@ -3530,10 +3530,10 @@ abstract class GFAddOn {
 		$field_setting_safe = sanitize_text_field( $field_setting );
 
 		if ( $field_setting !== $field_setting_safe ) {
-			$message = esc_html__( 'The text you have entered is not valid. For security reasons, some characters are not allowed. ', 'gravityforms' );
+			$message = esc_html__( 'The text you have entered is not valid. For security reasons, some characters are not allowed. ', 'edforms' );
 			$script = sprintf( 'jQuery("input[name=\"_gaddon_setting_%s\"]").val(jQuery(this).data("safe"));', $field['name'] );
 			$double_encoded_safe_value = htmlspecialchars( htmlspecialchars( $field_setting_safe, ENT_QUOTES ), ENT_QUOTES );
-			$message .= sprintf( " <a href='javascript:void(0);' onclick='%s' data-safe='%s'>%s</a>", htmlspecialchars( $script, ENT_QUOTES ), $double_encoded_safe_value, esc_html__('Fix it', 'gravityforms' ) );
+			$message .= sprintf( " <a href='javascript:void(0);' onclick='%s' data-safe='%s'>%s</a>", htmlspecialchars( $script, ENT_QUOTES ), $double_encoded_safe_value, esc_html__('Fix it', 'edforms' ) );
 			$this->set_field_error( $field, $message );
 		}
 
@@ -3549,10 +3549,10 @@ abstract class GFAddOn {
 		$field_setting_safe = $this->maybe_wp_kses( $field_setting );
 
 		if ( $field_setting !== $field_setting_safe ) {
-			$message = esc_html__( 'The text you have entered is not valid. For security reasons, some characters are not allowed. ', 'gravityforms' );
+			$message = esc_html__( 'The text you have entered is not valid. For security reasons, some characters are not allowed. ', 'edforms' );
 			$script = sprintf( 'jQuery("textarea[name=\"_gaddon_setting_%s\"]").val(jQuery(this).data("safe"));', $field['name'] );
 			$double_encoded_safe_value = htmlspecialchars( htmlspecialchars( $field_setting_safe, ENT_QUOTES ), ENT_QUOTES );
-			$message .= sprintf( " <a href='javascript:void(0);' onclick='%s' data-safe='%s'>%s</a>", htmlspecialchars( $script, ENT_QUOTES ), $double_encoded_safe_value, esc_html__('Fix it', 'gravityforms' ) );
+			$message .= sprintf( " <a href='javascript:void(0);' onclick='%s' data-safe='%s'>%s</a>", htmlspecialchars( $script, ENT_QUOTES ), $double_encoded_safe_value, esc_html__('Fix it', 'edforms' ) );
 			$this->set_field_error( $field, $message );
 		}
 	}
@@ -3574,7 +3574,7 @@ abstract class GFAddOn {
 				return; // Choice is valid
 			}
 		}
-		$this->set_field_error( $field, esc_html__( 'Invalid value', 'gravityforms' ) );
+		$this->set_field_error( $field, esc_html__( 'Invalid value', 'edforms' ) );
 	}
 
 	public function validate_select_settings( $field, $settings ) {
@@ -3615,7 +3615,7 @@ abstract class GFAddOn {
 			}
 
 			if ( ! $required && $selected !== count( $field_setting ) ) {
-				$this->set_field_error( $field, esc_html__( 'Invalid value', 'gravityforms' ) );
+				$this->set_field_error( $field, esc_html__( 'Invalid value', 'edforms' ) );
 			}
 		} else {
 			foreach( $field['choices'] as $choice ) {
@@ -3631,7 +3631,7 @@ abstract class GFAddOn {
 					}
 				}
 			}
-			$this->set_field_error( $field, esc_html__( 'Invalid value', 'gravityforms' ) );
+			$this->set_field_error( $field, esc_html__( 'Invalid value', 'edforms' ) );
 		}
 
 	}
@@ -3647,7 +3647,7 @@ abstract class GFAddOn {
 		foreach ( $field['choices'] as $choice ) {
 			$value = $this->get_setting( $choice['name'], '', $settings );
 			if ( ! in_array( $value, array( '1', '0' ) ) ) {
-				$this->set_field_error( $field, esc_html__( 'Invalid value', 'gravityforms' ) );
+				$this->set_field_error( $field, esc_html__( 'Invalid value', 'edforms' ) );
 				return;
 			}
 
@@ -3697,7 +3697,7 @@ abstract class GFAddOn {
 					}
 				}
 			}
-			$this->set_field_error( $field, esc_html__( 'Invalid value', 'gravityforms' ) );
+			$this->set_field_error( $field, esc_html__( 'Invalid value', 'edforms' ) );
 		}
 	}
 
@@ -3768,7 +3768,7 @@ abstract class GFAddOn {
 
 		// set default error message if none passed
 		if ( ! $error_message ) {
-			$error_message = esc_html__( 'This field is required.', 'gravityforms' );
+			$error_message = esc_html__( 'This field is required.', 'edforms' );
 		}
 
 		$this->_setting_field_errors[ $field['name'] ] = $error_message;
@@ -3805,7 +3805,7 @@ abstract class GFAddOn {
 
 		return '<span
             class="gf_tooltip tooltip"
-            title="<h6>' . esc_html__( 'Validation Error', 'gravityforms' ) . '</h6>' . $error . '"
+            title="<h6>' . esc_html__( 'Validation Error', 'edforms' ) . '</h6>' . $error . '"
             style="display:inline-block;position:relative;right:-3px;top:1px;font-size:14px;">
                 <i class="fa fa-exclamation-circle icon-exclamation-sign gf_invalid"></i>
             </span>';
@@ -4015,31 +4015,31 @@ abstract class GFAddOn {
 			'choices'  => array(
 				array(
 					'value' => 'is',
-					'label' => esc_html__( 'is', 'gravityforms' ),
+					'label' => esc_html__( 'is', 'edforms' ),
 				),
 				array(
 					'value' => 'isnot',
-					'label' => esc_html__( 'is not', 'gravityforms' ),
+					'label' => esc_html__( 'is not', 'edforms' ),
 				),
 				array(
 					'value' => '>',
-					'label' => esc_html__( 'greater than', 'gravityforms' ),
+					'label' => esc_html__( 'greater than', 'edforms' ),
 				),
 				array(
 					'value' => '<',
-					'label' => esc_html__( 'less than', 'gravityforms' ),
+					'label' => esc_html__( 'less than', 'edforms' ),
 				),
 				array(
 					'value' => 'contains',
-					'label' => esc_html__( 'contains', 'gravityforms' ),
+					'label' => esc_html__( 'contains', 'edforms' ),
 				),
 				array(
 					'value' => 'starts_with',
-					'label' => esc_html__( 'starts with', 'gravityforms' ),
+					'label' => esc_html__( 'starts with', 'edforms' ),
 				),
 				array(
 					'value' => 'ends_with',
-					'label' => esc_html__( 'ends with', 'gravityforms' ),
+					'label' => esc_html__( 'ends with', 'edforms' ),
 				),
 			),
 
@@ -4107,7 +4107,7 @@ abstract class GFAddOn {
 			return true;
 		}
 
-		// Build the logic array to be used by Gravity Forms when evaluating the rules.
+		// Build the logic array to be used by Ed Forms when evaluating the rules.
 		$logic = array(
 			'logicType' => 'all',
 			'rules'     => array(
@@ -4251,7 +4251,7 @@ abstract class GFAddOn {
 			check_admin_referer( $this->_slug . '_save_settings', '_' . $this->_slug . '_save_settings_nonce' );
 
 			if ( ! $this->current_user_can_any( $this->_capabilities_form_settings ) ) {
-				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the form settings.", 'gravityforms' ) );
+				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the form settings.", 'edforms' ) );
 				return false;
 			}
 
@@ -4459,7 +4459,7 @@ abstract class GFAddOn {
 		}
 
 		if ( $this->has_app_settings() ) {
-			add_submenu_page( $parent_menu['name'], esc_html__( 'Settings', 'gravityforms' ), esc_html__( 'Settings', 'gravityforms' ), $has_full_access ? 'gform_full_access' : $this->_capabilities_app_settings, $this->_slug . '_settings', array( $this, 'app_tab_page' ) );
+			add_submenu_page( $parent_menu['name'], esc_html__( 'Settings', 'edforms' ), esc_html__( 'Settings', 'edforms' ), $has_full_access ? 'gform_full_access' : $this->_capabilities_app_settings, $this->_slug . '_settings', array( $this, 'app_tab_page' ) );
 		}
 
 	}
@@ -4499,9 +4499,9 @@ abstract class GFAddOn {
 	 * Override this function to create a top level app menu.
 	 *
 	 * e.g.
-	 * $menu_item['name'] = 'gravitycontacts';
-	 * $menu_item['label'] = __("Contacts", 'gravitycontacts');
-	 * $menu_item['permission'] = 'gravitycontacts_view_contacts';
+	 * $menu_item['name'] = 'edcontacts';
+	 * $menu_item['label'] = __("Contacts", 'edcontacts');
+	 * $menu_item['permission'] = 'edcontacts_view_contacts';
 	 * $menu_item['callback'] = array($this, 'app_menu');
 	 *
 	 * @return array The array of menu items
@@ -4530,7 +4530,7 @@ abstract class GFAddOn {
 	 *
 	 * if($this->is_contact_list_page()){
 	 *     $args = array(
-	 *         'label' => __('Contacts per page', 'gravitycontacts'),
+	 *         'label' => __('Contacts per page', 'edcontacts'),
 	 *         'default' => 20,
 	 *         'option' => 'gcontacts_per_page'
 	 *     );
@@ -4585,13 +4585,13 @@ abstract class GFAddOn {
 		}
 
 		if ( empty( $current_tab ) ) {
-			wp_die( esc_html__( "You don't have adequate permission to view this page", 'gravityforms' ) );
+			wp_die( esc_html__( "You don't have adequate permission to view this page", 'edforms' ) );
 		}
 
 		foreach ( $tabs as $tab ) {
 			if ( $tab['name'] == $current_tab && isset( $tab['callback'] ) && is_callable( $tab['callback'] ) ) {
 				if ( isset( $tab['permission'] ) && ! $this->current_user_can_any( $tab['permission'] ) ) {
-					wp_die( esc_html__( "You don't have adequate permission to view this page", 'gravityforms' ) );
+					wp_die( esc_html__( "You don't have adequate permission to view this page", 'edforms' ) );
 				}
 
 				$title = rgar( $tab,'title' );
@@ -4682,7 +4682,7 @@ abstract class GFAddOn {
 			return $links;
 		}
 
-		array_unshift( $links, '<a href="' . admin_url( 'admin.php' ) . '?page=gf_settings&subview=' . $this->_slug . '">' . esc_html__( 'Settings', 'gravityforms' ) . '</a>' );
+		array_unshift( $links, '<a href="' . admin_url( 'admin.php' ) . '?page=gf_settings&subview=' . $this->_slug . '">' . esc_html__( 'Settings', 'edforms' ) . '</a>' );
 
 		return $links;
 	}
@@ -4701,7 +4701,7 @@ abstract class GFAddOn {
 
 		<?php if ( $this->has_deprecated_elements() ) : ?>
 		<div class="push-alert-red" style="border-left: 1px solid #E6DB55; border-right: 1px solid #E6DB55;">
-			<?php esc_html_e( 'This add-on needs to be updated. Please contact the developer.', 'gravityforms' ); ?>
+			<?php esc_html_e( 'This add-on needs to be updated. Please contact the developer.', 'edforms' ); ?>
 		</div>
 		<?php endif; ?>
 
@@ -4713,7 +4713,7 @@ abstract class GFAddOn {
 		} elseif ( $this->maybe_uninstall() ) {
 			?>
 			<div class="push-alert-gold" style="border-left: 1px solid #E6DB55; border-right: 1px solid #E6DB55;">
-				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'gravityforms'), $this->_title, "<a href='plugins.php'>", '</a>' ); ?>
+				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'edforms'), $this->_title, "<a href='plugins.php'>", '</a>' ); ?>
 			</div>
 		<?php
 		} else {
@@ -4740,7 +4740,7 @@ abstract class GFAddOn {
 	}
 
 	public function plugin_settings_title() {
-		return sprintf( esc_html__( "%s Settings", "gravityforms" ), $this->get_short_title() );
+		return sprintf( esc_html__( "%s Settings", "edforms" ), $this->get_short_title() );
 	}
 
 	public function plugin_settings_icon() {
@@ -4767,7 +4767,7 @@ abstract class GFAddOn {
 	 * @return mixed
 	 */
 	public function get_plugin_settings() {
-		return get_option( 'gravityformsaddon_' . $this->_slug . '_settings' );
+		return get_option( 'edformsaddon_' . $this->_slug . '_settings' );
 	}
 
 	/**
@@ -4790,7 +4790,7 @@ abstract class GFAddOn {
 	 * @param array $settings - Plugin settings to be saved
 	 */
 	public function update_plugin_settings( $settings ) {
-		update_option( 'gravityformsaddon_' . $this->_slug . '_settings', $settings );
+		update_option( 'edformsaddon_' . $this->_slug . '_settings', $settings );
 	}
 
 	/**
@@ -4804,7 +4804,7 @@ abstract class GFAddOn {
 			check_admin_referer( $this->_slug . '_save_settings', '_' . $this->_slug . '_save_settings_nonce' );
 
 			if ( ! $this->current_user_can_any( $this->_capabilities_settings_page ) ) {
-				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the settings.", 'gravityforms' ) );
+				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the settings.", 'edforms' ) );
 				return false;
 			}
 
@@ -4848,7 +4848,7 @@ abstract class GFAddOn {
 
 		// Build left side options, always have app Settings first and Uninstall last, put add-ons in the middle
 
-		$setting_tabs = array( array( 'name' => 'settings', 'label' => esc_html__( 'Settings', 'gravityforms' ), 'callback' => array( $this, 'app_settings_tab' ) ) );
+		$setting_tabs = array( array( 'name' => 'settings', 'label' => esc_html__( 'Settings', 'edforms' ), 'callback' => array( $this, 'app_settings_tab' ) ) );
 
 		/**
 		 * Filters the tabs within the settings menu.
@@ -4860,7 +4860,7 @@ abstract class GFAddOn {
 		$setting_tabs = apply_filters( 'gform_addon_app_settings_menu_' . $this->_slug, $setting_tabs );
 
 		if ( $this->current_user_can_uninstall() ) {
-			$setting_tabs[] = array( 'name' => 'uninstall', 'label' => esc_html__( 'Uninstall', 'gravityforms' ), 'callback' => array( $this, 'app_settings_uninstall_tab' ) );
+			$setting_tabs[] = array( 'name' => 'uninstall', 'label' => esc_html__( 'Uninstall', 'edforms' ), 'callback' => array( $this, 'app_settings_uninstall_tab' ) );
 		}
 
 		ksort( $setting_tabs, SORT_NUMERIC );
@@ -4878,7 +4878,7 @@ abstract class GFAddOn {
 		if ( $this->maybe_uninstall() ) {
 			?>
 			<div class="push-alert-gold" style="border-left: 1px solid #E6DB55; border-right: 1px solid #E6DB55;">
-				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'gravityforms' ), esc_html( $this->_title ), "<a href='plugins.php'>", '</a>' ); ?>
+				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'edforms' ), esc_html( $this->_title ), "<a href='plugins.php'>", '</a>' ); ?>
 			</div>
 		<?php
 
@@ -4889,13 +4889,13 @@ abstract class GFAddOn {
 				<?php wp_nonce_field( 'uninstall', 'gf_addon_uninstall' ) ?>
 				<?php  ?>
 					<h3>
-						<span><i class="fa fa-times"></i> <?php printf( esc_html__( 'Uninstall %s', 'gravityforms' ), $this->get_short_title() ); ?></span>
+						<span><i class="fa fa-times"></i> <?php printf( esc_html__( 'Uninstall %s', 'edforms' ), $this->get_short_title() ); ?></span>
 					</h3>
 
 					<div class="delete-alert alert_red">
 
 						<h3>
-							<i class="fa fa-exclamation-triangle gf_invalid"></i> <?php esc_html_e( 'Warning', 'gravityforms' ); ?>
+							<i class="fa fa-exclamation-triangle gf_invalid"></i> <?php esc_html_e( 'Warning', 'edforms' ); ?>
 						</h3>
 
 						<div class="gf_delete_notice">
@@ -4903,7 +4903,7 @@ abstract class GFAddOn {
 						</div>
 
 						<?php
-						$uninstall_button = '<input type="submit" name="uninstall" value="' . sprintf( esc_attr__( 'Uninstall %s', 'gravityforms' ), $this->get_short_title() ) . '" class="button" onclick="return confirm(\'' . esc_js( $this->uninstall_confirm_message() ) . '\');" onkeypress="return confirm(\'' . esc_js( $this->uninstall_confirm_message() ) . '\');"/>';
+						$uninstall_button = '<input type="submit" name="uninstall" value="' . sprintf( esc_attr__( 'Uninstall %s', 'edforms' ), $this->get_short_title() ) . '" class="button" onclick="return confirm(\'' . esc_js( $this->uninstall_confirm_message() ) . '\');" onkeypress="return confirm(\'' . esc_js( $this->uninstall_confirm_message() ) . '\');"/>';
 						echo $uninstall_button;
 						?>
 
@@ -4997,7 +4997,7 @@ abstract class GFAddOn {
 		} elseif ( $this->maybe_uninstall() ) {
 			?>
 			<div class="push-alert-gold" style="border-left: 1px solid #E6DB55; border-right: 1px solid #E6DB55;">
-				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'gravityforms' ), esc_html( $this->_title ), "<a href='plugins.php'>", '</a>' ); ?>
+				<?php printf( esc_html__( '%s has been successfully uninstalled. It can be re-activated from the %splugins page%s.', 'edforms' ), esc_html( $this->_title ), "<a href='plugins.php'>", '</a>' ); ?>
 			</div>
 		<?php
 		} else {
@@ -5026,7 +5026,7 @@ abstract class GFAddOn {
 	 * @return string
 	 */
 	public function app_settings_title() {
-		return sprintf( esc_html__( '%s Settings', 'gravityforms' ), $this->get_short_title() );
+		return sprintf( esc_html__( '%s Settings', 'edforms' ), $this->get_short_title() );
 	}
 
 	/**
@@ -5058,7 +5058,7 @@ abstract class GFAddOn {
 	 * @return mixed
 	 */
 	public function get_app_settings() {
-		return get_option( 'gravityformsaddon_' . $this->_slug . '_app_settings' );
+		return get_option( 'edformsaddon_' . $this->_slug . '_app_settings' );
 	}
 
 	/**
@@ -5081,7 +5081,7 @@ abstract class GFAddOn {
 	 * @param array $settings - App settings to be saved
 	 */
 	public function update_app_settings( $settings ) {
-		update_option( 'gravityformsaddon_' . $this->_slug . '_app_settings', $settings );
+		update_option( 'edformsaddon_' . $this->_slug . '_app_settings', $settings );
 	}
 
 	/**
@@ -5095,7 +5095,7 @@ abstract class GFAddOn {
 			check_admin_referer( $this->_slug . '_save_settings', '_' . $this->_slug . '_save_settings_nonce' );
 
 			if ( ! $this->current_user_can_any( $this->_capabilities_app_settings ) ) {
-				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the settings.", 'gravityforms' ) );
+				GFCommon::add_error_message( esc_html__( "You don't have sufficient permissions to update the settings.", 'edforms' ) );
 				return false;
 			}
 
@@ -5166,13 +5166,13 @@ abstract class GFAddOn {
 
 				<div class="hr-divider"></div>
 
-				<h3><span><i class="fa fa-times"></i> <?php printf( esc_html__( 'Uninstall %s Add-On', 'gravityforms' ), $this->get_short_title() ) ?></span></h3>
+				<h3><span><i class="fa fa-times"></i> <?php printf( esc_html__( 'Uninstall %s Add-On', 'edforms' ), $this->get_short_title() ) ?></span></h3>
 				<div class="delete-alert alert_red">
-					<h3><i class="fa fa-exclamation-triangle gf_invalid"></i> <?php printf( esc_html__('Warning', 'gravityforms' ) ); ?></h3>
+					<h3><i class="fa fa-exclamation-triangle gf_invalid"></i> <?php printf( esc_html__('Warning', 'edforms' ) ); ?></h3>
 					<div class="gf_delete_notice">
 						<?php echo $this->uninstall_warning_message() ?>
 					</div>
-					<input type="submit" name="uninstall" value="<?php esc_attr_e( 'Uninstall  Add-On', 'gravityforms' ) ?>" class="button" onclick="return confirm('<?php echo esc_js( $this->uninstall_confirm_message() ); ?>');" onkeypress="return confirm('<?php echo esc_js( $this->uninstall_confirm_message() ); ?>');">
+					<input type="submit" name="uninstall" value="<?php esc_attr_e( 'Uninstall  Add-On', 'edforms' ) ?>" class="button" onclick="return confirm('<?php echo esc_js( $this->uninstall_confirm_message() ); ?>');" onkeypress="return confirm('<?php echo esc_js( $this->uninstall_confirm_message() ); ?>');">
 				</div>
 
 			<?php
@@ -5183,11 +5183,11 @@ abstract class GFAddOn {
 	}
 
 	public function uninstall_warning_message() {
-		return sprintf( esc_html__( '%sThis operation deletes ALL %s settings%s. If you continue, you will NOT be able to retrieve these settings.', 'gravityforms' ), '<strong>', esc_html( $this->get_short_title() ), '</strong>' );
+		return sprintf( esc_html__( '%sThis operation deletes ALL %s settings%s. If you continue, you will NOT be able to retrieve these settings.', 'edforms' ), '<strong>', esc_html( $this->get_short_title() ), '</strong>' );
 	}
 
 	public function uninstall_confirm_message() {
-		return sprintf( __( "Warning! ALL %s settings will be deleted. This cannot be undone. 'OK' to delete, 'Cancel' to stop", 'gravityforms' ), __( $this->get_short_title() ) );
+		return sprintf( __( "Warning! ALL %s settings will be deleted. This cannot be undone. 'OK' to delete, 'Cancel' to stop", 'edforms' ), __( $this->get_short_title() ) );
 	}
 	/**
 	 * Not intended to be overridden or called directly by Add-Ons.
@@ -5214,7 +5214,7 @@ abstract class GFAddOn {
 	public function uninstall_addon() {
 
 		if ( ! $this->current_user_can_uninstall() ) {
-			die( esc_html__( "You don't have adequate permission to uninstall this add-on: " . $this->_title, 'gravityforms' ) );
+			die( esc_html__( "You don't have adequate permission to uninstall this add-on: " . $this->_title, 'edforms' ) );
 		}
 
 		$continue = $this->uninstall();
@@ -5254,9 +5254,9 @@ abstract class GFAddOn {
 		}
 
 		//removing options
-		delete_option( 'gravityformsaddon_' . $this->_slug . '_settings' );
-		delete_option( 'gravityformsaddon_' . $this->_slug . '_app_settings' );
-		delete_option( 'gravityformsaddon_' . $this->_slug . '_version' );
+		delete_option( 'edformsaddon_' . $this->_slug . '_settings' );
+		delete_option( 'edformsaddon_' . $this->_slug . '_app_settings' );
+		delete_option( 'edformsaddon_' . $this->_slug . '_version' );
 
 
 		//Deactivating plugin
@@ -5283,7 +5283,7 @@ abstract class GFAddOn {
 	//--------------  Enforce minimum GF version  ---------------------------------------------------
 
 	/**
-	 * Target for the after_plugin_row action hook. Checks whether the current version of Gravity Forms
+	 * Target for the after_plugin_row action hook. Checks whether the current version of Ed Forms
 	 * is supported and outputs a message just below the plugin info on the plugins page.
 	 *
 	 * Not intended to be overridden or called directly by Add-Ons.
@@ -5291,19 +5291,19 @@ abstract class GFAddOn {
 	 * @ignore
 	 */
 	public function plugin_row() {
-		if ( ! self::is_gravityforms_supported( $this->_min_gravityforms_version ) ) {
+		if ( ! self::is_edforms_supported( $this->_min_edforms_version ) ) {
 			$message = $this->plugin_message();
 			self::display_plugin_message( $message, true );
 		}
 	}
 
 	/**
-	 * Returns the message that will be displayed if the current version of Gravity Forms is not supported.
+	 * Returns the message that will be displayed if the current version of Ed Forms is not supported.
 	 *
 	 * Override this method to display a custom message.
 	 */
 	public function plugin_message() {
-		$message = sprintf( esc_html__( 'Gravity Forms %s is required. Activate it now or %spurchase it today!%s', 'gravityforms' ), $this->_min_gravityforms_version, "<a href='https://www.edconcept24.fr'>", '</a>' );
+		$message = sprintf( esc_html__( 'Ed Forms %s is required. Activate it now or %spurchase it today!%s', 'edforms' ), $this->_min_edforms_version, "<a href='https://www.edconcept24.fr'>", '</a>' );
 
 		return $message;
 	}
@@ -5326,7 +5326,7 @@ abstract class GFAddOn {
 	//--------------- Logging -------------------------------------------------------------
 
 	/**
-	 * Writes an error message to the Gravity Forms log. Requires the Gravity Forms logging Add-On.
+	 * Writes an error message to the Ed Forms log. Requires the Ed Forms logging Add-On.
 	 *
 	 * Not intended to be overridden by Add-Ons.
 	 *
@@ -5340,7 +5340,7 @@ abstract class GFAddOn {
 	}
 
 	/**
-	 * Writes an error message to the Gravity Forms log. Requires the Gravity Forms logging Add-On.
+	 * Writes an error message to the Ed Forms log. Requires the Ed Forms logging Add-On.
 	 *
 	 * Not intended to be overridden by Add-Ons.
 	 *
@@ -5362,7 +5362,7 @@ abstract class GFAddOn {
 	 *
 	 *  array(
 	 *     "object_type" => 'contact',
-	 *     "capabilities" => array("gravityforms_contacts_edit_contacts"),
+	 *     "capabilities" => array("edforms_contacts_edit_contacts"),
 	 *     "redirect_url" => admin_url("admin.php?page=gf_contacts"),
 	 *     "edit_url" => admin_url(sprintf("admin.php?page=gf_contacts&id=%d", $contact_id)),
 	 *     "strings" => $strings
@@ -5555,7 +5555,7 @@ abstract class GFAddOn {
 		 * @param array $form The Form currently being processed.
 		 * @param array $entry The Entry currently being processed.
 		 * @param string $field_id The ID of the Field currently being processed.
-		 * @param string $slug The add-on slug e.g. gravityformsactivecampaign.
+		 * @param string $slug The add-on slug e.g. edformsactivecampaign.
 		 *
 		 * @since 1.9.15.12
 		 *
@@ -5578,7 +5578,7 @@ abstract class GFAddOn {
 	 */
 	public function maybe_override_field_value( $field_value, $form, $entry, $field_id ) {
 		/* Get Add-On slug */
-		$slug = str_replace( 'gravityforms', '', $this->_slug );
+		$slug = str_replace( 'edforms', '', $this->_slug );
 
 		return gf_apply_filters( array(
 			"gform_{$slug}_field_value",
@@ -5778,11 +5778,11 @@ abstract class GFAddOn {
 	}
 
 	/**
-	 * Checks whether the Gravity Forms is installed.
+	 * Checks whether the Ed Forms is installed.
 	 *
 	 * @return bool
 	 */
-	public function is_gravityforms_installed() {
+	public function is_edforms_installed() {
 		return class_exists( 'GFForms' );
 	}
 
@@ -5793,23 +5793,23 @@ abstract class GFAddOn {
 	}
 
 	/**
-	 * Checks whether the current version of Gravity Forms is supported
+	 * Checks whether the current version of Ed Forms is supported
 	 *
-	 * @param $min_gravityforms_version
+	 * @param $min_edforms_version
 	 *
 	 * @return bool|mixed
 	 */
-	public function is_gravityforms_supported( $min_gravityforms_version = '' ) {
-		if ( isset( $this->_min_gravityforms_version ) && empty( $min_gravityforms_version ) ) {
-			$min_gravityforms_version = $this->_min_gravityforms_version;
+	public function is_edforms_supported( $min_edforms_version = '' ) {
+		if ( isset( $this->_min_edforms_version ) && empty( $min_edforms_version ) ) {
+			$min_edforms_version = $this->_min_edforms_version;
 		}
 
-		if ( empty( $min_gravityforms_version ) ) {
+		if ( empty( $min_edforms_version ) ) {
 			return true;
 		}
 
 		if ( class_exists( 'GFCommon' ) ) {
-			$is_correct_version = version_compare( GFCommon::$version, $min_gravityforms_version, '>=' );
+			$is_correct_version = version_compare( GFCommon::$version, $min_edforms_version, '>=' );
 
 			return $is_correct_version;
 		} else {
