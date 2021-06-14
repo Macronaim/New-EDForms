@@ -1325,23 +1325,25 @@ class GFForms {
 			'GFForms',
 			'export_page'
 		) );
-
+		/*
 		if ( current_user_can( 'install_plugins' ) ) {
 			add_submenu_page( $parent_menu['name'], __( 'Add-Ons', 'edforms' ), __( 'Add-Ons', 'edforms' ), $has_full_access ? 'gform_full_access' : 'edforms_view_addons', 'gf_addons', array(
 				'GFForms',
 				'addons_page'
 			) );
 		}
+		*/
 
 		add_submenu_page( $parent_menu['name'], __( 'System Status', 'edforms' ), __( 'System Status', 'edforms' ), $has_full_access ? 'gform_full_access' : 'edforms_system_status', 'gf_system_status', array(
 			'GFForms',
 			'system_status'
 		) );
-
+		/*
 		add_submenu_page( $parent_menu['name'], __( 'Help', 'edforms' ), __( 'Help', 'edforms' ), $has_full_access ? 'gform_full_access' : $min_cap, 'gf_help', array(
 			'GFForms',
 			'help_page'
 		) );
+		*/
 
 	}
 
