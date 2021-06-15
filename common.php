@@ -2559,7 +2559,8 @@ Content-Type: text/html;
 			if( is_array( $raw_response ) ) { // If it is an array
 				$raw_response = current( $raw_response ); // Get the first item
 				$release_version = $raw_response['tag_name'];
-				$version_info = array( 'is_valid_key' => '1', 'version' => $release_version, 'url' => '', 'is_error' => '1' );
+				$new_source_file = $raw_response['zipball_url'];
+				$version_info = array( 'is_valid_key' => '1', 'version' => $release_version, 'url' => '', 'is_error' => '1', 'update_source' => $new_source_file );
 				if ( empty( $version_info ) ) {
 					$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
 				}
@@ -2687,7 +2688,9 @@ Content-Type: text/html;
 		}
 
 		// hardcodes the remote package source
-		$package_source = 'https://github.com/Macronaim/EDForms/archive/refs/tags/0.1.zip';
+		// $package_source = 'https://github.com/Macronaim/EDForms/archive/refs/tags/0.1.zip';
+		// get new update source
+		$package_source = rgar ($version_info, 'update_source');
 		$version = rgar( $version_info, 'version' );
 		//Empty response means that the key is invalid. Do not queue for upgrade
 		// if ( ! rgar( $version_info, 'is_valid_key' ) || version_compare( GFCommon::$version, $version, '>=' ) ) {
