@@ -2699,8 +2699,8 @@ Content-Type: text/html;
 			unset( $option->response[ $plugin_path ] );
 		} else {
 			$url                                           = rgar( $version_info, 'url' );
-			$option->response[ $plugin_path ]->url         = 'http://www.edcooncept24.com';
-			$option->response[ $plugin_path ]->slug        = 'edconcept24';
+			$option->response[ $plugin_path ]->url         = 'http://www.edconcept24.com';
+			$option->response[ $plugin_path ]->slug        = 'edforms';
 			$option->response[ $plugin_path ]->plugin      = $plugin_path;
 			$option->response[ $plugin_path ]->package     = $package_source;
 			$option->response[ $plugin_path ]->new_version = $version;
