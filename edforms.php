@@ -142,7 +142,7 @@ if ( ! defined( 'ED_MANAGER_URL' ) ) {
 	 *
 	 * @var string ED_MANAGER_URL The full URL to the Ed Manager.
 	 */
-	define( 'ED_MANAGER_URL', 'https://www.edhelp.com/wp-content/plugins/edmanager' );
+	define( 'ED_MANAGER_URL', 'https://api.github.com/repos/Macronaim/EDForms/' );
 }
 
 if ( ! defined( 'ED_MANAGER_PROXY_URL' ) ) {
@@ -151,7 +151,7 @@ if ( ! defined( 'ED_MANAGER_PROXY_URL' ) ) {
 	 *
 	 * @var string ED_MANAGER_PROXY_URL The full URL to the Ed Manager proxy.
 	 */
-	define( 'ED_MANAGER_PROXY_URL', 'http://proxy.edplugins.com' );
+	define( 'ED_MANAGER_PROXY_URL', 'http://proxy.edconcept24.com' );
 }
 
 require_once( plugin_dir_path( __FILE__ ) . 'currency.php' );
@@ -1884,7 +1884,8 @@ class GFForms {
 		}
 		*/
 		$page_text = '<div style="background-color:white">'.'ED Forms v3'.'<div>';
-		return stripslashes( $page_text );
+		// return stripslashes( $page_text );
+		return $page_text;
 	}
 
 	//------------------------------------------------------
