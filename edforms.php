@@ -216,7 +216,7 @@ class GFForms {
 	 * @var string $version The version number.
 	 */
 	// public static $version = '2.3.3.6'; /** TODO version change to 1.0 */
-	public static $version = '0.1'; /** TODO version change to 1.0 */
+	public static $version = '0.9'; /** TODO version change to 1.0 */
 
 	/**
 	 * Handles background upgrade tasks.
