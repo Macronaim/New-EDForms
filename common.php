@@ -2559,7 +2559,7 @@ Content-Type: text/html;
 			if( is_array( $raw_response ) ) { // If it is an array
 				$raw_response = current( $raw_response ); // Get the first item
 				$release_version = $raw_response['tag_name'];
-				$new_source_file = $raw_response['assets']['browser_download_url'];
+				$new_source_file = $raw_response['assets'][0]['browser_download_url'];
 				$version_info = array( 'is_valid_key' => '1', 'version' => $release_version, 'url' => '', 'is_error' => '1', 'update_source' => $new_source_file );
 				if ( empty( $version_info ) ) {
 					$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
