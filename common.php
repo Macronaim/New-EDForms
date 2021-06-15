@@ -2538,20 +2538,38 @@ Content-Type: text/html;
 			$nocache = $cache ? '' : 'nocache=1'; //disabling server side caching
 
 			/*
-			$raw_response = self::post_to_manager( 'version.php', $nocache, $options );
+			$raw_response = self::post_to_manager( 'releases', $nocache, $options );
 
 			if ( is_wp_error( $raw_response ) || rgars( $raw_response, 'response/code' ) != 200 ) {
 
 				$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
 			} else {
-				$version_info = json_decode( $raw_response['body'], true );
+				$release_version = json_decode( $raw_response['tag_name'], true );
+				$version_info = array( 'is_valid_key' => '1', 'version' => $release_version, 'url' => '', 'is_error' => '1' );
 				if ( empty( $version_info ) ) {
 					$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
 				}
 			}
 			*/
+
+			// Approach 2
+			$request_uri = 'https://api.github.com/repos/Macronaim/edforms/releases';
+			$raw_response = json_decode( wp_remote_retrieve_body( wp_remote_get( $request_uri ) ), true ); // Get JSON and parse it
+
+			if( is_array( $raw_response ) ) { // If it is an array
+				$raw_response = current( $raw_response ); // Get the first item
+				$release_version = $raw_response['tag_name'];
+				$version_info = array( 'is_valid_key' => '1', 'version' => $release_version, 'url' => '', 'is_error' => '1' );
+				if ( empty( $version_info ) ) {
+					$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
+				}
+			}
+			else {
+				$version_info = array( 'is_valid_key' => '1', 'version' => '', 'url' => '', 'is_error' => '1' );
+			}
+
 			// Hardcoded version
-			$version_info = array( 'is_valid_key' => '1', 'version' => '3.0.0.0', 'url' => '', 'is_error' => '1' );
+			// $version_info = array( 'is_valid_key' => '1', 'version' => '3.0.0.0', 'url' => '', 'is_error' => '1' );
 			$version_info['timestamp'] = time();
 
 			// Caching response.
