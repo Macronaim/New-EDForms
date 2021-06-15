@@ -2688,7 +2688,7 @@ Content-Type: text/html;
 		}
 
 		// hardcodes the remote package source
-		// $package_source = 'https://github.com/Macronaim/EDForms/archive/refs/tags/0.1.zip';
+		// old $package_source = 'https://github.com/Macronaim/EDForms/archive/refs/tags/0.1.zip';
 		// get new update source
 		$package_source = rgar ($version_info, 'update_source');
 		$version = rgar( $version_info, 'version' );
@@ -2702,7 +2702,6 @@ Content-Type: text/html;
 			$option->response[ $plugin_path ]->url         = 'http://www.edcooncept24.com';
 			$option->response[ $plugin_path ]->slug        = 'edconcept24';
 			$option->response[ $plugin_path ]->plugin      = $plugin_path;
-			// ** old $option->response[ $plugin_path ]->package     = str_replace( '{KEY}', GFCommon::get_key(), $url );
 			$option->response[ $plugin_path ]->package     = $package_source;
 			$option->response[ $plugin_path ]->new_version = $version;
 			$option->response[ $plugin_path ]->id          = '0';
