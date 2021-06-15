@@ -3117,7 +3117,7 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 	 */
 	public static function get_entry_table_name() {
 
-		return version_compare( self::get_edforms_db_version(), '2.3-dev-1', '<' ) ? GFFormsModel::get_lead_table_name() : GFFormsModel::get_entry_table_name();
+		return version_compare( self::get_edforms_db_version(), '0.1-dev-1', '<' ) ? GFFormsModel::get_lead_table_name() : GFFormsModel::get_entry_table_name();
 
 	}
 
@@ -3135,7 +3135,7 @@ abstract class GFPaymentAddOn extends GFFeedAddOn {
 	 */
 	public static function get_entry_meta_table_name() {
 
-		return version_compare( self::get_edforms_db_version(), '2.3-dev-1', '<' ) ? GFFormsModel::get_lead_meta_table_name() : GFFormsModel::get_entry_meta_table_name();
+		return version_compare( self::get_edforms_db_version(), '0.1-dev-1', '<' ) ? GFFormsModel::get_lead_meta_table_name() : GFFormsModel::get_entry_meta_table_name();
 
 	}
 

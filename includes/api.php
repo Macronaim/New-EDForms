@@ -550,7 +550,7 @@ class GFAPI {
 			$sorting = array( 'key' => 'id', 'direction' => 'DESC', 'is_numeric' => true );
 		}
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			$entries = GF_Forms_Model_Legacy::search_leads( $form_ids, $search_criteria, $sorting, $paging );
 			if ( ! is_null( $total_count ) ) {
 				$total_count = self::count_entries( $form_ids, $search_criteria );
@@ -582,7 +582,7 @@ class GFAPI {
 	 */
 	public static function get_entry_ids( $form_id, $search_criteria = array(), $sorting = null, $paging = null, &$total_count = null ) {
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			$entry_ids = GF_Forms_Model_Legacy::search_lead_ids( $form_id, $search_criteria );
 			return $entry_ids;
 		}
@@ -612,7 +612,7 @@ class GFAPI {
 	 */
 	public static function count_entries( $form_ids, $search_criteria = array() ) {
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::count_search_leads( $form_ids, $search_criteria );
 		}
 
@@ -635,7 +635,7 @@ class GFAPI {
 	 */
 	public static function get_entry( $entry_id ) {
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			$search_criteria['field_filters'][] = array( 'key' => 'id', 'value' => $entry_id );
 
 			$paging  = array( 'offset' => 0, 'page_size' => 1 );
@@ -761,7 +761,7 @@ class GFAPI {
 			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::update_entry( $entry, $entry_id );
 		}
 
@@ -1006,7 +1006,7 @@ class GFAPI {
 			return new WP_Error( 'submissions_blocked', __( 'Submissions are currently blocked due to an upgrade in progress', 'edforms' ) );
 		}
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::add_entry( $entry );
 		}
 
@@ -1203,7 +1203,7 @@ class GFAPI {
 			return false;
 		}
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::update_entry_field( $entry_id, $input_id, $value );
 		}
 

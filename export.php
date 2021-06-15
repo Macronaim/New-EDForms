@@ -630,7 +630,7 @@ class GFExport {
 
 		while ( $go_to_next_page ) {
 
-			if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+			if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 				$sql = "SELECT d.field_number as field_id, d.value as value
                     FROM {$wpdb->prefix}rg_lead_detail d
                     WHERE d.form_id={$form['id']} AND cast(d.field_number as decimal) IN ({$field_ids})

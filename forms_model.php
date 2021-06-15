@@ -138,7 +138,7 @@ class GFFormsModel {
 	public static function get_form_table_name() {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return $wpdb->prefix . 'rg_form';
 		}
 
@@ -157,7 +157,7 @@ class GFFormsModel {
 	public static function get_meta_table_name() {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return $wpdb->prefix . 'rg_form_meta';
 		}
 
@@ -176,7 +176,7 @@ class GFFormsModel {
 	public static function get_form_view_table_name() {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return $wpdb->prefix . 'rg_form_view';
 		}
 
@@ -505,7 +505,7 @@ class GFFormsModel {
 	 */
 	public static function get_entry_count_per_form() {
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_entry_count_per_form();
 		}
 
@@ -581,7 +581,7 @@ class GFFormsModel {
 	 */
 	public static function get_form_payment_totals( $form_id ) {
 		global $wpdb;
-		$entry_table_name = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
+		$entry_table_name = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
 
 		$sql = $wpdb->prepare(
 			" SELECT sum(payment_amount) revenue, count(l.id) orders
@@ -624,7 +624,7 @@ class GFFormsModel {
 	 */
 	public static function get_form_counts( $form_id ) {
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_form_counts( $form_id );
 		}
 
@@ -677,7 +677,7 @@ class GFFormsModel {
 	public static function get_form_summary() {
 		global $wpdb;
 		$form_table_name = self::get_form_table_name();
-		$entry_table_name = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
+		$entry_table_name = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
 
 		$sql = "SELECT l.form_id, count(l.id) as unread_count
                 FROM $entry_table_name l
@@ -1215,7 +1215,7 @@ class GFFormsModel {
 	}
 
 	public static function get_lead_detail_id( $current_fields, $field_number ) {
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_lead_detail_id( $current_fields, $field_number );
 		}
 
@@ -1328,7 +1328,7 @@ class GFFormsModel {
 	public static function update_entry_property( $lead_id, $property_name, $property_value, $update_akismet = true, $disable_hook = false ) {
 		global $wpdb;
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::update_lead_property( $lead_id, $property_name, $property_value, $update_akismet, $disable_hook );
 		}
 
@@ -1427,7 +1427,7 @@ class GFFormsModel {
 	public static function delete_entries_by_form( $form_id, $status = '' ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::delete_leads_by_form( $form_id, $status );
 			return;
 		}
@@ -1830,7 +1830,7 @@ class GFFormsModel {
 	public static function delete_files_by_form( $form_id, $status = '' ) {
 		global $wpdb;
 
-		$entry_table_name = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
+		$entry_table_name = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_lead_table_name() : self::get_entry_table_name();
 
 		$form   = self::get_form_meta( $form_id );
 
@@ -1864,7 +1864,7 @@ class GFFormsModel {
 	public static function delete_file( $entry_id, $field_id, $file_index = 0 ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::delete_file( $entry_id, $field_id, $file_index );
 			return;
 		}
@@ -2039,7 +2039,7 @@ class GFFormsModel {
 	public static function delete_field_values( $form_id, $field_id ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::delete_field_values( $form_id, $field_id );
 			return;
 		}
@@ -2074,7 +2074,7 @@ class GFFormsModel {
 	public static function delete_entry( $entry_id ) {
 		global $wpdb;
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::delete_lead( $entry_id );
 			return;
 		}
@@ -2121,7 +2121,7 @@ class GFFormsModel {
 	public static function add_note( $entry_id, $user_id, $user_name, $note, $note_type = 'note' ) {
 		global $wpdb;
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::add_note( $entry_id, $user_id, $user_name, $note, $note_type );
 			return;
 		}
@@ -2147,7 +2147,7 @@ class GFFormsModel {
 	public static function delete_note( $note_id ) {
 		global $wpdb;
 
-		if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::delete_note( $note_id );
 			return;
 		}
@@ -2214,7 +2214,7 @@ class GFFormsModel {
 	public static function save_entry( $form, &$entry ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			GF_Forms_Model_Legacy::save_lead( $form, $entry );
 			$entry = GFAPI::get_entry( $entry['id'] );
 			return;
@@ -2950,7 +2950,7 @@ class GFFormsModel {
 		$expiration_days = apply_filters( 'gform_incomplete_submissions_expiration_days', $expiration_days );
 		$expiration_date = gmdate( 'Y-m-d H:i:s', time() - ( $expiration_days * 24 * 60 * 60 ) );
 
-		$table  = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
+		$table  = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
 
 		$query = array(
 			'delete' => 'DELETE',
@@ -2975,7 +2975,7 @@ class GFFormsModel {
 	public static function delete_incomplete_submission( $token ) {
 		global $wpdb;
 
-		$table  = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
+		$table  = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
 		$result = $wpdb->query( $wpdb->prepare( "DELETE FROM $table WHERE uuid = %s", $token ) );
 
 		return $result;
@@ -2987,7 +2987,7 @@ class GFFormsModel {
 		}
 		global $wpdb;
 
-		$table  = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
+		$table  = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
 
 		$submitted_values = array();
 		foreach ( $form['fields'] as $field ) {
@@ -3156,7 +3156,7 @@ class GFFormsModel {
 
 		self::purge_expired_incomplete_submissions();
 
-		$table = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
+		$table = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
 		$sql   = $wpdb->prepare( "SELECT date_created, form_id, submission, source_url FROM {$table} WHERE uuid = %s", $resume_token );
 		$row   = $wpdb->get_row( $sql, ARRAY_A );
 
@@ -3191,7 +3191,7 @@ class GFFormsModel {
 		global $wpdb;
 		self::purge_expired_incomplete_submissions();
 
-		$table  = version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
+		$table  = version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ? self::get_incomplete_submissions_table_name() : self::get_draft_submissions_table_name();
 		$sql    = $wpdb->prepare( "UPDATE $table SET email = %s WHERE uuid = %s", $email, $token );
 		$result = $wpdb->query( $sql );
 
@@ -4185,7 +4185,7 @@ class GFFormsModel {
 	public static function update_entry_field_value( $form, $entry, $field, $entry_meta_id, $input_id, $value ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::update_lead_field_value( $form, $entry, $field, $entry_meta_id, $input_id, $value );
 		}
 
@@ -4614,7 +4614,7 @@ class GFFormsModel {
 	public static function is_duplicate( $form_id, $field, $value ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::is_duplicate( $form_id, $field, $value );
 		}
 
@@ -4688,7 +4688,7 @@ class GFFormsModel {
 	public static function get_lead_notes( $lead_id ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_lead_notes( $lead_id );
 		}
 
@@ -4807,7 +4807,7 @@ class GFFormsModel {
 	 * @return array
 	 */
 	public static function get_entries_by_meta( $meta_key, $meta_value ) {
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_leads_by_meta( $meta_key, $meta_value );
 		}
 		$args = array(
@@ -4899,7 +4899,7 @@ class GFFormsModel {
 	 */
 	public static function get_leads_where_sql( $args ) {
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_leads_where_sql( $args ) ;
 		}
 
@@ -4978,7 +4978,7 @@ class GFFormsModel {
 
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_lead_count( $form_id, $search, $star, $read, $start_date, $end_date, $status, $payment_status ) ;
 		}
 
@@ -5090,7 +5090,7 @@ class GFFormsModel {
 	public static function get_lead_ids( $form_id, $search, $star = null, $read = null, $start_date = null, $end_date = null, $status = null, $payment_status = null ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_lead_ids( $form_id, $search, $star, $read, $start_date, $end_date, $status, $payment_status ) ;
 		}
 
@@ -5305,7 +5305,7 @@ class GFFormsModel {
 	public static function get_submitted_fields( $form_id ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_submitted_fields( $form_id );
 		}
 
@@ -5568,7 +5568,7 @@ class GFFormsModel {
 	public static function get_entry_count_all_forms( $status = 'active' ) {
 		global $wpdb;
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_lead_count_all_forms( $status );
 		}
 
@@ -5585,7 +5585,7 @@ class GFFormsModel {
 		global $wpdb;
 
 
-		if ( version_compare( self::get_database_version(), '2.3-dev-1', '<' ) ) {
+		if ( version_compare( self::get_database_version(), '0.1-dev-1', '<' ) ) {
 			return GF_Forms_Model_Legacy::get_entry_meta_counts();
 		}
 
@@ -6253,7 +6253,7 @@ $_gform_lead_meta = array();
 // Functions to handle lead meta
 function gform_get_meta( $entry_id, $meta_key ) {
 
-	if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+	if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 		return GF_Forms_Model_Legacy::gform_get_meta( $entry_id, $meta_key );
 	}
 
@@ -6277,7 +6277,7 @@ function gform_get_meta( $entry_id, $meta_key ) {
 function gform_get_meta_values_for_entries( $entry_ids, $meta_keys ) {
 	global $wpdb;
 
-	if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+	if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 		return GF_Forms_Model_Legacy::gform_get_meta_values_for_entries( $entry_ids, $meta_keys );
 	}
 
@@ -6338,7 +6338,7 @@ function gform_update_meta( $entry_id, $meta_key, $meta_value, $form_id = null )
 		return;
 	}
 
-	if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+	if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 		GF_Forms_Model_Legacy::gform_update_meta( $entry_id, $meta_key, $meta_value, $form_id );
 		return;
 	}
@@ -6395,7 +6395,7 @@ function gform_add_meta( $entry_id, $meta_key, $meta_value, $form_id = null ) {
 		return;
 	}
 
-	if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+	if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 		GF_Forms_Model_Legacy::gform_add_meta( $entry_id, $meta_key, $meta_value, $form_id );
 		return;
 	}
@@ -6435,7 +6435,7 @@ function gform_delete_meta( $entry_id, $meta_key = '' ) {
 		return;
 	}
 
-	if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '<' ) ) {
+	if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '<' ) ) {
 		GF_Forms_Model_Legacy::gform_delete_meta( $entry_id, $meta_key );
 		return;
 	}

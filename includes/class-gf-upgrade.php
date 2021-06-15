@@ -541,7 +541,7 @@ class GF_Upgrade {
 			$this->post_upgrade_schema_2047();
 		}
 
-		if ( version_compare( $current_db_version, '2.3-dev-1', '<' ) ) {
+		if ( version_compare( $current_db_version, '0.1-dev-1', '<' ) ) {
 			GFForms::$background_upgrader->push_to_queue( array( $this, 'gf_upgrade_block_submissions' ) );
 			GFForms::$background_upgrader->push_to_queue( array( $this, 'gf_upgrade_230_migrate_forms' ) );
 			GFForms::$background_upgrader->push_to_queue( array( $this, 'gf_upgrade_230_migrate_leads' ) );

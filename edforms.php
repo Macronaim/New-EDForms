@@ -215,7 +215,8 @@ class GFForms {
 	 *
 	 * @var string $version The version number.
 	 */
-	public static $version = '2.3.3.6'; /** TODO version change to 1.0 */
+	// public static $version = '2.3.3.6'; /** TODO version change to 1.0 */
+	public static $version = '0.1'; /** TODO version change to 1.0 */
 
 	/**
 	 * Handles background upgrade tasks.
@@ -5152,7 +5153,7 @@ class GFForms {
 		global $wpdb;
 
 		if ( preg_match( "/$wpdb->prefix(rg_lead_detail|rg_lead_meta|rg_lead_notes|rg_lead|rg_form_meta|rg_form_view|rg_form|rg_incomplete_submissions)/", $query, $matches ) ) {
-			if ( version_compare( GFFormsModel::get_database_version(), '2.3-dev-1', '>' ) ) {
+			if ( version_compare( GFFormsModel::get_database_version(), '0.1-dev-1', '>' ) ) {
 				$table_name = $matches[0];
 				$url = 'https://docs.edconcept24.fr/database-storage-structure-reference/#changes-from-ed-forms-2-2';
 				/* translators: 1: The table name 2: the URL with further details */
