@@ -3,7 +3,7 @@
 Plugin Name: EDForms
 Plugin URI: https://www.edconcept24.fr
 Description: Easily create web forms and manage form entries within the WordPress admin.
-Version: 1.0
+Version: 0.9
 Author: EDConcept 24
 Author URI: https://www.edconcept24.fr
 License: GPL-2.0+
